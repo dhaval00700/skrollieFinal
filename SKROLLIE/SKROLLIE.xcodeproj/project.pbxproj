@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */; };
+		0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */; };
 		7F05A9FF227866500079963D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FD227866500079963D /* CoreAudio.framework */; };
 		7F05AA00227866500079963D /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FE227866500079963D /* CoreAudioKit.framework */; };
 		7F30F2532293BE63005F13A8 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30F2522293BE63005F13A8 /* CommentTableViewCell.swift */; };
@@ -126,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		0D75F296FEFF1AAE367C01FB /* Pods_SKROLLIE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageViewController.swift; sourceTree = "<group>"; };
+		0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideoViewController.swift; sourceTree = "<group>"; };
 		41F5268037B75A4D715C8E9B /* Pods-SKROLLIE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKROLLIE.debug.xcconfig"; path = "Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE.debug.xcconfig"; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F05A9FD227866500079963D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -272,6 +276,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E19045D229BCD18005DEA7B /* SelectedImageVideo */ = {
+			isa = PBXGroup;
+			children = (
+				0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */,
+				0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */,
+			);
+			path = SelectedImageVideo;
+			sourceTree = "<group>";
+		};
 		107B1C5D245F74CFFF45AE0F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				7FCCA6DB22644ADC00E8E9A1 /* AppDelegate.swift */,
+				0E19045D229BCD18005DEA7B /* SelectedImageVideo */,
 				7F7F9F652285B3B3004F85BD /* Login Register Otp */,
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
@@ -796,6 +810,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -811,6 +827,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -851,6 +869,7 @@
 				7F7F9FBA2285B857004F85BD /* NSString+Extensions.m in Sources */,
 				7F6D122F2295173600CB7988 /* Orientation.swift in Sources */,
 				7F7F9F6B2285B3B3004F85BD /* MobileNumberAddVc.swift in Sources */,
+				0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */,
 				7F9ABA4C228D6BC400950103 /* PGMCameraKitHelper.swift in Sources */,
 				7F841DEA22943463008A4D18 /* userViewerCollectionViewCell.swift in Sources */,
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
@@ -880,6 +899,7 @@
 				F73DD3BD228440C20096A943 /* viewPost.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,
+				0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */,
 				7F9ABA4B228D6BC400950103 /* PGMCameraKitProperties.swift in Sources */,
 				7F7F9FBB2285B857004F85BD /* UtilityClass.swift in Sources */,
 				7F7F9F6D2285B3B3004F85BD /* RegisterViewController.swift in Sources */,

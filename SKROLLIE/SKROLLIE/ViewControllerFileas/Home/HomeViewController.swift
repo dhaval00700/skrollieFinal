@@ -107,8 +107,9 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     @IBAction func btnCamera(_ sender: UIButton)
     {
-//        self.showAlertForImagePicker()
-        performSegue(withIdentifier: "SegueToCameraVc", sender: self)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "CameraAndVedioViewController") as? CameraAndVedioViewController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func btnUserProfile(_ sender: UIButton)
     {
