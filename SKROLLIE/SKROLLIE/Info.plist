@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>2.2</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string> $(PRODUCT_NAME) photo use</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) camera use</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) location use</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) location use
+$(PRODUCT_NAME) location use
+</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) microphone use</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string> photos add description.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library.</string>
+	<key>Status bar style</key>
+	<string>lightContent</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MONTSERRAT-MEDIUMITALIC.OTF</string>
+		<string>MONTSERRAT-BOLD.OTF</string>
+		<string>MONTSERRAT-BLACKITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-BLACK.OTF</string>
+		<string>MONTSERRATALTERNATES-LIGHTITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-MEDIUM.OTF</string>
+		<string>MONTSERRAT-BOLDITALIC.OTF</string>
+		<string>MONTSERRAT-LIGHT.OTF</string>
+		<string>MONTSERRAT-THINITALIC.OTF</string>
+		<string>MONTSERRAT-THIN.OTF</string>
+		<string>MONTSERRATALTERNATES-MEDIUMITALIC.OTF</string>
+		<string>MONTSERRAT-EXTRALIGHT.OTF</string>
+		<string>MONTSERRATALTERNATES-BLACKITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-BOLD.OTF</string>
+		<string>MONTSERRATALTERNATES-EXTRALIGHTITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-THIN.OTF</string>
+		<string>MONTSERRAT-ULTRALIGHT.OTF</string>
+		<string>MONTSERRAT-LIGHTITALIC.OTF</string>
+		<string>MONTSERRAT-MEDIUM.OTF</string>
+		<string>MONTSERRATALTERNATES-SEMIBOLDITALIC.OTF</string>
+		<string>MONTSERRAT-SEMIBOLDITALIC.OTF</string>
+		<string>MONTSERRAT-EXTRABOLDITALIC.OTF</string>
+		<string>MONTSERRAT-ITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-SEMIBOLD.OTF</string>
+		<string>MONTSERRAT-REGULAR.OTF</string>
+		<string>MONTSERRAT-SEMIBOLD_0.OTF</string>
+		<string>MONTSERRATALTERNATES-EXTRABOLD.OTF</string>
+		<string>MONTSERRATALTERNATES-BOLDITALIC.OTF</string>
+		<string>MONTSERRAT-EXTRABOLD.OTF</string>
+		<string>MONTSERRAT-EXTRALIGHTITALIC.OTF</string>
+		<string>MONTSERRAT-EXTRABOLD_0.OTF</string>
+		<string>MONTSERRATALTERNATES-LIGHT.OTF</string>
+		<string>MONTSERRATALTERNATES-EXTRALIGHT.OTF</string>
+		<string>MONTSERRATALTERNATES-REGULAR.OTF</string>
+		<string>MONTSERRATALTERNATES-THINITALIC.OTF</string>
+		<string>MONTSERRAT-BLACK.OTF</string>
+		<string>MONTSERRAT-HAIRLINE.OTF</string>
+		<string>MONTSERRATALTERNATES-EXTRABOLDITALIC.OTF</string>
+		<string>MONTSERRATALTERNATES-ITALIC.OTF</string>
+		<string>MONTSERRAT-SEMIBOLD.OTF</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

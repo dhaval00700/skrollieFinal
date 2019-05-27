@@ -1,0 +1,6 @@
+framework module Pods_SKROLLIE {
+  umbrella header "Pods-SKROLLIE-umbrella.h"
+
+  export *
+  module * { export * }
+}

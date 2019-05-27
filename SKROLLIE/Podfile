@@ -1,0 +1,32 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SKROLLIE' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+
+  # Pods for SKROLLIE
+  
+  pod 'SkyFloatingLabelTextField', '~> 3.0' # Text Filed.
+  pod 'IQKeyboardManagerSwift' # KeyBord.
+  pod 'SDWebImage' # Image get From url.
+  pod 'SwiftMessages' # Pop up.
+  pod 'Alamofire' # Json Function.
+  pod 'SwiftyJSON' # Model MVC.
+  pod 'SVPinView', '~> 1.0' #For OTP.
+  pod 'SRCountdownTimer' # For Timer.
+  pod 'SwiftyComments'
+end
+
+# For Pod Version Check so plz Don't delete it.
+
+# Alamofire (4.8.1)
+# Using CameraManager (4.3.1)
+# Using IQKeyboardManagerSwift (6.2.0)
+# Using SDWebImage (4.4.6)
+# Using SRCountdownTimer (1.1)
+# Using SVPinView (1.0.6)
+# Using SkyFloatingLabelTextField (3.6.0)
+# Using SwiftMessages (6.0.2)
+# Using SwiftyJSON (4.2.0)

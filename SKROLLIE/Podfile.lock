@@ -1,0 +1,56 @@
+PODS:
+  - Alamofire (4.8.1)
+  - IQKeyboardManagerSwift (6.2.0)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SkyFloatingLabelTextField (3.6.0)
+  - SRCountdownTimer (1.1)
+  - SVPinView (1.0.6)
+  - SwiftMessages (6.0.2):
+    - SwiftMessages/App (= 6.0.2)
+  - SwiftMessages/App (6.0.2)
+  - SwiftyComments (0.2.0):
+    - SwipeCellKit
+  - SwiftyJSON (4.2.0)
+  - SwipeCellKit (2.5.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - IQKeyboardManagerSwift
+  - SDWebImage
+  - SkyFloatingLabelTextField (~> 3.0)
+  - SRCountdownTimer
+  - SVPinView (~> 1.0)
+  - SwiftMessages
+  - SwiftyComments
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - SDWebImage
+    - SkyFloatingLabelTextField
+    - SRCountdownTimer
+    - SVPinView
+    - SwiftMessages
+    - SwiftyComments
+    - SwiftyJSON
+    - SwipeCellKit
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
+  SRCountdownTimer: 9c92e444b5403c92f01dd6610299b8c634bc8562
+  SVPinView: 3dda372c7a1c051b41788f07bf7a8339aa19083e
+  SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
+  SwiftyComments: 864260f481d4159118e1ee9c0ad2c9a95693fa94
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
+
+PODFILE CHECKSUM: 9dc27e199022be2a4b66ceaa28b840f30e72efa6
+
+COCOAPODS: 1.6.1
