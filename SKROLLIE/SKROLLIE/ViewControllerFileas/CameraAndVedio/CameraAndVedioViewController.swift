@@ -7,17 +7,21 @@
 
 import UIKit
 import Photos
+import MobileCoreServices
 import AVFoundation
 import AVKit
 import SRCountdownTimer
 
-protocol CompletedVideoDelegate
-{
-    func DidComletevideo(FilePath:URL)
-}
-
 class CameraAndVedioViewController: SwiftyCamViewController
 {
+    //MARK: Outlets
+    @IBOutlet weak var Timerlabel: UILabel!
+    @IBOutlet weak var ViewCount: SRCountdownTimer!
+    @IBOutlet weak var btnFlash: UIButton!
+    @IBOutlet weak var btnCamera: UIButton!
+    @IBOutlet weak var btnPreviewImg: UIButton!
+    
+    //MARK: Properties
     var VideoRecorderStatus:Int = 0
     var images:[UIImage] = []
     
@@ -35,20 +39,17 @@ class CameraAndVedioViewController: SwiftyCamViewController
         return "\(NSDate().timeIntervalSince1970 * 1000)"
     }
     
-    @IBOutlet weak var Timerlabel: UILabel!
-    @IBOutlet weak var ViewCount: SRCountdownTimer!
-    @IBOutlet weak var btnFlash: UIButton!
-    @IBOutlet weak var PreviewImageView: UIImageView!
-    @IBOutlet weak var btnCamera: UIButton!
-    @IBOutlet weak var btnPreviewImg: UIButton!
-    
+    //MARK: Lifecycles
     override func viewDidLoad()
     {
         setupUI()
         super.viewDidLoad()
     }
     
+    
+    //MARK: Methods
     func setupUI() {
+        fetchPhotos()
         Timerlabel.isHidden = true
         self.TapDelegate = self
         self.cameraDelegate = self
@@ -61,9 +62,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
         self.shouldUseDeviceOrientation = true
         self.audioEnabled = true
         self.allowBackgroundAudio = true
-        self.view.bringSubviewToFront(self.PreviewImageView)
-        self.btnPreviewImg.isHidden = true
-        self.PreviewImageView.isHidden = true
+        self.view.bringSubviewToFront(self.btnPreviewImg)
         
         
         btnFlash.setImage(UIImage.init(named: "icon_Flash"), for: .normal)
@@ -176,22 +175,17 @@ class CameraAndVedioViewController: SwiftyCamViewController
     
     
     @IBAction func onBtnPreviewImage(_ sender: Any) {
-        
-        controller.sourceType = UIImagePickerController.SourceType.photoLibrary
-        saveImageDocumentDirectory()
-        guard let selectedImage = PreviewImageView.image else {
-            print("Image not found!")
-            return
-        }
-        UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(imagePhoto(_:didFinishSavingWithError :contextInfo:)), nil)
-        
-        present(controller, animated: true, completion: nil)
+        loadPhotoGalleryView()
     }
     
-    func saveImageDocumentDirectory()
+    func saveImageDocumentDirectory(image: UIImage) -> URL
     {
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(".png")
-        print(paths)
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(Timestamp)Imag.jpeg")
+        if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
+            fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
+        }
+        return URL(fileURLWithPath: path)
     }
     
     @objc func imagePhoto(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -244,56 +238,14 @@ class CameraAndVedioViewController: SwiftyCamViewController
                 DispatchQueue.main.async(execute: { () -> Void in
                     // removed all videos
                     self.arrVideoAssets.removeAll()
-                    //                   let selectedVideo = fileURL
-                    let player = AVPlayer(url: fileURL)  // video path coming from above function
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    self.present(playerViewController, animated: true) {
-                        print("video saved in Document Directory \nReady to Start Record Next Video...")
-                        playerViewController.player!.play()
-                        
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
+                        vc.videoUrl = fileURL
+                        self.navigationController?.pushViewController(vc, animated: false)
                     }
                 })
             }
         }
         catch {
-            print(error)
-        }
-    }
-    
-    @objc func videoSaved(_ video: String, didFinishSavingWithError error: NSError!, context: UnsafeMutableRawPointer){
-        if let theError = error {
-            print("error saving the video = \(theError)")
-        } else {
-            DispatchQueue.main.async(execute: { () -> Void in
-                
-                print("video saved please check Albums \nReady to Start Record Next Video...")
-                
-                
-                self.clearAllFilesFromTempDirectory()
-            })
-        }
-    }
-    
-    // Clear Temporary file from Document Directory
-    
-    func clearAllFilesFromTempDirectory(){
-        arrVideoAssets.removeAll()
-        var _: NSErrorPointer = nil
-        let fileManager = FileManager.default
-        do {
-            let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-            let directoryContents: [String] = try! fileManager.contentsOfDirectory(atPath: documentDirectory.path)
-            
-            if !directoryContents.isEmpty {
-                for path in directoryContents {
-                    let fullPath = documentDirectory.appendingPathComponent(path)
-                    try fileManager.removeItem(at: fullPath)
-                }
-            } else {
-                //            println("Could not retrieve directory: \(error)")
-            }
-        } catch {
             print(error)
         }
     }
@@ -305,17 +257,14 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
         // Called when takePhoto() is called or if a SwiftyCamButton initiates a tap gesture
         // Returns a UIImage captured from the current session
-        self.PreviewImageView.image = photo
-        self.PreviewImageView.isHidden = false
+        self.btnPreviewImg.setBackgroundImage(photo, for: .normal)
         self.btnPreviewImg.isHidden = false
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
-        self.PreviewImageView.isHidden = true
         ViewCounter()
         print("Recording...")
         self.btnPreviewImg.isHidden = true
-        self.PreviewImageView.isHidden = true
         ViewCount.isHidden = false
         Timerlabel.isHidden = false
         runTimer()
@@ -422,5 +371,109 @@ extension CameraAndVedioViewController: TapGestureDelegate {
             VideoRecorderStatus = 0
             self.stopVideoRecording()
         }
+    }
+}
+
+//MARK: - UIImagePickerControllerDelegate and Take a Photo or Choose from Gallery Methods
+extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            let url = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedImageViewController") as? SelectedImageViewController {
+                vc.selectedImage = editedImage
+                
+                vc.selectedImageUrl = saveImageDocumentDirectory(image: editedImage)
+                navigationController?.pushViewController(vc, animated: false)
+            }
+            print("image")
+        } else{
+            
+            if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
+                    vc.videoUrl = videoUrl
+                    navigationController?.pushViewController(vc, animated: false)
+                }
+            }
+            print("Video")
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func loadPhotoGalleryView()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        {
+            let imagePickerController = UIImagePickerController()
+            
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            
+            
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        else
+        {
+            print("Photo library does not avaialable on this device.")
+        }
+    }
+    
+}
+
+
+extension CameraAndVedioViewController {
+    func fetchPhotos() {
+        // Sort the images by descending creation date and fetch the first 3
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.fetchLimit = 3
+        
+        // Fetch the image assets
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
+        
+        // If the fetch result isn't empty,
+        // proceed with the image request
+        if fetchResult.count > 0 {
+            let totalImageCountNeeded = 1 // <-- The number of images to fetch
+            fetchPhotoAtIndex(0, totalImageCountNeeded, fetchResult)
+        }
+    }
+    
+    // Repeatedly call the following method while incrementing
+    // the index until all the photos are fetched
+    func fetchPhotoAtIndex(_ index:Int, _ totalImageCountNeeded: Int, _ fetchResult: PHFetchResult<PHAsset>) {
+        
+        // Note that if the request is not set to synchronous
+        // the requestImageForAsset will return both the image
+        // and thumbnail; by setting synchronous to true it
+        // will return just the thumbnail
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+        
+        // Perform the image request
+        PHImageManager.default().requestImage(for: fetchResult.object(at: index) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+            if let image = image {
+                // Add the returned image to your array
+                self.images += [image]
+            }
+            
+            if index + 1 < fetchResult.count && self.images.count < totalImageCountNeeded {
+                self.fetchPhotoAtIndex(index + 1, totalImageCountNeeded, fetchResult)
+            } else {
+                // Else you have completed creating your array
+                print("Completed array: \(self.images)")
+                
+                if self.images.count > 0{
+                    //self.PreviewImageView.image = self.images.first!
+                    self.btnPreviewImg.setBackgroundImage(self.images.first!, for: .normal)
+                }
+            }
+        })
     }
 }

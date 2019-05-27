@@ -208,7 +208,9 @@ extension OTPViewController
                 {
                     print((result as! [String:AnyObject])["message"] as! String)
                     //                    UtilityClass.getAppDelegate().setLogin()
-                    self.performSegue(withIdentifier: "SegueToOtpToHome", sender: self)
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
                     
                 catch let DecodingError.dataCorrupted(context)
