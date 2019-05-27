@@ -238,7 +238,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate
                 
                 print((result as! [String:AnyObject])["message"] as! String)
                 
-                self.performSegue(withIdentifier: "SegueToLoginToHome", sender: self)
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 
             }
             else if success == false

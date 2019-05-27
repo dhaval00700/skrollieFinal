@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.8.1)
+  - AWSCore (2.9.7)
+  - AWSS3 (2.9.7):
+    - AWSCore (= 2.9.7)
   - IQKeyboardManagerSwift (6.2.0)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
@@ -17,6 +20,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AWSS3
   - IQKeyboardManagerSwift
   - SDWebImage
   - SkyFloatingLabelTextField (~> 3.0)
@@ -29,6 +33,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AWSCore
+    - AWSS3
     - IQKeyboardManagerSwift
     - SDWebImage
     - SkyFloatingLabelTextField
@@ -41,6 +47,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AWSCore: c98ab96784580d7a141c6f1999aa919ef45a312c
+  AWSS3: 653807428bfb6368dbe54fe1c7f0b81bffa5dba7
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
@@ -51,6 +59,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
 
-PODFILE CHECKSUM: 9dc27e199022be2a4b66ceaa28b840f30e72efa6
+PODFILE CHECKSUM: 067e2855a15f2c70c0d671b903d5c5035eed41f1
 
 COCOAPODS: 1.6.1
