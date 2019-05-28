@@ -26,6 +26,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     private let errorMessageEmail = UILabel()
     private let errorMessageBirthDate = UILabel()
     
+    
     //--------------------------------------------------------------
     // MARK: -  Outlet
     //--------------------------------------------------------------
@@ -45,7 +46,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     @IBOutlet weak var lblPassword: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var lblBirthDate: UILabel!
-
+    
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var btnAlreadyaUser: UIButton!
     
@@ -94,16 +95,16 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     //--------------------------------------------------------------
     // MARK: -  Error message
     //--------------------------------------------------------------
-
+    
     func setupErrorMessage()
     {
-       //Username
+        //Username
         errorMessageUser.translatesAutoresizingMaskIntoConstraints = false
         errorMessageUser.font = UIFont.Regular(ofSize: 12)
         errorMessageUser.textColor = .red
         errorMessageUser.isHidden = true
         self.lblUsername.addSubview(errorMessageUser)
-       //Password
+        //Password
         errorMessagePassword.translatesAutoresizingMaskIntoConstraints = false
         errorMessagePassword.font = UIFont.Regular(ofSize: 12)
         errorMessagePassword.textColor = .red
@@ -169,84 +170,135 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     //--------------------------------------------------------------
     // MARK: -  Webservice Call
     //--------------------------------------------------------------
-        @objc func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason)
+    @objc func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason)
+    {
+        if textField == txtEmailAddress
         {
-            if textField == txtEmailAddress
+            let isEmailAddressValid = isValidEmailAddress(emailID: txtEmailAddress.text!)
+
+            if (!isEmailAddressValid)
             {
-                webserviceOfEmailFormateCheck()
-    
+                viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
+                viewBirthdate.layer.borderWidth = 1.0
+                viewPassword.layer.borderColor =   UIColor.lightGray.cgColor
+                viewPassword.layer.borderWidth = 1.0
+                viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
+                viewUserName.layer.borderWidth = 1.0
+                viewEmail.layer.borderColor =  UIColor.red.cgColor
+                viewEmail.layer.borderWidth = 1.0
+                errorMessagePassword.isHidden = true
+                errorMessagePassword.text = ""
+                errorMessageBirthDate.isHidden = true
+                errorMessageBirthDate.text = ""
+                errorMessageUser.isHidden = true
+                errorMessageUser.text = ""
+                errorMessageEmail.isHidden = false
+                errorMessageEmail.text = "enter valide email"
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                
+              
             }
-            
-            if textField == txtUserName
+            else
+            {
+            webserviceOfEmailFormateCheck()
+            }
+        }
+        
+        if textField == txtUserName
+        {
+            if((txtUserName.text?.count)! < 2)
+            {
+                errorMessageBirthDate.isHidden = true
+                errorMessageBirthDate.text = ""
+                errorMessagePassword.isHidden = true
+                errorMessagePassword.text = ""
+                errorMessageEmail.isHidden = true
+                errorMessageEmail.text = ""
+                errorMessageUser.isHidden = false
+                self.txtUserName.titleColor = UIColor.red
+                errorMessageUser.text = "username must be at least 2 characters"
+                viewPassword.layer.borderColor =  UIColor.lightGray.cgColor
+                viewPassword.layer.borderWidth = 1.0
+                viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
+                viewEmail .layer.borderWidth = 1.0
+                viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
+                viewBirthdate.layer.borderWidth = 1.0
+                viewUserName.layer.borderColor =  UIColor.red.cgColor
+                viewUserName.layer.borderWidth = 1.0
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                
+            }
+            else
             {
                 webserviceofUserName()
             }
-            
-            if textField == txtPassword
+        }
+        
+        if textField == txtPassword
+        {
+            if(txtPassword.text?.count == 0)
             {
-                if(txtPassword.text?.count == 0)
-                {
-                    errorMessageBirthDate.isHidden = true
-                    errorMessageBirthDate.text = ""
-                    errorMessageUser.isHidden = true
-                    errorMessageUser.text = ""
-                    errorMessageEmail.isHidden = true
-                    errorMessageEmail.text = ""
-                    errorMessagePassword.isHidden = false
-                    errorMessagePassword.text = "enter password"
-                    viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
-                    viewUserName.layer.borderWidth = 1.0
-                    viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewEmail.layer.borderWidth = 1.0
-                    viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewBirthdate.layer.borderWidth = 1.0
-                    viewPassword.layer.borderColor =  UIColor.red.cgColor
-                    viewPassword.layer.borderWidth = 1.0
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                   
-                }
-                else if((txtPassword.text?.count)! < 6)
-                {
-                    
-                    errorMessageBirthDate.isHidden = true
-                    errorMessageBirthDate.text = ""
-                    errorMessageUser.isHidden = true
-                    errorMessageUser.text = ""
-                    errorMessageEmail.isHidden = true
-                    errorMessageEmail.text = ""
-                    errorMessagePassword.isHidden = false
-                    errorMessagePassword.text = "passwords must be 6 characters long"
-                    viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewUserName.layer.borderWidth = 1.0
-                    viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewEmail.layer.borderWidth = 1.0
-                    viewBirthdate.layer.borderColor =  UIColor.lightGray.cgColor
-                    viewBirthdate.layer.borderWidth = 1.0
-                    viewPassword.layer.borderColor =  UIColor.red.cgColor
-                    viewPassword.layer.borderWidth = 1.0
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                   
-                }
-                else
-                {
-                    errorMessageBirthDate.isHidden = true
-                    errorMessageBirthDate.text = ""
-                    errorMessageUser.isHidden = true
-                    errorMessageUser.text = ""
-                    errorMessageEmail.isHidden = true
-                    errorMessageEmail.text = ""
-                    errorMessagePassword.isHidden = true
-                    errorMessagePassword.text = ""
-                    viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewUserName.layer.borderWidth = 1.0
-                    viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
-                    viewEmail.layer.borderWidth = 1.0
-                    viewBirthdate.layer.borderColor =  UIColor.lightGray.cgColor
-                    viewBirthdate.layer.borderWidth = 1.0
-                    viewPassword.layer.borderColor =  UIColor.lightGray.cgColor
-                    viewPassword.layer.borderWidth = 1.0
-                }
+                errorMessageBirthDate.isHidden = true
+                errorMessageBirthDate.text = ""
+                errorMessageUser.isHidden = true
+                errorMessageUser.text = ""
+                errorMessageEmail.isHidden = true
+                errorMessageEmail.text = ""
+                errorMessagePassword.isHidden = false
+                errorMessagePassword.text = "enter password"
+                viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
+                viewUserName.layer.borderWidth = 1.0
+                viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
+                viewEmail.layer.borderWidth = 1.0
+                viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
+                viewBirthdate.layer.borderWidth = 1.0
+                viewPassword.layer.borderColor =  UIColor.red.cgColor
+                viewPassword.layer.borderWidth = 1.0
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                
             }
+            else if((txtPassword.text?.count)! < 6)
+            {
+                
+                errorMessageBirthDate.isHidden = true
+                errorMessageBirthDate.text = ""
+                errorMessageUser.isHidden = true
+                errorMessageUser.text = ""
+                errorMessageEmail.isHidden = true
+                errorMessageEmail.text = ""
+                errorMessagePassword.isHidden = false
+                errorMessagePassword.text = "passwords must be 6 characters long"
+                viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
+                viewUserName.layer.borderWidth = 1.0
+                viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
+                viewEmail.layer.borderWidth = 1.0
+                viewBirthdate.layer.borderColor =  UIColor.lightGray.cgColor
+                viewBirthdate.layer.borderWidth = 1.0
+                viewPassword.layer.borderColor =  UIColor.red.cgColor
+                viewPassword.layer.borderWidth = 1.0
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                
+            }
+            else
+            {
+                errorMessageBirthDate.isHidden = true
+                errorMessageBirthDate.text = ""
+                errorMessageUser.isHidden = true
+                errorMessageUser.text = ""
+                errorMessageEmail.isHidden = true
+                errorMessageEmail.text = ""
+                errorMessagePassword.isHidden = true
+                errorMessagePassword.text = ""
+                viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
+                viewUserName.layer.borderWidth = 1.0
+                viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
+                viewEmail.layer.borderWidth = 1.0
+                viewBirthdate.layer.borderColor =  UIColor.lightGray.cgColor
+                viewBirthdate.layer.borderWidth = 1.0
+                viewPassword.layer.borderColor =  UIColor.lightGray.cgColor
+                viewPassword.layer.borderWidth = 1.0
+            }
+        }
     }
     //--------------------------------------------------------------
     // MARK: -   textFiled Delegate
@@ -341,14 +393,14 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
                 returnValue = false
             }
         }
-        catch _ as NSError
-        {
+        catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
-        
         return returnValue
     }
-
+   
+    
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -359,7 +411,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             let typedCharacterSet = CharacterSet(charactersIn: string)
             let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
             return alphabet
-
+            
         }
         return true
     }
@@ -369,12 +421,12 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     
     func validateAllFields() -> Bool
     {
-        let isEmailAddressValid = isValidEmailAddress(emailID: txtEmailAddress.text!)
+        
         
         
         if (txtUserName.text?.count == 0) && (txtPassword.text?.count == 0) && (txtEmailAddress.text?.count == 0) && (txtBirthdate.text?.count  == 0)
         {
-          
+            
             errorMessagePassword.isHidden = true
             errorMessagePassword.text = ""
             errorMessageEmail.isHidden = true
@@ -391,31 +443,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewEmail.layer.borderWidth = 1.0
             viewBirthdate.layer.borderColor =  UIColor.red.cgColor
             viewBirthdate.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            return false
-        }
-            
-        else if((txtUserName.text?.count)! < 2)
-        {
-            errorMessageBirthDate.isHidden = true
-            errorMessageBirthDate.text = ""
-            errorMessagePassword.isHidden = true
-            errorMessagePassword.text = ""
-            errorMessageEmail.isHidden = true
-            errorMessageEmail.text = ""
-            errorMessageUser.isHidden = false
-            errorMessageUser.text = "username must be atleast 2 characters"
-            viewPassword.layer.borderColor =  UIColor.lightGray.cgColor
-            viewPassword.layer.borderWidth = 1.0
-            viewEmail.layer.borderColor =   UIColor.lightGray.cgColor
-            viewEmail .layer.borderWidth = 1.0
-            viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
-            viewBirthdate.layer.borderWidth = 1.0
-            viewUserName.layer.borderColor =  UIColor.red.cgColor
-            viewUserName.layer.borderWidth = 1.0
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
+            
         else if (self.txtUserName.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0)
         {
             errorMessageBirthDate.isHidden = true
@@ -434,10 +465,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewBirthdate.layer.borderWidth = 1.0
             viewUserName.layer.borderColor =  UIColor.red.cgColor
             viewUserName.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
-       
+            
         else if(txtPassword.text?.count == 0)
         {
             errorMessageBirthDate.isHidden = true
@@ -456,7 +487,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewBirthdate.layer.borderWidth = 1.0
             viewPassword.layer.borderColor =  UIColor.red.cgColor
             viewPassword.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
         else if((txtPassword.text?.count)! < 6)
@@ -478,7 +509,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewBirthdate.layer.borderWidth = 1.0
             viewPassword.layer.borderColor =  UIColor.red.cgColor
             viewPassword.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
             
@@ -500,31 +531,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewUserName.layer.borderWidth = 1.0
             viewEmail.layer.borderColor =  UIColor.red.cgColor
             viewEmail.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-           
-            return false
-        }
-       
-        else if (!isEmailAddressValid)
-        {
-            viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
-            viewBirthdate.layer.borderWidth = 1.0
-            viewPassword.layer.borderColor =   UIColor.lightGray.cgColor
-            viewPassword.layer.borderWidth = 1.0
-            viewUserName.layer.borderColor =   UIColor.lightGray.cgColor
-            viewUserName.layer.borderWidth = 1.0
-            viewEmail.layer.borderColor =  UIColor.red.cgColor
-            viewEmail.layer.borderWidth = 1.0
-            errorMessagePassword.isHidden = true
-            errorMessagePassword.text = ""
-            errorMessageBirthDate.isHidden = true
-            errorMessageBirthDate.text = ""
-            errorMessageUser.isHidden = true
-            errorMessageUser.text = ""
-            errorMessageEmail.isHidden = false
-            errorMessageEmail.text = "enter valide email"
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-         
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            
             return false
         }
         else if (txtBirthdate.text?.count == 0)
@@ -545,8 +553,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             viewUserName.layer.borderWidth = 1.0
             viewBirthdate.layer.borderColor =  UIColor.red.cgColor
             viewBirthdate.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-           
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            
             return false
         }
         
@@ -597,7 +605,7 @@ extension RegisterViewController
             }
         }
     }
-//
+    //
     //--------------------------------------------------------------
     //Mark: -  Extenstion Webservice Methods
     //--------------------------------------------------------------
@@ -650,7 +658,7 @@ extension RegisterViewController
                 
             else
             {
-       
+                
                 self.errorMessageEmail.isHidden = false
                 self.errorMessageEmail.text = "enter valide email"
                 //                    for _ in 1...5 {
@@ -685,10 +693,10 @@ extension RegisterViewController
                 {
                     self.errorMessageEmail.isHidden = false
                     self.errorMessageEmail.text =  "email already in use"//((result as! [String:AnyObject])["message"] as! String)"
-//                    for _ in 1...5 {
-                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                        sleep(1)
-//                    }
+                    //                    for _ in 1...5 {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    //                        sleep(1)
+                    //                    }
                     self.viewEmail.layer.borderColor =  UIColor.red.cgColor
                     self.viewEmail.layer.borderWidth = 1.0
                     self.txtEmailAddress.titleColor = UIColor.red
@@ -753,10 +761,10 @@ extension RegisterViewController
                     self.viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
                     self.viewUserName.layer.borderWidth = 1.0
                     self.txtUserName.titleColor = UIColor.red
-//                        for _ in 1...3
-//                        {
-                            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                        }
+                    //                        for _ in 1...3
+                    //                        {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    //                        }
                 }
                 catch let DecodingError.dataCorrupted(context)
                 {
@@ -792,9 +800,9 @@ extension RegisterViewController
                 self.txtUserName.errorMessage = ""
                 self.txtUserName.titleColor = UIColor.green
                 
-//                self.txtUserName.placeholderColor = UIColor.green
-//                self.txtUserName.placeHolderColor = UIColor.red
-            
+                //                self.txtUserName.placeholderColor = UIColor.green
+                //                self.txtUserName.placeHolderColor = UIColor.red
+                
                 print((result as! [String:AnyObject])["message"] as! String)
             }
         }
@@ -805,3 +813,4 @@ extension UIDevice {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
 }
+
