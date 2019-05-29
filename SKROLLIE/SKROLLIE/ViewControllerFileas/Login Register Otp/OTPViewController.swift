@@ -237,7 +237,7 @@ extension OTPViewController
             {
                 self.errorMessage.isHidden = false
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                self.errorMessage.text = "invelid OTP"
+                self.errorMessage.text = "invelid PIN"
                 //(result as! [String:AnyObject])["message"] as? String
             }
         }
