@@ -1191,6 +1191,7 @@ extension SwiftyCamViewController {
 	/// Handle double tap gesture
 
 	@objc fileprivate func doubleTapGesture(tap: UITapGestureRecognizer) {
+        isDoubleTap = true
         self.TapDelegate.DoubleTap()
 		guard doubleTapCameraSwitch == true else {
 			return
