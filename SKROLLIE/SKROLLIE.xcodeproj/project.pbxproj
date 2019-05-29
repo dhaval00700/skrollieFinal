@@ -12,9 +12,7 @@
 		7F05A9FF227866500079963D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FD227866500079963D /* CoreAudio.framework */; };
 		7F05AA00227866500079963D /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FE227866500079963D /* CoreAudioKit.framework */; };
 		7F30F2532293BE63005F13A8 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30F2522293BE63005F13A8 /* CommentTableViewCell.swift */; };
-		7F39620D2271D24F0033D055 /* CameraAndVedioVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F39620C2271D24F0033D055 /* CameraAndVedioVc.swift */; };
 		7F68195E22941EBD001653FC /* UserCommentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68195D22941EBD001653FC /* UserCommentListCell.swift */; };
-		7F69FB532297BAD2008581DE /* VcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F69FB522297BAD2008581DE /* VcViewController.swift */; };
 		7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D1223229516DF00CB7988 /* CameraAndVedioViewController.swift */; };
 		7F6D122B2295173600CB7988 /* SwiftyCamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D12262295173600CB7988 /* SwiftyCamButton.swift */; };
 		7F6D122C2295173600CB7988 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D12272295173600CB7988 /* PreviewView.swift */; };
@@ -53,17 +51,7 @@
 		7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9FCD2285BA37004F85BD /* FSPagerViewObjcCompat.m */; };
 		7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9FCE2285BA37004F85BD /* FSPagerCollectionView.swift */; };
 		7F841DEA22943463008A4D18 /* userViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F841DE922943463008A4D18 /* userViewerCollectionViewCell.swift */; };
-		7F9A73E722955C2D00E92721 /* DemoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A73E622955C2D00E92721 /* DemoCollectionViewCell.swift */; };
 		7F9A73E922956B8100E92721 /* userShowViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */; };
-		7F9ABA49228D6BC400950103 /* PGMCameraKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA3E228D6BC400950103 /* PGMCameraKit.swift */; };
-		7F9ABA4A228D6BC400950103 /* PGMCameraKit+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA3F228D6BC400950103 /* PGMCameraKit+Orientation.swift */; };
-		7F9ABA4B228D6BC400950103 /* PGMCameraKitProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA40228D6BC400950103 /* PGMCameraKitProperties.swift */; };
-		7F9ABA4C228D6BC400950103 /* PGMCameraKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA41228D6BC400950103 /* PGMCameraKitHelper.swift */; };
-		7F9ABA4D228D6BC400950103 /* PGMTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA42228D6BC400950103 /* PGMTimer.swift */; };
-		7F9ABA4E228D6BC400950103 /* PGMCameraKitWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA43228D6BC400950103 /* PGMCameraKitWriter.swift */; };
-		7F9ABA4F228D6BC400950103 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA45228D6BC400950103 /* FileManager.swift */; };
-		7F9ABA50228D6BC400950103 /* NSError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA47228D6BC400950103 /* NSError+Utils.swift */; };
-		7F9ABA51228D6BC400950103 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ABA48228D6BC400950103 /* UIViewController+Utils.swift */; };
 		7FB58947227B075E0062EE71 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB58945227B075E0062EE71 /* Photos.framework */; };
 		7FB58948227B075E0062EE71 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB58946227B075E0062EE71 /* PhotosUI.framework */; };
 		7FBEFF5722926EF300350BD5 /* MONTSERRAT-MEDIUMITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F73DD3CF2284620F0096A943 /* MONTSERRAT-MEDIUMITALIC.OTF */; };
@@ -74,7 +62,6 @@
 		7FDF017522942A470055F86D /* UserCommentListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF017422942A470055F86D /* UserCommentListCollectionViewCell.swift */; };
 		7FEB0D4D2272CD36004594BE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB0D4C2272CD35004594BE /* AVFoundation.framework */; };
 		7FEB0D4F2272CE47004594BE /* SRCountdownTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB0D4E2272CE47004594BE /* SRCountdownTimer.framework */; };
-		7FF4DBDB228D504800DA4A15 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF4DBDA228D504800DA4A15 /* CameraViewController.swift */; };
 		7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4250226EF1A400CBA91C /* HomeTableViewCell.swift */; };
 		F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DD3B5228427580096A943 /* userProfileClass.swift */; };
 		F73DD3BA228434D10096A943 /* cellUserProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DD3B8228434D10096A943 /* cellUserProfilePost.swift */; };
@@ -136,9 +123,7 @@
 		7F05A9FE227866500079963D /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		7F2DA18E2265981500630D3E /* SKROLLIE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SKROLLIE.entitlements; sourceTree = "<group>"; };
 		7F30F2522293BE63005F13A8 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		7F39620C2271D24F0033D055 /* CameraAndVedioVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAndVedioVc.swift; sourceTree = "<group>"; };
 		7F68195D22941EBD001653FC /* UserCommentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentListCell.swift; sourceTree = "<group>"; };
-		7F69FB522297BAD2008581DE /* VcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcViewController.swift; sourceTree = "<group>"; };
 		7F6D1223229516DF00CB7988 /* CameraAndVedioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAndVedioViewController.swift; sourceTree = "<group>"; };
 		7F6D12262295173600CB7988 /* SwiftyCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamButton.swift; sourceTree = "<group>"; };
 		7F6D12272295173600CB7988 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -182,17 +167,7 @@
 		7F7F9FCD2285BA37004F85BD /* FSPagerViewObjcCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPagerViewObjcCompat.m; sourceTree = "<group>"; };
 		7F7F9FCE2285BA37004F85BD /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		7F841DE922943463008A4D18 /* userViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userViewerCollectionViewCell.swift; sourceTree = "<group>"; };
-		7F9A73E622955C2D00E92721 /* DemoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userShowViewCollectionViewCell.swift; sourceTree = "<group>"; };
-		7F9ABA3E228D6BC400950103 /* PGMCameraKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGMCameraKit.swift; sourceTree = "<group>"; };
-		7F9ABA3F228D6BC400950103 /* PGMCameraKit+Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PGMCameraKit+Orientation.swift"; sourceTree = "<group>"; };
-		7F9ABA40228D6BC400950103 /* PGMCameraKitProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGMCameraKitProperties.swift; sourceTree = "<group>"; };
-		7F9ABA41228D6BC400950103 /* PGMCameraKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGMCameraKitHelper.swift; sourceTree = "<group>"; };
-		7F9ABA42228D6BC400950103 /* PGMTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGMTimer.swift; sourceTree = "<group>"; };
-		7F9ABA43228D6BC400950103 /* PGMCameraKitWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGMCameraKitWriter.swift; sourceTree = "<group>"; };
-		7F9ABA45228D6BC400950103 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		7F9ABA47228D6BC400950103 /* NSError+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Utils.swift"; sourceTree = "<group>"; };
-		7F9ABA48228D6BC400950103 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		7FB58945227B075E0062EE71 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		7FB58946227B075E0062EE71 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		7FCCA6D822644ADC00E8E9A1 /* SKROLLIE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKROLLIE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +179,6 @@
 		7FDF017422942A470055F86D /* UserCommentListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentListCollectionViewCell.swift; sourceTree = "<group>"; };
 		7FEB0D4C2272CD35004594BE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7FEB0D4E2272CE47004594BE /* SRCountdownTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SRCountdownTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FF4DBDA228D504800DA4A15 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		7FFE4250226EF1A400CBA91C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		94D2A5B36E55AF4CB07E4AD3 /* Pods-SKROLLIE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKROLLIE.release.xcconfig"; path = "Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE.release.xcconfig"; sourceTree = "<group>"; };
 		F73DD3B5228427580096A943 /* userProfileClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userProfileClass.swift; sourceTree = "<group>"; };
@@ -348,7 +322,6 @@
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
 				F73DD3B42284273A0096A943 /* Profile */,
-				7FD728C022954D57007CDAE7 /* DemoCamera */,
 			);
 			path = ViewControllerFileas;
 			sourceTree = "<group>";
@@ -374,7 +347,6 @@
 				7F7F9F722285B3E5004F85BD /* MessageBarController */,
 				7F7F9F742285B3E5004F85BD /* designable and inspectable */,
 				7F7F9F772285B3E5004F85BD /* Constant and SingleTone class */,
-				7F9ABA3C228D6BC400950103 /* CameraKit */,
 			);
 			path = CustomClass;
 			sourceTree = "<group>";
@@ -494,46 +466,6 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
-		7F9ABA3C228D6BC400950103 /* CameraKit */ = {
-			isa = PBXGroup;
-			children = (
-				7F9ABA3D228D6BC400950103 /* Camera */,
-				7F9ABA44228D6BC400950103 /* Managers */,
-				7F9ABA46228D6BC400950103 /* Extensions */,
-			);
-			path = CameraKit;
-			sourceTree = "<group>";
-		};
-		7F9ABA3D228D6BC400950103 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				7F9ABA3E228D6BC400950103 /* PGMCameraKit.swift */,
-				7F9ABA3F228D6BC400950103 /* PGMCameraKit+Orientation.swift */,
-				7F9ABA40228D6BC400950103 /* PGMCameraKitProperties.swift */,
-				7F9ABA41228D6BC400950103 /* PGMCameraKitHelper.swift */,
-				7F9ABA42228D6BC400950103 /* PGMTimer.swift */,
-				7F9ABA43228D6BC400950103 /* PGMCameraKitWriter.swift */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		7F9ABA44228D6BC400950103 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				7F9ABA45228D6BC400950103 /* FileManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		7F9ABA46228D6BC400950103 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7F9ABA47228D6BC400950103 /* NSError+Utils.swift */,
-				7F9ABA48228D6BC400950103 /* UIViewController+Utils.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		7FCCA6CF22644ADB00E8E9A1 = {
 			isa = PBXGroup;
 			children = (
@@ -565,19 +497,8 @@
 				7F7F9F702285B3E5004F85BD /* Extension */,
 				7F7F9FA92285B857004F85BD /* Utility */,
 				7F7F9F812285B3FD004F85BD /* WebServiceFile */,
-				7F69FB522297BAD2008581DE /* VcViewController.swift */,
 			);
 			path = SKROLLIE;
-			sourceTree = "<group>";
-		};
-		7FD728C022954D57007CDAE7 /* DemoCamera */ = {
-			isa = PBXGroup;
-			children = (
-				7F39620C2271D24F0033D055 /* CameraAndVedioVc.swift */,
-				7FF4DBDA228D504800DA4A15 /* CameraViewController.swift */,
-				7F9A73E622955C2D00E92721 /* DemoCollectionViewCell.swift */,
-			);
-			path = DemoCamera;
 			sourceTree = "<group>";
 		};
 		F73DD3B42284273A0096A943 /* Profile */ = {
@@ -853,13 +774,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F7F9FD32285BA37004F85BD /* FSPageViewLayout.swift in Sources */,
-				7F39620D2271D24F0033D055 /* CameraAndVedioVc.swift in Sources */,
 				7F7F9F7C2285B3E6004F85BD /* Extenstion.swift in Sources */,
 				7F7F35BC226ED8B900BB9A27 /* HomeViewController.swift in Sources */,
-				7F9ABA49228D6BC400950103 /* PGMCameraKit.swift in Sources */,
-				7F9ABA50228D6BC400950103 /* NSError+Utils.swift in Sources */,
 				7F7F35BE226ED8D700BB9A27 /* HomeCollectionViewCell.swift in Sources */,
-				7F9ABA4D228D6BC400950103 /* PGMTimer.swift in Sources */,
 				F73DD3BA228434D10096A943 /* cellUserProfilePost.swift in Sources */,
 				7F7F9FB92285B857004F85BD /* NSString+Utils.m in Sources */,
 				7F6D122B2295173600CB7988 /* SwiftyCamButton.swift in Sources */,
@@ -870,12 +787,10 @@
 				7F6D122F2295173600CB7988 /* Orientation.swift in Sources */,
 				7F7F9F6B2285B3B3004F85BD /* MobileNumberAddVc.swift in Sources */,
 				0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */,
-				7F9ABA4C228D6BC400950103 /* PGMCameraKitHelper.swift in Sources */,
 				7F841DEA22943463008A4D18 /* userViewerCollectionViewCell.swift in Sources */,
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
 				F7FB4EBC228548B000A390AE /* userCommentCell.swift in Sources */,
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
-				7F9ABA4A228D6BC400950103 /* PGMCameraKit+Orientation.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
 				7F7F9F7D2285B3E6004F85BD /* MessageBarController.swift in Sources */,
 				7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */,
@@ -884,15 +799,12 @@
 				7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */,
 				7F7F9FCF2285BA37004F85BD /* FSPagerView.swift in Sources */,
 				7F7F9FBF2285B857004F85BD /* cButton.swift in Sources */,
-				7F9A73E722955C2D00E92721 /* DemoCollectionViewCell.swift in Sources */,
-				7FF4DBDB228D504800DA4A15 /* CameraViewController.swift in Sources */,
 				7F7F9FD42285BA37004F85BD /* FSPageControl.swift in Sources */,
 				F7FB4EB92285442E00A390AE /* commentViewClass.swift in Sources */,
 				7F6D122D2295173600CB7988 /* SwiftyCamViewController.swift in Sources */,
 				7F68195E22941EBD001653FC /* UserCommentListCell.swift in Sources */,
 				7F7F9F7F2285B3E6004F85BD /* SingleToneClass.swift in Sources */,
 				7F7F9FD12285BA37004F85BD /* FSPagerViewCell.swift in Sources */,
-				7F9ABA4F228D6BC400950103 /* FileManager.swift in Sources */,
 				7F7F9FC22285B857004F85BD /* cImageView.swift in Sources */,
 				7F7F9F7E2285B3E6004F85BD /* UIView+IBDesinable.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
@@ -900,18 +812,14 @@
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */,
-				7F9ABA4B228D6BC400950103 /* PGMCameraKitProperties.swift in Sources */,
 				7F7F9FBB2285B857004F85BD /* UtilityClass.swift in Sources */,
 				7F7F9F6D2285B3B3004F85BD /* RegisterViewController.swift in Sources */,
 				7F30F2532293BE63005F13A8 /* CommentTableViewCell.swift in Sources */,
 				7F7F9F872285B3FD004F85BD /* WebserviceMainClass.swift in Sources */,
 				7F7F9FC02285B857004F85BD /* cView.swift in Sources */,
-				7F9ABA4E228D6BC400950103 /* PGMCameraKitWriter.swift in Sources */,
-				7F69FB532297BAD2008581DE /* VcViewController.swift in Sources */,
 				7F7F9FD02285BA37004F85BD /* FSPageViewTransformer.swift in Sources */,
 				7F9A73E922956B8100E92721 /* userShowViewCollectionViewCell.swift in Sources */,
 				7F7F9F862285B3FD004F85BD /* WebserviceSubClass.swift in Sources */,
-				7F9ABA51228D6BC400950103 /* UIViewController+Utils.swift in Sources */,
 				7F7F9FC12285B857004F85BD /* paddingTextField.swift in Sources */,
 				7F7F9F852285B3FD004F85BD /* ConstantData.swift in Sources */,
 				7F7F9FBE2285B857004F85BD /* cSegment.swift in Sources */,
@@ -1067,7 +975,7 @@
 				CODE_SIGN_ENTITLEMENTS = SKROLLIE/SKROLLIE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX6Q67DW6M;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SKROLLIE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1091,7 +999,7 @@
 				CODE_SIGN_ENTITLEMENTS = SKROLLIE/SKROLLIE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX6Q67DW6M;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SKROLLIE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
