@@ -170,6 +170,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     //--------------------------------------------------------------
     // MARK: -  Webservice Call
     //--------------------------------------------------------------
+    @available(iOS 10.0, *)
     @objc func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason)
     {
         if textField == txtEmailAddress

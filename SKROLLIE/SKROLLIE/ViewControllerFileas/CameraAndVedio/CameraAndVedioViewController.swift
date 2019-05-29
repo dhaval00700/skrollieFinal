@@ -73,6 +73,12 @@ class CameraAndVedioViewController: SwiftyCamViewController
     }
     
     func resetAll() {
+        self.btnPreviewImg.isHidden = false
+        isClick = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            isDoubleTap = false
+        }
+        VideoRecorderStatus = 0
         self.stopVideoRecording()
         self.timer.invalidate()
         ViewCount.isHidden = true
@@ -240,6 +246,13 @@ class CameraAndVedioViewController: SwiftyCamViewController
                     self.arrVideoAssets.removeAll()
                     if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
                         vc.videoUrl = fileURL
+                        PHPhotoLibrary.shared().performChanges({
+                            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
+                        }) { saved, error in
+                            if saved {
+                                print("Saved")
+                            }
+                        }
                         self.navigationController?.pushViewController(vc, animated: false)
                     }
                 })
@@ -258,7 +271,19 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
         // Called when takePhoto() is called or if a SwiftyCamButton initiates a tap gesture
         // Returns a UIImage captured from the current session
         self.btnPreviewImg.setBackgroundImage(photo, for: .normal)
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.saveImageDocumentDirectory(image: photo))//creationRequestForAssetFromVideo(atFileURL: fileURL)
+        }) { saved, error in
+            if saved {
+                print("Saved")
+            }
+        }
         self.btnPreviewImg.isHidden = false
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedImageViewController") as? SelectedImageViewController {
+            vc.selectedImage = photo
+            vc.selectedImageUrl = saveImageDocumentDirectory(image: photo)
+            navigationController?.pushViewController(vc, animated: false)
+        }
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
@@ -334,42 +359,45 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
     }
 }
 
+var isClick = false
+var isDoubleTap = false
+
 extension CameraAndVedioViewController: TapGestureDelegate {
     
     // singleTap() and DoubleTap() Both methods of Customer Protocol CompletedVideoDelegate which will get SingleTap Gesture and Double Tap Gesture from SwiftyCamViewController
     func SingleTap()
     {
-        
-        if VideoRecorderStatus == 0 {
-            // Take a Picture on Single tap, while Video recording is not running...
-            self.takePhoto()
-        }
-        else if VideoRecorderStatus == 1 || VideoRecorderStatus == 3
-        {
-            VideoRecorderStatus = 2
-            self.stopVideoRecording()
-            
-        }
-        else if VideoRecorderStatus == 2
-        {
-            VideoRecorderStatus = 3
-            self.startVideoRecording()
-            Timerlabel.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: . now() + 0.8) {
+            if isClick {
+                if self.VideoRecorderStatus == 1 || self.VideoRecorderStatus == 3 {
+                    self.VideoRecorderStatus = 2
+                    self.stopVideoRecording()
+                } else if self.VideoRecorderStatus == 2 {
+                    self.VideoRecorderStatus = 3
+                    self.startVideoRecording()
+                    self.Timerlabel.isHidden = false
+                }
+            } else if self.VideoRecorderStatus == 0 && !isDoubleTap {
+                    // Take a Picture on Single tap, while Video recording is not running...
+                    self.takePhoto()
+            }
         }
     }
     
-    func DoubleTap()
-    {
+    func DoubleTap()    {
+        
         if VideoRecorderStatus == 0
         {
             VideoRecorderStatus = 1
             self.startVideoRecording()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                isClick = true
+            }
             Timerlabel.isHidden = false
         }
         else
         {
-            VideoRecorderStatus = 0
-            self.stopVideoRecording()
+            resetAll()
         }
     }
 }
@@ -380,11 +408,8 @@ extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            
-            let url = info[UIImagePickerController.InfoKey.imageURL] as? URL
             if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedImageViewController") as? SelectedImageViewController {
                 vc.selectedImage = editedImage
-                
                 vc.selectedImageUrl = saveImageDocumentDirectory(image: editedImage)
                 navigationController?.pushViewController(vc, animated: false)
             }
