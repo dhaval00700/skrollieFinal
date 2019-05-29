@@ -8,13 +8,13 @@
 
 import UIKit
 
-class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,FSPagerViewDelegate,FSPagerViewDataSource,UITableViewDelegate,UITableViewDataSource
+class commentViewClass: UIViewController,FSPagerViewDelegate,FSPagerViewDataSource,UITableViewDelegate,UITableViewDataSource
 {
     @IBOutlet weak var txtWriteReview: UITextField!
     
-    @IBOutlet weak var lbltwoMojiCoonects: UILabel!
+    //@IBOutlet weak var lbltwoMojiCoonects: UILabel!
     @IBOutlet weak var lblTotalCmt: UILabel!
-    @IBOutlet weak var lblViewAllviewers: UILabel!
+    //@IBOutlet weak var lblViewAllviewers: UILabel!
     
     //    @IBOutlet weak var collectionViewUserImgList: UICollectionView!
     @IBOutlet weak var viewUserProfile: UIView!
@@ -29,10 +29,12 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
     @IBOutlet weak var imgPost: UIImageView!
 
     @IBOutlet weak var collectionUserList: UICollectionView!
+    @IBOutlet weak var viwUserListContainer: UIView!
+
    @IBOutlet weak var tblView: UITableView!
     
    @IBOutlet weak var emojiPagerView: FSPagerView!
-    @IBOutlet weak var btnViewCount: UIButton!
+    //@IBOutlet weak var btnViewCount: UIButton!
     
     var aryUserList = [String]()
     var aryImg = [String]()
@@ -57,6 +59,8 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
         
         tblView.delegate = self
         tblView.dataSource = self
+        
+        collectionUserList.register(UINib(nibName: "UserItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserItemCollectionViewCell")
         collectionUserList.delegate = self
         collectionUserList.dataSource = self
         
@@ -74,9 +78,9 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
         let type = self.transformerTypes[0]
         self.emojiPagerView.transformer = FSPagerViewTransformer(type:type)
         
-        lbltwoMojiCoonects.font = UIFont.Bold(ofSize: 15)
-        lblViewAllviewers.font = UIFont.Bold(ofSize: 15)
-        btnViewCount.titleLabel?.font = UIFont.Bold(ofSize: 15)
+        
+        
+        viwUserListContainer.layer.cornerRadius = 8.0
         
       
         if isOwnProfile == true
@@ -96,27 +100,6 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
     }
     
     //-------------------------------------------------------------
-    // MARK: - CollectionView Methods
-    //-------------------------------------------------------------
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return aryUserList.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCommentListCollectionViewCell", for: indexPath) as! UserCommentListCollectionViewCell
-
-        let imgOfUser = aryImg[indexPath.item]
-        let userName = aryUserList[indexPath.item]
-
-        cell.imgOfUserView.image = UIImage(named: imgOfUser)
-        cell.lblUserName.text = userName
-     
-        return cell
-    }
-    //-------------------------------------------------------------
     // MARK: - Tblview Methods
     //-------------------------------------------------------------
    
@@ -131,7 +114,6 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
         
          CountOfUserProfile = aryUserList.count
         
-        btnViewCount.setTitle("+\(CountOfUserProfile)", for: .normal)
         return cell
     }
 
@@ -218,3 +200,36 @@ class commentViewClass: UIViewController,UICollectionViewDelegate,UICollectionVi
 //
 //
 //}
+
+
+
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserItemCollectionViewCell", for: indexPath) as!  UserItemCollectionViewCell
+        
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let  width = 110.0
+        let height = 90.0
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        
+    }
+}
