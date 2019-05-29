@@ -31,38 +31,3 @@ class AllCommentsTableViewCell: UITableViewCell {
     }
     
 }
-
-<#Table View#>.register(UINib(nibName: <#Nib Name#>, bundle: nil), forCellReuseIdentifier: <#Identifier#>)
-
-// MARK: - UITableViewDelegate,UITableViewDataSource
-extension ViewController: UITableViewDelegate,UITableViewDataSource
-{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return <# number Of Rows#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: <#Identifier#>) as! <#Cell Class#>
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return UITableViewAutomaticDimension
-    }
-}
