@@ -208,7 +208,9 @@ extension OTPViewController
                 {
                     print((result as! [String:AnyObject])["message"] as! String)
                     //                    UtilityClass.getAppDelegate().setLogin()
-                    self.performSegue(withIdentifier: "SegueToOtpToHome", sender: self)
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
                     
                 catch let DecodingError.dataCorrupted(context)
@@ -235,7 +237,7 @@ extension OTPViewController
             {
                 self.errorMessage.isHidden = false
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                self.errorMessage.text = "invelid OTP"
+                self.errorMessage.text = "invelid PIN"
                 //(result as! [String:AnyObject])["message"] as? String
             }
         }
