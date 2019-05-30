@@ -18,7 +18,6 @@ target 'SKROLLIE' do
   pod 'SRCountdownTimer' # For Timer.
   pod 'SwiftyComments'
   pod 'AWSS3'
-  
 end
 
 # For Pod Version Check so plz Don't delete it.
