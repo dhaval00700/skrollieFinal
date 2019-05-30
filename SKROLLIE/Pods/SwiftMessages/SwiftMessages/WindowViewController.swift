@@ -1,9 +1,11 @@
 //
-//  SKROLLIE
+//  WindowViewController.swift
+//  SwiftMessages
 //
-//  Created by Dhaval Bhanderi on 4/15/19.
-//  Copyright © 2019 Dhaval Bhanderi. All rights reserved.
+//  Created by Timothy Moose on 8/1/16.
+//  Copyright © 2016 SwiftKick Mobile LLC. All rights reserved.
 //
+
 import UIKit
 
 open class WindowViewController: UIViewController

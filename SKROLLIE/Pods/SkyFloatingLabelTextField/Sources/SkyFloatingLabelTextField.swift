@@ -1,4 +1,4 @@
-//  Copyright 2016-2017 Skyscanner Ltd
+//  Copyright 2016-2019 Skyscanner Ltd
 //
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance 
 //  with the License. You may obtain a copy of the License at
@@ -290,6 +290,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             updateControl()
         }
     }
+
     /// The String to display when the textfield is not editing and the input is not empty.
     @IBInspectable open var title: String? {
         didSet {
@@ -317,7 +318,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
 
     /**
      Intialzies the control by deserializing it
-     - parameter coder the object to deserialize the control from
+     - parameter aDecoder the object to deserialize the control from
      */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -439,14 +440,14 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         guard let lineView = lineView else {
             return
         }
-//
-//        if !isEnabled {
-//            lineView.backgroundColor = disabledColor
-//        } else if hasErrorMessage {
-//            lineView.backgroundColor = lineErrorColor ?? errorColor
-//        } else {
-//            lineView.backgroundColor = editingOrSelected ? selectedLineColor : lineColor
-//        }
+
+        if !isEnabled {
+            lineView.backgroundColor = disabledColor
+        } else if hasErrorMessage {
+            lineView.backgroundColor = lineErrorColor ?? errorColor
+        } else {
+            lineView.backgroundColor = editingOrSelected ? selectedLineColor : lineColor
+        }
     }
 
     fileprivate func updateTitleColor() {
@@ -705,22 +706,3 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         return titleFormatter(title)
     }
 } // swiftlint:disable:this file_length
-extension UIFont
-{
-    class func Thin(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-THIN", size: size)!
-    }
-    class func light(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-LIGHT", size: size)!
-    }
-    class func Bold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-BOLD", size: size)!
-    }
-    class func Regular(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-REGULAR", size: size)!
-    }
-    class func Medium(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-MEDIUM", size: size)!
-    }
-    
-}
