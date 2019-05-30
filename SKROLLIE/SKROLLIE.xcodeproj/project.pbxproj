@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */; };
 		0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */; };
+		340DD771229EAF7B00FCCE3E /* JLStickerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DD76C229EAF7B00FCCE3E /* JLStickerImageView.swift */; };
+		340DD772229EAF7B00FCCE3E /* JLStickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DD76D229EAF7B00FCCE3E /* JLStickerLabelView.swift */; };
+		340DD773229EAF7B00FCCE3E /* JLAttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DD76E229EAF7B00FCCE3E /* JLAttributedTextView.swift */; };
+		340DD774229EAF7B00FCCE3E /* CalcuteFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DD76F229EAF7B00FCCE3E /* CalcuteFunctions.swift */; };
+		340DD775229EAF7B00FCCE3E /* adjustToFitFontOrWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DD770229EAF7B00FCCE3E /* adjustToFitFontOrWidth.swift */; };
 		7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */; };
 		7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */; };
 		7AF03915229D58CC00A0F74D /* CommentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF03913229D58CB00A0F74D /* CommentItemTableViewCell.swift */; };
@@ -123,6 +128,11 @@
 		0D75F296FEFF1AAE367C01FB /* Pods_SKROLLIE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageViewController.swift; sourceTree = "<group>"; };
 		0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideoViewController.swift; sourceTree = "<group>"; };
+		340DD76C229EAF7B00FCCE3E /* JLStickerImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLStickerImageView.swift; sourceTree = "<group>"; };
+		340DD76D229EAF7B00FCCE3E /* JLStickerLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLStickerLabelView.swift; sourceTree = "<group>"; };
+		340DD76E229EAF7B00FCCE3E /* JLAttributedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLAttributedTextView.swift; sourceTree = "<group>"; };
+		340DD76F229EAF7B00FCCE3E /* CalcuteFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcuteFunctions.swift; sourceTree = "<group>"; };
+		340DD770229EAF7B00FCCE3E /* adjustToFitFontOrWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adjustToFitFontOrWidth.swift; sourceTree = "<group>"; };
 		41F5268037B75A4D715C8E9B /* Pods-SKROLLIE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKROLLIE.debug.xcconfig"; path = "Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE.debug.xcconfig"; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -280,6 +290,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		340DD76B229EAF7B00FCCE3E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				340DD76C229EAF7B00FCCE3E /* JLStickerImageView.swift */,
+				340DD76D229EAF7B00FCCE3E /* JLStickerLabelView.swift */,
+				340DD76E229EAF7B00FCCE3E /* JLAttributedTextView.swift */,
+				340DD76F229EAF7B00FCCE3E /* CalcuteFunctions.swift */,
+				340DD770229EAF7B00FCCE3E /* adjustToFitFontOrWidth.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		5C9C780D07D6B5FDCA370840 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +385,7 @@
 		7F7F9F6E2285B3E5004F85BD /* CustomClass */ = {
 			isa = PBXGroup;
 			children = (
+				340DD76B229EAF7B00FCCE3E /* Source */,
 				F73DD3CD228461FE0096A943 /* Resources */,
 				7F7F9FC52285BA37004F85BD /* Sources */,
 				7F6D12252295173600CB7988 /* CameraAndVedio */,
@@ -822,15 +845,18 @@
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
 				7F7F9F7D2285B3E6004F85BD /* MessageBarController.swift in Sources */,
+				340DD773229EAF7B00FCCE3E /* JLAttributedTextView.swift in Sources */,
 				7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */,
 				7F6D122C2295173600CB7988 /* PreviewView.swift in Sources */,
 				7F7F9FBD2285B857004F85BD /* cSlider.swift in Sources */,
 				7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */,
 				7F7F9FCF2285BA37004F85BD /* FSPagerView.swift in Sources */,
+				340DD772229EAF7B00FCCE3E /* JLStickerLabelView.swift in Sources */,
 				7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */,
 				7F7F9FBF2285B857004F85BD /* cButton.swift in Sources */,
 				7F7F9FD42285BA37004F85BD /* FSPageControl.swift in Sources */,
 				F7FB4EB92285442E00A390AE /* commentViewClass.swift in Sources */,
+				340DD775229EAF7B00FCCE3E /* adjustToFitFontOrWidth.swift in Sources */,
 				7F6D122D2295173600CB7988 /* SwiftyCamViewController.swift in Sources */,
 				7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */,
 				7AF03915229D58CC00A0F74D /* CommentItemTableViewCell.swift in Sources */,
@@ -839,6 +865,7 @@
 				7F7F9FD12285BA37004F85BD /* FSPagerViewCell.swift in Sources */,
 				7F7F9FC22285B857004F85BD /* cImageView.swift in Sources */,
 				7F7F9F7E2285B3E6004F85BD /* UIView+IBDesinable.swift in Sources */,
+				340DD774229EAF7B00FCCE3E /* CalcuteFunctions.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
 				F73DD3BD228440C20096A943 /* viewPost.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
@@ -849,6 +876,7 @@
 				7F30F2532293BE63005F13A8 /* CommentTableViewCell.swift in Sources */,
 				7F7F9F872285B3FD004F85BD /* WebserviceMainClass.swift in Sources */,
 				7F7F9FC02285B857004F85BD /* cView.swift in Sources */,
+				340DD771229EAF7B00FCCE3E /* JLStickerImageView.swift in Sources */,
 				7F7F9FD02285BA37004F85BD /* FSPageViewTransformer.swift in Sources */,
 				7F9A73E922956B8100E92721 /* userShowViewCollectionViewCell.swift in Sources */,
 				7F7F9F862285B3FD004F85BD /* WebserviceSubClass.swift in Sources */,
