@@ -33,7 +33,7 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
             if let unwrappedFont = titleFont {
                 titleButton?.titleLabel?.font = unwrappedFont
             } else {
-                titleButton?.titleLabel?.font = UIFont.Regular(ofSize: 13)
+                titleButton?.titleLabel?.font = UIFont.systemFont(ofSize: 13)
             }
         }
     }
@@ -115,7 +115,7 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         titleButton?.backgroundColor = UIColor.clear
         titleButton?.titleLabel?.textAlignment = .center
         titleButton?.setTitle(title, for: .normal)
-        titleFont = UIFont.Regular(ofSize: 13)
+        titleFont = UIFont.systemFont(ofSize: 13.0)
         titleButton?.titleLabel?.font = self.titleFont
         _titleView?.addSubview(titleButton!)
         

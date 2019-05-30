@@ -16,6 +16,11 @@ class SelectedVideoViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var viwVideo: UIView!
     @IBOutlet weak var emogiPager: FSPagerView!
+    @IBOutlet weak var txtEnterDescription: UITextField!
+    @IBOutlet weak var btn24Hour: UIButton!
+    @IBOutlet weak var btnForever: UIButton!
+    @IBOutlet weak var imgEmogi1: UIImageView!
+    @IBOutlet weak var imgEmogi2: UIImageView!
     
     //MARK: Properties
     var videoUrl:URL!
@@ -58,6 +63,8 @@ class SelectedVideoViewController: UIViewController {
         let credentialsProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
         let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        btn24Hour.isSelected = true
 
         setupSwipeGesture()
         setupEmogiPager()
@@ -112,6 +119,16 @@ class SelectedVideoViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func onBtn24Hour(_ sender: Any) {
+        btn24Hour.isSelected = true
+        btnForever.isSelected = false
+    }
+    
+    @IBAction func onBtnForever(_ sender: Any) {
+        btn24Hour.isSelected = false
+        btnForever.isSelected = true
+    }
 }
 
 extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSource {
@@ -136,6 +153,11 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        if imgEmogi1.image == nil {
+            imgEmogi1.image = UIImage(named: "emoji1")
+        } else if imgEmogi1.image != nil && imgEmogi2.image == nil {
+            imgEmogi2.image = UIImage(named: "emoji1")
+        }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
     }

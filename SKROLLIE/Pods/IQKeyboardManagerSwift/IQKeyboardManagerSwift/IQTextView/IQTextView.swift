@@ -169,7 +169,7 @@ open class IQTextView : UITextView {
             if let unwrappedFont = font {
                 placeholderLabel.font = unwrappedFont
             } else {
-                placeholderLabel.font = UIFont.Regular(ofSize: 12)
+                placeholderLabel.font = UIFont.systemFont(ofSize: 12)
             }
         }
     }
@@ -207,22 +207,3 @@ open class IQTextView : UITextView {
 }
 
 
-extension UIFont
-{
-    class func Thin(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-THIN", size: size)!
-    }
-    class func light(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-LIGHT", size: size)!
-    }
-    class func Bold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-BOLD", size: size)!
-    }
-    class func Regular(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-REGULAR", size: size)!
-    }
-    class func Medium(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-MEDIUM", size: size)!
-    }
-    
-}
