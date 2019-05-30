@@ -14,7 +14,12 @@ class SelectedImageViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var imgSelectedImage: UIImageView!
+    @IBOutlet weak var txtEnterDescription: UITextField!
     @IBOutlet weak var emogiPagerView: FSPagerView!
+    @IBOutlet weak var btn24Hour: UIButton!
+    @IBOutlet weak var btnForever: UIButton!
+    @IBOutlet weak var imgEmogi1: UIImageView!
+    @IBOutlet weak var imgEmogi2: UIImageView!
     
     
     //MARK: Properties
@@ -33,7 +38,6 @@ class SelectedImageViewController: UIViewController {
         return "\(NSDate().timeIntervalSince1970 * 1000)"
     }
     
-
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,7 @@ class SelectedImageViewController: UIViewController {
         let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
+        btn24Hour.isSelected = true
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -108,6 +113,15 @@ class SelectedImageViewController: UIViewController {
         }
     }
 
+    @IBAction func onBtn24Hour(_ sender: Any) {
+        btnForever.isSelected = false
+        btn24Hour.isSelected = true
+    }
+    
+    @IBAction func onBtnForever(_ sender: Any) {
+        btnForever.isSelected = true
+        btn24Hour.isSelected = false
+    }
 }
 
 
@@ -136,6 +150,11 @@ extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        if imgEmogi1.image == nil {
+            imgEmogi1.image = UIImage(named: "emoji1")
+        } else if imgEmogi1.image != nil && imgEmogi2.image == nil {
+            imgEmogi2.image = UIImage(named: "emoji1")
+        }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
     }
@@ -181,19 +200,6 @@ extension SelectedImageViewController {
             }
             return nil
         })
-        
-        /*let transferManager = AWSS3TransferManager.default()
-        transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task) in
-            if task.error != nil {
-                print(task.error.debugDescription)
-            } else {
-                // Do something with your result.
-                self.goToHomePage()
-                print("done")
-            }
-            return nil
-        })*/
-        
     }
 }
 

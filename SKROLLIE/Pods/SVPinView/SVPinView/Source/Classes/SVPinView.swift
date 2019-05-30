@@ -15,27 +15,6 @@ public enum SVPinViewStyle : Int {
     case box
 }
 
-
-extension UIFont
-{
-    class func Thin(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-THIN", size: size)!
-    }
-    class func light(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-LIGHT", size: size)!
-    }
-    class func Bold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-BOLD", size: size)!
-    }
-    class func Regular(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-REGULAR", size: size)!
-    }
-    class func Medium(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "MONTSERRAT-MEDIUM", size: size)!
-    }
-    
-}
-
 @objc
 public class SVPinView: UIView {
     
@@ -52,9 +31,9 @@ public class SVPinView: UIView {
     fileprivate var password = [String]()
     
     // MARK: - Public Properties -
-    @IBInspectable public var pinLength:Int = 4
+    @IBInspectable public var pinLength:Int = 5
     @IBInspectable public var secureCharacter:String = "\u{25CF}"
-    @IBInspectable public var interSpace:CGFloat = 3
+    @IBInspectable public var interSpace:CGFloat = 5
     @IBInspectable public var textColor:UIColor = UIColor.black
     @IBInspectable public var shouldSecureText:Bool = true
     @IBInspectable public var allowsWhitespaces:Bool = true
@@ -73,8 +52,8 @@ public class SVPinView: UIView {
     @IBInspectable public var activeFieldCornerRadius:CGFloat = 0
     
     public var style:SVPinViewStyle = .underline
-
-    public var font:UIFont = UIFont.Regular(ofSize: 15)
+    
+    public var font:UIFont = UIFont.systemFont(ofSize: 15)
     public var keyboardType:UIKeyboardType = UIKeyboardType.phonePad
     public var becomeFirstResponderAtIndex:Int? = nil
     public var isContentTypeOneTimeCode:Bool = true
@@ -107,9 +86,7 @@ public class SVPinView: UIView {
         collectionView.register(collectionViewNib, forCellWithReuseIdentifier: reuseIdentifier)
         flowLayout.scrollDirection = .vertical //weird!!!
         collectionView.isScrollEnabled = false
-        
-        password = [String](repeating: "", count: pinLength)
-        
+                
         self.addSubview(view)
         view.frame = bounds
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
@@ -169,11 +146,14 @@ public class SVPinView: UIView {
         })
         
         // store text
-        
         let text =  textField.text ?? ""
         let passwordIndex = index - 1
-        // delete if space
-        password[passwordIndex] = text == " " ? "" : text
+        if password.count > (passwordIndex) {
+            // delete if space
+            password[passwordIndex] = text == " " ? "" : text
+        } else {
+            password.append(text)
+        }
         validateAndSendCallback()
     }
     
@@ -237,11 +217,9 @@ public class SVPinView: UIView {
     public func getPin() -> String {
         
         guard !isLoading else { return "" }
-        print("~~~~\(password)")
         guard password.count == pinLength && password.joined().trimmingCharacters(in: CharacterSet(charactersIn: " ")).count == pinLength else {
             return ""
         }
-       
         return password.joined()
     }
     
@@ -264,7 +242,7 @@ public class SVPinView: UIView {
         password = []
         for (index,char) in pin.enumerated() {
             
-            guard index < pinLength - 2 else { return }
+            guard index < pinLength else { return }
             
             //Get the first textField
             let textField = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(101 + index) as! SVPinField
@@ -308,7 +286,7 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         
         // Setting up textField
         textField.tag = 101 + indexPath.row
-//        textField.text = ""
+        textField.text = " "
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(-4, 0, 0)
         textField.isSecureTextEntry = false
         textField.textColor = self.textColor
