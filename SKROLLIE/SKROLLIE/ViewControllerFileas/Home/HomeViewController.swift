@@ -190,6 +190,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         let obj: commentViewClass = self.storyboard?.instantiateViewController(withIdentifier: "commentViewClass") as! commentViewClass
         obj.isOwnProfile = false
         self.present(obj, animated: true, completion: nil)
+        
     }
     //-------------------------------------------------------------
     // MARK: - Tableview Methods
