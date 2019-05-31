@@ -18,8 +18,8 @@ class SelectedImageViewController: UIViewController {
     @IBOutlet weak var emogiPagerView: FSPagerView!
     @IBOutlet weak var btn24Hour: UIButton!
     @IBOutlet weak var btnForever: UIButton!
-    @IBOutlet weak var imgEmogi1: UIImageView!
-    @IBOutlet weak var imgEmogi2: UIImageView!
+    @IBOutlet weak var btnEmogi1: UIButton!
+    @IBOutlet weak var btnEmogi2: UIButton!
     
     
     //MARK: Properties
@@ -123,6 +123,18 @@ class SelectedImageViewController: UIViewController {
         btnForever.isSelected = true
         btn24Hour.isSelected = false
     }
+    
+    @IBAction func onBtnEmogi1(_ sender: Any) {
+        if btnEmogi1.image(for: .normal) != nil {
+            btnEmogi1.setImage(nil, for: .normal)
+        }
+    }
+    
+    @IBAction func onBtnEmogi2(_ sender: Any) {
+        if btnEmogi2.image(for: .normal) != nil {
+            btnEmogi2.setImage(nil, for: .normal)
+        }
+    }
 }
 
 
@@ -151,10 +163,10 @@ extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        if imgEmogi1.image == nil {
-            imgEmogi1.image = UIImage(named: "emoji1")
-        } else if imgEmogi1.image != nil && imgEmogi2.image == nil {
-            imgEmogi2.image = UIImage(named: "emoji1")
+        if btnEmogi1.image(for: .normal) == nil {
+            btnEmogi1.setImage(UIImage(named: "emoji1"), for: .normal)
+        } else if btnEmogi1.image(for: .normal) != nil && btnEmogi2.image(for: .normal) == nil {
+            btnEmogi2.setImage(UIImage(named: "emoji1"), for: .normal)
         }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
