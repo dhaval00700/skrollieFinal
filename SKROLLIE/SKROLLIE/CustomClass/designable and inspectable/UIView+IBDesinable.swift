@@ -233,6 +233,11 @@ class customView: UIView {
 
 extension UIView {
     
+    func addCornerRadius(_ radius: CGFloat)
+    {
+        self.layer.cornerRadius = radius
+    }
+    
     @IBInspectable
     var cornerRadiusUIView: CGFloat {
         get {

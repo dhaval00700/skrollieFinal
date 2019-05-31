@@ -19,6 +19,8 @@ class HomeViewController: UIViewController
     @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     
+    @IBOutlet weak var viwProgressBar: UIView!
+    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var lblFrnds: UILabel!
     
     //MARK: Properties
@@ -40,6 +42,7 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         
+        viwProgressBar.isHidden = true
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblFrnds.font = UIFont.Regular(ofSize: 16)
         lblTitle.font = UIFont.Regular(ofSize: 20)
@@ -47,7 +50,27 @@ class HomeViewController: UIViewController
                                                                     for: .default)
         arysection = ["img1","img2","img3","img4","img4","img4"]
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+    
+    private func setupUI() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: Notification.Name("PROGRESS"), object: nil)
+    }
+    
+    @objc func onProgress(_ notificaton: NSNotification) {
+        viwProgressBar.isHidden = false
+        guard let userInfo = notificaton.userInfo,
+            let obj = userInfo as? [String: Any] else { return }
+        let uploadProgress = obj["uploadProgress"] as! Float
+        progressBar.progress = uploadProgress
+        if uploadProgress == 1.0 {
+            viwProgressBar.isHidden = true
+        }
+    }
+    
     //MARK: Actions
     @IBAction func btnSetting(_ sender: UIButton)
     {

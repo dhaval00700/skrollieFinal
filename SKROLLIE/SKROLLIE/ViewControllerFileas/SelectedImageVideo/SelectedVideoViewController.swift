@@ -111,6 +111,7 @@ class SelectedVideoViewController: UIViewController {
                 print("Swiped down")
             case UISwipeGestureRecognizer.Direction.left:
                 print("Swiped left")
+                self.goToHomePage()
                 uploadVideo(fileUrl: videoUrl)
             case UISwipeGestureRecognizer.Direction.up:
                 print("Swiped up")
@@ -186,8 +187,11 @@ extension SelectedVideoViewController {
         
         uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
             DispatchQueue.main.async(execute: {
-                let amountUploaded = totalBytesSent // To show the updating data status in label.
-                print(amountUploaded)
+                let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+                var dic = [String: Any]()
+                dic["uploadProgress"] = uploadProgress
+                NotificationCenter.default.post(name: Notification.Name("PROGRESS"), object: nil, userInfo: dic)
+                print("VideoUpload -> ", "\(totalBytesExpectedToSend)", "\(totalBytesSent)", "\(uploadProgress)")
             })
         }
         
@@ -197,7 +201,7 @@ extension SelectedVideoViewController {
                 print(task.error.debugDescription)
             } else {
                 // Do something with your result.
-                self.goToHomePage()
+                
                 print("done")
             }
             return nil

@@ -104,6 +104,7 @@ class SelectedImageViewController: UIViewController {
                 print("Swiped down")
             case UISwipeGestureRecognizer.Direction.left:
                 print("Swiped left")
+                self.goToHomePage()
                 uploadImage(fileUrl: selectedImageUrl)
             case UISwipeGestureRecognizer.Direction.up:
                 print("Swiped up")
@@ -184,8 +185,11 @@ extension SelectedImageViewController {
         uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
             DispatchQueue.main.async(execute: {
                 // To show the updating data status in label.
-                print("\(totalBytesSent)")
-                print("\(totalBytesExpectedToSend)")
+                let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+                var dic = [String: Any]()
+                dic["uploadProgress"] = uploadProgress
+                NotificationCenter.default.post(name: Notification.Name("PROGRESS"), object: nil, userInfo: dic)
+                print("ImageUpload -> ", "\(totalBytesExpectedToSend)", "\(totalBytesSent)", "\(uploadProgress)")
             })
         }
         
@@ -195,7 +199,7 @@ extension SelectedImageViewController {
                 // Error.
             } else {
                 // Do something with your result.
-                self.goToHomePage()
+                
                 print("done")
             }
             return nil
