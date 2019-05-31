@@ -12,6 +12,8 @@ import AVFoundation
 import AVKit
 import SRCountdownTimer
 
+var isDoubleTap = false
+
 class CameraAndVedioViewController: SwiftyCamViewController
 {
     //MARK: Outlets
@@ -34,7 +36,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
     var secound  = 60
     var timer = Timer()
     var resumTapped = false
-    
+    var isClick = false
     var Timestamp: String {
         return "\(NSDate().timeIntervalSince1970 * 1000)"
     }
@@ -75,7 +77,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
     func resetAll() {
         self.btnPreviewImg.isHidden = false
         isClick = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             isDoubleTap = false
         }
         VideoRecorderStatus = 0
@@ -359,16 +361,13 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
     }
 }
 
-var isClick = false
-var isDoubleTap = false
-
 extension CameraAndVedioViewController: TapGestureDelegate {
     
     // singleTap() and DoubleTap() Both methods of Customer Protocol CompletedVideoDelegate which will get SingleTap Gesture and Double Tap Gesture from SwiftyCamViewController
     func SingleTap()
     {
-        DispatchQueue.main.asyncAfter(deadline: . now() + 0.8) {
-            if isClick {
+        DispatchQueue.main.asyncAfter(deadline: . now() + 0.7) {
+            if self.isClick {
                 if self.VideoRecorderStatus == 1 || self.VideoRecorderStatus == 3 {
                     self.VideoRecorderStatus = 2
                     self.stopVideoRecording()
@@ -390,8 +389,8 @@ extension CameraAndVedioViewController: TapGestureDelegate {
         {
             VideoRecorderStatus = 1
             self.startVideoRecording()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                isClick = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.isClick = true
             }
             Timerlabel.isHidden = false
         }
