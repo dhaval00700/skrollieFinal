@@ -190,6 +190,7 @@ class userProfileClass: UIViewController,UICollectionViewDataSource,UICollection
         
         cell1.collectionView.delegate = self
         cell1.collectionView.dataSource = self
+        
         cell1.collectionView.tag = indexPath.section
         let username = arysection[indexPath.section]
         cell1.lblUserName.text = username
