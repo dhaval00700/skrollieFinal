@@ -630,13 +630,13 @@
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ZA-GB-eUy">
-                                                        <rect key="frame" x="119" y="615.5" width="82.5" height="25"/>
+                                                        <rect key="frame" x="112.5" y="615.5" width="95.5" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCopy" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-aH-YUv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="16" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLr-dn-qaO">
-                                                                <rect key="frame" x="17" y="0.0" width="65.5" height="25"/>
+                                                                <rect key="frame" x="30" y="0.0" width="65.5" height="25"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -2916,6 +2916,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haf-VN-wW5">
+                                <rect key="frame" x="15" y="493" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MiH-qY-idp"/>
+                                    <constraint firstAttribute="width" constant="60" id="XB2-wd-D60"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
+                                <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="onBtnBack:" destination="b7f-Pe-ITY" eventType="touchUpInside" id="SYw-M9-cM7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2509279847" green="0.18158608679999999" blue="0.35832792520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2924,11 +2936,13 @@
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="top" secondItem="qbr-Jk-pEY" secondAttribute="top" id="5tM-Lv-HrL"/>
                             <constraint firstItem="Ina-s3-2ca" firstAttribute="centerX" secondItem="har-dP-X0M" secondAttribute="centerX" id="EOT-ag-7vj"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="trailing" secondItem="DHS-tV-0H0" secondAttribute="trailing" constant="10" id="G4a-tl-jah"/>
+                            <constraint firstItem="haf-VN-wW5" firstAttribute="leading" secondItem="qbr-Jk-pEY" secondAttribute="leading" constant="15" id="Gq3-ph-cdw"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="bottom" secondItem="DHS-tV-0H0" secondAttribute="bottom" constant="10" id="Xwm-8x-jz6"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="trailing" secondItem="Sgi-vG-u5J" secondAttribute="trailing" constant="15" id="ZhE-eC-7km"/>
                             <constraint firstItem="har-dP-X0M" firstAttribute="centerX" secondItem="qbr-Jk-pEY" secondAttribute="centerX" id="aD3-Bc-jgR"/>
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="leading" secondItem="qbr-Jk-pEY" secondAttribute="leading" constant="15" id="nPf-bI-VD4"/>
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="top" secondItem="Sgi-vG-u5J" secondAttribute="top" id="paa-dG-TAB"/>
+                            <constraint firstItem="qbr-Jk-pEY" firstAttribute="bottom" secondItem="haf-VN-wW5" secondAttribute="bottom" constant="15" id="t0P-yB-TFF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qbr-Jk-pEY"/>
                     </view>
