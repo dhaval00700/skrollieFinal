@@ -110,6 +110,9 @@ class CameraAndVedioViewController: SwiftyCamViewController
         
     }
     
+    @IBAction func onBtnBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true  )
+    }
     
     func toggleTorch(on: Bool) {
         guard let device = AVCaptureDevice.default(for: .video) else { return }
