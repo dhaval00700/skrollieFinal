@@ -14,7 +14,8 @@ protocol delegateSelectOfComment {
 
 class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var imgUser: UIImageView!    
+    @IBOutlet weak var btnforCellExpand: UIButton!
+    @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblUser: UILabel!
     @IBOutlet weak var lblUserComment: UILabel!
     @IBOutlet weak var lctSubCommentTableHeight: NSLayoutConstraint!
@@ -29,11 +30,10 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
 
         tblSubComment.delegate = self
         tblSubComment.dataSource = self
-        
+        tblSubComment.isHidden = true
         tblSubComment.register(UINib(nibName: "CommentItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentItemTableViewCell")
         
         aryUserList = ["@horedude","@doggylover","@happyCampper"]
@@ -64,5 +64,10 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     
     override func setSelected(_ selected: Bool, animated: Bool){
         super.setSelected(selected, animated: animated)
+    }
+    @IBAction func btnCellExpand(_ sender: UIButton) {
+        
+        tblSubComment.isHidden = false
+        
     }
 }

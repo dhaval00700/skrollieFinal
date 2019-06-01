@@ -193,5 +193,4 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSe
             return cell
         }
     }
-    
 }

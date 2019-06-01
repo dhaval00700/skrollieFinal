@@ -59,7 +59,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dI-yi-DdT">
                                 <rect key="frame" x="8" y="10" width="302" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnCellExpand:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="89l-07-Pto"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,6 +92,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnforCellExpand" destination="1dI-yi-DdT" id="JTu-qY-vPZ"/>
                 <outlet property="imgUser" destination="jN8-sE-1w8" id="fWU-7T-SuP"/>
                 <outlet property="lblUser" destination="IoV-QA-qpR" id="bS1-cJ-aAa"/>
                 <outlet property="lblUserComment" destination="ejl-9q-B2n" id="cpe-u3-0UJ"/>
