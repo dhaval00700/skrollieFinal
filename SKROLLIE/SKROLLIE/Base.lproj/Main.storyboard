@@ -1650,20 +1650,20 @@
             <objects>
                 <viewController storyboardIdentifier="commentViewClass" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v54-uE-t7W" customClass="commentViewClass" customModule="SKROLLIE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="alS-KC-cO6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KP-3F-TyO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zvY-Zd-W3U">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUE-mA-vWR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-O7-asY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="665"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="795"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GP8-fo-PVX">
                                                             <rect key="frame" x="0.0" y="44" width="320" height="314"/>
@@ -1848,7 +1848,7 @@
                                                             <cells/>
                                                         </collectionView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZH7-gb-Qg0">
-                                                            <rect key="frame" x="180" y="571" width="130" height="30"/>
+                                                            <rect key="frame" x="180" y="719" width="130" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfV-1K-J4q">
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
@@ -1892,13 +1892,13 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSV-Yu-QVG">
-                                                            <rect key="frame" x="10" y="539" width="300" height="50"/>
+                                                            <rect key="frame" x="10" y="539" width="300" height="180"/>
                                                             <subviews>
                                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RC0-e7-9Zq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="180"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="FYR-QC-bJ9"/>
+                                                                        <constraint firstAttribute="height" constant="180" id="FYR-QC-bJ9"/>
                                                                     </constraints>
                                                                 </tableView>
                                                             </subviews>
@@ -1911,7 +1911,7 @@
                                                             </constraints>
                                                         </view>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WxS-Os-sGH" customClass="paddingTextField" customModule="SKROLLIE" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="609" width="260" height="36"/>
+                                                            <rect key="frame" x="20" y="739" width="260" height="36"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="OkO-4r-MKV"/>
@@ -1943,7 +1943,7 @@
                                                         <constraint firstItem="tSV-Yu-QVG" firstAttribute="leading" secondItem="3TQ-jd-2cz" secondAttribute="leading" id="P8Z-Lt-cxa"/>
                                                         <constraint firstItem="GP8-fo-PVX" firstAttribute="top" secondItem="0zz-O7-asY" secondAttribute="top" constant="44" id="QX1-cP-RZs"/>
                                                         <constraint firstItem="3TQ-jd-2cz" firstAttribute="bottom" secondItem="KLx-0r-UwB" secondAttribute="bottom" constant="-20" id="Sn7-8Y-tvQ"/>
-                                                        <constraint firstItem="ZH7-gb-Qg0" firstAttribute="top" secondItem="tSV-Yu-QVG" secondAttribute="bottom" constant="-18" id="V64-ED-jNY"/>
+                                                        <constraint firstItem="ZH7-gb-Qg0" firstAttribute="top" secondItem="tSV-Yu-QVG" secondAttribute="bottom" id="V64-ED-jNY"/>
                                                         <constraint firstItem="KLx-0r-UwB" firstAttribute="top" secondItem="3TQ-jd-2cz" secondAttribute="top" constant="10" id="VDD-aB-5gG"/>
                                                         <constraint firstItem="tSV-Yu-QVG" firstAttribute="top" secondItem="KLx-0r-UwB" secondAttribute="bottom" constant="8" id="W4Q-zr-r4G"/>
                                                         <constraint firstItem="f66-hl-mye" firstAttribute="top" secondItem="GP8-fo-PVX" secondAttribute="bottom" constant="8" id="Zsd-W1-2Ek"/>
@@ -1987,7 +1987,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HK9-FX-LfP"/>
                     </view>
-                    <size key="freeformSize" width="320" height="680"/>
+                    <size key="freeformSize" width="320" height="900"/>
                     <connections>
                         <outlet property="btnViewAllComment" destination="NfV-1K-J4q" id="5Pd-7m-Jg8"/>
                         <outlet property="collectionUserList" destination="KLx-0r-UwB" id="9op-DB-00e"/>
