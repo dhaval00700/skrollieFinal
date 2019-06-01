@@ -48,10 +48,10 @@ class commentViewClass: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        
     }
     
-    func setUpUI()
-    {
+    func setUpUI(){
         
         tblView.delegate = self
         tblView.dataSource = self
@@ -63,16 +63,12 @@ class commentViewClass: UIViewController
         
         collectionUserList.register(UINib(nibName: "UserItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserItemCollectionViewCell")
         
-        
         aryUserList = ["@happyCampper","@doggylover","@horedude"]
         aryImg = ["img5","img6","img5"]
         
         collectionUserList.reloadData()
         tblView.reloadData()
         tblForComment.reloadData()
-        
-        constraintHightOfTblComment.constant = tblForComment.contentSize.height
-        
         emojiPagerView.delegate = self
         emojiPagerView.dataSource = self
         
@@ -85,21 +81,26 @@ class commentViewClass: UIViewController
         
         viwUserListContainer.layer.cornerRadius = 8.0
         
-        if isOwnProfile == true
-        {
+        if isOwnProfile == true{
             viewAllComment.isHidden = false
         }
-        else
-        {
+        else{
             viewAllComment.isHidden = true
         }
+        
+        tblView.borderColorUIView = UIColor.init(red: 49/255, green: 36/255, blue: 77/255, alpha: 1.0)
+        tblView.borderWidthUIView = 3.0
+        tblView.layer.cornerRadius = 5.0
+        tblView.layer.masksToBounds = true
+        
+        tblForComment.reloadData()
+        tblForComment.layoutIfNeeded()
+        constraintHightOfTblComment.constant = tblForComment.contentSize.height
     }
     // MARK: - Action
-    @IBAction func btnDismiss(_ sender: Any)
-    {
+    @IBAction func btnDismiss(_ sender: Any){
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource{
@@ -134,8 +135,7 @@ extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource{
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 
-extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
-{
+extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return 3
     }
@@ -144,35 +144,30 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserItemCollectionViewCell", for: indexPath) as!  UserItemCollectionViewCell
         
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let  width = 110.0
+        let width = 110.0
         let height = 90.0
         
         return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        
     }
 }
 
 //MARK: - Comment Tableview Extention
 
 extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSelectOfComment{
-  
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return aryImg.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let imgOfUser = aryImg[indexPath.row]
         let Username = aryUserList[indexPath.row]
         
-        if tableView == tblView{
+        if tableView == tblView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userShowViewTableViewCell", for: indexPath) as! userShowViewTableViewCell
             
             cell.imgUserViewarProfile.image = UIImage.init(named: imgOfUser)
@@ -181,17 +176,25 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSe
             return cell
         }
         else{
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "AllCommentsTableViewCell", for: indexPath) as! AllCommentsTableViewCell
             
             cell.imgUser.image = UIImage.init(named: imgOfUser)
             cell.lblUser.text = Username
             
             cell.tblSubComment.reloadData()
-            super.loadViewIfNeeded()
-            cell.lctSubCommentTableHeight.constant = tblForComment.contentSize.height
+            cell.tblSubComment.layoutIfNeeded()
+            cell.lctSubCommentTableHeight.constant = cell.tblSubComment.contentSize.height
             
             return cell
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

@@ -14,7 +14,7 @@ protocol delegateSelectOfComment {
 
 class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var imgUser: UIImageView!    
+    @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblUser: UILabel!
     @IBOutlet weak var lblUserComment: UILabel!
     @IBOutlet weak var lctSubCommentTableHeight: NSLayoutConstraint!
@@ -25,12 +25,10 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     var imgOfUser = String()
     var Username = String()
     var delegateOfSelectedComment : delegateSelectOfComment!
-
     
-    override func awakeFromNib() {
+    override func awakeFromNib(){
         super.awakeFromNib()
         
-
         tblSubComment.delegate = self
         tblSubComment.dataSource = self
         
@@ -46,20 +44,23 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-         imgOfUser = aryImg[indexPath.row]
-         Username = aryUserList[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
+        
+        imgOfUser = aryImg[indexPath.row]
+        Username = aryUserList[indexPath.row]
+        
         cell.imgUser.image = UIImage.init(named: imgOfUser)
         cell.lblUser.text = Username
-
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-            print("hello")
-        let strSelect = aryImg[indexPath.row]
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 70.0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool){
