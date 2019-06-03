@@ -209,7 +209,75 @@ class CameraAndVedioViewController: SwiftyCamViewController
         present(alert, animated: true, completion: nil)
     }
     
-    func mergeVideos(){
+    func mergeVideos() {
+        
+        print( "Wait... \nVideo is in Process")
+        
+        let composition = AVMutableComposition()
+        
+        let videoTrack = composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        let audioTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+        var time:Double = 0.0
+        
+        for k in 0..<arrVideoAssets.count {
+            let videoAsset = arrVideoAssets[k]
+            let videoAssetTrack = videoAsset.tracks(withMediaType: .video)[0]
+            let audioAssetTrack = videoAsset.tracks(withMediaType: .audio)[0]
+            let atTime = CMTime(seconds: time, preferredTimescale: 1)
+            do {
+                
+                try videoTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: videoAsset.duration), of: videoAssetTrack, at: atTime)
+                try audioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: videoAsset.duration), of: audioAssetTrack, at: atTime)
+                
+            } catch let error as NSError {
+                
+                print("error when adding video to mix = \(error)")
+                
+            }
+            time += videoAsset.duration.seconds
+        }
+        
+        dump(composition.tracks)
+        
+        // Final Video Saved in Document Directory Temporary
+        let fileManager = FileManager.default
+        do {
+            let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+            let Filename = "\(Timestamp)_Sample.mp4"
+            let fileURL = documentDirectory.appendingPathComponent(Filename)
+            let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)
+            exporter!.outputURL = fileURL
+            exporter!.outputFileType = AVFileType.mp4
+            exporter!.shouldOptimizeForNetworkUse = false
+            exporter!.exportAsynchronously() {
+                DispatchQueue.main.async(execute: { () -> Void in
+                    // removed all videos
+                    self.arrVideoAssets.removeAll()
+                    // let selectedVideo = fileURL
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
+                        vc.videoUrl = fileURL
+                        PHPhotoLibrary.shared().performChanges({
+                            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
+                        }) { saved, error in
+                            if saved {
+                                print("Saved")
+                            }
+                        }
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
+                })
+                
+            }
+            
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+
+    
+    func mergeVideos1(){
         print( "Wait... \nVideo is in Process")
         // video Composition Process & Merge Video Process
         let mixComposition = AVMutableComposition.init()
@@ -341,8 +409,6 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
             self.arrVideoAssets.append(VideoURLAsset)
             resetAll()
             self.mergeVideos()
-            
-            
         }
     }
     
