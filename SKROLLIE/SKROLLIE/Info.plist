@@ -34,9 +34,7 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) location use</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) location use
-$(PRODUCT_NAME) location use
-</string>
+	<string>$(PRODUCT_NAME) location use</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) microphone use</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
