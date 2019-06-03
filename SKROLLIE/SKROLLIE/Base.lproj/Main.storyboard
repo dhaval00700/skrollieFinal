@@ -1611,6 +1611,7 @@
                         <viewLayoutGuide key="safeArea" id="Anq-Gb-WBF"/>
                     </view>
                     <navigationItem key="navigationItem" id="Z0M-Ri-jOJ"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btnCamera" destination="gS8-ur-LQe" id="kSg-OR-nxO"/>
                         <outlet property="lblFrnds" destination="rZm-38-OyQ" id="CvE-Wd-bOh"/>
@@ -1626,7 +1627,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LT-gP-me7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vef-xf-ji8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3081" y="296"/>
+            <point key="canvasLocation" x="4078.125" y="295.77464788732397"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ey-6a-Ohs">
@@ -1650,17 +1651,17 @@
             <objects>
                 <viewController storyboardIdentifier="commentViewClass" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v54-uE-t7W" customClass="commentViewClass" customModule="SKROLLIE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="alS-KC-cO6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KP-3F-TyO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zvY-Zd-W3U">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUE-mA-vWR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-O7-asY">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="795"/>
@@ -1987,7 +1988,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HK9-FX-LfP"/>
                     </view>
-                    <size key="freeformSize" width="320" height="900"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="btnViewAllComment" destination="NfV-1K-J4q" id="5Pd-7m-Jg8"/>
                         <outlet property="collectionUserList" destination="KLx-0r-UwB" id="9op-DB-00e"/>
@@ -2013,7 +2014,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </button>
             </objects>
-            <point key="canvasLocation" x="3081" y="1112"/>
+            <point key="canvasLocation" x="4078" y="1016"/>
         </scene>
         <!--Selected Image View Controller-->
         <scene sceneID="7Zc-eV-iRT">
@@ -2850,7 +2851,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rO6-JI-0sX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="23s-aK-EBC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3883" y="1052"/>
+            <point key="canvasLocation" x="3289" y="1017"/>
         </scene>
         <!--Camera And Vedio View Controller-->
         <scene sceneID="XbP-M3-duw">
@@ -2916,6 +2917,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haf-VN-wW5">
+                                <rect key="frame" x="15" y="493" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MiH-qY-idp"/>
+                                    <constraint firstAttribute="width" constant="60" id="XB2-wd-D60"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
+                                <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="onBtnBack:" destination="b7f-Pe-ITY" eventType="touchUpInside" id="SYw-M9-cM7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2509279847" green="0.18158608679999999" blue="0.35832792520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2924,11 +2937,13 @@
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="top" secondItem="qbr-Jk-pEY" secondAttribute="top" id="5tM-Lv-HrL"/>
                             <constraint firstItem="Ina-s3-2ca" firstAttribute="centerX" secondItem="har-dP-X0M" secondAttribute="centerX" id="EOT-ag-7vj"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="trailing" secondItem="DHS-tV-0H0" secondAttribute="trailing" constant="10" id="G4a-tl-jah"/>
+                            <constraint firstItem="haf-VN-wW5" firstAttribute="leading" secondItem="qbr-Jk-pEY" secondAttribute="leading" constant="15" id="Gq3-ph-cdw"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="bottom" secondItem="DHS-tV-0H0" secondAttribute="bottom" constant="10" id="Xwm-8x-jz6"/>
                             <constraint firstItem="qbr-Jk-pEY" firstAttribute="trailing" secondItem="Sgi-vG-u5J" secondAttribute="trailing" constant="15" id="ZhE-eC-7km"/>
                             <constraint firstItem="har-dP-X0M" firstAttribute="centerX" secondItem="qbr-Jk-pEY" secondAttribute="centerX" id="aD3-Bc-jgR"/>
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="leading" secondItem="qbr-Jk-pEY" secondAttribute="leading" constant="15" id="nPf-bI-VD4"/>
                             <constraint firstItem="i7s-Fh-Xhh" firstAttribute="top" secondItem="Sgi-vG-u5J" secondAttribute="top" id="paa-dG-TAB"/>
+                            <constraint firstItem="qbr-Jk-pEY" firstAttribute="bottom" secondItem="haf-VN-wW5" secondAttribute="bottom" constant="15" id="t0P-yB-TFF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qbr-Jk-pEY"/>
                     </view>
@@ -2942,7 +2957,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49Z-4Q-JpA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3843.75" y="295.77464788732397"/>
+            <point key="canvasLocation" x="4841.25" y="295.77464788732397"/>
         </scene>
     </scenes>
     <resources>
