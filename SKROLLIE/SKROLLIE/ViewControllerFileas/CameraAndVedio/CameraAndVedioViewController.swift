@@ -12,8 +12,6 @@ import AVFoundation
 import AVKit
 import SRCountdownTimer
 
-var isDoubleTap = false
-
 class CameraAndVedioViewController: SwiftyCamViewController
 {
     //MARK: Outlets
@@ -36,7 +34,6 @@ class CameraAndVedioViewController: SwiftyCamViewController
     var secound  = 60
     var timer = Timer()
     var resumTapped = false
-    var isClick = false
     var Timestamp: String {
         return "\(NSDate().timeIntervalSince1970 * 1000)"
     }
@@ -76,10 +73,6 @@ class CameraAndVedioViewController: SwiftyCamViewController
     
     func resetAll() {
         self.btnPreviewImg.isHidden = false
-        isClick = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            isDoubleTap = false
-        }
         VideoRecorderStatus = 0
         self.stopVideoRecording()
         self.timer.invalidate()
@@ -432,39 +425,37 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
 
 extension CameraAndVedioViewController: TapGestureDelegate {
     
-    // singleTap() and DoubleTap() Both methods of Customer Protocol CompletedVideoDelegate which will get SingleTap Gesture and Double Tap Gesture from SwiftyCamViewController
-    func SingleTap()
-    {
-        DispatchQueue.main.asyncAfter(deadline: . now() + 0.7) {
-            if self.isClick {
-                if self.VideoRecorderStatus == 1 || self.VideoRecorderStatus == 3 {
-                    self.VideoRecorderStatus = 2
-                    self.stopVideoRecording()
-                } else if self.VideoRecorderStatus == 2 {
-                    self.VideoRecorderStatus = 3
-                    self.startVideoRecording()
-                    self.Timerlabel.isHidden = false
-                }
-            } else if self.VideoRecorderStatus == 0 && !isDoubleTap {
-                    // Take a Picture on Single tap, while Video recording is not running...
-                    self.takePhoto()
-            }
+   // singleTap() and DoubleTap() Both methods of Customer Protocol CompletedVideoDelegate which will get SingleTap Gesture and Double Tap Gesture from SwiftyCamViewController
+   func SingleTap() {
+        
+        if VideoRecorderStatus == 0 {
+            // Take a Picture on Single tap, while Video recording is not running...
+            self.perform(#selector(takephotofromSingleTAP), with: nil, afterDelay: 0.5)
+            //            self.takePhoto()
+        } else if VideoRecorderStatus == 1 || VideoRecorderStatus == 3 {
+            VideoRecorderStatus = 2
+            self.stopVideoRecording()
+            
+        } else if VideoRecorderStatus == 2 {
+            VideoRecorderStatus = 3
+            self.startVideoRecording()
+            self.Timerlabel.isHidden = false
         }
     }
     
-    func DoubleTap()    {
-        
-        if VideoRecorderStatus == 0
-        {
+    @objc func takephotofromSingleTAP() {
+        if VideoRecorderStatus == 0 {
+            self.takePhoto()
+        }
+    }
+    
+    func DoubleTap() {
+        if VideoRecorderStatus == 0 {
             VideoRecorderStatus = 1
             self.startVideoRecording()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                self.isClick = true
-            }
             Timerlabel.isHidden = false
-        }
-        else
-        {
+        } else {
+            VideoRecorderStatus = 0
             resetAll()
         }
     }
