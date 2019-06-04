@@ -106,7 +106,6 @@ class SelectedVideoViewController: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.right:
                 print("Swiped right")
-                webserviceOfSaveVideo()
                 navigationController?.popViewController(animated: false)
             case UISwipeGestureRecognizer.Direction.down:
                 print("Swiped down")
@@ -214,7 +213,8 @@ extension SelectedVideoViewController {
                 print(task.error.debugDescription)
             } else {
                 // Do something with your result.
-                
+                let url = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/\(newKey)"
+                self.webserviceOfSaveVideo(url: url)
                 print("done")
             }
             return nil
@@ -224,7 +224,7 @@ extension SelectedVideoViewController {
 }
 extension SelectedVideoViewController
 {
-    func webserviceOfSaveVideo()
+    func webserviceOfSaveVideo(url: String)
     {
         var dictdata = [String:AnyObject]()
         
@@ -241,11 +241,11 @@ extension SelectedVideoViewController
             userId = "\(userIDInt)"
         }
         dictdata[keyAllKey.KidUser] = userId as AnyObject
-        dictdata[keyAllKey.isPhoto] = true as AnyObject
-        dictdata[keyAllKey.Url] = "imgURLPass" as AnyObject
-        dictdata[keyAllKey.Description] = "text.text" as AnyObject
-        dictdata[keyAllKey.Emoji1] = "w" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "w" as AnyObject
+        dictdata[keyAllKey.isPhoto] = false as AnyObject
+        dictdata[keyAllKey.Url] = url as AnyObject
+        dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
+        dictdata[keyAllKey.Emoji1] = "" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "" as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject
         
         

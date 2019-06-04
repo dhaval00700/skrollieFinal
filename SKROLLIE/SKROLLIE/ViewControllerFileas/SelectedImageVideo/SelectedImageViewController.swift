@@ -99,7 +99,6 @@ class SelectedImageViewController: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.right:
                 print("Swiped right")
-                webserviceOfSavePhoto()
                 navigationController?.popViewController(animated: false)
             case UISwipeGestureRecognizer.Direction.down:
                 print("Swiped down")
@@ -213,6 +212,9 @@ extension SelectedImageViewController {
             } else {
                 // Do something with your result.
                 
+                let url = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/\(newKey)"
+                 self.webserviceOfSavePhoto(url: url)
+                
                 print("done")
             }
             return nil
@@ -222,7 +224,7 @@ extension SelectedImageViewController {
 
 extension SelectedImageViewController
 {
-    func webserviceOfSavePhoto()
+    func webserviceOfSavePhoto(url: String)
     {
         var dictdata = [String:AnyObject]()
         
@@ -241,11 +243,10 @@ extension SelectedImageViewController
         dictdata[keyAllKey.KidUser] = userId as AnyObject
         dictdata[keyAllKey.isPhoto] = true as AnyObject
         dictdata[keyAllKey.Url] = "imgURLPass" as AnyObject
-        dictdata[keyAllKey.Description] = "text.text" as AnyObject
-        dictdata[keyAllKey.Emoji1] = "w" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "w" as AnyObject
+        dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
+        dictdata[keyAllKey.Emoji1] = "" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "" as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject
-     
         
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
             
@@ -253,7 +254,7 @@ extension SelectedImageViewController
             {
                 do
                 {
-                      print((result as! [String:AnyObject])["message"] as! String)
+                    print((result as! [String:AnyObject])["message"] as! String)
                 }
                     
                 catch let DecodingError.dataCorrupted(context)

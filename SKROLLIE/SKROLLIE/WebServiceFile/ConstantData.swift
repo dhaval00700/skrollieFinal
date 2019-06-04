@@ -27,7 +27,6 @@ struct WebserviceURLs {
     
     //POST
     
-    static let kInit = "MobileAccount/rest_api/init"
     static let klogin = "MobileAccount/Mobilelogin?"
     static let kRegister = "MobileAccount/register"
     static let kSavePhoto = "MobilePost/SavePost"

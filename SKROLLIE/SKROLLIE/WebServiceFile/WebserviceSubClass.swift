@@ -15,7 +15,6 @@ let Register = WebserviceURLs.kRegister
 let SavePhoto = WebserviceURLs.kSavePhoto
 let CreateFrnd = WebserviceURLs.kCreateFriend
 
-
 //GET METHOD
 let OTPWithMobile = WebserviceURLs.kOTPMobileNum
 let VerifyOTP = WebserviceURLs.kVerifyOTP
@@ -123,11 +122,11 @@ func webserviceForUserName(dictParams: AnyObject,completion: @escaping(_ result:
 //------------------------------------------------------------
 // MARK: - Webservice For GetPhoto
 //------------------------------------------------------------
-func webserviceForGetPhoto(completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+func webserviceForGetPhoto(dictdata: AnyObject,  completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
 {
-    let url = getPhoto
+    let url = getPhoto + "?\(dictdata)"
     print(url)
-    getData([] as AnyObject, nsURL: url, completion: completion)
+    getData(dictdata as AnyObject, nsURL: url, completion: completion)
 }
 
 //------------------------------------------------------------

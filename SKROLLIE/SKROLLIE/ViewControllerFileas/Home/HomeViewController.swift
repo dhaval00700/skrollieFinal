@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController
 {
@@ -28,13 +29,9 @@ class HomeViewController: UIViewController
     var imagePicker = UIImagePickerController()
     var dictdata = [String:AnyObject]()
     
-    var arysection = [String]()
-    var arysection2 = [String]()
-    var arysection3 = [String]()
-    var arysection4 = [String]()
-    
+    var resultImgPhoto = [UserData]()
     var arydatsta = [[String:AnyObject]]()
-    
+    var collectionData = UserData()
     var arysectionData = ["@jhongoe","@mayjane","@tonnystark","@natgeo","@natgeo","@natgeo"]
     
     //MARK: Lifecycle
@@ -46,10 +43,9 @@ class HomeViewController: UIViewController
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblFrnds.font = UIFont.Regular(ofSize: 16)
         lblTitle.font = UIFont.Regular(ofSize: 20)
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        arysection = ["img1","img2","img3","img4","img4","img4"]
-        
         webserviceofGetPhoto()
     }
     
@@ -107,26 +103,20 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return arysection.count
+        return collectionData.arrPost.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
         
-        var strName = String()
-        let data = arysection[indexPath.item]
+        let datas = collectionData.arrPost[indexPath.item]
+        cell.imgUserPic.sd_setImage(with: URL(string: datas.Url), completed: nil)
         
-        cell.imgUserProfilePic.image = UIImage(named: "img4" )
-        cell.imgUserPic.image = UIImage(named: "ic_bg_home_cell" )
-        
-        //        if indexPath.item == 0
-        //        {
-        let username = arysectionData[indexPath.item]
-        cell.lblUserName.text = username
+        cell.lblUserName.text = collectionData.ProfileName
         cell.lblUserName.font = UIFont.Regular(ofSize: 16)
         cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        //        }
+
         if indexPath.row == 0
         {
             cell.viewOfUserProfileBackground.isHidden = false
@@ -151,7 +141,7 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         {
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
         }
-        else //cell.lblTimeOfPhotos.text == "F O R E V E R"
+        else
         {
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
         }
@@ -169,9 +159,6 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return arysection.count
-    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
@@ -180,28 +167,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.arysectionData[section]
-        return 1
+        
+        return resultImgPhoto.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-        
+        collectionData = resultImgPhoto[indexPath.row]
         cell1.collectionView.delegate = self
         cell1.collectionView.dataSource = self
+        cell1.collectionView.reloadData()
         return cell1
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
-        
-        
-        let section = self.arysectionData[indexPath.section]
-        let headline = arysectionData[indexPath.row]
-        cell.textLabel?.text = headline
-        
-        cell.detailTextLabel?.text = headline
-        
-        return cell
     }
     
     
@@ -243,17 +221,25 @@ extension HomeViewController
 {
     
     func webserviceofGetPhoto()
-        
     {
+        var dictdata = [String:AnyObject]()
         
-        webserviceForGetPhoto{(result, status) in
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        
+        let userId = idpass["id"] as? String ?? "\(String(describing: idpass["id"] as? Int))"
+        
+        dictdata[keyAllKey.KidUser] = userId as AnyObject
+        
+        webserviceForGetPhoto(dictdata: dictdata as AnyObject){(result, status) in
             
             if status
             {
                 do
                 {
-                    print(((result as! [String : AnyObject])["data"] as! [[String:AnyObject]]))
-                    
+                 let aryGetPhotos = (((result as! [String : AnyObject])["data"] as! [[String:AnyObject]]))
+
+                    self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
+                    self.tableview.reloadData()
                 }
                     
                 catch let DecodingError.dataCorrupted(context)
