@@ -12,6 +12,9 @@ import SwiftyJSON
 //POST METHOD
 let Login = WebserviceURLs.klogin
 let Register = WebserviceURLs.kRegister
+let SavePhoto = WebserviceURLs.kSavePhoto
+let CreateFrnd = WebserviceURLs.kCreateFriend
+
 
 //GET METHOD
 let OTPWithMobile = WebserviceURLs.kOTPMobileNum
@@ -20,13 +23,26 @@ let VerifyMobileNumexistOrNot = WebserviceURLs.KMonileNumCheckForRegister
 let VerifyEmail = WebserviceURLs.kEmailIdVerification
 let VeriFyUserName = WebserviceURLs.kUserNameVerification
 let EmailFormateCheck = WebserviceURLs.kEmailFormatcheck
+let getPhoto = WebserviceURLs.kgetPhoto
+let DeletePhoto = WebserviceURLs.kDeletePost
+
 //------------------------------------------------------------
-// MARK: - Webservice For Register POst
+// MARK: - Webservice For Register Post
 //------------------------------------------------------------
 
 func webserviceForRegister(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
 {
     let url = Register
+    postData(dictParams, nsURL: url, completion: completion)
+}
+
+//------------------------------------------------------------
+// MARK: - Webservice For Register POst
+//------------------------------------------------------------
+
+func webserviceForSavePhoto(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = SavePhoto
     postData(dictParams, nsURL: url, completion: completion)
 }
 
@@ -94,12 +110,44 @@ func webserviceForVerifyEmail(dictParams: AnyObject,completion: @escaping(_ resu
     getData(dictParams, nsURL: url, completion: completion)
 }
 
-
+//------------------------------------------------------------
+// MARK: - Webservice For UserName
+//------------------------------------------------------------
 func webserviceForUserName(dictParams: AnyObject,completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
 {
     let url = VeriFyUserName + "\(dictParams)"
     print(url)
     getData(dictParams, nsURL: url, completion: completion)
+}
+
+//------------------------------------------------------------
+// MARK: - Webservice For GetPhoto
+//------------------------------------------------------------
+func webserviceForGetPhoto(completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = getPhoto
+    print(url)
+    getData([] as AnyObject, nsURL: url, completion: completion)
+}
+
+//------------------------------------------------------------
+// MARK: - Webservice For DeletePhoto
+//------------------------------------------------------------
+func webserviceForDeletePhoto(dictParams: AnyObject,completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = DeletePhoto + "\(dictParams)"
+    print(url)
+    getData(dictParams, nsURL: url, completion: completion)
+}
+
+//------------------------------------------------------------
+// MARK: - Webservice For CreateFrnd Post
+//------------------------------------------------------------
+
+func webserviceForCreateFrnd(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = CreateFrnd
+    postData(dictParams, nsURL: url, completion: completion)
 }
 
 //-------------------------------------------------------------

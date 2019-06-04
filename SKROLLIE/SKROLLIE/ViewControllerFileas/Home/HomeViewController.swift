@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController
 {
-
+    
     //Mark: Outlets
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var btnCamera: UIButton!
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController
     var arysection2 = [String]()
     var arysection3 = [String]()
     var arysection4 = [String]()
-   
+    
     var arydatsta = [[String:AnyObject]]()
     
     var arysectionData = ["@jhongoe","@mayjane","@tonnystark","@natgeo","@natgeo","@natgeo"]
@@ -49,6 +49,8 @@ class HomeViewController: UIViewController
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
         arysection = ["img1","img2","img3","img4","img4","img4"]
+        
+        webserviceofGetPhoto()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -237,3 +239,173 @@ extension HomeViewController: UIScrollViewDelegate {
         }
     }
 }
+extension HomeViewController
+{
+    
+    func webserviceofGetPhoto()
+        
+    {
+        
+        webserviceForGetPhoto{(result, status) in
+            
+            if status
+            {
+                do
+                {
+                    print(((result as! [String : AnyObject])["data"] as! [[String:AnyObject]]))
+                    
+                }
+                    
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
+        }
+    }
+    
+    
+    func webserviceOfDeletePost()
+    {
+        var dictdata = [String:AnyObject]()
+        
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        var userId = String()
+        
+        if let userIDString = idpass["id"] as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass["id"] as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        dictdata[keyAllKey.id] = userId as AnyObject
+        
+        webserviceForDeletePhoto(dictParams: dictdata as AnyObject){(result, status) in
+            
+            if status
+            {
+                do
+                {
+                    print((result as! [String:AnyObject])["message"] as! String)
+                }
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
+        }
+    }
+    
+    func webserviceOfSavePhoto()
+    {
+        var dictdata = [String:AnyObject]()
+        
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        var userId = String()
+        if let userIDString = idpass["id"] as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass["id"] as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        dictdata[keyAllKey.KidUser] = userId as AnyObject
+        dictdata[keyAllKey.id] = "1" as AnyObject
+        dictdata[keyAllKey.Isstatus] = true as AnyObject
+        dictdata[keyAllKey.idFriend] = "2" as AnyObject
+        
+        webserviceForCreateFrnd(dictdata as AnyObject) { (result, status) in
+            
+            if status
+            {
+                do
+                {
+                    print((result as! [String:AnyObject])["message"] as! String)
+                }
+                    
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
+        }
+    }
+}
+
