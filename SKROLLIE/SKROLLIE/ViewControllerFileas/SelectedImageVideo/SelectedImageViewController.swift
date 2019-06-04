@@ -41,7 +41,7 @@ class SelectedImageViewController: UIViewController {
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
         // Do any additional setup after loading the view.
     }
@@ -113,7 +113,7 @@ class SelectedImageViewController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func onBtn24Hour(_ sender: Any) {
         btnForever.isSelected = false
         btn24Hour.isSelected = true
@@ -212,6 +212,9 @@ extension SelectedImageViewController {
             } else {
                 // Do something with your result.
                 
+                let url = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/\(newKey)"
+                 self.webserviceOfSavePhoto(url: url)
+                
                 print("done")
             }
             return nil
@@ -219,3 +222,70 @@ extension SelectedImageViewController {
     }
 }
 
+extension SelectedImageViewController
+{
+    func webserviceOfSavePhoto(url: String)
+    {
+        var dictdata = [String:AnyObject]()
+        
+        dictdata[keyAllKey.id] = "1" as AnyObject
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        var userId = String()
+        if let userIDString = idpass["id"] as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass["id"] as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        dictdata[keyAllKey.KidUser] = userId as AnyObject
+        dictdata[keyAllKey.isPhoto] = true as AnyObject
+        dictdata[keyAllKey.Url] = "imgURLPass" as AnyObject
+        dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
+        dictdata[keyAllKey.Emoji1] = "" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "" as AnyObject
+        dictdata[keyAllKey.isPublish] = true as AnyObject
+        
+        webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
+            
+            if status
+            {
+                do
+                {
+                    print((result as! [String:AnyObject])["message"] as! String)
+                }
+                    
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
+        }
+    }
+}

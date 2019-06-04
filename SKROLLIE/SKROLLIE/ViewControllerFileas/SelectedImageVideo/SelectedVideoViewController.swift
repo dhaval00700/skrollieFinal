@@ -213,11 +213,80 @@ extension SelectedVideoViewController {
                 print(task.error.debugDescription)
             } else {
                 // Do something with your result.
-                
+                let url = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/\(newKey)"
+                self.webserviceOfSaveVideo(url: url)
                 print("done")
             }
             return nil
         })
         
+    }
+}
+extension SelectedVideoViewController
+{
+    func webserviceOfSaveVideo(url: String)
+    {
+        var dictdata = [String:AnyObject]()
+        
+        dictdata[keyAllKey.id] = "1" as AnyObject
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        var userId = String()
+        if let userIDString = idpass["id"] as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass["id"] as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        dictdata[keyAllKey.KidUser] = userId as AnyObject
+        dictdata[keyAllKey.isPhoto] = false as AnyObject
+        dictdata[keyAllKey.Url] = url as AnyObject
+        dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
+        dictdata[keyAllKey.Emoji1] = "" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "" as AnyObject
+        dictdata[keyAllKey.isPublish] = true as AnyObject
+        
+        
+        webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
+            
+            if status
+            {
+                do
+                {
+                    print((result as! [String:AnyObject])["message"] as! String)
+                }
+                    
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
+        }
     }
 }
