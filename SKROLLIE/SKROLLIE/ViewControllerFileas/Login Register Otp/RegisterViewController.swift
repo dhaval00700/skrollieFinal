@@ -176,7 +176,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
         if textField == txtEmailAddress
         {
             let isEmailAddressValid = isValidEmailAddress(emailID: txtEmailAddress.text!)
-
+            
             if (!isEmailAddressValid)
             {
                 viewBirthdate.layer.borderColor =   UIColor.lightGray.cgColor
@@ -197,11 +197,11 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
                 errorMessageEmail.text = "enter valide email"
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 
-              
+                
             }
             else
             {
-            webserviceOfEmailFormateCheck()
+                webserviceOfEmailFormateCheck()
             }
         }
         
@@ -400,7 +400,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
         }
         return returnValue
     }
-   
+    
     
     
     
@@ -596,9 +596,34 @@ extension RegisterViewController
             
             if status
             {
-                dictdata = (result as! [String : AnyObject])
-                SingleToneClass.sharedInstance.loginDataStore = dictdata
-                self.performSegue(withIdentifier: "segueToOtp", sender: self)
+                do{
+                    dictdata = (result as! [String : AnyObject])
+                    SingleToneClass.sharedInstance.loginDataStore = dictdata
+                    self.performSegue(withIdentifier: "segueToOtp", sender: self)
+                }
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
             }
             else
             {
@@ -662,10 +687,7 @@ extension RegisterViewController
                 
                 self.errorMessageEmail.isHidden = false
                 self.errorMessageEmail.text = "enter valide email"
-                //                    for _ in 1...5 {
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                //                        sleep(1)
-                //                    }
                 self.viewEmail.layer.borderColor =  UIColor.red.cgColor
                 self.viewEmail.layer.borderWidth = 1.0
                 self.txtEmailAddress.titleColor = UIColor.red
@@ -693,11 +715,8 @@ extension RegisterViewController
                 do
                 {
                     self.errorMessageEmail.isHidden = false
-                    self.errorMessageEmail.text =  "email already in use"//((result as! [String:AnyObject])["message"] as! String)"
-                    //                    for _ in 1...5 {
+                    self.errorMessageEmail.text =  "email already in use"
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    //                        sleep(1)
-                    //                    }
                     self.viewEmail.layer.borderColor =  UIColor.red.cgColor
                     self.viewEmail.layer.borderWidth = 1.0
                     self.txtEmailAddress.titleColor = UIColor.red
@@ -762,10 +781,7 @@ extension RegisterViewController
                     self.viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
                     self.viewUserName.layer.borderWidth = 1.0
                     self.txtUserName.titleColor = UIColor.red
-                    //                        for _ in 1...3
-                    //                        {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    //                        }
                 }
                 catch let DecodingError.dataCorrupted(context)
                 {
@@ -801,10 +817,6 @@ extension RegisterViewController
                 self.txtUserName.errorMessage = ""
                 self.txtUserName.titleColor = UIColor.green
                 
-                //                self.txtUserName.placeholderColor = UIColor.green
-                //                self.txtUserName.placeHolderColor = UIColor.red
-                
-                print((result as! [String:AnyObject])["message"] as! String)
             }
         }
     }

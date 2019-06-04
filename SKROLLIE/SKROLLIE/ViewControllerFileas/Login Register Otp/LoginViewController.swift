@@ -170,7 +170,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate
             ViewUserName.layer.borderWidth = 1.0
             viewPassword.layer.borderColor =  UIColor.red.cgColor
             viewPassword.layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
         else if (self.txtUsername.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0)
@@ -183,10 +183,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate
             viewPassword.layer.borderWidth = 1.0
             ViewUserName.layer.borderColor =  UIColor.red.cgColor
             ViewUserName .layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
-
+            
         else if (self.txtPassword.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0){
             
             errorMessageUser.isHidden = true
@@ -197,7 +197,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate
             viewPassword.layer.borderWidth = 1.0
             ViewUserName.layer.borderColor =   UIColor.lightGray.cgColor
             ViewUserName .layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
             
@@ -211,7 +211,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate
             viewPassword.layer.borderWidth = 1.0
             ViewUserName.layer.borderColor =  UIColor.lightGray.cgColor
             ViewUserName .layer.borderWidth = 1.0
-              AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             return false
         }
         return true
@@ -232,39 +232,90 @@ class LoginViewController: UIViewController,UITextFieldDelegate
             print(result)
             if(success)
             {
-                dictdata = (result as! [String : AnyObject])
-                
-                SingleToneClass.sharedInstance.loginDataStore = dictdata
-                
-                print((result as! [String:AnyObject])["message"] as! String)
-                
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-                    self.navigationController?.pushViewController(vc, animated: true)
+                do{
+                    dictdata = (result as! [String : AnyObject])
+                    
+                    SingleToneClass.sharedInstance.loginDataStore = dictdata
+                    
+                    print((result as! [String:AnyObject])["message"] as! String)
+                    
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
-                
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
             }
+                
             else if success == false
             {
                 
                 if result["message"] as! String == "OTP"
                 {
-                    dictdata = (result as! [String : AnyObject])
-                    
-                    SingleToneClass.sharedInstance.loginDataStore = dictdata
-                    let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-                    
-                       print("wellcome back")
+                    do
+                    {
+                        
+                        dictdata = (result as! [String : AnyObject])
+                        
+                        SingleToneClass.sharedInstance.loginDataStore = dictdata
+                        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+                        print("wellcome back")
+                    }
+                    catch let DecodingError.dataCorrupted(context)
+                    {
+                        print(context)
+                    }
+                    catch let DecodingError.keyNotFound(key, context)
+                    {
+                        print("Key '\(key)' not found:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    }
+                    catch let DecodingError.valueNotFound(value, context)
+                    {
+                        print("Value '\(value)' not found:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    }
+                    catch let DecodingError.typeMismatch(type, context)
+                    {
+                        print("Type '\(type)' mismatch:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    }
+                    catch
+                    {
+                        print("error: ", error)
+                    }
                 }
-                else
-                {
-                    self.errorMessagePassword.isHidden = false
-                    self.errorMessagePassword.text = "invalid username or password."//((result as! [String:AnyObject])["message"] as! String)
-                    self.viewPassword.layer.borderColor =  UIColor.red.cgColor
-                    self.viewPassword.layer.borderWidth = 1.0
-                    self.ViewUserName.layer.borderColor =  UIColor.red.cgColor
-                    self.ViewUserName .layer.borderWidth = 1.0
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                }
+            }
+            else
+            {
+                self.errorMessagePassword.isHidden = false
+                self.errorMessagePassword.text = "invalid username or password."//((result as! [String:AnyObject])["message"] as! String)
+                self.viewPassword.layer.borderColor =  UIColor.red.cgColor
+                self.viewPassword.layer.borderWidth = 1.0
+                self.ViewUserName.layer.borderColor =  UIColor.red.cgColor
+                self.ViewUserName .layer.borderWidth = 1.0
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             }
         }
     }
