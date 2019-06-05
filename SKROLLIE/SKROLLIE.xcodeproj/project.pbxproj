@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */; };
 		0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */; };
+		345269EF22A7E450008B6613 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345269EE22A7E450008B6613 /* Toast.swift */; };
 		3486A86C22A661960053A1A1 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486A86B22A661960053A1A1 /* PostModel.swift */; };
 		34C6C6B122A69338009B1AE8 /* SRCountdownTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6C6B022A69338009B1AE8 /* SRCountdownTimer.framework */; };
 		34FC39F222A7A0F6009314D2 /* HomeTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FC39F022A7A0F6009314D2 /* HomeTblCell.swift */; };
@@ -126,6 +127,7 @@
 		0D75F296FEFF1AAE367C01FB /* Pods_SKROLLIE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED298C3229BCDDE009A5C66 /* SelectedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageViewController.swift; sourceTree = "<group>"; };
 		0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideoViewController.swift; sourceTree = "<group>"; };
+		345269EE22A7E450008B6613 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		3486A86B22A661960053A1A1 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		34C6C6AC22A69318009B1AE8 /* SRCountdownTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SRCountdownTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C6C6AE22A69320009B1AE8 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -530,6 +532,7 @@
 				7FCCA6E722644ADD00E8E9A1 /* Info.plist */,
 				7F71355F2264689600E30429 /* ViewControllerFileas */,
 				7F7F9F6E2285B3E5004F85BD /* CustomClass */,
+				345269EE22A7E450008B6613 /* Toast.swift */,
 				7F7F9F702285B3E5004F85BD /* Extension */,
 				7F7F9FA92285B857004F85BD /* Utility */,
 				7F7F9F812285B3FD004F85BD /* WebServiceFile */,
@@ -858,6 +861,7 @@
 				F73DD3BD228440C20096A943 /* viewPost.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,
+				345269EF22A7E450008B6613 /* Toast.swift in Sources */,
 				0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */,
 				7F7F9FBB2285B857004F85BD /* UtilityClass.swift in Sources */,
 				7F7F9F6D2285B3B3004F85BD /* RegisterViewController.swift in Sources */,

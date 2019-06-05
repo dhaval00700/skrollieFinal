@@ -63,6 +63,6 @@ struct keyAllKey
     static let isPublish  = "isPublish"
     static let idFriend = "idFriend"
     static let Isstatus = "Isstatus"
-    
+    static let Isforever = "Isforever"
     
 }
