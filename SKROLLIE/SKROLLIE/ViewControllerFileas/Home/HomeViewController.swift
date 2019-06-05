@@ -39,8 +39,12 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         
+        tableview.delegate = self
+        tableview.dataSource = self
+        
+        tableview.register(UINib(nibName: "HomeTblCell", bundle: nil), forCellReuseIdentifier: "HomeTblCell")
+        
         viwProgressBar.isHidden = true
-        lblUsername.font = UIFont.Regular(ofSize: 16)
         lblFrnds.font = UIFont.Regular(ofSize: 16)
         lblTitle.font = UIFont.Regular(ofSize: 20)
         
@@ -114,68 +118,6 @@ class HomeViewController: UIViewController
     }
 }
 
-extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return collectionData.arrPost.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-        
-        let datas = collectionData.arrPost[indexPath.item]
-        
- 
-        cell.imgBackGround!.sd_setImage(with: URL(string: datas.Url), placeholderImage: UIImage.init(named: "img1"), options: .highPriority) { (image, error, cacheType, url) in
-            cell.imgBackGround.sd_setImage(with: URL(string: datas.Url), completed: nil)
-        }
-        
-        cell.lblUserName.text = collectionData.ProfileName
-        cell.lblUserName.font = UIFont.Regular(ofSize: 16)
-        cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-
-        if indexPath.row == 0
-        {
-            cell.viewOfUserProfileBackground.isHidden = false
-            cell.lblUserName.isHidden = false
-        }
-        else
-        {
-            cell.viewOfUserProfileBackground.isHidden = true
-            cell.lblUserName.isHidden = true
-        }
-        if  indexPath.item % 2 == 0
-        {
-            cell.lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-        }
-        else
-        {
-            cell.lblTimeOfPhotos.text = "F O R E V E R"
-        }
-        
-        
-        if cell.lblTimeOfPhotos.text == "24 H O U R S  L E F T"
-        {
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
-        }
-        else
-        {
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
-        }
-        
-        return cell
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let obj: commentViewClass = self.storyboard?.instantiateViewController(withIdentifier: "commentViewClass") as! commentViewClass
-        obj.isOwnProfile = false
-        self.present(obj, animated: true, completion: nil)
-        
-    }
-}
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -192,33 +134,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
         collectionData = resultImgPhoto[indexPath.row]
-        cell1.collectionView.delegate = self
-        cell1.collectionView.dataSource = self
-        cell1.collectionView.reloadData()
+        cell1.collectionData = resultImgPhoto[indexPath.row]
+        cell1.GetAndReloadData()
+        cell1.lblUserName.text = collectionData.ProfileName
+        cell1.lblUserName.font = UIFont.Regular(ofSize: 16)
+        
         return cell1
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180.0
+    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 180
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180.0
     }
 }
 
-extension HomeViewController : UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let itemsPerRow:CGFloat = 4
-        let hardCodedPadding:CGFloat = 0
-        let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
-        let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
-        return CGSize(width: itemWidth, height: itemHeight)
-    }
-    
-}
 
 extension HomeViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

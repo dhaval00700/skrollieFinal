@@ -251,9 +251,10 @@ extension SelectedImageViewController
         dictdata[keyAllKey.isPhoto] = true as AnyObject
         dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
-        dictdata[keyAllKey.Emoji1] = "" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "" as AnyObject
-        dictdata[keyAllKey.isPublish] = false as AnyObject
+        dictdata[keyAllKey.Emoji1] = "10" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "10" as AnyObject
+        dictdata[keyAllKey.isPublish] = true as AnyObject
+        dictdata[keyAllKey.Isforever] = btn24Hour.isSelected ? true as AnyObject : false as AnyObject
     
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
             
@@ -261,7 +262,9 @@ extension SelectedImageViewController
             {
                 do
                 {
-                    print((result as! [String:AnyObject])["message"] as! String)
+                  
+                    self.view.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
+                   
                 }
                     
                 catch let DecodingError.dataCorrupted(context)
