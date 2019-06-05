@@ -11,6 +11,10 @@
 		0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED298C5229BECD4009A5C66 /* SelectedVideoViewController.swift */; };
 		3486A86C22A661960053A1A1 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486A86B22A661960053A1A1 /* PostModel.swift */; };
 		34C6C6B122A69338009B1AE8 /* SRCountdownTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6C6B022A69338009B1AE8 /* SRCountdownTimer.framework */; };
+		34FC39F222A7A0F6009314D2 /* HomeTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FC39F022A7A0F6009314D2 /* HomeTblCell.swift */; };
+		34FC39F322A7A0F6009314D2 /* HomeTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34FC39F122A7A0F6009314D2 /* HomeTblCell.xib */; };
+		34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FC39F422A7ABF9009314D2 /* HomeCollectionsViewCell.swift */; };
+		34FC39F722A7ABF9009314D2 /* HomeCollectionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34FC39F522A7ABF9009314D2 /* HomeCollectionsViewCell.xib */; };
 		7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */; };
 		7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */; };
 		7AF03915229D58CC00A0F74D /* CommentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF03913229D58CB00A0F74D /* CommentItemTableViewCell.swift */; };
@@ -127,6 +131,10 @@
 		34C6C6AE22A69320009B1AE8 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C6C6B022A69338009B1AE8 /* SRCountdownTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SRCountdownTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C6C6B222A6947F009B1AE8 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34FC39F022A7A0F6009314D2 /* HomeTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTblCell.swift; sourceTree = "<group>"; };
+		34FC39F122A7A0F6009314D2 /* HomeTblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTblCell.xib; sourceTree = "<group>"; };
+		34FC39F422A7ABF9009314D2 /* HomeCollectionsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionsViewCell.swift; sourceTree = "<group>"; };
+		34FC39F522A7ABF9009314D2 /* HomeCollectionsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionsViewCell.xib; sourceTree = "<group>"; };
 		41F5268037B75A4D715C8E9B /* Pods-SKROLLIE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKROLLIE.debug.xcconfig"; path = "Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE.debug.xcconfig"; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -486,6 +494,10 @@
 				7FDF017422942A470055F86D /* UserCommentListCollectionViewCell.swift */,
 				7F68195D22941EBD001653FC /* UserCommentListCell.swift */,
 				7F841DE922943463008A4D18 /* userViewerCollectionViewCell.swift */,
+				34FC39F022A7A0F6009314D2 /* HomeTblCell.swift */,
+				34FC39F122A7A0F6009314D2 /* HomeTblCell.xib */,
+				34FC39F422A7ABF9009314D2 /* HomeCollectionsViewCell.swift */,
+				34FC39F522A7ABF9009314D2 /* HomeCollectionsViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -682,6 +694,7 @@
 				7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */,
 				7FBEFF5722926EF300350BD5 /* MONTSERRAT-MEDIUMITALIC.OTF in Resources */,
 				F73DD41D2284620F0096A943 /* MONTSERRATALTERNATES-ITALIC.OTF in Resources */,
+				34FC39F722A7ABF9009314D2 /* HomeCollectionsViewCell.xib in Resources */,
 				F73DD4042284620F0096A943 /* MONTSERRATALTERNATES-BOLD.OTF in Resources */,
 				F73DD4102284620F0096A943 /* MONTSERRAT-SEMIBOLD_0.OTF in Resources */,
 				7FCCA6E622644ADD00E8E9A1 /* LaunchScreen.storyboard in Resources */,
@@ -690,6 +703,7 @@
 				F73DD40B2284620F0096A943 /* MONTSERRAT-SEMIBOLDITALIC.OTF in Resources */,
 				F73DD3C32284412F0096A943 /* viewPost.xib in Resources */,
 				F73DD4162284620F0096A943 /* MONTSERRATALTERNATES-LIGHT.OTF in Resources */,
+				34FC39F322A7A0F6009314D2 /* HomeTblCell.xib in Resources */,
 				F73DD4032284620F0096A943 /* MONTSERRATALTERNATES-BLACKITALIC.OTF in Resources */,
 				F73DD4122284620F0096A943 /* MONTSERRATALTERNATES-BOLDITALIC.OTF in Resources */,
 				F73DD4082284620F0096A943 /* MONTSERRAT-LIGHTITALIC.OTF in Resources */,
@@ -838,6 +852,7 @@
 				7F7F9F7F2285B3E6004F85BD /* SingleToneClass.swift in Sources */,
 				7F7F9FD12285BA37004F85BD /* FSPagerViewCell.swift in Sources */,
 				7F7F9FC22285B857004F85BD /* cImageView.swift in Sources */,
+				34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */,
 				7F7F9F7E2285B3E6004F85BD /* UIView+IBDesinable.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
 				F73DD3BD228440C20096A943 /* viewPost.swift in Sources */,
@@ -854,6 +869,7 @@
 				7F7F9F862285B3FD004F85BD /* WebserviceSubClass.swift in Sources */,
 				7F7F9FC12285B857004F85BD /* paddingTextField.swift in Sources */,
 				7F7F9F852285B3FD004F85BD /* ConstantData.swift in Sources */,
+				34FC39F222A7A0F6009314D2 /* HomeTblCell.swift in Sources */,
 				7F7F9FBE2285B857004F85BD /* cSegment.swift in Sources */,
 				7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */,
 			);
