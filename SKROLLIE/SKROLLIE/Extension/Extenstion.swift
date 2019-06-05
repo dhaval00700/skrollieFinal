@@ -279,3 +279,26 @@ public extension UITableView {
         self.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
 }
+
+extension UIView {
+    // Toast Comments
+    func showToastAtBottom(message: String)
+    {
+        var style = ToastStyle()
+        
+        style.messageColor = .black
+        style.backgroundColor = .white
+        
+        self.makeToast(message, duration: 3.0, position: .bottom, style: style)
+    }
+    
+    func showToastAtTop(message: String)
+    {
+        var style = ToastStyle()
+        
+        style.messageColor = .black
+        style.backgroundColor = .white
+        
+        self.makeToast(message, duration: 3.0, position: .top, style: style)
+    }
+}
