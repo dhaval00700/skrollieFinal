@@ -51,7 +51,7 @@ class UserData
     init(){}
     var ProfileName = ""
     var ProfileImage = ""
-    var arrPost : [Post]!
+    var arrPost = [Post]()
     
     init(data: [String: Any]) {
         
