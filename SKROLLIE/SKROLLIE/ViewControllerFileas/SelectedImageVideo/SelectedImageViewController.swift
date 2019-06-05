@@ -229,20 +229,20 @@ extension SelectedImageViewController
         var dictdata = [String:AnyObject]()
         
         dictdata[keyAllKey.id] = "1" as AnyObject
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore as [String: Any])
         var userId = String()
-        if let userIDString = idpass["id"] as? String
+        if let userIDString = idpass["UserId"] as? String
         {
             userId = "\(userIDString)"
         }
         
-        if let userIDInt = idpass["id"] as? Int
+        if let userIDInt = idpass["UserId"] as? Int
         {
             userId = "\(userIDInt)"
         }
         dictdata[keyAllKey.KidUser] = userId as AnyObject
         dictdata[keyAllKey.isPhoto] = true as AnyObject
-        dictdata[keyAllKey.Url] = "imgURLPass" as AnyObject
+        dictdata[keyAllKey.Url] = "\(url)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
         dictdata[keyAllKey.Emoji1] = "" as AnyObject
         dictdata[keyAllKey.Emoji2] = "" as AnyObject
