@@ -1327,6 +1327,7 @@
                                                                                         <constraint firstItem="FpY-Ve-CYZ" firstAttribute="top" secondItem="OL3-II-EIb" secondAttribute="bottom" id="yuk-dC-MN4"/>
                                                                                     </constraints>
                                                                                     <connections>
+                                                                                        <outlet property="imgBackGround" destination="FpY-Ve-CYZ" id="C1I-MH-bMW"/>
                                                                                         <outlet property="imgUserPic" destination="67A-QE-Prl" id="b9t-02-AuL"/>
                                                                                         <outlet property="imgUserProfilePic" destination="xiv-eb-P6Q" id="aJd-hT-dzi"/>
                                                                                         <outlet property="lblTimeOfPhotos" destination="dHh-Z5-hdT" id="OR8-kL-kmn"/>

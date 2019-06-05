@@ -51,7 +51,6 @@ class userProfileClass: UIViewController,UICollectionViewDataSource,UICollection
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        //    Data not found
         //        mainScrollView.delegate = self
         //        labelEmptyMessage.frame = self.view.bounds
         //        labelEmptyMessage.text = "There is no data available."
