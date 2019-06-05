@@ -263,7 +263,7 @@ extension SelectedImageViewController
                 do
                 {
                   
-                    self.view.makeToast((result as! [String:AnyObject])["message"] as! String)
+                    self.view.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
                    
                 }
                     

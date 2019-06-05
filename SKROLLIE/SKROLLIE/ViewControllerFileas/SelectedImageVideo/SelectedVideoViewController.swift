@@ -263,7 +263,8 @@ extension SelectedVideoViewController
             {
                 do
                 {
-                    self.view.makeToast((result as! [String:AnyObject])["message"] as! String)                }
+                    self.view.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
+                }
                     
                 catch let DecodingError.dataCorrupted(context)
                 {

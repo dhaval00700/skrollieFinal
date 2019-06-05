@@ -86,14 +86,9 @@ class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let itemsPerRow:CGFloat = 4
-        let hardCodedPadding:CGFloat = 0
-        
-        let itemWidth = collectionView.frame.width //(collectionView.bounds.width / itemsPerRow) - hardCodedPadding
         let itemHeight = collectionView.frame.height - 10
         
-        return CGSize(width: 239, height: itemHeight)
+        return CGSize(width: 220, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
