@@ -244,10 +244,10 @@ extension SelectedImageViewController
         dictdata[keyAllKey.isPhoto] = true as AnyObject
         dictdata[keyAllKey.Url] = "\(url)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
-        dictdata[keyAllKey.Emoji1] = "" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "" as AnyObject
+        dictdata[keyAllKey.Emoji1] = "test" as AnyObject
+        dictdata[keyAllKey.Emoji2] = "test" as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject
-        
+    
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
             
             if status

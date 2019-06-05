@@ -64,7 +64,7 @@ func webserviceForOTPinMobile(dictParams: AnyObject,completion: @escaping(_ resu
 {
     let url = OTPWithMobile + "\(dictParams)"
     print(url)
-    getDataOTp(dictParams, nsURL: url, completion: completion)
+    getData(dictParams, nsURL: url, completion: completion)
 }
 //-------------------------------------------------------------
 // MARK: - webservice For Verify OTP
@@ -122,11 +122,11 @@ func webserviceForUserName(dictParams: AnyObject,completion: @escaping(_ result:
 //------------------------------------------------------------
 // MARK: - Webservice For GetPhoto
 //------------------------------------------------------------
-func webserviceForGetPhoto(dictdata: AnyObject,  completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+func webserviceForGetPhoto(id: String,  completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
 {
-    let url = getPhoto + "?\(dictdata)"
+    let url = getPhoto + "?idUser=" + "\(id)"
     print(url)
-    getData(dictdata as AnyObject, nsURL: url, completion: completion)
+    getData([] as AnyObject, nsURL: url, completion: completion)
 }
 
 //------------------------------------------------------------

@@ -46,7 +46,22 @@ class HomeViewController: UIViewController
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        webserviceofGetPhoto()
+        
+        
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["UserId"] as AnyObject)
+        
+        var userId = String()
+        if let userIDString = idpass as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        
+        webserviceofGetPhoto(UserId: userId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +126,11 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
         
         let datas = collectionData.arrPost[indexPath.item]
-        cell.imgUserPic.sd_setImage(with: URL(string: datas.Url), completed: nil)
+        
+ 
+        cell.imgBackGround!.sd_setImage(with: URL(string: datas.Url), placeholderImage: UIImage.init(named: "img1"), options: .highPriority) { (image, error, cacheType, url) in
+            cell.imgBackGround.sd_setImage(with: URL(string: datas.Url), completed: nil)
+        }
         
         cell.lblUserName.text = collectionData.ProfileName
         cell.lblUserName.font = UIFont.Regular(ofSize: 16)
@@ -220,17 +239,9 @@ extension HomeViewController: UIScrollViewDelegate {
 extension HomeViewController
 {
     
-    func webserviceofGetPhoto()
+    func webserviceofGetPhoto(UserId :String)
     {
-        var dictdata = [String:AnyObject]()
-        
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-        
-        let userId = idpass["id"] as? String ?? "\(String(describing: idpass["id"] as? Int))"
-        
-        dictdata[keyAllKey.KidUser] = userId as AnyObject
-        
-        webserviceForGetPhoto(dictdata: dictdata as AnyObject){(result, status) in
+        webserviceForGetPhoto(id: UserId){(result, status) in
             
             if status
             {
@@ -273,7 +284,6 @@ extension HomeViewController
             }
         }
     }
-    
     
     func webserviceOfDeletePost()
     {

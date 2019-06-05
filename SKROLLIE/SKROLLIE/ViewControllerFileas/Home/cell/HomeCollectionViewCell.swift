@@ -11,6 +11,8 @@ import UIKit
 class HomeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgUserPic: UIImageView!
+    
+    @IBOutlet weak var imgBackGround: UIImageView!
     @IBOutlet weak var imgUserProfilePic: UIImageView!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var viewOfUserProfileBackground: UIView!
