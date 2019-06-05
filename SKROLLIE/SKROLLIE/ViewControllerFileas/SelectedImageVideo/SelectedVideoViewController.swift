@@ -64,6 +64,15 @@ class SelectedVideoViewController: UIViewController {
         let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
+        btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
+        btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
+        
+        btn24Hour.setImage(UIImage(named: "icon_24"), for: .normal)
+        btnForever.setImage(UIImage(named: "icon_infinite"), for: .normal)
+        
+        btn24Hour.setImage(UIImage(named: "icon_24")?.sd_tintedImage(with: .yellow), for: .selected)
+        btnForever.setImage(UIImage(named: "icon_infinite")?.sd_tintedImage(with: .yellow), for: .selected)
+        
         btn24Hour.isSelected = true
 
         setupSwipeGesture()
@@ -132,14 +141,14 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
-        if btnEmogi1.image(for: .normal) != nil {
-            btnEmogi1.setImage(nil, for: .normal)
+        if btnEmogi1.image(for: .normal) == UIImage(named: "emoji1") {
+            btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
-        if btnEmogi2.image(for: .normal) != nil {
-            btnEmogi2.setImage(nil, for: .normal)
+        if btnEmogi2.image(for: .normal) == UIImage(named: "emoji1") {
+            btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
         }
     }
 }
@@ -166,9 +175,9 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        if btnEmogi1.image(for: .normal) == nil {
+        if btnEmogi1.image(for: .normal) == UIImage(named: "icon_question") {
             btnEmogi1.setImage(UIImage(named: "emoji1"), for: .normal)
-        } else if btnEmogi1.image(for: .normal) != nil && btnEmogi2.image(for: .normal) == nil {
+        } else if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") && btnEmogi2.image(for: .normal) == UIImage(named: "icon_question") {
             btnEmogi2.setImage(UIImage(named: "emoji1"), for: .normal)
         }
         pagerView.deselectItem(at: index, animated: true)
@@ -213,8 +222,7 @@ extension SelectedVideoViewController {
                 print(task.error.debugDescription)
             } else {
                 // Do something with your result.
-                let url = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/\(newKey)"
-                self.webserviceOfSaveVideo(url: url)
+                self.webserviceOfSaveVideo(name: newKey)
                 print("done")
             }
             return nil
@@ -224,29 +232,29 @@ extension SelectedVideoViewController {
 }
 extension SelectedVideoViewController
 {
-    func webserviceOfSaveVideo(url: String)
+    func webserviceOfSaveVideo(name: String)
     {
         var dictdata = [String:AnyObject]()
         
-        dictdata[keyAllKey.id] = "1" as AnyObject
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
+        dictdata[keyAllKey.id] = "0" as AnyObject
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore as [String: Any])
         var userId = String()
-        if let userIDString = idpass["id"] as? String
+        if let userIDString = idpass["UserId"] as? String
         {
             userId = "\(userIDString)"
         }
         
-        if let userIDInt = idpass["id"] as? Int
+        if let userIDInt = idpass["UserId"] as? Int
         {
             userId = "\(userIDInt)"
         }
         dictdata[keyAllKey.KidUser] = userId as AnyObject
         dictdata[keyAllKey.isPhoto] = false as AnyObject
-        dictdata[keyAllKey.Url] = url as AnyObject
+        dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
-        dictdata[keyAllKey.Emoji1] = "test" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "test" as AnyObject
-        dictdata[keyAllKey.isPublish] = true as AnyObject
+        dictdata[keyAllKey.Emoji1] = ""as AnyObject
+        dictdata[keyAllKey.Emoji2] = "" as AnyObject
+        dictdata[keyAllKey.isPublish] = false as AnyObject
         
         
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
