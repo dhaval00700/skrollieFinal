@@ -26,7 +26,8 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     var Username = String()
     var delegateOfSelectedComment : delegateSelectOfComment!
     
-    override func awakeFromNib(){
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         
         tblSubComment.delegate = self
