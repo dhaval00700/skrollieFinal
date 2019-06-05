@@ -2925,7 +2925,7 @@
                                     <constraint firstAttribute="width" constant="60" id="XB2-wd-D60"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
-                                <state key="normal" title="&lt;"/>
+                                <state key="normal" image="iconBack"/>
                                 <connections>
                                     <action selector="onBtnBack:" destination="b7f-Pe-ITY" eventType="touchUpInside" id="SYw-M9-cM7"/>
                                 </connections>
@@ -2966,6 +2966,7 @@
         <image name="ic_bg_home_cell" width="320" height="192"/>
         <image name="ic_more" width="8" height="30"/>
         <image name="ic_shield" width="25" height="30"/>
+        <image name="iconBack" width="44" height="44"/>
         <image name="iconCopy" width="29" height="27"/>
         <image name="iconSearch" width="20" height="19"/>
         <image name="iconSetting" width="22" height="21"/>
