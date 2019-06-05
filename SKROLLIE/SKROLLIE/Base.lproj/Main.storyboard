@@ -2029,7 +2029,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cqr-ZS-ZKp">
-                                <rect key="frame" x="10" y="28" width="300" height="29"/>
+                                <rect key="frame" x="10" y="35" width="300" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="23"/>
@@ -2050,76 +2050,91 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Vxo-VA-GVb">
-                                <rect key="frame" x="30" y="267" width="260" height="34"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWG-ae-icI">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHl-II-ZhF">
-                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="34"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
-                                        <state key="normal" title="24 HOURS">
-                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="selected" title="24 HOURS">
-                                            <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onBtn24Hour:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="adJ-5N-8DP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJP-dG-dLa">
-                                        <rect key="frame" x="137.5" y="0.0" width="122.5" height="34"/>
+                                        <rect key="frame" x="260" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="OYi-cw-35n"/>
+                                            <constraint firstAttribute="width" constant="50" id="slf-ii-8KP"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
-                                        <state key="normal" title="FOREVER">
-                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" title="FOREVER">
-                                            <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onBtnForever:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="raL-Lq-Lpe"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHl-II-ZhF">
+                                        <rect key="frame" x="202" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="1ZE-n2-rVV"/>
+                                            <constraint firstAttribute="height" constant="50" id="SOh-CF-SE4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBtn24Hour:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="adJ-5N-8DP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvC-pH-sXU">
+                                        <rect key="frame" x="68" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Icv-G8-5zL"/>
+                                            <constraint firstAttribute="height" constant="50" id="Qb9-Th-8KA"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="onBtnEmogi2:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="KEe-Ws-oyo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dth-Zw-Iwa">
+                                        <rect key="frame" x="10" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gXQ-qB-mr0"/>
+                                            <constraint firstAttribute="width" constant="50" id="rZE-lF-NQC"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="onBtnEmogi1:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="Ktk-8U-seX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dth-Zw-Iwa">
-                                <rect key="frame" x="10" y="508" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.53753745719178081" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="gXQ-qB-mr0"/>
-                                    <constraint firstAttribute="width" constant="50" id="rZE-lF-NQC"/>
+                                    <constraint firstAttribute="bottom" secondItem="HJP-dG-dLa" secondAttribute="bottom" id="1nd-1J-zcL"/>
+                                    <constraint firstAttribute="trailing" secondItem="HJP-dG-dLa" secondAttribute="trailing" constant="10" id="Kla-Sa-lVw"/>
+                                    <constraint firstItem="mvC-pH-sXU" firstAttribute="bottom" secondItem="Dth-Zw-Iwa" secondAttribute="bottom" id="RBZ-rg-6ZF"/>
+                                    <constraint firstItem="BHl-II-ZhF" firstAttribute="bottom" secondItem="HJP-dG-dLa" secondAttribute="bottom" id="dCL-k6-KAw"/>
+                                    <constraint firstItem="mvC-pH-sXU" firstAttribute="leading" secondItem="Dth-Zw-Iwa" secondAttribute="trailing" constant="8" id="fxj-KG-b4C"/>
+                                    <constraint firstItem="Dth-Zw-Iwa" firstAttribute="leading" secondItem="tWG-ae-icI" secondAttribute="leading" constant="10" id="hik-rR-h0m"/>
+                                    <constraint firstItem="HJP-dG-dLa" firstAttribute="leading" secondItem="BHl-II-ZhF" secondAttribute="trailing" constant="8" id="s1c-FR-aUp"/>
+                                    <constraint firstAttribute="height" constant="50" id="tUK-WP-4UU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dth-Zw-Iwa" secondAttribute="bottom" id="uNn-HA-F9N"/>
                                 </constraints>
-                                <connections>
-                                    <action selector="onBtnEmogi1:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="Ktk-8U-seX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvC-pH-sXU">
-                                <rect key="frame" x="68" y="508" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Icv-G8-5zL"/>
-                                    <constraint firstAttribute="height" constant="50" id="Qb9-Th-8KA"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onBtnEmogi2:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="KEe-Ws-oyo"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="cqr-ZS-ZKp" secondAttribute="trailing" constant="10" id="0Xi-dn-2AX"/>
-                            <constraint firstItem="Vxo-VA-GVb" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" constant="30" id="1HE-Wy-nBG"/>
-                            <constraint firstItem="cqr-ZS-ZKp" firstAttribute="top" secondItem="WXg-St-1Ku" secondAttribute="top" constant="8" id="3hs-x4-cFd"/>
-                            <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="Vxo-VA-GVb" secondAttribute="trailing" constant="30" id="5ng-6y-vq6"/>
-                            <constraint firstItem="mvC-pH-sXU" firstAttribute="bottom" secondItem="Dth-Zw-Iwa" secondAttribute="bottom" id="8gu-Ej-bsz"/>
+                            <constraint firstItem="cqr-ZS-ZKp" firstAttribute="top" secondItem="WXg-St-1Ku" secondAttribute="top" constant="15" id="3hs-x4-cFd"/>
                             <constraint firstItem="S4n-sh-CQj" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="G7D-on-luP"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="bottom" secondItem="S4n-sh-CQj" secondAttribute="bottom" constant="75" id="QbL-hw-iPe"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="bottom" secondItem="2G5-hB-qsv" secondAttribute="bottom" id="TNj-rP-mp4"/>
                             <constraint firstItem="cqr-ZS-ZKp" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" constant="10" id="TWM-RW-Jbu"/>
                             <constraint firstItem="2G5-hB-qsv" firstAttribute="top" secondItem="ztd-fg-WAB" secondAttribute="top" id="WLE-yP-q1v"/>
                             <constraint firstItem="2G5-hB-qsv" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="aYO-nf-kyt"/>
-                            <constraint firstItem="Vxo-VA-GVb" firstAttribute="centerX" secondItem="ztd-fg-WAB" secondAttribute="centerX" id="bnE-qc-8RX"/>
-                            <constraint firstItem="Dth-Zw-Iwa" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" constant="10" id="e1m-9D-Dc8"/>
-                            <constraint firstItem="Vxo-VA-GVb" firstAttribute="centerY" secondItem="ztd-fg-WAB" secondAttribute="centerY" id="he0-sW-CD5"/>
-                            <constraint firstItem="WXg-St-1Ku" firstAttribute="bottom" secondItem="Dth-Zw-Iwa" secondAttribute="bottom" constant="10" id="rZk-4r-dBJ"/>
-                            <constraint firstItem="mvC-pH-sXU" firstAttribute="leading" secondItem="Dth-Zw-Iwa" secondAttribute="trailing" constant="8" id="v6c-sY-OXu"/>
+                            <constraint firstItem="tWG-ae-icI" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="kf8-WN-lfM"/>
+                            <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="tWG-ae-icI" secondAttribute="trailing" id="pfX-SM-g0X"/>
+                            <constraint firstAttribute="bottom" secondItem="tWG-ae-icI" secondAttribute="bottom" id="qI7-yN-ZCQ"/>
                             <constraint firstItem="S4n-sh-CQj" firstAttribute="trailing" secondItem="WXg-St-1Ku" secondAttribute="trailing" id="y1f-JX-rGW"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="2G5-hB-qsv" secondAttribute="trailing" id="ywD-JG-6xb"/>
                         </constraints>
@@ -2151,59 +2166,79 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnW-aC-M61">
-                                <rect key="frame" x="10" y="508" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="hZt-h3-c36"/>
-                                    <constraint firstAttribute="width" constant="50" id="vHU-rX-A2N"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onBtnEmogi1:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="GMJ-Mf-Ams"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHY-8J-32z">
-                                <rect key="frame" x="68" y="508" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="BJL-zy-m7B"/>
-                                    <constraint firstAttribute="height" constant="50" id="Wiv-fv-ETE"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onBtnEmogi2:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="cT7-tp-c4U"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6Cf-eL-md1">
-                                <rect key="frame" x="30" y="267" width="260" height="34"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ZJ-5w-tKx">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-0o-rSD">
-                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="34"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
-                                        <state key="normal" title="24 HOURS">
-                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="selected" title="24 HOURS">
-                                            <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnW-aC-M61">
+                                        <rect key="frame" x="10" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="hZt-h3-c36"/>
+                                            <constraint firstAttribute="width" constant="50" id="vHU-rX-A2N"/>
+                                        </constraints>
                                         <connections>
-                                            <action selector="onBtn24Hour:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="HAh-aB-7Lm"/>
+                                            <action selector="onBtnEmogi1:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="GMJ-Mf-Ams"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHY-8J-32z">
+                                        <rect key="frame" x="68" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="BJL-zy-m7B"/>
+                                            <constraint firstAttribute="height" constant="50" id="Wiv-fv-ETE"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="onBtnEmogi2:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="cT7-tp-c4U"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rw1-XO-hlh">
-                                        <rect key="frame" x="137.5" y="0.0" width="122.5" height="34"/>
+                                        <rect key="frame" x="260" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JFC-mL-oYr"/>
+                                            <constraint firstAttribute="width" constant="50" id="JKp-hH-Y7q"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
                                         <state key="normal" title="FOREVER">
-                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" title="FOREVER">
-                                            <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onBtnForever:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="UVp-Ba-Szv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-0o-rSD">
+                                        <rect key="frame" x="202" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="cDU-Be-ohU"/>
+                                            <constraint firstAttribute="width" constant="50" id="vF9-AZ-99U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                        <state key="normal" title="24 HOURS">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBtn24Hour:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="HAh-aB-7Lm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="0.0" alpha="0.53753745720000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6Ec-JG-BZN"/>
+                                    <constraint firstAttribute="bottom" secondItem="rw1-XO-hlh" secondAttribute="bottom" id="8Ig-Dk-119"/>
+                                    <constraint firstItem="KHY-8J-32z" firstAttribute="leading" secondItem="nnW-aC-M61" secondAttribute="trailing" constant="8" id="8UW-Tt-JzB"/>
+                                    <constraint firstItem="rw1-XO-hlh" firstAttribute="leading" secondItem="FsD-0o-rSD" secondAttribute="trailing" constant="8" id="McK-vR-eWJ"/>
+                                    <constraint firstItem="nnW-aC-M61" firstAttribute="leading" secondItem="2ZJ-5w-tKx" secondAttribute="leading" constant="10" id="OAT-Cu-BWY"/>
+                                    <constraint firstAttribute="bottom" secondItem="nnW-aC-M61" secondAttribute="bottom" id="YYd-SV-hoU"/>
+                                    <constraint firstAttribute="trailing" secondItem="rw1-XO-hlh" secondAttribute="trailing" constant="10" id="iEF-S6-w1M"/>
+                                    <constraint firstItem="KHY-8J-32z" firstAttribute="bottom" secondItem="nnW-aC-M61" secondAttribute="bottom" id="pox-v0-zZU"/>
+                                    <constraint firstItem="FsD-0o-rSD" firstAttribute="bottom" secondItem="rw1-XO-hlh" secondAttribute="bottom" id="uDv-3E-YLJ"/>
+                                </constraints>
+                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXV-Zd-B0B">
-                                <rect key="frame" x="10" y="28" width="300" height="29"/>
+                                <rect key="frame" x="10" y="35" width="300" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="23"/>
@@ -2228,23 +2263,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="EYa-Sh-ZgL" firstAttribute="bottom" secondItem="nWM-75-qmR" secondAttribute="bottom" constant="75" id="0uv-Mq-dp2"/>
-                            <constraint firstItem="EYa-Sh-ZgL" firstAttribute="trailing" secondItem="6Cf-eL-md1" secondAttribute="trailing" constant="30" id="44z-Wd-TSk"/>
                             <constraint firstItem="EYa-Sh-ZgL" firstAttribute="bottom" secondItem="Xso-0r-LBf" secondAttribute="bottom" id="492-ku-N1F"/>
-                            <constraint firstItem="6Cf-eL-md1" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" constant="30" id="4dD-5t-iUr"/>
                             <constraint firstItem="RXV-Zd-B0B" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" constant="10" id="Bi3-iV-Kuv"/>
+                            <constraint firstItem="EYa-Sh-ZgL" firstAttribute="bottom" secondItem="2ZJ-5w-tKx" secondAttribute="bottom" id="CjL-U0-9sv"/>
                             <constraint firstItem="nWM-75-qmR" firstAttribute="trailing" secondItem="EYa-Sh-ZgL" secondAttribute="trailing" id="JkA-kB-hjs"/>
-                            <constraint firstItem="EYa-Sh-ZgL" firstAttribute="bottom" secondItem="nnW-aC-M61" secondAttribute="bottom" constant="10" id="L15-zE-VJH"/>
-                            <constraint firstItem="KHY-8J-32z" firstAttribute="leading" secondItem="nnW-aC-M61" secondAttribute="trailing" constant="8" id="P2A-Y9-weS"/>
                             <constraint firstItem="Xso-0r-LBf" firstAttribute="top" secondItem="KLe-4v-iHn" secondAttribute="top" id="P6v-Lv-glG"/>
-                            <constraint firstItem="KHY-8J-32z" firstAttribute="bottom" secondItem="nnW-aC-M61" secondAttribute="bottom" id="Sml-up-BWt"/>
                             <constraint firstItem="EYa-Sh-ZgL" firstAttribute="trailing" secondItem="RXV-Zd-B0B" secondAttribute="trailing" constant="10" id="U9p-XK-j35"/>
-                            <constraint firstItem="RXV-Zd-B0B" firstAttribute="top" secondItem="EYa-Sh-ZgL" secondAttribute="top" constant="8" id="cck-Gg-qIf"/>
+                            <constraint firstItem="2ZJ-5w-tKx" firstAttribute="trailing" secondItem="EYa-Sh-ZgL" secondAttribute="trailing" id="WBn-xm-F60"/>
+                            <constraint firstItem="RXV-Zd-B0B" firstAttribute="top" secondItem="EYa-Sh-ZgL" secondAttribute="top" constant="15" id="cck-Gg-qIf"/>
                             <constraint firstItem="EYa-Sh-ZgL" firstAttribute="trailing" secondItem="Xso-0r-LBf" secondAttribute="trailing" id="f4q-p0-MOv"/>
                             <constraint firstItem="Xso-0r-LBf" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="ora-JB-Aia"/>
-                            <constraint firstItem="6Cf-eL-md1" firstAttribute="centerX" secondItem="KLe-4v-iHn" secondAttribute="centerX" id="p9E-aN-eFG"/>
                             <constraint firstItem="nWM-75-qmR" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="pSE-Oj-gfU"/>
-                            <constraint firstItem="6Cf-eL-md1" firstAttribute="centerY" secondItem="KLe-4v-iHn" secondAttribute="centerY" id="y0T-n2-Tfw"/>
-                            <constraint firstItem="nnW-aC-M61" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" constant="10" id="yUZ-ch-0WX"/>
+                            <constraint firstItem="2ZJ-5w-tKx" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="wnO-hQ-3hn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EYa-Sh-ZgL"/>
                     </view>

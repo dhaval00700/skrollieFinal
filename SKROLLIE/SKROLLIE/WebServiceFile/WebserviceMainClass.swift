@@ -13,8 +13,7 @@ let BaseURL = WebserviceURLs.kBaseURL
 let baseTaskURL = WebserviceURLs.kBaseURL
 var request : Request!
 
-let Token =  SingleToneClass.sharedInstance.loginDataStore["token"] as? String ?? ""
-let header: [String:String] = ["Content-Type":"application/json", "Authorization":Token]
+
 
 //-------------------------------------------------------------
 // MARK: - Webservice For PostData Method
@@ -30,7 +29,8 @@ func postData(_ dictParams: AnyObject, nsURL: String, completion: @escaping (_ r
 {
     let url = WebserviceURLs.kBaseURL + nsURL
     print("url = \(url) params = \(dictParams)")
-    
+    let Token =  SingleToneClass.sharedInstance.loginDataStore["token"] as? String ?? ""
+    let header: [String:String] = ["Content-Type":"application/json", "Authorization":Token]
     
     Alamofire.request(url, method: .post, parameters: dictParams as? [String : AnyObject], encoding: JSONEncoding.default, headers: header)
         .validate()
@@ -117,6 +117,9 @@ func getData(_ dictParams: AnyObject, nsURL: String,  completion: @escaping (_ r
     func sendImage(_ dictParams: AnyObject, image1: UIImage, nsURL: String, completion: @escaping (_ result: AnyObject, _ success: Bool) -> Void) {
         
         let url = WebserviceURLs.kBaseURL + nsURL
+        
+        let Token =  SingleToneClass.sharedInstance.loginDataStore["token"] as? String ?? ""
+        let header: [String:String] = ["Content-Type":"application/json", "Authorization":Token]
         
         let dictData = dictParams as! [String:AnyObject]
         Alamofire.upload(multipartFormData: { (multipartFormData) in

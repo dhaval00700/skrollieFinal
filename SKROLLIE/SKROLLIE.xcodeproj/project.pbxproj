@@ -1007,14 +1007,14 @@
 				CODE_SIGN_ENTITLEMENTS = SKROLLIE/SKROLLIE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX6Q67DW6M;
+				DEVELOPMENT_TEAM = 63UZ8NX8NN;
 				INFOPLIST_FILE = SKROLLIE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.disolutions.maark;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skrollie.skrollie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1032,14 +1032,14 @@
 				CODE_SIGN_ENTITLEMENTS = SKROLLIE/SKROLLIE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX6Q67DW6M;
+				DEVELOPMENT_TEAM = 63UZ8NX8NN;
 				INFOPLIST_FILE = SKROLLIE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.disolutions.maark;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skrollie.skrollie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
