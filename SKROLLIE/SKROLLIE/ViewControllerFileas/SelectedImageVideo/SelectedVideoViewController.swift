@@ -32,6 +32,10 @@ class SelectedVideoViewController: UIViewController {
         }
     }
     
+    var Timestamp: String {
+        return "\(NSDate().timeIntervalSince1970 * 1000)"
+    }
+    
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
                                                                       .zoomOut,
                                                                       .depth,
@@ -110,8 +114,8 @@ class SelectedVideoViewController: UIViewController {
         avPlayer.play()
     }
     
-    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
-        let asset = AVAsset(url: URL(string: url)!)
+    func createThumbnailOfVideoFromRemoteUrl(url: URL) -> UIImage? {
+        let asset = AVAsset(url: url)
         let assetImgGenerate = AVAssetImageGenerator(asset: asset)
         assetImgGenerate.appliesPreferredTrackTransform = true
         //Can set this to improve performance if target size is known before hand
@@ -125,6 +129,16 @@ class SelectedVideoViewController: UIViewController {
             print(error.localizedDescription)
             return nil
         }
+    }
+    
+    func saveImageDocumentDirectory(image: UIImage) -> URL
+    {
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(Timestamp)Imag.jpeg")
+        if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
+            fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
+        }
+        return URL(fileURLWithPath: path)
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -239,17 +253,53 @@ extension SelectedVideoViewController {
                 print(task.error.debugDescription)
             } else {
                 // Do something with your result.
-                self.webserviceOfSaveVideo(name: newKey)
-                print("done")
+                
+                let thumbImg = self.createThumbnailOfVideoFromRemoteUrl(url: fileUrl)
+                let thumbUrl = self.saveImageDocumentDirectory(image: thumbImg!)
+                self.uploadImage(fileUrl: thumbUrl, videoName: newKey)
+                print("done Video upload")
             }
             return nil
         })
+    }
+    
+    func uploadImage(fileUrl : URL, videoName: String) {
+        let newKey = "imgThumb\(timestamp).jpg"
         
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        uploadRequest?.body = fileUrl as URL
+        uploadRequest?.key = newKey
+        uploadRequest?.bucket = "Jayesh"
+        uploadRequest?.contentType = "image/jpeg"
+        //uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
+        uploadRequest?.acl = AWSS3ObjectCannedACL.publicRead
+        uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+            DispatchQueue.main.async(execute: {
+                // To show the updating data status in label.
+                let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+                var dic = [String: Any]()
+                dic["uploadProgress"] = uploadProgress
+                NotificationCenter.default.post(name: Notification.Name("PROGRESS"), object: nil, userInfo: dic)
+                print("ImageThumbUpload -> ", "\(totalBytesExpectedToSend)", "\(totalBytesSent)", "\(uploadProgress)")
+            })
+        }
+        
+        let transferManager = AWSS3TransferManager.default()
+        transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (taskk: AWSTask) -> Any? in
+            if taskk.error != nil {
+                // Error.
+            } else {
+                // Do something with your result.
+                self.webserviceOfSaveVideo(name: videoName, thumbImgName: newKey)
+                print("done Thumbnil")
+            }
+            return nil
+        })
     }
 }
 extension SelectedVideoViewController
 {
-    func webserviceOfSaveVideo(name: String)
+    func webserviceOfSaveVideo(name: String, thumbImgName: String)
     {
         var dictdata = [String:AnyObject]()
         
@@ -269,6 +319,7 @@ extension SelectedVideoViewController
         dictdata[keyAllKey.isPhoto] = false as AnyObject
         dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
+        dictdata[keyAllKey.Videothumbnailimage] = "\(thumbImgName)" as AnyObject
         dictdata[keyAllKey.Emoji1] = "10" as AnyObject
         dictdata[keyAllKey.Emoji2] = "10" as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject

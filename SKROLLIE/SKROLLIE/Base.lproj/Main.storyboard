@@ -2512,6 +2512,9 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-FM-REa">
+                                                                <rect key="frame" x="10" y="25" width="110" height="110"/>
+                                                            </button>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0k-h7-fLF">
                                                                 <rect key="frame" x="6" y="129" width="118" height="26"/>
                                                                 <color key="backgroundColor" red="0.20042407509999999" green="0.1467479169" blue="0.2840772271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2619,7 +2622,7 @@
                                                                     <action selector="btnMore:" destination="ZRL-gj-9BD" eventType="touchUpInside" id="p7b-vy-Khf"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Clm-gB-gl0">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Clm-gB-gl0">
                                                                 <rect key="frame" x="214" y="10" width="81" height="30"/>
                                                                 <color key="backgroundColor" red="0.58823529409999997" green="0.75294117650000003" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
@@ -2639,8 +2642,10 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="hWu-9Y-68O" firstAttribute="centerY" secondItem="Clm-gB-gl0" secondAttribute="centerY" id="0rp-gu-2fj"/>
+                                                            <constraint firstItem="ORt-FM-REa" firstAttribute="bottom" secondItem="cC7-0n-g92" secondAttribute="bottom" id="2Th-XN-KM5"/>
                                                             <constraint firstItem="guf-yR-k5x" firstAttribute="top" secondItem="Clm-gB-gl0" secondAttribute="top" id="5fz-8D-5yV"/>
                                                             <constraint firstItem="t0k-h7-fLF" firstAttribute="leading" secondItem="QrU-NN-xAd" secondAttribute="leading" constant="-7" id="Ca4-ph-BVx"/>
+                                                            <constraint firstItem="ORt-FM-REa" firstAttribute="trailing" secondItem="cC7-0n-g92" secondAttribute="trailing" id="DTE-Fs-fvw"/>
                                                             <constraint firstItem="Clm-gB-gl0" firstAttribute="leading" secondItem="hWu-9Y-68O" secondAttribute="trailing" constant="7" id="Ewv-kl-ilY"/>
                                                             <constraint firstAttribute="trailing" secondItem="Saf-Nl-kAY" secondAttribute="trailing" constant="8" id="F65-Bm-Hsb"/>
                                                             <constraint firstItem="t0k-h7-fLF" firstAttribute="top" secondItem="QrU-NN-xAd" secondAttribute="bottom" constant="-3" id="Ll5-6c-b78"/>
@@ -2656,11 +2661,13 @@
                                                             <constraint firstAttribute="height" priority="700" constant="195" id="hGy-81-ldJ"/>
                                                             <constraint firstItem="hWu-9Y-68O" firstAttribute="top" secondItem="VZH-s8-fXf" secondAttribute="top" constant="10" id="iJQ-aP-Gw5"/>
                                                             <constraint firstAttribute="bottom" secondItem="cC7-0n-g92" secondAttribute="bottom" constant="50" id="iul-1g-CPI"/>
+                                                            <constraint firstItem="ORt-FM-REa" firstAttribute="top" secondItem="cC7-0n-g92" secondAttribute="top" id="j6j-k6-mqN"/>
                                                             <constraint firstItem="guf-yR-k5x" firstAttribute="leading" secondItem="Clm-gB-gl0" secondAttribute="trailing" constant="5" id="jbl-hi-V5P"/>
                                                             <constraint firstItem="guf-yR-k5x" firstAttribute="centerY" secondItem="Clm-gB-gl0" secondAttribute="centerY" id="mz1-x3-HRo"/>
                                                             <constraint firstItem="Q7K-lC-UZe" firstAttribute="top" secondItem="Saf-Nl-kAY" secondAttribute="bottom" constant="5" id="pXx-Id-Wj9"/>
                                                             <constraint firstItem="Q7K-lC-UZe" firstAttribute="leading" secondItem="t0k-h7-fLF" secondAttribute="trailing" constant="25" id="sR9-kN-TUB"/>
                                                             <constraint firstItem="cC7-0n-g92" firstAttribute="leading" secondItem="VZH-s8-fXf" secondAttribute="leading" constant="10" id="vPi-Zh-HSE"/>
+                                                            <constraint firstItem="ORt-FM-REa" firstAttribute="leading" secondItem="cC7-0n-g92" secondAttribute="leading" id="weI-C0-JdQ"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -2738,7 +2745,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rO6-JI-0sX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="23s-aK-EBC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3289" y="1017"/>
+            <point key="canvasLocation" x="3288.75" y="1016.1971830985916"/>
         </scene>
         <!--Camera And Vedio View Controller-->
         <scene sceneID="XbP-M3-duw">

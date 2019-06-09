@@ -64,5 +64,5 @@ struct keyAllKey
     static let idFriend = "idFriend"
     static let Isstatus = "Isstatus"
     static let Isforever = "Isforever"
-    
+    static let Videothumbnailimage = "Videothumbnailimage"
 }
