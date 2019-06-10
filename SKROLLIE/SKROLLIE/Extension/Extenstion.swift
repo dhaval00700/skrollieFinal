@@ -286,8 +286,8 @@ extension UIView {
     {
         var style = ToastStyle()
         
-        style.messageColor = .black
-        style.backgroundColor = .white
+        style.messageColor = .white
+        style.backgroundColor = .black
         
         self.makeToast(message, duration: 3.0, position: .bottom, style: style)
     }
@@ -296,8 +296,8 @@ extension UIView {
     {
         var style = ToastStyle()
         
-        style.messageColor = .black
-        style.backgroundColor = .white
+        style.messageColor = .white
+        style.backgroundColor = .black
         
         self.makeToast(message, duration: 3.0, position: .top, style: style)
     }

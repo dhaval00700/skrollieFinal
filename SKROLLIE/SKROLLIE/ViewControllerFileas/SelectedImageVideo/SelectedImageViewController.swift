@@ -25,18 +25,6 @@ class SelectedImageViewController: UIViewController {
     //MARK: Properties
     var selectedImage = UIImage()
     var selectedImageUrl: URL!
-    fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
-                                                                      .zoomOut,
-                                                                      .depth,
-                                                                      .linear,
-                                                                      .overlap,
-                                                                      .ferrisWheel,
-                                                                      .invertedFerrisWheel,
-                                                                      .coverFlow,
-                                                                      .cubic]
-    var timestamp: String {
-        return "\(NSDate().timeIntervalSince1970 * 1000)"
-    }
     
     //MARK: Lifecycles
     override func viewDidLoad() {
@@ -46,22 +34,9 @@ class SelectedImageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    private enum SpaceRegion: String {
-        case sfo = "sfo2", ams = "ams3", sgp = "sgp1"
-        
-        var endpointUrl: String {
-            return "https://dhaval.sfo2.digitaloceanspaces.com"
-        }
-    }
-    
     func setupUI() {
         navigationController?.isNavigationBarHidden = true
-        
-        let accessKey = "AFIVAMHKVZGA4FUSWKNY"
-        let secretKey = "kP0tXinC+JwAHmH45mQllU1vrKx4MtHdX6BcJD18zWg"
-        let regionEndpoint = AWSEndpoint(urlString: SpaceRegion.sfo.endpointUrl)
-        let credentialsProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
-        let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
+
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
@@ -74,6 +49,8 @@ class SelectedImageViewController: UIViewController {
         btnForever.setImage(UIImage(named: "icon_infinite")?.sd_tintedImage(with: .yellow), for: .selected)
         
         btn24Hour.isSelected = true
+        
+        txtEnterDescription.becomeFirstResponder()
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -95,7 +72,7 @@ class SelectedImageViewController: UIViewController {
         self.emogiPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         self.emogiPagerView.itemSize = CGSize.init(width: 60, height: 40)
         self.emogiPagerView.decelerationDistance = FSPagerView.automaticDistance
-        let type = self.transformerTypes[0]
+        let type = transformerTypes[0]
         self.emogiPagerView.transformer = FSPagerViewTransformer(type:type)
     }
     
@@ -134,13 +111,13 @@ class SelectedImageViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
-        if btnEmogi1.image(for: .normal) == UIImage(named: "emoji1") {
+        if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") {
             btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
-        if btnEmogi2.image(for: .normal) == UIImage(named: "emoji1") {
+        if btnEmogi2.image(for: .normal) != UIImage(named: "icon_question") {
             btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
         }
     }
@@ -149,12 +126,14 @@ class SelectedImageViewController: UIViewController {
 
 extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 5
+        return arrEmoji.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.image = UIImage(named: "emoji1")
+        let currentEmoji = arrEmoji[index]
+        
+        cell.imageView?.image = currentEmoji
         cell.imageView?.contentMode = .center
         cell.imageView?.clipsToBounds = true
         
@@ -172,10 +151,12 @@ extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        
+        let currentEmoji = arrEmoji[index]
         if btnEmogi1.image(for: .normal) == UIImage(named: "icon_question") {
-            btnEmogi1.setImage(UIImage(named: "emoji1"), for: .normal)
+            btnEmogi1.setImage(currentEmoji, for: .normal)
         } else if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") && btnEmogi2.image(for: .normal) == UIImage(named: "icon_question") {
-            btnEmogi2.setImage(UIImage(named: "emoji1"), for: .normal)
+            btnEmogi2.setImage(currentEmoji, for: .normal)
         }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
@@ -201,7 +182,6 @@ extension SelectedImageViewController {
         uploadRequest?.key = newKey
         uploadRequest?.bucket = "Jayesh"
         uploadRequest?.contentType = "image/jpeg"
-        //uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
         uploadRequest?.acl = AWSS3ObjectCannedACL.publicRead
         uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
             DispatchQueue.main.async(execute: {
@@ -251,10 +231,10 @@ extension SelectedImageViewController
         dictdata[keyAllKey.isPhoto] = true as AnyObject
         dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
-        dictdata[keyAllKey.Emoji1] = "10" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "10" as AnyObject
+        dictdata[keyAllKey.Emoji1] = returnEmojiNumber(img: btnEmogi1.image(for: .normal)!) as AnyObject
+        dictdata[keyAllKey.Emoji2] = returnEmojiNumber(img: btnEmogi2.image(for: .normal)!) as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject
-        dictdata[keyAllKey.Isforever] = btn24Hour.isSelected ? true as AnyObject : false as AnyObject
+        dictdata[keyAllKey.Isforever] = btnForever.isSelected ? true as AnyObject : false as AnyObject
     
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
             
@@ -263,7 +243,7 @@ extension SelectedImageViewController
                 do
                 {
                   
-                    self.view.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
+                    AppDelegate.sharedDelegate().window?.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
                    
                 }
                     

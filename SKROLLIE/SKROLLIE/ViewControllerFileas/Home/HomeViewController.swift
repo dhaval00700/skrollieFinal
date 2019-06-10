@@ -137,7 +137,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
         collectionData = resultImgPhoto[indexPath.row]
         cell1.collectionData = resultImgPhoto[indexPath.row]
-        cell1.GetAndReloadData()
+        cell1.Collectionview.reloadData()
         cell1.lblUserName.text = collectionData.ProfileName
         cell1.lblUserName.font = UIFont.Regular(ofSize: 16)
         

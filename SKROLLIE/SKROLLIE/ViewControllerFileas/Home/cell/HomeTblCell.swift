@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+class HomeTblCell: UITableViewCell
 {
    
     @IBOutlet weak var imgUser: UIImageView!
@@ -23,18 +23,20 @@ class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewData
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-      Collectionview.register(UINib(nibName: "HomeCollectionsViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionsViewCell")
+        
+        Collectionview.register(UINib(nibName: "HomeCollectionsViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionsViewCell")
         Collectionview.delegate = self
         Collectionview.dataSource = self
     }
     
-    
-    func GetAndReloadData()
-    {
-        Collectionview.reloadData()
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
     }
-    
+}
+
+
+extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return collectionData.arrPost.count
@@ -52,17 +54,6 @@ class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewData
         }
         
         cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        
-//        if indexPath.row == 0
-//        {
-//            cell.viewOfUserProfileBackground.isHidden = false
-//            cell.lblUserName.isHidden = false
-//        }
-//        else
-//        {
-//            cell.viewOfUserProfileBackground.isHidden = true
-//            cell.lblUserName.isHidden = true
-//        }
         
         if  indexPath.item % 2 == 0
         {
@@ -84,7 +75,7 @@ class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewData
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemHeight = collectionView.frame.height - 10
         
@@ -92,14 +83,6 @@ class HomeTblCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let obj: commentViewClass = UIStoryboard?.instantiateViewController(withIdentifier: "commentViewClass") as! commentViewClass
-//        obj.isOwnProfile = false
-//        present(obj, animated: true, completion: nil)
         
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
     }
 }

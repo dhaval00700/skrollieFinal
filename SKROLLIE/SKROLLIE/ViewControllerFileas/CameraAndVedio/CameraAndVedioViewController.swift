@@ -34,9 +34,6 @@ class CameraAndVedioViewController: SwiftyCamViewController
     var secound  = 60
     var timer = Timer()
     var resumTapped = false
-    var Timestamp: String {
-        return "\(NSDate().timeIntervalSince1970 * 1000)"
-    }
     
     //MARK: Lifecycles
     override func viewDidLoad()
@@ -185,7 +182,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
     func saveImageDocumentDirectory(image: UIImage) -> URL
     {
         let fileManager = FileManager.default
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(Timestamp)Imag.jpeg")
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(timestamp)Imag.jpeg")
         if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
             fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
         }
@@ -236,7 +233,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
         let fileManager = FileManager.default
         do {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-            let Filename = "\(Timestamp)_Sample.mp4"
+            let Filename = "\(timestamp)_Sample.mp4"
             let fileURL = documentDirectory.appendingPathComponent(Filename)
             let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)
             exporter!.outputURL = fileURL
@@ -300,7 +297,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
         let fileManager = FileManager.default
         do {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-            let Filename = "\(Timestamp)_Sample.mp4"
+            let Filename = "\(timestamp)_Sample.mp4"
             let fileURL = documentDirectory.appendingPathComponent(Filename)
             let exporter = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality)
             exporter!.outputURL = fileURL

@@ -21,33 +21,11 @@ class SelectedVideoViewController: UIViewController {
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnEmogi1: UIButton!
     @IBOutlet weak var btnEmogi2: UIButton!
+    @IBOutlet weak var btnPlayPause: UIButton!
     
     //MARK: Properties
     var videoUrl:URL!
-    private enum SpaceRegion: String {
-        case sfo = "sfo2", ams = "ams3", sgp = "sgp1"
-        
-        var endpointUrl: String {
-            return "https://dhaval.sfo2.digitaloceanspaces.com"
-        }
-    }
-    
-    var Timestamp: String {
-        return "\(NSDate().timeIntervalSince1970 * 1000)"
-    }
-    
-    fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
-                                                                      .zoomOut,
-                                                                      .depth,
-                                                                      .linear,
-                                                                      .overlap,
-                                                                      .ferrisWheel,
-                                                                      .invertedFerrisWheel,
-                                                                      .coverFlow,
-                                                                      .cubic]
-    var timestamp: String {
-        return "\(NSDate().timeIntervalSince1970 * 1000)"
-    }
+    var avPlayer = AVPlayer()
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -60,12 +38,6 @@ class SelectedVideoViewController: UIViewController {
     private func setupUI() {
         navigationController?.isNavigationBarHidden = true
         
-        
-        let accessKey = "AFIVAMHKVZGA4FUSWKNY"
-        let secretKey = "kP0tXinC+JwAHmH45mQllU1vrKx4MtHdX6BcJD18zWg"
-        let regionEndpoint = AWSEndpoint(urlString: SpaceRegion.sfo.endpointUrl)
-        let credentialsProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
-        let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
@@ -77,8 +49,13 @@ class SelectedVideoViewController: UIViewController {
         btn24Hour.setImage(UIImage(named: "icon_24")?.sd_tintedImage(with: .yellow), for: .selected)
         btnForever.setImage(UIImage(named: "icon_infinite")?.sd_tintedImage(with: .yellow), for: .selected)
         
+        btnPlayPause.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        btnPlayPause.setImage(#imageLiteral(resourceName: "pause"), for: .selected)
+        
         btn24Hour.isSelected = true
-
+        btnPlayPause.isSelected = true
+        
+        txtEnterDescription.becomeFirstResponder()
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -100,13 +77,13 @@ class SelectedVideoViewController: UIViewController {
         self.emogiPager.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         self.emogiPager.itemSize = CGSize.init(width: 60, height: 40)
         self.emogiPager.decelerationDistance = FSPagerView.automaticDistance
-        let type = self.transformerTypes[0]
+        let type = transformerTypes[0]
         self.emogiPager.transformer = FSPagerViewTransformer(type:type)
     }
     
     private func setData() {
         let playerItem = AVPlayerItem(url: videoUrl)
-        let avPlayer = AVPlayer(playerItem: playerItem)
+        avPlayer = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: avPlayer)
         playerLayer.frame.size = UIScreen.main.bounds.size
         playerLayer.videoGravity = .resizeAspectFill
@@ -131,10 +108,9 @@ class SelectedVideoViewController: UIViewController {
         }
     }
     
-    func saveImageDocumentDirectory(image: UIImage) -> URL
-    {
+    func saveImageDocumentDirectory(image: UIImage) -> URL {
         let fileManager = FileManager.default
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(Timestamp)Imag.jpeg")
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(timestamp)Imag.jpeg")
         if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
             fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
         }
@@ -172,26 +148,37 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
-        if btnEmogi1.image(for: .normal) == UIImage(named: "emoji1") {
+        if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") {
             btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
-        if btnEmogi2.image(for: .normal) == UIImage(named: "emoji1") {
+        if btnEmogi2.image(for: .normal) != UIImage(named: "icon_question") {
             btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
+        }
+    }
+    
+    @IBAction func onBtnPlayPause(_ sender: Any) {
+        if btnPlayPause.isSelected  {
+            avPlayer.pause()
+            btnPlayPause.isSelected = false
+        } else {
+            avPlayer.play()
+            btnPlayPause.isSelected = true
         }
     }
 }
 
 extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 5
+        return arrEmoji.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.image = UIImage(named: "emoji1")
+        let currentEmoji = arrEmoji[index]
+        cell.imageView?.image = currentEmoji
         cell.imageView?.contentMode = .center
         cell.imageView?.clipsToBounds = true
         
@@ -206,10 +193,11 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        let currentEmoji = arrEmoji[index]
         if btnEmogi1.image(for: .normal) == UIImage(named: "icon_question") {
-            btnEmogi1.setImage(UIImage(named: "emoji1"), for: .normal)
+            btnEmogi1.setImage(currentEmoji, for: .normal)
         } else if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") && btnEmogi2.image(for: .normal) == UIImage(named: "icon_question") {
-            btnEmogi2.setImage(UIImage(named: "emoji1"), for: .normal)
+            btnEmogi2.setImage(currentEmoji, for: .normal)
         }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
@@ -320,10 +308,10 @@ extension SelectedVideoViewController
         dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
         dictdata[keyAllKey.Videothumbnailimage] = "\(thumbImgName)" as AnyObject
-        dictdata[keyAllKey.Emoji1] = "10" as AnyObject
-        dictdata[keyAllKey.Emoji2] = "10" as AnyObject
+        dictdata[keyAllKey.Emoji1] = returnEmojiNumber(img: btnEmogi1.image(for: .normal)!) as AnyObject
+        dictdata[keyAllKey.Emoji2] = returnEmojiNumber(img: btnEmogi2.image(for: .normal)!) as AnyObject
         dictdata[keyAllKey.isPublish] = true as AnyObject
-        dictdata[keyAllKey.Isforever] = btn24Hour.isSelected ? true as AnyObject : false as AnyObject
+        dictdata[keyAllKey.Isforever] = btnForever.isSelected ? true as AnyObject : false as AnyObject
         
         webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
             
@@ -331,7 +319,7 @@ extension SelectedVideoViewController
             {
                 do
                 {
-                    self.view.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
+                     AppDelegate.sharedDelegate().window?.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
                 }
                     
                 catch let DecodingError.dataCorrupted(context)
