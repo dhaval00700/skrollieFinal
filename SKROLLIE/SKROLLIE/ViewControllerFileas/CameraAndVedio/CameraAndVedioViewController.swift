@@ -199,6 +199,22 @@ class CameraAndVedioViewController: SwiftyCamViewController
         present(alert, animated: true, completion: nil)
     }
     
+    func orientation(forTrack videoTrack: AVAssetTrack?) -> UIInterfaceOrientation {
+        let size: CGSize? = videoTrack?.naturalSize
+        let txf: CGAffineTransform? = videoTrack?.preferredTransform
+        
+        if size?.width == txf?.tx && size?.height == txf?.ty {
+            return .landscapeRight
+        } else if txf?.tx == 0 && txf?.ty == 0 {
+            return .landscapeLeft
+        } else if txf?.tx == 0 && txf?.ty == size?.width {
+            return .portraitUpsideDown
+        } else {
+            return .portrait
+        }
+    }
+
+    
     func mergeVideos() {
         
         print( "Wait... \nVideo is in Process")
@@ -215,7 +231,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
             let audioAssetTrack = videoAsset.tracks(withMediaType: .audio)[0]
             let atTime = CMTime(seconds: time, preferredTimescale: 1)
             do {
-                
+                videoTrack?.preferredTransform = CGAffineTransform(rotationAngle: .pi/2.0)
                 try videoTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: videoAsset.duration), of: videoAssetTrack, at: atTime)
                 try audioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: videoAsset.duration), of: audioAssetTrack, at: atTime)
                 
@@ -246,13 +262,13 @@ class CameraAndVedioViewController: SwiftyCamViewController
                     // let selectedVideo = fileURL
                     if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
                         vc.videoUrl = fileURL
-                        PHPhotoLibrary.shared().performChanges({
+                        /*PHPhotoLibrary.shared().performChanges({
                             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
                         }) { saved, error in
                             if saved {
                                 print("Saved")
                             }
-                        }
+                        }*/
                         self.navigationController?.pushViewController(vc, animated: false)
                     }
                 })
@@ -309,13 +325,13 @@ class CameraAndVedioViewController: SwiftyCamViewController
                     self.arrVideoAssets.removeAll()
                     if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {
                         vc.videoUrl = fileURL
-                        PHPhotoLibrary.shared().performChanges({
+                        /*PHPhotoLibrary.shared().performChanges({
                             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
                         }) { saved, error in
                             if saved {
                                 print("Saved")
                             }
-                        }
+                        }*/
                         self.navigationController?.pushViewController(vc, animated: false)
                     }
                 })
@@ -334,13 +350,13 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
         // Called when takePhoto() is called or if a SwiftyCamButton initiates a tap gesture
         // Returns a UIImage captured from the current session
         self.btnPreviewImg.setBackgroundImage(photo, for: .normal)
-        PHPhotoLibrary.shared().performChanges({
+        /*PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.saveImageDocumentDirectory(image: photo))//creationRequestForAssetFromVideo(atFileURL: fileURL)
         }) { saved, error in
             if saved {
                 print("Saved")
             }
-        }
+        }*/
         self.btnPreviewImg.isHidden = false
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedImageViewController") as? SelectedImageViewController {
             vc.selectedImage = photo

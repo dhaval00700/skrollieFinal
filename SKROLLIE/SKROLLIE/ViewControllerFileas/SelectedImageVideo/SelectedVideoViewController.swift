@@ -59,6 +59,9 @@ class SelectedVideoViewController: UIViewController {
         setupSwipeGesture()
         setupEmogiPager()
         setData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.avPlayer.play()
+        }
     }
     
     private func setupSwipeGesture() {
@@ -86,9 +89,17 @@ class SelectedVideoViewController: UIViewController {
         avPlayer = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: avPlayer)
         playerLayer.frame.size = UIScreen.main.bounds.size
-        playerLayer.videoGravity = .resizeAspectFill
+        playerLayer.videoGravity = .resize
         viwVideo.layer.addSublayer(playerLayer)
-        avPlayer.play()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
+        
+    }
+    
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        print("Video Finished")
+        btnPlayPause.isSelected = false
+        setData()
     }
     
     func createThumbnailOfVideoFromRemoteUrl(url: URL) -> UIImage? {
@@ -160,6 +171,7 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnPlayPause(_ sender: Any) {
+        
         if btnPlayPause.isSelected  {
             avPlayer.pause()
             btnPlayPause.isSelected = false

@@ -49,7 +49,7 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let datas = collectionData.arrPost[indexPath.item]
         
         
-        cell.imgBackGround!.sd_setImage(with: URL(string: datas.Url), placeholderImage: UIImage.init(named: "img1"), options: .highPriority) { (image, error, cacheType, url) in
+        cell.imgBackGround!.sd_setImage(with: URL(string: datas.Url), placeholderImage:#imageLiteral(resourceName: "img1") , options: .highPriority) { (image, error, cacheType, url) in
             cell.imgBackGround.sd_setImage(with: URL(string: datas.Url), completed: nil)
         }
         
