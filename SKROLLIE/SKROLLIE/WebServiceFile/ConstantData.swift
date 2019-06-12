@@ -41,6 +41,7 @@ struct WebserviceURLs {
     static let kUserNameVerification = "http://103.232.124.170:18012/MobileAccount/CheckUserExist?"
     static let kEmailFormatcheck = "http://103.232.124.170:18012/MobileAccount/CheckEmailValidator?"
     static let kgetPhoto = "http://103.232.124.170:18012/MobilePost/GetAllPost"
+    static let kGetAllPostByIdUser = "http://103.232.124.170:18012/MobilePost/GetAllPostByIdUser"
     static let kDeletePost = "http://103.232.124.170:18012/MobilePost/DeletePost?"
 }
 

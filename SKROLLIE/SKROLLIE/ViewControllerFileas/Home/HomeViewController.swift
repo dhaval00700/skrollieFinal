@@ -7,7 +7,39 @@
 //
 
 import UIKit
-import SDWebImage
+
+
+//MARK: - All UIImage Extension
+extension UIImage {
+    
+    func tintWithColor(_ color:UIColor) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale);
+        //UIGraphicsBeginImageContext(self.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        // flip the image
+        context?.scaleBy(x: 1.0, y: -1.0)
+        context?.translateBy(x: 0.0, y: -self.size.height)
+        
+        // multiply blend mode
+        context?.setBlendMode(.multiply)
+        
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        context?.clip(to: rect, mask: self.cgImage!)
+        color.setFill()
+        context?.fill(rect)
+        
+        // create uiimage
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+        
+    }
+    
+}
+
 
 class HomeViewController: UIViewController
 {
@@ -25,14 +57,8 @@ class HomeViewController: UIViewController
     @IBOutlet weak var lblFrnds: UILabel!
     
     //MARK: Properties
-    var labelEmptyMessage = UILabel()
-    var imagePicker = UIImagePickerController()
-    var dictdata = [String:AnyObject]()
-    
     var resultImgPhoto = [UserData]()
-    var arydatsta = [[String:AnyObject]]()
     var collectionData = UserData()
-    var arysectionData = ["@jhongoe","@mayjane","@tonnystark","@natgeo","@natgeo","@natgeo"]
     
     //MARK: Lifecycle
     override func viewDidLoad()
@@ -188,64 +214,6 @@ extension HomeViewController
                     self.tableview.reloadData()
                 }
                     
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
-                
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
-            }
-        }
-    }
-    
-    func webserviceOfDeletePost()
-    {
-        var dictdata = [String:AnyObject]()
-        
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-        var userId = String()
-        
-        if let userIDString = idpass["id"] as? String
-        {
-            userId = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass["id"] as? Int
-        {
-            userId = "\(userIDInt)"
-        }
-        dictdata[keyAllKey.id] = userId as AnyObject
-        
-        webserviceForDeletePhoto(dictParams: dictdata as AnyObject){(result, status) in
-            
-            if status
-            {
-                do
-                {
-                    print((result as! [String:AnyObject])["message"] as! String)
-                }
                 catch let DecodingError.dataCorrupted(context)
                 {
                     print(context)

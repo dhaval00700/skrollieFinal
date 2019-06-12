@@ -8,7 +8,7 @@
 
 import UIKit
 
-class userProfileClass: UIViewController,UINavigationControllerDelegate
+class userProfileClass: UIViewController
 {
     //Mark:= Outlet
     
@@ -32,9 +32,9 @@ class userProfileClass: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var lblToday: UILabel!
     @IBOutlet weak var lblForever: UILabel!
     
-    var arysection = [String]()
     
-    var arysectionData = ["TODAY","FOREVER",""]
+    var resultForeverPost = [Post]()
+    var result24HrPost = [Post]()
     
     override func viewDidLoad()
     {
@@ -42,7 +42,6 @@ class userProfileClass: UIViewController,UINavigationControllerDelegate
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        arysection = ["TODAY","FOREVER",""]
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblUserTag.font = UIFont.Regular(ofSize: 16)
@@ -50,6 +49,25 @@ class userProfileClass: UIViewController,UINavigationControllerDelegate
         btnCOnnect.titleLabel?.font =  UIFont.Regular(ofSize: 16)
         lblDesc.font = UIFont.Regular(ofSize: 9)
         lblToday.font = UIFont.Regular(ofSize: 9)
+        
+        tableview.register(UINib(nibName: "cellUserProfilePost", bundle: nil), forCellReuseIdentifier: "cellUserProfilePost")
+        tableview.delegate = self
+        tableview.dataSource = self
+        
+        let idpass = (SingleToneClass.sharedInstance.loginDataStore["UserId"] as AnyObject)
+        
+        var userId = String()
+        if let userIDString = idpass as? String
+        {
+            userId = "\(userIDString)"
+        }
+        
+        if let userIDInt = idpass as? Int
+        {
+            userId = "\(userIDInt)"
+        }
+        
+        webserviceofGetPhoto(UserId: userId)
     }
     
     @IBAction func btnSetting(_ sender: UIButton)
@@ -89,71 +107,7 @@ extension userProfileClass: UIScrollViewDelegate {
     }
 }
 
-extension userProfileClass : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return arysection.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-        
-        //        let data = arysection[collectionView.tag]
-        
-        cell.imgUserProfilePic.image = UIImage(named: "img4")
-        cell.imgUserPic.image = UIImage(named: "ic_bg_home_cell")
-        
-        if indexPath.row == 0
-        {
-            cell.viewOfUserProfileBackground.isHidden = false
-        }
-        else
-        {
-            cell.viewOfUserProfileBackground.isHidden = true
-        }
-        if  indexPath.item % 2 == 0
-        {
-            cell.lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-        }
-        else
-        {
-            cell.lblTimeOfPhotos.text = "F O R E V E R"
-        }
-        
-        
-        if cell.lblTimeOfPhotos.text == "24 H O U R S  L E F T"
-        {
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
-        }
-        else
-        {
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
-            
-        }
-        //   cell.lblUserName.font = UIFont.Regular(ofSize: 16)
-        cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        
-        return CGSize.init(width: 221, height: 130)
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let obj: commentViewClass = self.storyboard?.instantiateViewController(withIdentifier: "commentViewClass") as! commentViewClass
-        obj.isOwnProfile = true
-        self.present(obj, animated: true, completion: nil)
-    }
-}
-
 extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
-        return 0
-    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
@@ -162,43 +116,78 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
             cell.transform = CGAffineTransform.identity
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let section = self.arysectionData[section]
-        return 0
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
-        /*let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-        
-        cell1.collectionView.delegate = self
-        cell1.collectionView.dataSource = self
-        
-        cell1.collectionView.tag = indexPath.section
-        let username = arysection[indexPath.section]
-        cell1.lblUserName.text = username
-        return cell1
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
-        
-        let section = self.arysectionData[indexPath.section]
-        let headline = arysectionData[indexPath.row]
-        
-        cell.textLabel?.text = headline
-        cell.detailTextLabel?.text = headline*/
-        
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellUserProfilePost", for: indexPath) as! cellUserProfilePost
+        if indexPath.row == 0 {
+            cell.lblTitle.text = "Forever"
+            cell.collectionData = resultForeverPost
+        } else {
+            cell.lblTitle.text = "24 Hour"
+            cell.collectionData = result24HrPost
+        }
+        cell.clvPost.reloadData()
+        return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if indexPath.section == 2
-        {
-            return 136
+        return 200
+    }
+}
+extension userProfileClass {
+    func webserviceofGetPhoto(UserId :String)
+    {
+        webserviceForGetAllPostByIdUser(id: UserId){(result, status) in
+            
+            if status
+            {
+                do
+                {
+                    let arrForEverList = (((result as! [String : AnyObject])["ForEverList"] as! [[String:AnyObject]]))
+                    let arrNotForEverList = (((result as! [String : AnyObject])["NotForEverList"] as! [[String:AnyObject]]))
+                    
+                    self.resultForeverPost = Post.getArrayPost(data: arrForEverList, userName: "")
+                    self.result24HrPost = Post.getArrayPost(data: arrNotForEverList, userName: "")
+                    self.tableview.reloadData()
+                }
+                    
+                catch let DecodingError.dataCorrupted(context)
+                {
+                    print(context)
+                }
+                catch let DecodingError.keyNotFound(key, context)
+                {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.valueNotFound(value, context)
+                {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch let DecodingError.typeMismatch(type, context)
+                {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                catch
+                {
+                    print("error: ", error)
+                }
+            }
+                
+            else
+            {
+                print((result as! [String:AnyObject])["message"] as! String)
+            }
         }
-        return 163
     }
 }

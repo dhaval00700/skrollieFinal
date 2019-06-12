@@ -40,14 +40,14 @@ class SelectedVideoViewController: UIViewController {
         
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
-        btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
-        btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
+        btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
+        btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         
         btn24Hour.setImage(UIImage(named: "icon_24"), for: .normal)
         btnForever.setImage(UIImage(named: "icon_infinite"), for: .normal)
         
-        btn24Hour.setImage(UIImage(named: "icon_24")?.sd_tintedImage(with: .yellow), for: .selected)
-        btnForever.setImage(UIImage(named: "icon_infinite")?.sd_tintedImage(with: .yellow), for: .selected)
+        btn24Hour.setImage(UIImage(named: "icon_24")?.tintWithColor(.yellow), for: .selected)
+        btnForever.setImage(UIImage(named: "icon_infinite")?.tintWithColor(.yellow), for: .selected)
         
         btnPlayPause.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         btnPlayPause.setImage(#imageLiteral(resourceName: "pause"), for: .selected)
@@ -159,14 +159,14 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
-        if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") {
-            btnEmogi1.setImage(UIImage(named: "icon_question"), for: .normal)
+        if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") {
+            btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
-        if btnEmogi2.image(for: .normal) != UIImage(named: "icon_question") {
-            btnEmogi2.setImage(UIImage(named: "icon_question"), for: .normal)
+        if btnEmogi2.image(for: .normal) != UIImage(named: "blankSad") {
+            btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         }
     }
     
@@ -206,9 +206,9 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         let currentEmoji = arrEmoji[index]
-        if btnEmogi1.image(for: .normal) == UIImage(named: "icon_question") {
+        if btnEmogi1.image(for: .normal) == UIImage(named: "blankHappy") {
             btnEmogi1.setImage(currentEmoji, for: .normal)
-        } else if btnEmogi1.image(for: .normal) != UIImage(named: "icon_question") && btnEmogi2.image(for: .normal) == UIImage(named: "icon_question") {
+        } else if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") && btnEmogi2.image(for: .normal) == UIImage(named: "blankSad") {
             btnEmogi2.setImage(currentEmoji, for: .normal)
         }
         pagerView.deselectItem(at: index, animated: true)

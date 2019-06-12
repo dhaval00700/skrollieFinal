@@ -43,6 +43,8 @@ let regionEndpoint = AWSEndpoint(urlString: SpaceRegion.sfo.endpointUrl)
 let credentialsProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
 let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
 
+let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
+
 
 let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
                                                                   .zoomOut,

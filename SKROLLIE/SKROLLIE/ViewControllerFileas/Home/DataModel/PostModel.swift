@@ -15,6 +15,7 @@ class Post {
     
     var Postid = ""
     var isPhoto = false
+    var Isforever = false
     var Url = ""
     var Description = ""
     var Emoji1 = ""
@@ -26,7 +27,9 @@ class Post {
         
         Postid = Post["PostId"] as? String ?? ""
         isPhoto = Post["isPhoto"] as? Bool ?? false
-        Url = Post["Url"] as? String ?? ""
+        Isforever = Post["Isforever"] as? Bool ?? false
+        let url = prefixDataUrl + "\(Post["Url"] as? String ?? "")"
+        Url = url
         Description = Post["Description"] as? String ?? ""
         Emoji1 = Post["id"] as? String ?? ""
         Emoji2 = Post["id"] as? String ?? ""

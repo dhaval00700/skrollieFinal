@@ -48,28 +48,14 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         let datas = collectionData.arrPost[indexPath.item]
         
-        
-        cell.imgBackGround!.sd_setImage(with: URL(string: datas.Url), placeholderImage:#imageLiteral(resourceName: "img1") , options: .highPriority) { (image, error, cacheType, url) in
-            cell.imgBackGround.sd_setImage(with: URL(string: datas.Url), completed: nil)
-        }
-        
+        cell.imgBackGround.imageFromURL(link: datas.Url, errorImage: UIImage(named: "img1"), contentMode: .scaleAspectFill)
         cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
         
-        if  indexPath.item % 2 == 0
-        {
+        if  !datas.Isforever {
             cell.lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-        }
-        else
-        {
-            cell.lblTimeOfPhotos.text = "F O R E V E R"
-        }
-        
-        if  cell.lblTimeOfPhotos.text == "24 H O U R S  L E F T"
-        {
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
-        }
-        else
-        {
+        } else {
+            cell.lblTimeOfPhotos.text = "F O R E V E R"
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
         }
         
