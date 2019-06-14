@@ -22,6 +22,9 @@ class SelectedVideoViewController: UIViewController {
     @IBOutlet weak var btnEmogi1: UIButton!
     @IBOutlet weak var btnEmogi2: UIButton!
     @IBOutlet weak var btnPlayPause: UIButton!
+    @IBOutlet weak var btnText: UIButton!
+    @IBOutlet weak var viwDesc: UIView!
+    @IBOutlet weak var btnEmogiHide: UIButton!
     
     //MARK: Properties
     var videoUrl:URL!
@@ -49,13 +52,19 @@ class SelectedVideoViewController: UIViewController {
         btn24Hour.setImage(UIImage(named: "icon_24")?.tintWithColor(.yellow), for: .selected)
         btnForever.setImage(UIImage(named: "icon_infinite")?.tintWithColor(.yellow), for: .selected)
         
+        btnText.addCornerRadius(btnText.frame.height/2.0)
+        btnEmogiHide.addCornerRadius(btnEmogiHide.frame.height/2.0)
+        
         btnPlayPause.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         btnPlayPause.setImage(#imageLiteral(resourceName: "pause"), for: .selected)
         
         btn24Hour.isSelected = true
         btnPlayPause.isSelected = true
         
-        txtEnterDescription.becomeFirstResponder()
+        viwDesc.isHidden = true
+        emogiPager.isHidden = true
+        btnEmogiHide.isHidden = true
+        
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -159,12 +168,16 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
+        emogiPager.isHidden = false
+        btnEmogiHide.isHidden = false
         if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") {
             btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
+        emogiPager.isHidden = false
+        btnEmogiHide.isHidden = false
         if btnEmogi2.image(for: .normal) != UIImage(named: "blankSad") {
             btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         }
@@ -180,6 +193,15 @@ class SelectedVideoViewController: UIViewController {
             btnPlayPause.isSelected = true
         }
     }
+    
+    @IBAction func onBtnText(_ sender: Any) {
+        viwDesc.isHidden = !viwDesc.isHidden
+    }
+    
+    @IBAction func onBtnEmogiHide(_ sender: Any) {
+        emogiPager.isHidden = true
+        btnEmogiHide.isHidden = true
+    }
 }
 
 extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSource {
@@ -191,15 +213,8 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         let currentEmoji = arrEmoji[index]
         cell.imageView?.image = currentEmoji
-        cell.imageView?.contentMode = .center
+        cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
-        
-        
-        cell._textLabel?.text = "+12"
-        cell._textLabel?.contentMode = .topRight
-        cell._textLabel?.backgroundColor = UIColor.red
-        cell._textLabel?.textAlignment = .center
-        cell._textLabel?.textColor = UIColor.white
         
         return cell
     }

@@ -14,12 +14,16 @@ class SelectedImageViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var imgSelectedImage: UIImageView!
+    
+    @IBOutlet weak var viwDescription: UIView!
     @IBOutlet weak var txtEnterDescription: UITextField!
     @IBOutlet weak var emogiPagerView: FSPagerView!
     @IBOutlet weak var btn24Hour: UIButton!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnEmogi1: UIButton!
     @IBOutlet weak var btnEmogi2: UIButton!
+    @IBOutlet weak var btnText: UIButton!
+    @IBOutlet weak var btnEmogiHide: UIButton!
     
     
     //MARK: Properties
@@ -39,6 +43,13 @@ class SelectedImageViewController: UIViewController {
 
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
+        btnText.addCornerRadius(btnText.frame.height/2.0)
+        btnEmogiHide.addCornerRadius(btnEmogiHide.frame.height/2.0)
+        
+        viwDescription.isHidden = true
+        emogiPagerView.isHidden = true
+        btnEmogiHide.isHidden = true
+        
         btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
         btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         
@@ -50,7 +61,6 @@ class SelectedImageViewController: UIViewController {
         
         btn24Hour.isSelected = true
         
-        txtEnterDescription.becomeFirstResponder()
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -100,6 +110,11 @@ class SelectedImageViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func onBtnText(_ sender: Any) {
+        viwDescription.isHidden = !viwDescription.isHidden
+    }
+    
     @IBAction func onBtn24Hour(_ sender: Any) {
         btnForever.isSelected = false
         btn24Hour.isSelected = true
@@ -111,15 +126,23 @@ class SelectedImageViewController: UIViewController {
     }
     
     @IBAction func onBtnEmogi1(_ sender: Any) {
+        emogiPagerView.isHidden = false
+        btnEmogiHide.isHidden = false
         if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") {
             btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
         }
     }
     
     @IBAction func onBtnEmogi2(_ sender: Any) {
+        emogiPagerView.isHidden = false
+        btnEmogiHide.isHidden = false
         if btnEmogi2.image(for: .normal) != UIImage(named: "blankSad") {
             btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         }
+    }
+    @IBAction func onBtnHide(_ sender: Any) {
+        emogiPagerView.isHidden = true
+        btnEmogiHide.isHidden = true
     }
 }
 
@@ -134,18 +157,8 @@ extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSourc
         let currentEmoji = arrEmoji[index]
         
         cell.imageView?.image = currentEmoji
-        cell.imageView?.contentMode = .center
+        cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
-        
-        
-        cell._textLabel?.text = "+12"
-        cell._textLabel?.contentMode = .topRight
-        cell._textLabel?.backgroundColor = UIColor.red
-        
-        //        cell._textLabel? = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 45))
-        cell._textLabel?.backgroundColor = UIColor.red
-        cell._textLabel?.textAlignment = .center
-        cell._textLabel?.textColor = UIColor.white
         
         return cell
     }
