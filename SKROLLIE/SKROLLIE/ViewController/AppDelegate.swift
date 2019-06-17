@@ -39,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let token = toketParts.joined()
         print("Device Token: \(token)")
-        
-        
-        
-        print("SingletonClass.sharedInstance.deviceToken : \(SingleToneClass.sharedInstance.strDeviceToken)")
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")

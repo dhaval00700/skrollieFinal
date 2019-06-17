@@ -43,7 +43,7 @@ class HomeViewController: UIViewController
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        webserviceofGetPhoto()
+        getAllPost()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,49 +152,15 @@ extension HomeViewController: UIScrollViewDelegate {
 
 extension HomeViewController
 {
-    
-    func webserviceofGetPhoto()
-    {
-        webserviceForGetPhoto(id: AppPrefsManager.shared.getUserData().UserId){(result, status) in
-            
-            if status
-            {
-                do
-                {
-                 let aryGetPhotos = (((result as! [String : AnyObject])["data"] as! [[String:AnyObject]]))
-
-                    self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
-                    self.tableview.reloadData()
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+    func getAllPost() {
+        _ = APIClient.GetAllPost { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
+                self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
+                self.tableview.reloadData()
             }
         }
     }

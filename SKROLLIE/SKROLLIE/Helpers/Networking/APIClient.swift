@@ -30,7 +30,7 @@ class APIClient {
         })
     }
     
-    class func CheckEmailAddres(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func CheckEmailAddress(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         
         
@@ -42,7 +42,7 @@ class APIClient {
         })
     }
     
-    class func VerifyEmailAddres(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func VerifyEmailAddress(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         
         
@@ -115,5 +115,27 @@ class APIClient {
         })
     }
     
+    class func GetAllPost(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        
+        
+        return ApiManager.requestApi(method: .get, urlString: API.getAllPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
     
+    class func GetAllPostByIdUser(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        
+        
+        return ApiManager.requestApi(method: .get, urlString: API.getAllPostByIdUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
 }

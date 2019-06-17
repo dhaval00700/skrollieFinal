@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSS3
+import AWSCore
 
 //MARK: - Global variables
 var isDevelopmentMode   = true
@@ -25,6 +27,105 @@ struct AppColor {
     static let MEDIUM_GRAY      =   #colorLiteral(red: 0.9450980392, green: 0.9529411765, blue: 0.9647058824, alpha: 1)
     static let DARK_GRAY        =   #colorLiteral(red: 0.7725490196, green: 0.8117647059, blue: 0.8392156863, alpha: 1)
     static let KEY              =   #colorLiteral(red: 0.9568627451, green: 0.4862745098, blue: 0.2823529412, alpha: 1)
+}
+
+//MARK: For AWS Config
+private enum SpaceRegion: String {
+    case sfo = "sfo2", ams = "ams3", sgp = "sgp1"
+    
+    var endpointUrl: String {
+        return "https://dhaval.sfo2.digitaloceanspaces.com"
+    }
+}
+let accessKey = "AFIVAMHKVZGA4FUSWKNY"
+let secretKey = "kP0tXinC+JwAHmH45mQllU1vrKx4MtHdX6BcJD18zWg"
+let regionEndpoint = AWSEndpoint(urlString: SpaceRegion.sfo.endpointUrl)
+let credentialsProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
+let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEndpoint, credentialsProvider: credentialsProvider)
+
+let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
+
+
+let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
+                                                      .zoomOut,
+                                                      .depth,
+                                                      .linear,
+                                                      .overlap,
+                                                      .ferrisWheel,
+                                                      .invertedFerrisWheel,
+                                                      .coverFlow,
+                                                      .cubic]
+var timestamp: String {
+    return "\(NSDate().timeIntervalSince1970 * 1000)"
+}
+
+
+//MARK: For Emoji
+var arrEmoji = [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2.png"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7"), #imageLiteral(resourceName: "8"), #imageLiteral(resourceName: "9.png"), #imageLiteral(resourceName: "10.png")]
+
+func returnEmojiNumber(img: UIImage) -> String {
+    switch img {
+    case #imageLiteral(resourceName: "1"):
+        return "1"
+    case #imageLiteral(resourceName: "2.png"):
+        return "2"
+    case #imageLiteral(resourceName: "3"):
+        return "3"
+    case #imageLiteral(resourceName: "4"):
+        return "4"
+    case #imageLiteral(resourceName: "5"):
+        return "5"
+    case #imageLiteral(resourceName: "6"):
+        return "6"
+    case #imageLiteral(resourceName: "7"):
+        return "7"
+    case #imageLiteral(resourceName: "8"):
+        return "8"
+    case #imageLiteral(resourceName: "9.png"):
+        return "9"
+    case #imageLiteral(resourceName: "10.png"):
+        return "10"
+    default:
+        return ""
+    }
+}
+
+enum Emoji : Int {
+    case one = 1
+    case two = 2
+    case three = 3
+    case four = 4
+    case five = 5
+    case six = 6
+    case seven = 7
+    case eight = 8
+    case nine = 9
+    case ten = 10
+    
+    func description() -> (UIImage) {
+        switch self {
+        case .one:
+            return (#imageLiteral(resourceName: "1.png"))
+        case .two:
+            return (#imageLiteral(resourceName: "2.png"))
+        case .three:
+            return (#imageLiteral(resourceName: "3.png"))
+        case .four:
+            return (#imageLiteral(resourceName: "4"))
+        case .five:
+            return (#imageLiteral(resourceName: "5.png"))
+        case .six:
+            return (#imageLiteral(resourceName: "6.png"))
+        case .seven:
+            return (#imageLiteral(resourceName: "7.png"))
+        case .eight:
+            return (#imageLiteral(resourceName: "8.png"))
+        case .nine:
+            return (#imageLiteral(resourceName: "9.png"))
+        case .ten:
+            return (#imageLiteral(resourceName: "10.png"))
+        }
+    }
 }
 
 // MARK: - FontName
@@ -58,4 +159,8 @@ struct API {
     static let verifyPhoneNumber = BASE_URL + "MobileAccount/CheckPhoneExist"
     static let sendOtp = BASE_URL + "MobileAccount/SendOTP"
     static let verifyOTPUrl = BASE_URL + "MobileAccount/VerifyOTP"
+    static let getAllPost = BASE_URL + "MobilePost/GetAllPost"
+    static let getAllPostByIdUser = BASE_URL + "MobilePost/GetAllPostByIdUser"
+    static let createFriend = BASE_URL + "MobilePost/CreateFriend"
+    static let deletePost = BASE_URL + "MobilePost/DeletePost"
 }
