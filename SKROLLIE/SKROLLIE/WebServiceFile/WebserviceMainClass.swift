@@ -29,7 +29,7 @@ func postData(_ dictParams: AnyObject, nsURL: String, completion: @escaping (_ r
 {
     let url = WebserviceURLs.kBaseURL + nsURL
     print("url = \(url) params = \(dictParams)")
-    let Token =  SingleToneClass.sharedInstance.loginDataStore["token"] as? String ?? ""
+    let Token =  AppPrefsManager.shared.getUserData().token
     let header: [String:String] = ["Content-Type":"application/json", "Authorization":Token]
     
     Alamofire.request(url, method: .post, parameters: dictParams as? [String : AnyObject], encoding: JSONEncoding.default, headers: header)
@@ -118,7 +118,7 @@ func getData(_ dictParams: AnyObject, nsURL: String,  completion: @escaping (_ r
         
         let url = WebserviceURLs.kBaseURL + nsURL
         
-        let Token =  SingleToneClass.sharedInstance.loginDataStore["token"] as? String ?? ""
+        let Token =  AppPrefsManager.shared.getUserData().token
         let header: [String:String] = ["Content-Type":"application/json", "Authorization":Token]
         
         let dictData = dictParams as! [String:AnyObject]

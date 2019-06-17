@@ -23,6 +23,7 @@ let VerifyEmail = WebserviceURLs.kEmailIdVerification
 let VeriFyUserName = WebserviceURLs.kUserNameVerification
 let EmailFormateCheck = WebserviceURLs.kEmailFormatcheck
 let getPhoto = WebserviceURLs.kgetPhoto
+let getAllPostByIdUser = WebserviceURLs.kGetAllPostByIdUser
 let DeletePhoto = WebserviceURLs.kDeletePost
 
 //------------------------------------------------------------
@@ -125,6 +126,16 @@ func webserviceForUserName(dictParams: AnyObject,completion: @escaping(_ result:
 func webserviceForGetPhoto(id: String,  completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
 {
     let url = getPhoto + "?idUser=" + "\(id)"
+    print(url)
+    getData([] as AnyObject, nsURL: url, completion: completion)
+}
+
+//------------------------------------------------------------
+// MARK: - Webservice For GetAllPostByIdUser
+//------------------------------------------------------------
+func webserviceForGetAllPostByIdUser(id: String,  completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = getAllPostByIdUser + "?idUser=" + "\(id)"
     print(url)
     getData([] as AnyObject, nsURL: url, completion: completion)
 }
