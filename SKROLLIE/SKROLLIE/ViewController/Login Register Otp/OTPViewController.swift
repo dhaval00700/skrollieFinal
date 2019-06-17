@@ -128,21 +128,7 @@ extension OTPViewController
 {
     func WebserviceOFOtp()
     {
-        
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-        var UserId = String()
-        
-        if let userIDString = idpass["id"] as? String
-        {
-            UserId = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass["id"] as? Int
-        {
-            UserId = "\(userIDInt)"
-        }
-        
-        let datas = "idUser=\(UserId)" + "&phone=\(getDataMobileNum)"
+        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&phone=\(getDataMobileNum)"
         
         webserviceForOTPinMobile(dictParams: datas as AnyObject){(result,  status) in
             if status
@@ -184,22 +170,8 @@ extension OTPViewController
     
     func WebserviceOFVerifyOtp()
     {
-        var sdas = String()
-        
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-        
-        if let userIDString = idpass["id"] as? String
-        {
-            sdas = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass["id"] as? Int
-        {
-            sdas = "\(userIDInt)"
-        }
         let pin = viewOtP.getPin()
-        
-        let datas = "idUser=\(sdas)" + "&OTP=\(pin)"
+        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&OTP=\(pin)"
         
         webserviceForVerifyOTP(dictParams: datas as AnyObject){(result,  status) in
             if status

@@ -1,6 +1,6 @@
 //
 //  UIImage+Extension.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2019 Smit Patel. All rights reserved.
@@ -45,6 +45,32 @@ enum Point {
 }
 
 extension UIImage {
+    func tintWithColor(_ color:UIColor) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale);
+        //UIGraphicsBeginImageContext(self.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        // flip the image
+        context?.scaleBy(x: 1.0, y: -1.0)
+        context?.translateBy(x: 0.0, y: -self.size.height)
+        
+        // multiply blend mode
+        context?.setBlendMode(.multiply)
+        
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        context?.clip(to: rect, mask: self.cgImage!)
+        color.setFill()
+        context?.fill(rect)
+        
+        // create uiimage
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+        
+    }
+    
     func trim(trimRect :CGRect) -> UIImage {
         if CGRect(origin: CGPoint.zero, size: self.size).contains(trimRect) {
             if let imageRef = self.cgImage?.cropping(to: trimRect) {

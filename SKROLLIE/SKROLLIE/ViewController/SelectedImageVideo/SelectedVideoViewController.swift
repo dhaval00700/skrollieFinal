@@ -321,18 +321,7 @@ extension SelectedVideoViewController
         var dictdata = [String:AnyObject]()
         
         dictdata[keyAllKey.id] = "0" as AnyObject
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore as [String: Any])
-        var userId = String()
-        if let userIDString = idpass["UserId"] as? String
-        {
-            userId = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass["UserId"] as? Int
-        {
-            userId = "\(userIDInt)"
-        }
-        dictdata[keyAllKey.KidUser] = userId as AnyObject
+        dictdata[keyAllKey.KidUser] = AppPrefsManager.shared.getUserData().UserId as AnyObject
         dictdata[keyAllKey.isPhoto] = false as AnyObject
         dictdata[keyAllKey.Url] = "\(name)" as AnyObject
         dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject

@@ -373,7 +373,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     }
     @IBAction func btnAlreadyAUser(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "UnwineToLoginFromRegister", sender: self)
+        navigationController?.popViewController(animated: true)
     }
     
     //-------------------------------------------------------------
@@ -598,6 +598,7 @@ extension RegisterViewController
             {
                 do{
                     dictdata = (result as! [String : AnyObject])
+                    
                     SingleToneClass.sharedInstance.loginDataStore = dictdata
                     self.performSegue(withIdentifier: "segueToOtp", sender: self)
                 }

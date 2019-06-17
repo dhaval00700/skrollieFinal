@@ -11,22 +11,9 @@ import UIKit
 import AudioToolbox
 import SkyFloatingLabelTextField
 
-class LoginViewController: UIViewController,UITextFieldDelegate
+class LoginViewController: UIViewController
 {
-    
-    //--------------------------------------------------------------
-    // MARK: - Variable Declaration
-    //--------------------------------------------------------------
-    
-    //Variable for Error message
-    private let textField = UITextField()
-    private let errorMessageUser = UILabel()
-    private let errorMessagePassword = UILabel()
-    
-    //--------------------------------------------------------------
-    //MARK: -  Outlet
-    //--------------------------------------------------------------
-    
+    //MARK: Outlets
     @IBOutlet weak var ViewUserName: UIView!
     @IBOutlet weak var viewPassword: UIView!
     
@@ -43,28 +30,33 @@ class LoginViewController: UIViewController,UITextFieldDelegate
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     
-    //--------------------------------------------------------------
-    //MARK: - View Methods
-    //--------------------------------------------------------------
+    //MARK: Properties
+    private let textField = UITextField()
+    private let errorMessageUser = UILabel()
+    private let errorMessagePassword = UILabel()
     
+    //MARK: Lifecycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        SetBorder()
+        setupUI()
+    }
+    
+    //MARK: Methods
+    private func setupUI() {
+        setBorder()
         txtUsername.titleFormatter = { $0.lowercased() }
         txtPassword.titleFormatter = { $0.lowercased() }
         
-        txtUsername.text = "bini"
-        txtPassword.text = "123456"
+        if isDevelopmentMode {
+            txtUsername.text = "bini"
+            txtPassword.text = "123456"
+        }
         
         setupErrorMessage()
         setFont()
     }
     
-    //--------------------------------------------------------------
-    //MARK: - Func Didload Dataset
-    //--------------------------------------------------------------
     func setFont()
     {
         lblLoginTitle.font = UIFont.Bold(ofSize: 17)
@@ -79,10 +71,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate
         lblThorughthelenswithtwimoji.font = UIFont.Bold(ofSize: 16)
         
     }
-    
-    //--------------------------------------------------------------
-    //MARK: - Error message
-    //--------------------------------------------------------------
     
     func setupErrorMessage()
     {
@@ -101,7 +89,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate
         self.lblPassword.addSubview(errorMessagePassword)
         
     }
-    func SetBorder()
+    func setBorder()
     {
         ViewUserName.layer.borderColor =  UIColor.lightGray.cgColor
         ViewUserName.layer.borderWidth = 1.0
@@ -112,8 +100,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate
         viewPassword.layer.borderWidth = 1.0
         viewPassword.layer.cornerRadius = 3.0
         viewPassword.layer.masksToBounds = true
-        
-        txtUsername.delegate = self
         
         if let Logo = UIImage(named: "iconUserName"){
             
@@ -127,37 +113,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate
         
         
     }
-    //--------------------------------------------------------------
-    //MARK: - UnWine Segue
-    //--------------------------------------------------------------
     
-    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue){}
-    
-    //--------------------------------------------------------------
-    // MARK: - Action Methods
-    //--------------------------------------------------------------
-    @IBAction func btnRegister(_ sender: Any)
-    {
-        performSegue(withIdentifier: "SegueToRegister", sender: self)
-    }
-    
-    @IBAction func btnLogin(_ sender: UIButton)
-    {
-        if validateAllFields()
-        {
-            WebserviceOfLogin()
-        }
-        
-    }
-    
-    @IBAction func btnForgotPass(_ sender: UIButton)
-    {
-        
-    }
-    
-    //--------------------------------------------------------------
-    //MARK: -
-    //--------------------------------------------------------------
     func validateAllFields() -> Bool
     {
         if (txtUsername.text?.count == 0) && (txtPassword.text?.count == 0)
@@ -216,108 +172,63 @@ class LoginViewController: UIViewController,UITextFieldDelegate
         }
         return true
     }
-    //--------------------------------------------------------------
-    // MARK: - Webservice Methods
-    //--------------------------------------------------------------
     
-    func WebserviceOfLogin()
+    //MARK: Actions
+    @IBAction func btnRegister(_ sender: Any)
+    {
+        let vc = RegisterViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func btnLogin(_ sender: UIButton)
+    {
+        if validateAllFields()
+        {
+            signIn()
+        }
+        
+    }
+    
+    @IBAction func btnForgotPass(_ sender: UIButton)
     {
         
-        var dictdata = [String:AnyObject]()
-        
-        dictdata[keyAllKey.kUsername] = txtUsername.text as AnyObject
-        dictdata[keyAllKey.kPassword] = txtPassword.text as AnyObject
-        
-        webserviceForLogin(dictdata as AnyObject) { (result, success) in
-            print(result)
-            if(success)
-            {
-                do{
-                    dictdata = (result as! [String : AnyObject])
-                    
-                    SingleToneClass.sharedInstance.loginDataStore = dictdata
-                    
-                    print((result as! [String:AnyObject])["message"] as! String)
-                    
-                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
-                
-            else if success == false
-            {
-                
-                if result["message"] as! String == "OTP"
-                {
-                    do
-                    {
-                        
-                        dictdata = (result as! [String : AnyObject])
-                        
-                        SingleToneClass.sharedInstance.loginDataStore = dictdata
-                        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as AnyObject)
-                        print("wellcome back")
-                    }
-                    catch let DecodingError.dataCorrupted(context)
-                    {
-                        print(context)
-                    }
-                    catch let DecodingError.keyNotFound(key, context)
-                    {
-                        print("Key '\(key)' not found:", context.debugDescription)
-                        print("codingPath:", context.codingPath)
-                    }
-                    catch let DecodingError.valueNotFound(value, context)
-                    {
-                        print("Value '\(value)' not found:", context.debugDescription)
-                        print("codingPath:", context.codingPath)
-                    }
-                    catch let DecodingError.typeMismatch(type, context)
-                    {
-                        print("Type '\(type)' mismatch:", context.debugDescription)
-                        print("codingPath:", context.codingPath)
-                    }
-                    catch
-                    {
-                        print("error: ", error)
-                    }
-                }
-            }
-            else
-            {
-                self.errorMessagePassword.isHidden = false
-                self.errorMessagePassword.text = "invalid username or password."//((result as! [String:AnyObject])["message"] as! String)
-                self.viewPassword.layer.borderColor =  UIColor.red.cgColor
-                self.viewPassword.layer.borderWidth = 1.0
-                self.ViewUserName.layer.borderColor =  UIColor.red.cgColor
-                self.ViewUserName .layer.borderWidth = 1.0
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            }
-        }
     }
 }
 
+//MARK: API Call
+extension LoginViewController {
+    func signIn() {
+        
+        let parameter = ParameterRequest()
+        parameter.addParameter(key: ParameterRequest.username, value: txtUsername.text)
+        parameter.addParameter(key: ParameterRequest.password, value: txtPassword.text)
+        
+        _ = APIClient.LogIn(parameters: parameter.parameters, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            
+            if responseData.success {
+                let loginModel = LoginModel(data: response)
+                
+                AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
+                AppPrefsManager.shared.saveUserData(model: loginModel)
+                
+                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } else if !responseData.success {
+                if responseData.message == "OTP" {
+                    
+                } else {
+                    self.errorMessagePassword.isHidden = false
+                    self.errorMessagePassword.text = responseData.message
+                    self.viewPassword.layer.borderColor =  UIColor.red.cgColor
+                    self.viewPassword.layer.borderWidth = 1.0
+                    self.ViewUserName.layer.borderColor =  UIColor.red.cgColor
+                    self.ViewUserName .layer.borderWidth = 1.0
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                }
+            }
+        })
+    }
+}

@@ -32,11 +32,6 @@
 		4F0F211722B76391002F69A7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211622B76391002F69A7 /* UIImageView+Extension.swift */; };
 		4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211822B764F7002F69A7 /* UITableView+Extension.swift */; };
 		4F0F212C22B76C4D002F69A7 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211B22B76C4C002F69A7 /* Utility.swift */; };
-		4F0F212D22B76C4D002F69A7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211D22B76C4C002F69A7 /* Bindable.swift */; };
-		4F0F212E22B76C4D002F69A7 /* BlockBasedSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211E22B76C4C002F69A7 /* BlockBasedSelector.swift */; };
-		4F0F212F22B76C4D002F69A7 /* NSObject+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F211F22B76C4C002F69A7 /* NSObject+Observable.swift */; };
-		4F0F213022B76C4D002F69A7 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F212022B76C4C002F69A7 /* Observable.swift */; };
-		4F0F213122B76C4D002F69A7 /* UIControls+Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F212122B76C4C002F69A7 /* UIControls+Bindable.swift */; };
 		4F0F213222B76C4D002F69A7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F212322B76C4C002F69A7 /* APIClient.swift */; };
 		4F0F213322B76C4D002F69A7 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F212422B76C4C002F69A7 /* ApiManager.swift */; };
 		4F0F213422B76C4D002F69A7 /* HeaderRequestParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F212522B76C4C002F69A7 /* HeaderRequestParameter.swift */; };
@@ -49,6 +44,7 @@
 		4F0F214022B76CDC002F69A7 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F213C22B76CDC002F69A7 /* GlobalFunctions.swift */; };
 		4F0F214122B76CDC002F69A7 /* AppPrefsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */; };
 		4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */; };
+		4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214722B79283002F69A7 /* LoginModel.swift */; };
 		4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E022B3661D004F2C62 /* emogie.swift */; };
 		4FF7D7E322B3661D004F2C62 /* emogie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E122B3661D004F2C62 /* emogie.xib */; };
 		7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */; };
@@ -74,7 +70,6 @@
 		7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F682285B3B3004F85BD /* LoginViewController.swift */; };
 		7F7F9F6D2285B3B3004F85BD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F692285B3B3004F85BD /* RegisterViewController.swift */; };
 		7F7F9F7D2285B3E6004F85BD /* MessageBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F732285B3E5004F85BD /* MessageBarController.swift */; };
-		7F7F9F7E2285B3E6004F85BD /* UIView+IBDesinable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F752285B3E5004F85BD /* UIView+IBDesinable.swift */; };
 		7F7F9F7F2285B3E6004F85BD /* SingleToneClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F782285B3E5004F85BD /* SingleToneClass.swift */; };
 		7F7F9F852285B3FD004F85BD /* ConstantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F822285B3FD004F85BD /* ConstantData.swift */; };
 		7F7F9F862285B3FD004F85BD /* WebserviceSubClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9F832285B3FD004F85BD /* WebserviceSubClass.swift */; };
@@ -176,11 +171,6 @@
 		4F0F211622B76391002F69A7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		4F0F211822B764F7002F69A7 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4F0F211B22B76C4C002F69A7 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		4F0F211D22B76C4C002F69A7 /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
-		4F0F211E22B76C4C002F69A7 /* BlockBasedSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBasedSelector.swift; sourceTree = "<group>"; };
-		4F0F211F22B76C4C002F69A7 /* NSObject+Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Observable.swift"; sourceTree = "<group>"; };
-		4F0F212022B76C4C002F69A7 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		4F0F212122B76C4C002F69A7 /* UIControls+Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControls+Bindable.swift"; sourceTree = "<group>"; };
 		4F0F212322B76C4C002F69A7 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4F0F212422B76C4C002F69A7 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		4F0F212522B76C4C002F69A7 /* HeaderRequestParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderRequestParameter.swift; sourceTree = "<group>"; };
@@ -193,6 +183,7 @@
 		4F0F213C22B76CDC002F69A7 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrefsManager.swift; sourceTree = "<group>"; };
 		4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
+		4F0F214722B79283002F69A7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../Preferences/LoginModel.swift; sourceTree = "<group>"; };
 		4FF7D7E022B3661D004F2C62 /* emogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emogie.swift; sourceTree = "<group>"; };
 		4FF7D7E122B3661D004F2C62 /* emogie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = emogie.xib; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,7 +211,6 @@
 		7F7F9F682285B3B3004F85BD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F7F9F692285B3B3004F85BD /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F7F9F732285B3E5004F85BD /* MessageBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBarController.swift; sourceTree = "<group>"; };
-		7F7F9F752285B3E5004F85BD /* UIView+IBDesinable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IBDesinable.swift"; sourceTree = "<group>"; };
 		7F7F9F782285B3E5004F85BD /* SingleToneClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToneClass.swift; sourceTree = "<group>"; };
 		7F7F9F822285B3FD004F85BD /* ConstantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantData.swift; sourceTree = "<group>"; };
 		7F7F9F832285B3FD004F85BD /* WebserviceSubClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebserviceSubClass.swift; sourceTree = "<group>"; };
@@ -333,14 +323,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		3486A86A22A660DF0053A1A1 /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-				3486A86B22A661960053A1A1 /* PostModel.swift */,
-			);
-			path = DataModel;
-			sourceTree = "<group>";
-		};
 		4F0F20F922B762A1002F69A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,22 +350,9 @@
 			children = (
 				4F0F212722B76C4D002F69A7 /* DataSelectionView */,
 				4F0F212222B76C4C002F69A7 /* Networking */,
-				4F0F211C22B76C4C002F69A7 /* TwoWayBindings */,
 				4F0F211B22B76C4C002F69A7 /* Utility.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		4F0F211C22B76C4C002F69A7 /* TwoWayBindings */ = {
-			isa = PBXGroup;
-			children = (
-				4F0F211D22B76C4C002F69A7 /* Bindable.swift */,
-				4F0F211E22B76C4C002F69A7 /* BlockBasedSelector.swift */,
-				4F0F211F22B76C4C002F69A7 /* NSObject+Observable.swift */,
-				4F0F212022B76C4C002F69A7 /* Observable.swift */,
-				4F0F212122B76C4C002F69A7 /* UIControls+Bindable.swift */,
-			);
-			path = TwoWayBindings;
 			sourceTree = "<group>";
 		};
 		4F0F212222B76C4C002F69A7 /* Networking */ = {
@@ -429,6 +398,8 @@
 			isa = PBXGroup;
 			children = (
 				4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */,
+				4F0F214722B79283002F69A7 /* LoginModel.swift */,
+				3486A86B22A661960053A1A1 /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,7 +447,6 @@
 		7F1EA73E2270415A009D2EF5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3486A86A22A660DF0053A1A1 /* DataModel */,
 				7F7F35BB226ED8B800BB9A27 /* HomeViewController.swift */,
 				7F841DE62294321B008A4D18 /* cell */,
 			);
@@ -530,11 +500,11 @@
 		7F7F9F6E2285B3E5004F85BD /* CustomClass */ = {
 			isa = PBXGroup;
 			children = (
+				345269EE22A7E450008B6613 /* Toast.swift */,
 				F73DD3CD228461FE0096A943 /* Resources */,
 				7F7F9FC52285BA37004F85BD /* Sources */,
 				7F6D12252295173600CB7988 /* CameraAndVedio */,
 				7F7F9F722285B3E5004F85BD /* MessageBarController */,
-				7F7F9F742285B3E5004F85BD /* designable and inspectable */,
 				7F7F9F772285B3E5004F85BD /* Constant and SingleTone class */,
 			);
 			path = CustomClass;
@@ -546,14 +516,6 @@
 				7F7F9F732285B3E5004F85BD /* MessageBarController.swift */,
 			);
 			path = MessageBarController;
-			sourceTree = "<group>";
-		};
-		7F7F9F742285B3E5004F85BD /* designable and inspectable */ = {
-			isa = PBXGroup;
-			children = (
-				7F7F9F752285B3E5004F85BD /* UIView+IBDesinable.swift */,
-			);
-			path = "designable and inspectable";
 			sourceTree = "<group>";
 		};
 		7F7F9F772285B3E5004F85BD /* Constant and SingleTone class */ = {
@@ -639,7 +601,6 @@
 				4F0F214222B76EFC002F69A7 /* Model */,
 				7F71355F2264689600E30429 /* ViewController */,
 				7F7F9F6E2285B3E5004F85BD /* CustomClass */,
-				345269EE22A7E450008B6613 /* Toast.swift */,
 				4F0F20F922B762A1002F69A7 /* Extensions */,
 				7F7F9F812285B3FD004F85BD /* WebServiceFile */,
 			);
@@ -932,13 +893,11 @@
 				7F7F9FD22285BA37004F85BD /* FSPagerViewLayoutAttributes.swift in Sources */,
 				7FDF017522942A470055F86D /* UserCommentListCollectionViewCell.swift in Sources */,
 				7F6D122F2295173600CB7988 /* Orientation.swift in Sources */,
-				4F0F212D22B76C4D002F69A7 /* Bindable.swift in Sources */,
 				7F7F9F6B2285B3B3004F85BD /* MobileNumberAddVc.swift in Sources */,
 				0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */,
 				4F0F210822B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift in Sources */,
 				7F841DEA22943463008A4D18 /* userViewerCollectionViewCell.swift in Sources */,
 				4F0F210A22B762A1002F69A7 /* SVPinView+Extension.swift in Sources */,
-				4F0F212F22B76C4D002F69A7 /* NSObject+Observable.swift in Sources */,
 				4F0F210C22B762A1002F69A7 /* UIColor+Extension.swift in Sources */,
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
@@ -948,7 +907,6 @@
 				3486A86C22A661960053A1A1 /* PostModel.swift in Sources */,
 				7F7F9F7D2285B3E6004F85BD /* MessageBarController.swift in Sources */,
 				4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */,
-				4F0F213022B76C4D002F69A7 /* Observable.swift in Sources */,
 				7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */,
 				7F6D122C2295173600CB7988 /* PreviewView.swift in Sources */,
 				4F0F213822B76C4D002F69A7 /* DataSelectionView.swift in Sources */,
@@ -972,9 +930,7 @@
 				4F0F210922B762A1002F69A7 /* String+Extension.swift in Sources */,
 				34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */,
 				4F0F213322B76C4D002F69A7 /* ApiManager.swift in Sources */,
-				7F7F9F7E2285B3E6004F85BD /* UIView+IBDesinable.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
-				4F0F213122B76C4D002F69A7 /* UIControls+Bindable.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				345269EF22A7E450008B6613 /* Toast.swift in Sources */,
@@ -996,9 +952,9 @@
 				7F7F9F852285B3FD004F85BD /* ConstantData.swift in Sources */,
 				34FC39F222A7A0F6009314D2 /* HomeTblCell.swift in Sources */,
 				4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */,
+				4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */,
 				7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */,
 				4F0F210E22B762A1002F69A7 /* UINavigationBar+Extension.swift in Sources */,
-				4F0F212E22B76C4D002F69A7 /* BlockBasedSelector.swift in Sources */,
 				4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

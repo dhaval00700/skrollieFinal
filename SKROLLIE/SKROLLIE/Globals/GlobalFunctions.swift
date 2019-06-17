@@ -1,6 +1,6 @@
 //
 //  GlobalFunctions.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2019 Smit Patel. All rights reserved.

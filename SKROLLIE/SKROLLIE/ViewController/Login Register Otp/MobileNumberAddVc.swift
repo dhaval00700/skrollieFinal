@@ -243,18 +243,7 @@ extension MobileNumberAddVc
     
     func WebserviceOFOtp()
     {
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["data"] as! AnyObject)
-        var sdas = String()
-        if let userIDString = idpass["id"] as? String
-        {
-            sdas = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass["id"] as? Int
-        {
-            sdas = "\(userIDInt)"
-        }
-        let datas = "idUser=\(sdas)" + "&phone=\(txtMobileNum.text!)"
+        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&phone=\(txtMobileNum.text!)"
         print(datas)
         webserviceForOTPinMobile(dictParams: datas as AnyObject){(result,  status) in
             if status
