@@ -647,7 +647,10 @@ open class SwiftyCamViewController: UIViewController {
 		}
 
 		// If flash is enabled, disable it as the torch is needed for front facing camera
-		disableFlash()
+        if currentCamera == .front {
+            disableFlash()
+        }
+		
 	}
 
 	// MARK: Private Functions

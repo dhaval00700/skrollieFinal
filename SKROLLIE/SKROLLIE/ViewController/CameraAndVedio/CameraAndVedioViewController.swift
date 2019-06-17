@@ -431,6 +431,9 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
+        if camera == .front {
+            flashMode = .off
+        }
         // Called when user switches between cameras
         // Returns current camera selection
     }
@@ -509,7 +512,14 @@ extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavig
             
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-            imagePickerController.allowsEditing = true
+            if imagePickerController.mediaTypes == [kUTTypeImage as String] {
+                imagePickerController.allowsEditing = false
+            } else {
+                imagePickerController.allowsEditing = true
+                imagePickerController.videoMaximumDuration = 60
+                imagePickerController.videoQuality = .typeHigh
+            }
+            
             imagePickerController.delegate = self
             
             
