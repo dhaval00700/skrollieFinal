@@ -26,20 +26,11 @@ struct WebserviceURLs {
     static let kBaseImageURL = ""
     
     //POST
-    
-    static let klogin = "MobileAccount/Mobilelogin?"
-    static let kRegister = "MobileAccount/register"
-    static let kSavePhoto = "MobilePost/SavePost"
+
     static let kCreateFriend = "MobilePost/CreateFriend"
     
     //GET
     
-    static let kOTPMobileNum = "http://103.232.124.170:18012/MobileAccount/SendOTP?"
-    static let kVerifyOTP = "http://103.232.124.170:18012/MobileAccount/VerifyOTP?"
-    static let KMonileNumCheckForRegister = "http://103.232.124.170:18012/MobileAccount/CheckPhoneExist?"
-    static let kEmailIdVerification = "http://103.232.124.170:18012/MobileAccount/CheckEmailExist?"
-    static let kUserNameVerification = "http://103.232.124.170:18012/MobileAccount/CheckUserExist?"
-    static let kEmailFormatcheck = "http://103.232.124.170:18012/MobileAccount/CheckEmailValidator?"
     static let kgetPhoto = "http://103.232.124.170:18012/MobilePost/GetAllPost"
     static let kGetAllPostByIdUser = "http://103.232.124.170:18012/MobilePost/GetAllPostByIdUser"
     static let kDeletePost = "http://103.232.124.170:18012/MobilePost/DeletePost?"

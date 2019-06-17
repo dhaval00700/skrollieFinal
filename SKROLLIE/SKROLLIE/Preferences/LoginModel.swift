@@ -21,7 +21,7 @@ class LoginModel {
     init(data: [String: Any]) {
         
         token = data["token"] as? String ?? ""
-        UserId = data["UserId"] as? String ?? (data["UserId"] as? NSNumber)?.stringValue ?? ""
+        UserId = data["UserId"] as? String ?? (data["UserId"] as? NSNumber)?.stringValue ??  data["id"] as? String ?? (data["id"] as? NSNumber)?.stringValue ?? ""
         UserName = data["UserName"] as? String ?? ""
         UserRole = data["UserRole"] as? String ?? ""
     }

@@ -231,7 +231,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
             }
             else
             {
-                webserviceofUserName()
+                CheckUSerNameValidAtServer()
             }
         }
         
@@ -368,7 +368,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
         
         if validateAllFields()
         {
-            WebserviceOfRegister()
+            registrationAtServer()
         }
     }
     @IBAction func btnAlreadyAUser(_ sender: UIButton)
@@ -563,194 +563,87 @@ class RegisterViewController: UIViewController,UITextFieldDelegate
     }
 }
 
-//--------------------------------------------------------------
-//Mark: -  Extenstion Webservice Methods
-//--------------------------------------------------------------
+
+//MARK: -  Webservie Call
+
 extension RegisterViewController
 {
-    // REGISTER API
     
-    func WebserviceOfRegister()
-    {
+    func registrationAtServer() {
         
-        var dictdata = [String:AnyObject]()
-        dictdata[keyAllKey.kUsername] = txtUserName.text as AnyObject
-        dictdata[keyAllKey.kPassword] = txtPassword.text as AnyObject
-        dictdata[keyAllKey.kEmailaddress] = txtEmailAddress.text as AnyObject
+        let parameter = ParameterRequest()
         
-        let dateString = txtBirthdate.text
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        let date: Date? = dateFormatter.date(from: dateString!)
+       
+        let newDateString = txtBirthdate.text!.getDateWithFormate(formate: "MMM dd, yyyy", timezone: TimeZone.current.abbreviation()!)
+        let newNsDate = newDateString.getDateStringWithFormate("yyyy-MM-dd", timezone: TimeZone.current.abbreviation()!)
         
-        // Convert date object into desired format
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        var newDateString: String? = nil
-        if let date = date {
-            newDateString = dateFormatter.string(from: date)
-        }
+    
+        parameter.addParameter(key: ParameterRequest.username, value: txtUserName.text)
+        parameter.addParameter(key: ParameterRequest.password, value: txtPassword.text)
+        parameter.addParameter(key: ParameterRequest.emailaddress, value: txtEmailAddress.text)
+        parameter.addParameter(key: ParameterRequest.Birthdate, value: newNsDate)
+
         
-        dictdata[keyAllKey.kBirthdate] = newDateString as AnyObject?//txtBirthdate.text as AnyObject
-        
-        webserviceForRegister(dictdata as AnyObject) { (result, status) in
+        _ = APIClient.Register(parameters: parameter.parameters, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
             
-            if status
-            {
-                do{
-                    dictdata = (result as! [String : AnyObject])
-                    
-                    SingleToneClass.sharedInstance.loginDataStore = dictdata
-                    self.performSegue(withIdentifier: "segueToOtp", sender: self)
-                }
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
+            if responseData.success {
+                AppPrefsManager.shared.saveUserData(model: LoginModel(data: response["data"] as? [String : Any] ?? [String : Any]()))
+                let vc = MobileNumberAddVc.instantiate(fromAppStoryboard: .Main)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+            } else if !responseData.success {
+                
             }
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
-            }
-        }
+        })
     }
-    //
-    //--------------------------------------------------------------
-    //Mark: -  Extenstion Webservice Methods
-    //--------------------------------------------------------------
     
-    // EMAIL EXIST OR NOT CHECK API
     
-    func webserviceOfEmailFormateCheck()
-    {
-        let EmailAddress = "emailaddress=\(txtEmailAddress.text!)"
+    func webserviceOfEmailFormateCheck() {
         
-        webserviceForEmailFormateCheck(dictParams: EmailAddress as AnyObject){(result, status) in
+        _ = APIClient.CheckEmailAddres(email: txtEmailAddress.text!, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
             
-            if status
-            {
-                do
-                {
-                    self.errorMessageEmail.isHidden = true
-                    self.errorMessageEmail.text = ""
-                    self.viewEmail.layer.borderColor =  UIColor.lightGray.cgColor
-                    self.viewEmail.layer.borderWidth = 1.0
-                    self.txtEmailAddress.errorMessage = ""
-                    self.txtEmailAddress.titleColor = UIColor.green
-                    self.webserviceoFVerifyEmail()
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+            if responseData.success {
+                self.errorMessageEmail.isHidden = true
+                self.errorMessageEmail.text = ""
+                self.viewEmail.layer.borderColor =  UIColor.lightGray.cgColor
+                self.viewEmail.layer.borderWidth = 1.0
+                self.txtEmailAddress.errorMessage = ""
+                self.txtEmailAddress.titleColor = UIColor.green
+                self.verifyEMailAtServer()
                 
-            else
-            {
-                
+            } else if !responseData.success {
                 self.errorMessageEmail.isHidden = false
                 self.errorMessageEmail.text = "enter valide email"
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self.viewEmail.layer.borderColor =  UIColor.red.cgColor
                 self.viewEmail.layer.borderWidth = 1.0
                 self.txtEmailAddress.titleColor = UIColor.red
-                print((result as! [String:AnyObject])["message"] as! String)
-                print((result as! [String:AnyObject])["message"] as! String)
+               
             }
-        }
+        })
     }
+
     
-    
-    //--------------------------------------------------------------
-    //Mark: -  Extenstion Webservice Methods
-    //--------------------------------------------------------------
-    
-    // EMAIL EXIST OR NOT CHECK API
-    
-    func webserviceoFVerifyEmail()
-    {
-        let EmailAddress = "emailaddress=\(txtEmailAddress.text!)"
+    func verifyEMailAtServer() {
         
-        webserviceForVerifyEmail(dictParams: EmailAddress as AnyObject){(result, status) in
+        _ = APIClient.VerifyEmailAddres(email: txtEmailAddress.text!, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
             
-            if status
-            {
-                do
-                {
-                    self.errorMessageEmail.isHidden = false
-                    self.errorMessageEmail.text =  "email already in use"
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    self.viewEmail.layer.borderColor =  UIColor.red.cgColor
-                    self.viewEmail.layer.borderWidth = 1.0
-                    self.txtEmailAddress.titleColor = UIColor.red
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+            if responseData.success {
+                self.errorMessageEmail.isHidden = false
+                self.errorMessageEmail.text =  "email already in use"
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                self.viewEmail.layer.borderColor =  UIColor.red.cgColor
+                self.viewEmail.layer.borderWidth = 1.0
+                self.txtEmailAddress.titleColor = UIColor.red
                 
-            else
-            {
-                
+            } else if !responseData.success {
                 self.errorMessageEmail.isHidden = true
                 self.errorMessageEmail.text = ""
                 self.viewEmail.layer.borderColor =  UIColor.lightGray.cgColor
@@ -758,59 +651,26 @@ extension RegisterViewController
                 self.txtEmailAddress.errorMessage = ""
                 self.txtEmailAddress.titleColor = UIColor.green
                 
-                print((result as! [String:AnyObject])["message"] as! String)
             }
-        }
+        })
     }
     
-    
-    // USERNAME EXIST OR NOT CHECK API
-    
-    func webserviceofUserName()
-    {
-        let username = "username=\(txtUserName.text!)"
+    func CheckUSerNameValidAtServer() {
         
-        webserviceForUserName(dictParams: username as AnyObject){(result, status) in
+        _ = APIClient.VerifyUserName(username: txtUserName.text!, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
             
-            if status
-            {
-                do
-                {
-                    self.errorMessageUser.isHidden = false
-                    self.errorMessageUser.text =  "try a different username"
-                    
-                    self.viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
-                    self.viewUserName.layer.borderWidth = 1.0
-                    self.txtUserName.titleColor = UIColor.red
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                }
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+            if responseData.success {
+                self.errorMessageUser.isHidden = false
+                self.errorMessageUser.text =  "try a different username"
                 
-            else
-            {
+                self.viewUserName.layer.borderColor =  UIColor.lightGray.cgColor
+                self.viewUserName.layer.borderWidth = 1.0
+                self.txtUserName.titleColor = UIColor.red
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                
+            } else if !responseData.success {
                 self.errorMessageUser.isHidden = true
                 self.errorMessageUser.text =  ""
                 self.viewUserName.layer.borderColor = UIColor.lightGray.cgColor
@@ -819,8 +679,9 @@ extension RegisterViewController
                 self.txtUserName.titleColor = UIColor.green
                 
             }
-        }
+        })
     }
+    
 }
 extension UIDevice {
     static func vibrate() {
