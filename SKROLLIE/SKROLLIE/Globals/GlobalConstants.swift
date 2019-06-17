@@ -47,9 +47,15 @@ struct API {
     static var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
     
     
-    static let Login     =   BASE_URL + "MobileAccount/Mobilelogin?"
+    static let Login     =   BASE_URL + "MobileAccount/Mobilelogin"
     static let Register     =   BASE_URL + "MobileAccount/register"
     static let SavePost     =   BASE_URL + "MobilePost/SavePost"
     static let CreateFriend     =   BASE_URL + "MobilePost/CreateFriend"
     static let SendOTP     =   BASE_URL + "MobileAccount/SendOTP"
+    static let EmailValidation = BASE_URL + "MobileAccount/CheckEmailValidator"
+    static let VerifyEmailAddress = BASE_URL + "MobileAccount/CheckEmailExist"
+    static let VerifiyUserName = BASE_URL + "MobileAccount/CheckUserExist"
+    static let verifyPhoneNumber = BASE_URL + "MobileAccount/CheckPhoneExist"
+    static let sendOtp = BASE_URL + "MobileAccount/SendOTP"
+    static let verifyOTPUrl = BASE_URL + "MobileAccount/VerifyOTP"
 }

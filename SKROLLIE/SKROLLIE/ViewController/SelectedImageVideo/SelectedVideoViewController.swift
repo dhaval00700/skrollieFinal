@@ -67,6 +67,8 @@ class SelectedVideoViewController: UIViewController {
         emogiPager.isHidden = true
         btnEmogiHide.isHidden = true
         
+        txtEnterDescription.applyBorder(1.0, borderColor: .black)
+        
         setupSwipeGesture()
         setupEmogiPager()
         setData()
@@ -307,7 +309,7 @@ extension SelectedVideoViewController {
                 // Error.
             } else {
                 // Do something with your result.
-                self.webserviceOfSaveVideo(name: videoName, thumbImgName: newKey)
+                self.SavePhoto(name: videoName, thumbImgName: newKey)
                 print("done Thumbnil")
             }
             return nil
@@ -316,61 +318,49 @@ extension SelectedVideoViewController {
 }
 extension SelectedVideoViewController
 {
-    func webserviceOfSaveVideo(name: String, thumbImgName: String)
-    {
-        var dictdata = [String:AnyObject]()
+    
+    func SavePhoto(name: String, thumbImgName: String) {
         
-        dictdata[keyAllKey.id] = "0" as AnyObject
-        dictdata[keyAllKey.KidUser] = AppPrefsManager.shared.getUserData().UserId as AnyObject
-        dictdata[keyAllKey.isPhoto] = false as AnyObject
-        dictdata[keyAllKey.Url] = "\(name)" as AnyObject
-        dictdata[keyAllKey.Description] = txtEnterDescription.text as AnyObject
-        dictdata[keyAllKey.Videothumbnailimage] = "\(thumbImgName)" as AnyObject
-        dictdata[keyAllKey.Emoji1] = returnEmojiNumber(img: btnEmogi1.image(for: .normal)!) as AnyObject
-        dictdata[keyAllKey.Emoji2] = returnEmojiNumber(img: btnEmogi2.image(for: .normal)!) as AnyObject
-        dictdata[keyAllKey.isPublish] = true as AnyObject
-        dictdata[keyAllKey.Isforever] = btnForever.isSelected ? true as AnyObject : false as AnyObject
         
-        webserviceForSavePhoto(dictdata as AnyObject) { (result, status) in
+        let parameter = ParameterRequest()
+        parameter.addParameter(key: ParameterRequest.id, value: "0")
+        parameter.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        parameter.addParameter(key: ParameterRequest.isPhoto, value: false)
+        parameter.addParameter(key: ParameterRequest.Url, value: name)
+        parameter.addParameter(key: ParameterRequest.Description, value: txtEnterDescription.text)
+        parameter.addParameter(key: ParameterRequest.Videothumbnailimage, value: thumbImgName)
+
+
+        parameter.addParameter(key: ParameterRequest.Emoji1, value: returnEmojiNumber(img: btnEmogi1.image(for: .normal)!))
+        parameter.addParameter(key: ParameterRequest.Emoji2, value: returnEmojiNumber(img: btnEmogi2.image(for: .normal)!))
+        parameter.addParameter(key: ParameterRequest.isPublish, value: name)
+        parameter.addParameter(key: ParameterRequest.Isforever, value: btnForever.isSelected ? true as AnyObject : false)
+        
+        
+        _ = APIClient.SavePostImage(parameters: parameter.parameters, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
             
-            if status
-            {
-                do
-                {
-                     AppDelegate.sharedDelegate().window?.showToastAtBottom(message: (result as! [String:AnyObject])["message"] as! String)
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+            if responseData.success {
+                let loginModel = LoginModel(data: response)
                 
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
+                AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
+                AppPrefsManager.shared.saveUserData(model: loginModel)
+                
+                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } else if !responseData.success {
+                if responseData.message == "OTP" {
+                    AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
+                    
+                } else {
+                    
+                }
             }
-        }
+        })
     }
+    
 }
 
 

@@ -77,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK: - Methods
     func setLogin()  {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let Login = storyborad.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -84,5 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.keyWindow?.rootViewController = customNavigation
 
     }
+    
+    
+    
 }
 

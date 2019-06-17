@@ -157,135 +157,66 @@ class MobileNumberAddVc: UIViewController,UITextFieldDelegate
     }
     @IBAction func btnAlreayAUser(_ sender: Any)
     {
-        performSegue(withIdentifier: "SegueMobileNumVcToLogin", sender: self)
+        AppDelegate.sharedDelegate().setLogin()
     }
     
-    //--------------------------------------------------------------
-    // MARK: - Prepare
-    //--------------------------------------------------------------
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if (segue.identifier == "SegueToVerificationPin")
-        {
-            
-            let otp = segue.destination as! OTPViewController
-            
-            otp.getDataMobileNum = txtMobileNum.text!
-        }
-    }
     
     
 }
 
-//--------------------------------------------------------------
-//Mark: -  Extenstion Webservice Methods
-//--------------------------------------------------------------
+//MARK: -  Extenstion Webservice Methods
 extension MobileNumberAddVc
 {
-    //MOBILE NUMBER EXIST OR NOT CHECK API
     
-    func webServiceoFMobileNum()
-    {
-        let PhoneNum = "phone=\(txtMobileNum.text!)"
+    func webServiceoFMobileNum() {
         
-        webserviceForVerifyMobileNumExistorNot(dictParams: PhoneNum as AnyObject){(result,  status) in
-            if status
-            {
-                do
-                {
-                    self.errorMessage.isHidden = false
-                    self.errorMessage.text = "mobile number already exist"
-                    self.ViewOfMobile.layer.borderColor =  UIColor.red.cgColor
-                    self.ViewOfMobile.layer.borderWidth = 1.0
-                    self.txtMobileNum.titleColor = UIColor.red
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
+        _ = APIClient.CheckMobileNumber(mobileNumber: txtMobileNum.text!, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            
+            if responseData.success {
+                self.errorMessage.isHidden = false
+                self.errorMessage.text = "mobile number already exist"
+                self.ViewOfMobile.layer.borderColor =  UIColor.red.cgColor
+                self.ViewOfMobile.layer.borderWidth = 1.0
+                self.txtMobileNum.titleColor = UIColor.red
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 
-            else
-            {
+            } else if !responseData.success {
                 self.errorMessage.isHidden = true
                 self.errorMessage.text = ""
                 self.ViewOfMobile.layer.borderColor = UIColor.lightGray.cgColor
                 self.ViewOfMobile.layer.borderWidth = 1.0
                 self.txtMobileNum.errorMessage = ""
                 self.txtMobileNum.titleColor = UIColor.green
-                self.WebserviceOFOtp()
+                self.SendOTPFromServer()
+                
             }
-        }
+        })
     }
     
     
-    func WebserviceOFOtp()
-    {
-        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&phone=\(txtMobileNum.text!)"
-        print(datas)
-        webserviceForOTPinMobile(dictParams: datas as AnyObject){(result,  status) in
-            if status
-            {
-                do {
-                    
-                    print((result as! [String:AnyObject])["message"] as! String)
-                    self.performSegue(withIdentifier: "SegueToVerificationPin", sender: self)
-                    
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch {
-                    print("error: ", error)
-                }
-            }
-            else
-            {
+    func SendOTPFromServer() {
+        
+        
+        _ = APIClient.SendOTP(mobileNumber: txtMobileNum.text!, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            
+            if responseData.success {
+                
+                let vc  =  OTPViewController.instantiate(fromAppStoryboard: .Main)
+                vc.getDataMobileNum = self.txtMobileNum.text!
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } else if !responseData.success {
                 self.errorMessage.isHidden = false
-                self.errorMessage.text = (result as! [String:AnyObject])["message"] as? String
+                self.errorMessage.text = responseData.message
                 self.ViewOfMobile.layer.borderColor =  UIColor.red.cgColor
                 self.ViewOfMobile.layer.borderWidth = 1.0
                 
             }
-        }
+        })
     }
+    
 }
