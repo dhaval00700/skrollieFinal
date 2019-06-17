@@ -19,7 +19,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
+        <array key="MONTSERRAT-SEMIBOLD.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -1875,35 +1875,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2G5-hB-qsv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuo-Ii-CEb">
-                                <rect key="frame" x="0.0" y="75" width="320" height="40"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what’s happening" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cqr-ZS-ZKp">
-                                        <rect key="frame" x="10" y="10" width="310" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.47779323630136988" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="cqr-ZS-ZKp" secondAttribute="trailing" id="ATw-zl-9HJ"/>
-                                    <constraint firstItem="cqr-ZS-ZKp" firstAttribute="leading" secondItem="fuo-Ii-CEb" secondAttribute="leading" constant="10" id="HOF-lQ-KYm"/>
-                                    <constraint firstAttribute="height" constant="40" id="c8Z-yR-Oth"/>
-                                    <constraint firstItem="cqr-ZS-ZKp" firstAttribute="centerY" secondItem="fuo-Ii-CEb" secondAttribute="centerY" id="syp-Tx-q9R"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4n-sh-CQj" customClass="FSPagerView" customModule="SKROLLIE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="404" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="394" width="320" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.49376605308219179" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="6LZ-c7-0F7"/>
+                                    <constraint firstAttribute="height" constant="70" id="6LZ-c7-0F7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
@@ -2009,20 +1985,29 @@
                                     <action selector="onBtnText:" destination="Lkc-5S-jjz" eventType="touchUpInside" id="xc2-F5-vUa"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gfj-cv-eP4">
+                                <rect key="frame" x="10" y="25" width="255" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Hun-Ir-q1L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WPu-mv-k2f" firstAttribute="top" secondItem="S4n-sh-CQj" secondAttribute="bottom" id="3TX-BC-8Wq"/>
+                            <constraint firstItem="TS2-Tx-QsN" firstAttribute="leading" secondItem="gfj-cv-eP4" secondAttribute="trailing" constant="10" id="7wO-Ky-f2Y"/>
                             <constraint firstItem="TS2-Tx-QsN" firstAttribute="top" secondItem="WXg-St-1Ku" secondAttribute="top" constant="5" id="Fhi-Np-ALv"/>
                             <constraint firstItem="tWG-ae-icI" firstAttribute="top" secondItem="WPu-mv-k2f" secondAttribute="bottom" constant="10" id="Fsl-WK-IMP"/>
                             <constraint firstItem="S4n-sh-CQj" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="G7D-on-luP"/>
-                            <constraint firstAttribute="trailing" secondItem="fuo-Ii-CEb" secondAttribute="trailing" id="Gc9-Wm-pM8"/>
-                            <constraint firstItem="fuo-Ii-CEb" firstAttribute="leading" secondItem="ztd-fg-WAB" secondAttribute="leading" id="S6K-YL-CrQ"/>
+                            <constraint firstItem="gfj-cv-eP4" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" constant="10" id="MZb-vK-Kl5"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="bottom" secondItem="2G5-hB-qsv" secondAttribute="bottom" id="TNj-rP-mp4"/>
+                            <constraint firstItem="gfj-cv-eP4" firstAttribute="top" secondItem="TS2-Tx-QsN" secondAttribute="top" id="TUc-ON-b3S"/>
                             <constraint firstItem="2G5-hB-qsv" firstAttribute="top" secondItem="ztd-fg-WAB" secondAttribute="top" id="WLE-yP-q1v"/>
                             <constraint firstItem="2G5-hB-qsv" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="aYO-nf-kyt"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="TS2-Tx-QsN" secondAttribute="trailing" constant="10" id="h6P-dV-qnT"/>
-                            <constraint firstItem="fuo-Ii-CEb" firstAttribute="top" secondItem="TS2-Tx-QsN" secondAttribute="bottom" constant="15" id="jpH-5C-2iy"/>
                             <constraint firstItem="tWG-ae-icI" firstAttribute="leading" secondItem="WXg-St-1Ku" secondAttribute="leading" id="kf8-WN-lfM"/>
                             <constraint firstItem="WPu-mv-k2f" firstAttribute="centerX" secondItem="ztd-fg-WAB" secondAttribute="centerX" id="ng6-4C-kEi"/>
                             <constraint firstItem="WXg-St-1Ku" firstAttribute="trailing" secondItem="tWG-ae-icI" secondAttribute="trailing" id="pfX-SM-g0X"/>
@@ -2041,8 +2026,6 @@
                         <outlet property="btnText" destination="TS2-Tx-QsN" id="4hW-PR-shl"/>
                         <outlet property="emogiPagerView" destination="S4n-sh-CQj" id="K3p-Qk-jNi"/>
                         <outlet property="imgSelectedImage" destination="2G5-hB-qsv" id="LMZ-iG-zWG"/>
-                        <outlet property="txtEnterDescription" destination="cqr-ZS-ZKp" id="XQK-7g-HoM"/>
-                        <outlet property="viwDescription" destination="fuo-Ii-CEb" id="oj4-gD-4A2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bX-il-0Xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2325,7 +2308,7 @@
                                                         <rect key="frame" x="3" y="3" width="104" height="104"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shield" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-lL-Xoq">
-                                                        <rect key="frame" x="97" y="-12" width="25" height="30"/>
+                                                        <rect key="frame" x="106" y="-12" width="16" height="16"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
