@@ -1,6 +1,6 @@
 //
 //  GlobalConstants.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2019 Smit Patel. All rights reserved.
@@ -45,4 +45,11 @@ enum LoginType: String {
 //MARK: - API
 struct API {
     static var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
+    
+    
+    static let Login     =   BASE_URL + "MobileAccount/Mobilelogin?"
+    static let Register     =   BASE_URL + "MobileAccount/register"
+    static let SavePost     =   BASE_URL + "MobilePost/SavePost"
+    static let CreateFriend     =   BASE_URL + "MobilePost/CreateFriend"
+    static let SendOTP     =   BASE_URL + "MobileAccount/SendOTP"
 }

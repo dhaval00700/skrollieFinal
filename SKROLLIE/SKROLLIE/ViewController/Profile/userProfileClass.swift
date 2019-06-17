@@ -54,20 +54,7 @@ class userProfileClass: UIViewController
         tableview.delegate = self
         tableview.dataSource = self
         
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["UserId"] as AnyObject)
-        
-        var userId = String()
-        if let userIDString = idpass as? String
-        {
-            userId = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass as? Int
-        {
-            userId = "\(userIDInt)"
-        }
-        
-        webserviceofGetPhoto(UserId: userId)
+        webserviceofGetPhoto()
     }
     
     @IBAction func btnSetting(_ sender: UIButton)
@@ -143,9 +130,9 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension userProfileClass {
-    func webserviceofGetPhoto(UserId :String)
+    func webserviceofGetPhoto()
     {
-        webserviceForGetAllPostByIdUser(id: UserId){(result, status) in
+        webserviceForGetAllPostByIdUser(id: AppPrefsManager.shared.getUserData().UserId){(result, status) in
             
             if status
             {

@@ -1,6 +1,6 @@
 //
 //  ApiManager.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2018 Smit Patel. All rights reserved.
@@ -12,9 +12,9 @@ import Alamofire
 
 class ApiManager {
     
-    class func requestApi(method: Alamofire.HTTPMethod, urlString: String, parameters: [String: AnyObject]? = nil, headers: [String: String]? = nil, success successBlock:@escaping (([String: AnyObject]) -> Void), failure failureBlock:((NSError) -> Bool)?) -> DataRequest
+    class func requestApi(method: Alamofire.HTTPMethod, urlString: String, parameters: [String: Any]? = nil, headers: [String: String]? = nil, success successBlock:@escaping (([String: Any]) -> Void), failure failureBlock:((NSError) -> Bool)?) -> DataRequest
     {
-        var finalParameters = [String: AnyObject]()
+        var finalParameters = [String: Any]()
         if(parameters != nil)
         {
             finalParameters = parameters!
@@ -27,7 +27,6 @@ class ApiManager {
         var request = URLRequest(url: URL(string: urlString)!)
         request.timeoutInterval = 60
         request.httpMethod = method.rawValue
-        
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -50,18 +49,10 @@ class ApiManager {
                 print( "response.request: \(String(describing: response.request?.allHTTPHeaderFields))")
                 
                 
-                if(response.result.error == nil)
-                {
-                    let responseObject = response.result.value as! [NSObject: AnyObject]
-                    
-                    _ = responseObject as! [String : AnyObject]
-                    
-                    successBlock(responseObject as! [String : AnyObject])
-                    
-                    
-                }
-                else
-                {
+                if(response.result.error == nil) {
+                    let responseObject = response.result.value as! [NSObject: Any]
+                    successBlock(responseObject as! [String : Any])
+                } else {
                     if(failureBlock != nil && failureBlock!(response.result.error! as NSError))
                     {
                         if let statusCode = response.response?.statusCode

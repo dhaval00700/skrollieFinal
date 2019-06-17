@@ -87,9 +87,8 @@ class commentViewClass: UIViewController
         else{
             viewAllComment.isHidden = true
         }
-        
-        tblView.borderColorUIView = UIColor.init(red: 49/255, green: 36/255, blue: 77/255, alpha: 1.0)
-        tblView.borderWidthUIView = 3.0
+
+        tblView.applyBorder(3.0, borderColor: UIColor.init(red: 49/255, green: 36/255, blue: 77/255, alpha: 1.0))
         tblView.layer.cornerRadius = 5.0
         tblView.layer.masksToBounds = true
         

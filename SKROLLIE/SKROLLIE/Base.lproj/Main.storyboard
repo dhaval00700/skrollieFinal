@@ -764,8 +764,6 @@
                         <outlet property="txtPassword" destination="Vgr-JJ-WHq" id="vmR-8c-6PL"/>
                         <outlet property="txtUsername" destination="TAv-ih-cWR" id="SwU-ik-Vzb"/>
                         <outlet property="viewPassword" destination="Cu5-OU-YHO" id="Ir6-z8-MyV"/>
-                        <segue destination="arH-jf-4WX" kind="show" identifier="SegueToRegister" id="XWN-H7-OFW"/>
-                        <segue destination="1bm-6K-YxT" kind="show" identifier="" id="S2c-jI-l8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86l-PN-KZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1162,12 +1160,10 @@
                         <outlet property="viewEmail" destination="S5Y-rp-1gH" id="kyk-rK-ckC"/>
                         <outlet property="viewPassword" destination="i8T-Rb-jzR" id="a7f-lx-59y"/>
                         <outlet property="viewUserName" destination="EaU-1Z-L8i" id="TaN-Mp-aux"/>
-                        <segue destination="ImX-Yz-h5T" kind="unwind" identifier="UnwineToLoginFromRegister" unwindAction="unwindToContainerVCWithSegue:" id="F2J-ij-jog"/>
                         <segue destination="1bm-6K-YxT" kind="show" identifier="segueToOtp" id="EvV-XO-e5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FU5-tI-gB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ImX-Yz-h5T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3081" y="-454"/>
         </scene>
@@ -2308,7 +2304,7 @@
                                                         <rect key="frame" x="3" y="3" width="104" height="104"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shield" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-lL-Xoq">
-                                                        <rect key="frame" x="106" y="-12" width="16" height="16"/>
+                                                        <rect key="frame" x="97" y="-12" width="25" height="30"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29230,7 +29226,4 @@ GCWEABgljAAYJY8AGCWhABglpAAYJakAAAAAAAAEAQAAAAAAAABtAAAAAAAAAAAAAAAAABglqw
         <image name="iocnProfile" width="30" height="30"/>
         <image name="logo" width="401" height="341"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="S2c-jI-l8M"/>
-    </inferredMetricsTieBreakers>
 </document>

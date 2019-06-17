@@ -1,6 +1,6 @@
 //
 //  AppPrefsManager.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2019 Smit Patel. All rights reserved.
@@ -11,14 +11,8 @@ import Foundation
 class AppPrefsManager {
     static let shared = AppPrefsManager()
     
-    
-    private let FCM_TOKEN = "FCM_TOKEN"
-    private let DEVICE_ID = "DEVICE_ID"
-    private let WALKTHROUGH_SHOWN = "WALKTHROUGH_SHOWN"
-    private let USER_ID = "USER_ID"
-    private let SET_PIN = "SET_PIN"
     private let USER_LOGIN  =   "USER_LOGIN"
-    private let SESSION_ID  =   "SID"
+    private let USER_DATA_KEY  =   "USER_DATA_KEY"
     
     init() {
     }
@@ -50,34 +44,6 @@ class AppPrefsManager {
         return true
     }
     
-    // MARK: - FCM Token
-    func setFCMToken(token: String) {
-        setDataToPreference(data: token, forKey: FCM_TOKEN)
-    }
-    
-    func getFCMToken() -> String {
-        return getDataFromPreference(key: FCM_TOKEN) as? String ?? ""
-    }
-    
-    // MARK: - Device ID
-    func setDeviceId(id: String) {
-        setDataToPreference(data: id, forKey: DEVICE_ID)
-    }
-    
-    func getDeviceId() -> String {
-        return getDataFromPreference(key: DEVICE_ID) as! String
-    }
-    
-    // MARK: - Walkthrough Shown
-    func setIsWalkthroughShown(shown: Bool) {
-        setDataToPreference(data: shown, forKey: WALKTHROUGH_SHOWN)
-    }
-    
-    func isWalkthroughShown() -> Bool {
-        let shown = getDataFromPreference(key: WALKTHROUGH_SHOWN)
-        return shown == nil ? false: (shown as! Bool)
-    }
-    
     // MARK: - User Login
     func setIsUserLogin(isUserLogin: Bool) {
         setDataToPreference(data: isUserLogin, forKey: USER_LOGIN)
@@ -86,5 +52,22 @@ class AppPrefsManager {
     func isUserLogin() -> Bool {
         let isUserLogin = getDataFromPreference(key: USER_LOGIN)
         return isUserLogin == nil ? false: (isUserLogin as! Bool)
+    }
+    
+    //MARK: - User data
+    func saveUserData(model: LoginModel)
+    {
+        setDataToPreference(data: model.toDictionary() as AnyObject, forKey: USER_DATA_KEY)
+    }
+    
+    func getUserData() -> LoginModel
+    {
+        let Obj = getDataFromPreference(key: USER_DATA_KEY) as? [String: Any] ?? [String: Any]()
+        return LoginModel(data: Obj)
+    }
+    
+    func removeUserData()
+    {
+        removeDataFromPreference(key: USER_DATA_KEY)
     }
 }

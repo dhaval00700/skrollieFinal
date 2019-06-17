@@ -1,6 +1,6 @@
 //
 //  UIViewController+Extension.swift
-//  Trustfund
+//  SKROLLIE
 //
 //  Created by Smit Patel on 19/03/19.
 //  Copyright © 2019 Smit Patel. All rights reserved.
@@ -30,12 +30,7 @@ extension UIViewController {
 
 enum AppStoryboard : String {
     
-    case Home
     case Main
-    case Onboarding
-    case LoginRegister
-    case EditProfile
-    case MyScheduled
     
     var instance : UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)

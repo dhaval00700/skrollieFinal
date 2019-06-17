@@ -8,39 +8,6 @@
 
 import UIKit
 
-
-//MARK: - All UIImage Extension
-extension UIImage {
-    
-    func tintWithColor(_ color:UIColor) -> UIImage {
-        
-        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale);
-        //UIGraphicsBeginImageContext(self.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        // flip the image
-        context?.scaleBy(x: 1.0, y: -1.0)
-        context?.translateBy(x: 0.0, y: -self.size.height)
-        
-        // multiply blend mode
-        context?.setBlendMode(.multiply)
-        
-        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        context?.clip(to: rect, mask: self.cgImage!)
-        color.setFill()
-        context?.fill(rect)
-        
-        // create uiimage
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-        
-    }
-    
-}
-
-
 class HomeViewController: UIViewController
 {
     
@@ -76,22 +43,7 @@ class HomeViewController: UIViewController
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        
-        
-        let idpass = (SingleToneClass.sharedInstance.loginDataStore["UserId"] as AnyObject)
-        
-        var userId = String()
-        if let userIDString = idpass as? String
-        {
-            userId = "\(userIDString)"
-        }
-        
-        if let userIDInt = idpass as? Int
-        {
-            userId = "\(userIDInt)"
-        }
-        
-        webserviceofGetPhoto(UserId: userId)
+        webserviceofGetPhoto()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,12 +149,13 @@ extension HomeViewController: UIScrollViewDelegate {
         }
     }
 }
+
 extension HomeViewController
 {
     
-    func webserviceofGetPhoto(UserId :String)
+    func webserviceofGetPhoto()
     {
-        webserviceForGetPhoto(id: UserId){(result, status) in
+        webserviceForGetPhoto(id: AppPrefsManager.shared.getUserData().UserId){(result, status) in
             
             if status
             {
