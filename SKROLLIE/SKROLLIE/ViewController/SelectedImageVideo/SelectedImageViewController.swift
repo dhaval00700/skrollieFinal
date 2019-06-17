@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 import AWSS3
 import AWSCore
 
@@ -85,8 +86,8 @@ class SelectedImageViewController: UIViewController {
         emogiPagerView.delegate = self
         emogiPagerView.dataSource = self
         self.emogiPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-        self.emogiPagerView.itemSize = CGSize.init(width: 70, height: 70)
-        self.emogiPagerView.decelerationDistance = FSPagerView.automaticDistance
+        self.emogiPagerView.itemSize = CGSize(width: 50, height: 50)
+        self.emogiPagerView.interitemSpacing = 8
         let type = transformerTypes[0]
         self.emogiPagerView.transformer = FSPagerViewTransformer(type:type)
     }
@@ -105,8 +106,14 @@ class SelectedImageViewController: UIViewController {
                 print("Swiped down")
             case UISwipeGestureRecognizer.Direction.left:
                 print("Swiped left")
-                self.goToHomePage()
-                uploadImage(fileUrl: selectedImageUrl)
+                let emoji1 = returnEmojiNumber(img: self.btnEmogi1.image(for: .normal)!)
+                let emoji2 = returnEmojiNumber(img: self.btnEmogi2.image(for: .normal)!)
+                if (!emoji1.isEmpty && emoji2.isEmpty) || (emoji1.isEmpty && !emoji2.isEmpty) {
+                    AppDelegate.sharedDelegate().window?.showToastAtBottom(message:"Please Select Both Emoji")
+                } else {
+                    self.goToHomePage()
+                    uploadImage(fileUrl: selectedImageUrl)
+                }
             case UISwipeGestureRecognizer.Direction.up:
                 print("Swiped up")
             default:
@@ -146,6 +153,11 @@ class SelectedImageViewController: UIViewController {
         }
     }
     @IBAction func onBtnHide(_ sender: Any) {
+        let emoji1 = returnEmojiNumber(img: btnEmogi1.image(for: .normal)!)
+        let emoji2 = returnEmojiNumber(img: btnEmogi2.image(for: .normal)!)
+        if (!emoji1.isEmpty && emoji2.isEmpty) || (emoji1.isEmpty && !emoji2.isEmpty) {
+            AppDelegate.sharedDelegate().window?.showToastAtBottom(message:"Please Select Both Emoji")
+        }
         emogiPagerView.isHidden = true
         btnEmogiHide.isHidden = true
     }
@@ -173,8 +185,11 @@ extension SelectedImageViewController: FSPagerViewDelegate, FSPagerViewDataSourc
         let currentEmoji = arrEmoji[index]
         if btnEmogi1.image(for: .normal) == UIImage(named: "blankHappy") {
             btnEmogi1.setImage(currentEmoji, for: .normal)
-        } else if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") && btnEmogi2.image(for: .normal) == UIImage(named: "blankSad") {
+        } else if btnEmogi1.image(for: .normal) != UIImage(named: "blankHappy") && btnEmogi2.image(for: .normal) == UIImage(named: "blankSad") && btnEmogi1.image(for: .normal) != currentEmoji {
             btnEmogi2.setImage(currentEmoji, for: .normal)
+        } else {
+            AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Please Select Different Emoji")
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         }
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
@@ -218,7 +233,7 @@ extension SelectedImageViewController {
                 // Error.
             } else {
                 // Do something with your result.
-                 self.webserviceOfSavePhoto(name: newKey)
+                self.webserviceOfSavePhoto(name: newKey)
                 
                 print("done")
             }
