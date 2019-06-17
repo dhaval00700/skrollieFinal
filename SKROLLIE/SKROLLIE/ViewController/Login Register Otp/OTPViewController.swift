@@ -103,12 +103,12 @@ class OTPViewController: UIViewController,UITextFieldDelegate
     
     @IBAction func btnNext(_ sender: UIButton)
     {
-        WebserviceOFVerifyOtp()
+        VerifyOTPFromServer()
     }
     
     @IBAction func btnAlreayAUser(_ sender: Any)
     {
-        performSegue(withIdentifier: "UnwineToLogin", sender: self)
+        AppDelegate.sharedDelegate().setLogin()
     }
     @IBAction func btnChangeNumber(_ sender: UIButton)
     {
@@ -116,7 +116,7 @@ class OTPViewController: UIViewController,UITextFieldDelegate
     }
     @IBAction func btnResendOTP(_ sender: UIButton)
     {
-        WebserviceOFOtp()
+        SendOTPFromServer()
     }
 }
 
@@ -126,92 +126,45 @@ class OTPViewController: UIViewController,UITextFieldDelegate
 
 extension OTPViewController
 {
-    func WebserviceOFOtp()
-    {
-        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&phone=\(getDataMobileNum)"
+    
+    func SendOTPFromServer() {
         
-        webserviceForOTPinMobile(dictParams: datas as AnyObject){(result,  status) in
-            if status
-            {
-                do
-                {
-                    print((result as! [String:AnyObject])["message"] as! String)
-                }
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
+        
+        _ = APIClient.SendOTP(mobileNumber: getDataMobileNum, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            
+            if responseData.success {
+                
+                
+                
+            } else if !responseData.success {
+                
+                
             }
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
-            }
-        }
+        })
     }
     
-    func WebserviceOFVerifyOtp()
-    {
+    func VerifyOTPFromServer() {
         let pin = viewOtP.getPin()
-        let datas = "idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&OTP=\(pin)"
         
-        webserviceForVerifyOTP(dictParams: datas as AnyObject){(result,  status) in
-            if status
-            {
-                do
-                {
-                    print((result as! [String:AnyObject])["message"] as! String)
-                    //                    UtilityClass.getAppDelegate().setLogin()
-                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                } catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch
-                {
-                    print("error: ", error)
-                }
-            }
-            else
-            {
+        _ = APIClient.VerifyOTP(OTP: pin, success: { responseObj in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            
+            if responseData.success {
+                
+                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+            } else if !responseData.success {
+                
                 self.errorMessage.isHidden = false
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self.errorMessage.text = "invelid PIN"
-                //(result as! [String:AnyObject])["message"] as? String
             }
-        }
+        })
     }
+    
 }

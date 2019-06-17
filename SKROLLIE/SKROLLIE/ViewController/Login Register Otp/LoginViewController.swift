@@ -42,6 +42,12 @@ class LoginViewController: UIViewController
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     //MARK: Methods
     private func setupUI() {
         setBorder()
@@ -218,6 +224,9 @@ extension LoginViewController {
                 
             } else if !responseData.success {
                 if responseData.message == "OTP" {
+                    AppPrefsManager.shared.saveUserData(model: LoginModel(data: response["data"] as? [String : Any] ?? [String : Any]()))
+                    let vc = MobileNumberAddVc.instantiate(fromAppStoryboard: .Main)
+                    self.navigationController?.pushViewController(vc, animated: true)
                     
                 } else {
                     self.errorMessagePassword.isHidden = false
