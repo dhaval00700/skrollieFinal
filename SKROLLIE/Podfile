@@ -10,7 +10,6 @@ target 'SKROLLIE' do
   
   pod 'SkyFloatingLabelTextField', '~> 3.0' # Text Filed.
   pod 'IQKeyboardManagerSwift' # KeyBord.
-  pod 'SDWebImage' # Image get From url.
   pod 'SwiftMessages' # Pop up.
   pod 'Alamofire' # Json Function.
   pod 'SwiftyJSON' # Model MVC.

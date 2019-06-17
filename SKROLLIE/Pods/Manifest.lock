@@ -1,28 +1,24 @@
 PODS:
-  - Alamofire (4.8.1)
-  - AWSCore (2.9.7)
-  - AWSS3 (2.9.7):
-    - AWSCore (= 2.9.7)
-  - IQKeyboardManagerSwift (6.2.0)
-  - SDWebImage (4.4.6):
-    - SDWebImage/Core (= 4.4.6)
-  - SDWebImage/Core (4.4.6)
-  - SkyFloatingLabelTextField (3.6.0)
+  - Alamofire (4.8.2)
+  - AWSCore (2.9.8)
+  - AWSS3 (2.9.8):
+    - AWSCore (= 2.9.8)
+  - IQKeyboardManagerSwift (6.3.0)
+  - SkyFloatingLabelTextField (3.7.0)
   - SRCountdownTimer (1.1)
-  - SVPinView (1.0.6)
-  - SwiftMessages (6.0.2):
-    - SwiftMessages/App (= 6.0.2)
-  - SwiftMessages/App (6.0.2)
+  - SVPinView (1.0.7)
+  - SwiftMessages (7.0.0):
+    - SwiftMessages/App (= 7.0.0)
+  - SwiftMessages/App (7.0.0)
   - SwiftyComments (0.2.0):
     - SwipeCellKit
-  - SwiftyJSON (4.2.0)
-  - SwipeCellKit (2.5.1)
+  - SwiftyJSON (5.0.0)
+  - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
   - Alamofire
   - AWSS3
   - IQKeyboardManagerSwift
-  - SDWebImage
   - SkyFloatingLabelTextField (~> 3.0)
   - SRCountdownTimer
   - SVPinView (~> 1.0)
@@ -36,7 +32,6 @@ SPEC REPOS:
     - AWSCore
     - AWSS3
     - IQKeyboardManagerSwift
-    - SDWebImage
     - SkyFloatingLabelTextField
     - SRCountdownTimer
     - SVPinView
@@ -46,19 +41,18 @@ SPEC REPOS:
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  AWSCore: c98ab96784580d7a141c6f1999aa919ef45a312c
-  AWSS3: 653807428bfb6368dbe54fe1c7f0b81bffa5dba7
-  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AWSCore: 5da86c5afde44a87b06a2df50601bca81a8cee13
+  AWSS3: a5e12eb2495bbe49cda8b0595fa77280aacd7d3d
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SRCountdownTimer: 9c92e444b5403c92f01dd6610299b8c634bc8562
-  SVPinView: 3dda372c7a1c051b41788f07bf7a8339aa19083e
-  SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
+  SVPinView: 6c1da57e4a1273298802f460c60511ba10f7c831
+  SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
   SwiftyComments: 864260f481d4159118e1ee9c0ad2c9a95693fa94
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
-  SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 067e2855a15f2c70c0d671b903d5c5035eed41f1
+PODFILE CHECKSUM: 09d8bbfa741169f1cb215fa305f6dd3a79fb171f
 
 COCOAPODS: 1.6.1
