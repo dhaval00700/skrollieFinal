@@ -56,6 +56,8 @@ class userProfileClass: UIViewController
         
         let idpass = (SingleToneClass.sharedInstance.loginDataStore["UserId"] as AnyObject)
         
+        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2004240751, green: 0.1467479169, blue: 0.2840772271, alpha: 1))
+        
         var userId = String()
         if let userIDString = idpass as? String
         {

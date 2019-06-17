@@ -16,15 +16,17 @@ class SelectedVideoViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var viwVideo: UIView!
     @IBOutlet weak var emogiPager: FSPagerView!
-    @IBOutlet weak var txtEnterDescription: UITextField!
+    @IBOutlet weak var txtEnterDescription: UITextView!
     @IBOutlet weak var btn24Hour: UIButton!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnEmogi1: UIButton!
     @IBOutlet weak var btnEmogi2: UIButton!
     @IBOutlet weak var btnPlayPause: UIButton!
     @IBOutlet weak var btnText: UIButton!
-    @IBOutlet weak var viwDesc: UIView!
     @IBOutlet weak var btnEmogiHide: UIButton!
+    
+    @IBOutlet weak var lctEnterDescriptionHeight: NSLayoutConstraint!
+
     
     //MARK: Properties
     var videoUrl:URL!
@@ -61,7 +63,7 @@ class SelectedVideoViewController: UIViewController {
         btn24Hour.isSelected = true
         btnPlayPause.isSelected = true
         
-        viwDesc.isHidden = true
+        txtEnterDescription.isHidden = true
         emogiPager.isHidden = true
         btnEmogiHide.isHidden = true
         
@@ -195,7 +197,7 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnText(_ sender: Any) {
-        viwDesc.isHidden = !viwDesc.isHidden
+        txtEnterDescription.isHidden = !txtEnterDescription.isHidden
     }
     
     @IBAction func onBtnEmogiHide(_ sender: Any) {
@@ -378,6 +380,21 @@ extension SelectedVideoViewController
             {
                 print((result as! [String:AnyObject])["message"] as! String)
             }
+        }
+    }
+}
+
+
+
+extension SelectedVideoViewController : UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if(textView == txtEnterDescription) {
+            let contentSize = txtEnterDescription.sizeThatFits(CGSize(width: txtEnterDescription.bounds.size.width, height: CGFloat(Float.greatestFiniteMagnitude)))
+            lctEnterDescriptionHeight.constant = CGFloat(ceilf(Float(contentSize.height)))
+            textView.layoutIfNeeded()
+            textView.updateConstraints()
+            textView.scrollRangeToVisible(textView.selectedRange)
+            
         }
     }
 }

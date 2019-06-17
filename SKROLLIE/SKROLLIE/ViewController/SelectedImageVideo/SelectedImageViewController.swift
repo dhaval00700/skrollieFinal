@@ -14,8 +14,7 @@ class SelectedImageViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var imgSelectedImage: UIImageView!
-    @IBOutlet weak var viwDescription: UIView!
-    @IBOutlet weak var txtEnterDescription: UITextField!
+    @IBOutlet weak var txtEnterDescription: UITextView!
     @IBOutlet weak var emogiPagerView: FSPagerView!
     @IBOutlet weak var btn24Hour: UIButton!
     @IBOutlet weak var btnForever: UIButton!
@@ -23,6 +22,9 @@ class SelectedImageViewController: UIViewController {
     @IBOutlet weak var btnEmogi2: UIButton!
     @IBOutlet weak var btnText: UIButton!
     @IBOutlet weak var btnEmogiHide: UIButton!
+    
+    @IBOutlet weak var lctEnterDescriptionHeight: NSLayoutConstraint!
+
     
     
     //MARK: Properties
@@ -45,7 +47,9 @@ class SelectedImageViewController: UIViewController {
         btnText.addCornerRadius(btnText.frame.height/2.0)
         btnEmogiHide.addCornerRadius(btnEmogiHide.frame.height/2.0)
         
-        viwDescription.isHidden = true
+        txtEnterDescription.addCornerRadius(8.0)
+        
+        txtEnterDescription.isHidden = true
         emogiPagerView.isHidden = true
         btnEmogiHide.isHidden = true
         
@@ -59,6 +63,8 @@ class SelectedImageViewController: UIViewController {
         btnForever.setImage(UIImage(named: "icon_infinite")?.tintWithColor(.yellow), for: .selected)
         
         btn24Hour.isSelected = true
+        
+        txtEnterDescription.delegate = self
         
         setupSwipeGesture()
         setupEmogiPager()
@@ -111,7 +117,7 @@ class SelectedImageViewController: UIViewController {
     
     
     @IBAction func onBtnText(_ sender: Any) {
-        viwDescription.isHidden = !viwDescription.isHidden
+        txtEnterDescription.isHidden = !txtEnterDescription.isHidden
     }
     
     @IBAction func onBtn24Hour(_ sender: Any) {
@@ -288,6 +294,21 @@ extension SelectedImageViewController
             {
                 print((result as! [String:AnyObject])["message"] as! String)
             }
+        }
+    }
+}
+
+
+
+extension SelectedImageViewController : UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if(textView == txtEnterDescription) {
+            let contentSize = txtEnterDescription.sizeThatFits(CGSize(width: txtEnterDescription.bounds.size.width, height: CGFloat(Float.greatestFiniteMagnitude)))
+            lctEnterDescriptionHeight.constant = CGFloat(ceilf(Float(contentSize.height)))
+            textView.layoutIfNeeded()
+            textView.updateConstraints()
+            textView.scrollRangeToVisible(textView.selectedRange)
+            
         }
     }
 }
