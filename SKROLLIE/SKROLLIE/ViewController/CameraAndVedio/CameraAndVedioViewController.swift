@@ -432,7 +432,7 @@ extension CameraAndVedioViewController: SwiftyCamViewControllerDelegate {
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
         if camera == .front {
-            flashMode = .off
+            disableFlash()
         }
         // Called when user switches between cameras
         // Returns current camera selection

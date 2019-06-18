@@ -105,7 +105,7 @@ class SelectedVideoViewController: UIViewController {
         avPlayer = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: avPlayer)
         playerLayer.frame.size = UIScreen.main.bounds.size
-        playerLayer.videoGravity = .resize
+        playerLayer.videoGravity = .resizeAspect
         viwVideo.layer.addSublayer(playerLayer)
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
@@ -209,7 +209,11 @@ class SelectedVideoViewController: UIViewController {
     
     @IBAction func onBtnText(_ sender: Any) {
         txtEnterDescription.isHidden = !txtEnterDescription.isHidden
-        avPlayer.isMuted = !avPlayer.isMuted
+        if !txtEnterDescription.becomeFirstResponder() {
+            txtEnterDescription.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+        }
     }
     
     @IBAction func onBtnMuteControll(_ sender: Any) {

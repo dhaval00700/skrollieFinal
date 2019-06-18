@@ -126,6 +126,11 @@ class SelectedImageViewController: UIViewController {
     
     @IBAction func onBtnText(_ sender: Any) {
         txtEnterDescription.isHidden = !txtEnterDescription.isHidden
+        if !txtEnterDescription.becomeFirstResponder() {
+           txtEnterDescription.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+        }
     }
     
     @IBAction func onBtn24Hour(_ sender: Any) {
