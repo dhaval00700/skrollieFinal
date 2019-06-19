@@ -163,4 +163,7 @@ struct API {
     static let getAllPostByIdUser = BASE_URL + "MobilePost/GetAllPostByIdUser"
     static let createFriend = BASE_URL + "MobilePost/CreateFriend"
     static let deletePost = BASE_URL + "MobilePost/DeletePost"
+    
+    static let get24hoursPost = BASE_URL + "MobilePost/GetLatest24HoursPostByUser"
+    static let getForeverPost = BASE_URL + "MobilePost/GetForeverPostByUser"
 }
