@@ -627,13 +627,13 @@
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ZA-GB-eUy">
-                                                        <rect key="frame" x="119" y="615.5" width="82.5" height="25"/>
+                                                        <rect key="frame" x="112.5" y="615.5" width="95.5" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCopy" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-aH-YUv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="16" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLr-dn-qaO">
-                                                                <rect key="frame" x="17" y="0.0" width="65.5" height="25"/>
+                                                                <rect key="frame" x="30" y="0.0" width="65.5" height="25"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1861,7 +1861,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2G5-hB-qsv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2G5-hB-qsv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4n-sh-CQj" customClass="FSPagerView" customModule="SKROLLIE" customModuleProvider="target">
@@ -1975,15 +1975,15 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gfj-cv-eP4" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="10" y="25" width="255" height="40"/>
+                                <rect key="frame" x="10" y="25" width="255" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Hun-Ir-q1L"/>
+                                    <constraint firstAttribute="height" constant="50" id="Hun-Ir-q1L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's Happening"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What’s happening"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
@@ -2068,16 +2068,31 @@
                                     <action selector="onBtnText:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="Avz-VM-Upv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPf-9i-6iv">
+                                <rect key="frame" x="275" y="75" width="35" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.48159246579999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="J2i-1q-o0w"/>
+                                    <constraint firstAttribute="height" constant="35" id="eYf-pC-xge"/>
+                                </constraints>
+                                <state key="normal" image="Unmute">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" image="mute"/>
+                                <connections>
+                                    <action selector="onBtnMuteControll:" destination="Vcg-Y9-nFh" eventType="touchUpInside" id="DfZ-e5-8kn"/>
+                                </connections>
+                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bde-Iw-cTA" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="10" y="25" width="255" height="40"/>
+                                <rect key="frame" x="10" y="25" width="255" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="TAm-WC-z2v"/>
+                                    <constraint firstAttribute="height" constant="50" id="TAm-WC-z2v"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's Happening"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What’s happening"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ZJ-5w-tKx">
@@ -2205,6 +2220,7 @@
                             <constraint firstItem="2ZJ-5w-tKx" firstAttribute="top" secondItem="kbk-ZQ-Z5W" secondAttribute="bottom" constant="10" id="Jdq-r2-TXe"/>
                             <constraint firstItem="nWM-75-qmR" firstAttribute="trailing" secondItem="EYa-Sh-ZgL" secondAttribute="trailing" id="JkA-kB-hjs"/>
                             <constraint firstItem="Xso-0r-LBf" firstAttribute="top" secondItem="KLe-4v-iHn" secondAttribute="top" id="P6v-Lv-glG"/>
+                            <constraint firstItem="fPf-9i-6iv" firstAttribute="trailing" secondItem="JK9-Iw-z5B" secondAttribute="trailing" id="QdO-hH-QVx"/>
                             <constraint firstItem="JK9-Iw-z5B" firstAttribute="leading" secondItem="Bde-Iw-cTA" secondAttribute="trailing" constant="10" id="W9P-Nh-R0q"/>
                             <constraint firstItem="2ZJ-5w-tKx" firstAttribute="trailing" secondItem="EYa-Sh-ZgL" secondAttribute="trailing" id="WBn-xm-F60"/>
                             <constraint firstItem="Bde-Iw-cTA" firstAttribute="top" secondItem="JK9-Iw-z5B" secondAttribute="top" id="XJN-EE-PWm"/>
@@ -2216,6 +2232,7 @@
                             <constraint firstItem="SDa-77-XuK" firstAttribute="top" secondItem="JK9-Iw-z5B" secondAttribute="top" id="nPN-B9-8iV"/>
                             <constraint firstItem="Xso-0r-LBf" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="ora-JB-Aia"/>
                             <constraint firstItem="nWM-75-qmR" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="pSE-Oj-gfU"/>
+                            <constraint firstItem="fPf-9i-6iv" firstAttribute="top" secondItem="JK9-Iw-z5B" secondAttribute="bottom" constant="15" id="uao-3w-p5d"/>
                             <constraint firstItem="2ZJ-5w-tKx" firstAttribute="leading" secondItem="EYa-Sh-ZgL" secondAttribute="leading" id="wnO-hQ-3hn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EYa-Sh-ZgL"/>
@@ -2226,6 +2243,7 @@
                         <outlet property="btnEmogi2" destination="KHY-8J-32z" id="yxx-Rg-Z6K"/>
                         <outlet property="btnEmogiHide" destination="kbk-ZQ-Z5W" id="URk-9L-AM9"/>
                         <outlet property="btnForever" destination="rw1-XO-hlh" id="shA-zn-6Tw"/>
+                        <outlet property="btnMuteControll" destination="fPf-9i-6iv" id="TAt-sv-kj0"/>
                         <outlet property="btnPlayPause" destination="MUR-K8-GMc" id="J1L-Oh-l81"/>
                         <outlet property="btnText" destination="JK9-Iw-z5B" id="Bxo-62-MdU"/>
                         <outlet property="emogiPager" destination="nWM-75-qmR" id="p5B-Fc-xtP"/>
@@ -2819,6 +2837,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Unmute" width="24" height="24"/>
         <image name="emoji1" width="40" height="40"/>
         <image name="ic_more" width="8" height="30"/>
         <image name="ic_shield" width="25" height="25"/>
@@ -29223,5 +29242,6 @@ GCWEABgljAAYJY8AGCWhABglpAAYJakAAAAAAAAEAQAAAAAAAABtAAAAAAAAAAAAAAAAABglqw
         <image name="imgCamera" width="93" height="88"/>
         <image name="iocnProfile" width="30" height="30"/>
         <image name="logo" width="401" height="341"/>
+        <image name="mute" width="16" height="16"/>
     </resources>
 </document>

@@ -50,11 +50,13 @@ class userProfileClass: UIViewController
         lblDesc.font = UIFont.Regular(ofSize: 9)
         lblToday.font = UIFont.Regular(ofSize: 9)
         
+        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(.purple)
+        
         tableview.register(UINib(nibName: "cellUserProfilePost", bundle: nil), forCellReuseIdentifier: "cellUserProfilePost")
         tableview.delegate = self
         tableview.dataSource = self
         
-        webserviceofGetPhoto()
+        getAllPostByUserId()
     }
     
     @IBAction func btnSetting(_ sender: UIButton)
@@ -130,50 +132,17 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension userProfileClass {
-    func webserviceofGetPhoto()
-    {
-        webserviceForGetAllPostByIdUser(id: AppPrefsManager.shared.getUserData().UserId){(result, status) in
-            
-            if status
-            {
-                do
-                {
-                    let arrForEverList = (((result as! [String : AnyObject])["ForEverList"] as! [[String:AnyObject]]))
-                    let arrNotForEverList = (((result as! [String : AnyObject])["NotForEverList"] as! [[String:AnyObject]]))
-                    
-                    self.resultForeverPost = Post.getArrayPost(data: arrForEverList, userName: "")
-                    self.result24HrPost = Post.getArrayPost(data: arrNotForEverList, userName: "")
-                    self.tableview.reloadData()
-                }
-                    
-                catch let DecodingError.dataCorrupted(context)
-                {
-                    print(context)
-                }
-                catch let DecodingError.keyNotFound(key, context)
-                {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.valueNotFound(value, context)
-                {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch let DecodingError.typeMismatch(type, context)
-                {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                }
-                catch
-                {
-                    print("error: ", error)
-                }
-            }
-                
-            else
-            {
-                print((result as! [String:AnyObject])["message"] as! String)
+    
+    func getAllPostByUserId() {
+        _ = APIClient.GetAllPostByIdUser { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                let arrForEverList = response["ForEverList"] as? [[String: Any]] ?? [[String: Any]]()
+                let arrNotForEverList = response["NotForEverList"] as? [[String: Any]] ?? [[String: Any]]()
+                self.resultForeverPost = Post.getArrayPost(data: arrForEverList, userName: "")
+                self.result24HrPost = Post.getArrayPost(data: arrNotForEverList, userName: "")
+                self.tableview.reloadData()
             }
         }
     }

@@ -603,7 +603,7 @@ extension RegisterViewController
     
     func webserviceOfEmailFormateCheck() {
         
-        _ = APIClient.CheckEmailAddres(email: txtEmailAddress.text!, success: { responseObj in
+        _ = APIClient.CheckEmailAddress(email: txtEmailAddress.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             
@@ -631,7 +631,7 @@ extension RegisterViewController
     
     func verifyEMailAtServer() {
         
-        _ = APIClient.VerifyEmailAddres(email: txtEmailAddress.text!, success: { responseObj in
+        _ = APIClient.VerifyEmailAddress(email: txtEmailAddress.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             
