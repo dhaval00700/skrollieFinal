@@ -647,9 +647,7 @@ open class SwiftyCamViewController: UIViewController {
 		}
 
 		// If flash is enabled, disable it as the torch is needed for front facing camera
-        if currentCamera == .front {
-            disableFlash()
-        }
+        disableFlash()
 		
 	}
 
@@ -974,7 +972,7 @@ fileprivate func changeFlashSettings(device: AVCaptureDevice, mode: FlashMode) {
 
 	/// Disable flash
 
-	fileprivate func disableFlash() {
+	func disableFlash() {
 		if self.isCameraTorchOn == true {
 			toggleFlash()
 		}

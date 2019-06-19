@@ -24,6 +24,7 @@ class SelectedVideoViewController: UIViewController {
     @IBOutlet weak var btnPlayPause: UIButton!
     @IBOutlet weak var btnText: UIButton!
     @IBOutlet weak var btnEmogiHide: UIButton!
+    @IBOutlet weak var btnMuteControll: UIButton!
     
     @IBOutlet weak var lctEnterDescriptionHeight: NSLayoutConstraint!
 
@@ -55,6 +56,7 @@ class SelectedVideoViewController: UIViewController {
         btnForever.setImage(UIImage(named: "icon_infinite")?.tintWithColor(.yellow), for: .selected)
         
         btnText.addCornerRadius(btnText.frame.height/2.0)
+        btnMuteControll.addCornerRadius(btnMuteControll.frame.height/2.0)
         btnEmogiHide.addCornerRadius(btnEmogiHide.frame.height/2.0)
         
         btnPlayPause.setImage(#imageLiteral(resourceName: "play"), for: .normal)
@@ -68,6 +70,7 @@ class SelectedVideoViewController: UIViewController {
         btnEmogiHide.isHidden = true
         
         txtEnterDescription.applyBorder(1.0, borderColor: .black)
+        txtEnterDescription.addCornerRadius(8.0)
         
         setupSwipeGesture()
         setupEmogiPager()
@@ -102,7 +105,7 @@ class SelectedVideoViewController: UIViewController {
         avPlayer = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: avPlayer)
         playerLayer.frame.size = UIScreen.main.bounds.size
-        playerLayer.videoGravity = .resize
+        playerLayer.videoGravity = .resizeAspect
         viwVideo.layer.addSublayer(playerLayer)
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
@@ -206,6 +209,15 @@ class SelectedVideoViewController: UIViewController {
     
     @IBAction func onBtnText(_ sender: Any) {
         txtEnterDescription.isHidden = !txtEnterDescription.isHidden
+        if !txtEnterDescription.becomeFirstResponder() {
+            txtEnterDescription.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+        }
+    }
+    
+    @IBAction func onBtnMuteControll(_ sender: Any) {
+        avPlayer.isMuted = !avPlayer.isMuted
     }
     
     @IBAction func onBtnEmogiHide(_ sender: Any) {
