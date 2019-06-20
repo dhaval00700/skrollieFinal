@@ -80,6 +80,7 @@ class SelectedVideoViewController: UIViewController {
         setData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.avPlayer.play()
+            self.avPlayer.volume = 1
         }
     }
     
@@ -212,10 +213,10 @@ class SelectedVideoViewController: UIViewController {
     
     @IBAction func onBtnText(_ sender: Any) {
         txtEnterDescription.isHidden = !txtEnterDescription.isHidden
-        if !txtEnterDescription.becomeFirstResponder() {
-            txtEnterDescription.becomeFirstResponder()
-        } else {
+        if txtEnterDescription.isHidden {
             self.view.endEditing(true)
+        } else {
+            txtEnterDescription.becomeFirstResponder()
         }
     }
     
