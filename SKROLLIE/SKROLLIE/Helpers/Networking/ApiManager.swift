@@ -29,6 +29,7 @@ class ApiManager {
         request.httpMethod = method.rawValue
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("\(AppPrefsManager.shared.getUserData().token)", forHTTPHeaderField: "Authorization")
         
         if !finalParameters.isEmpty
         {

@@ -69,6 +69,9 @@ class SelectedVideoViewController: UIViewController {
         emogiPager.isHidden = true
         btnEmogiHide.isHidden = true
         
+        btnMuteControll.setImage(#imageLiteral(resourceName: "Unmute"), for: .normal)
+        btnMuteControll.setImage(#imageLiteral(resourceName: "Mute"), for: .selected)
+        
         txtEnterDescription.applyBorder(1.0, borderColor: .black)
         txtEnterDescription.addCornerRadius(8.0)
         
@@ -217,6 +220,7 @@ class SelectedVideoViewController: UIViewController {
     }
     
     @IBAction func onBtnMuteControll(_ sender: Any) {
+        btnMuteControll.isSelected = !btnMuteControll.isSelected
         avPlayer.isMuted = !avPlayer.isMuted
     }
     
@@ -355,11 +359,9 @@ extension SelectedVideoViewController
         parameter.addParameter(key: ParameterRequest.Url, value: name)
         parameter.addParameter(key: ParameterRequest.Description, value: txtEnterDescription.text)
         parameter.addParameter(key: ParameterRequest.Videothumbnailimage, value: thumbImgName)
-
-
         parameter.addParameter(key: ParameterRequest.Emoji1, value: returnEmojiNumber(img: btnEmogi1.image(for: .normal)!))
         parameter.addParameter(key: ParameterRequest.Emoji2, value: returnEmojiNumber(img: btnEmogi2.image(for: .normal)!))
-        parameter.addParameter(key: ParameterRequest.isPublish, value: name)
+        parameter.addParameter(key: ParameterRequest.isPublish, value: true)
         parameter.addParameter(key: ParameterRequest.Isforever, value: btnForever.isSelected ? true as AnyObject : false)
         
         

@@ -263,7 +263,7 @@ extension SelectedImageViewController
         parameter.addParameter(key: ParameterRequest.Description, value: txtEnterDescription.text)
         parameter.addParameter(key: ParameterRequest.Emoji1, value: returnEmojiNumber(img: btnEmogi1.image(for: .normal)!))
         parameter.addParameter(key: ParameterRequest.Emoji2, value: returnEmojiNumber(img: btnEmogi2.image(for: .normal)!))
-        parameter.addParameter(key: ParameterRequest.isPublish, value: name)
+        parameter.addParameter(key: ParameterRequest.isPublish, value: true)
         parameter.addParameter(key: ParameterRequest.Isforever, value: btnForever.isSelected ? true as AnyObject : false)
 
         
@@ -285,7 +285,7 @@ extension SelectedImageViewController
                      AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
                     
                 } else {
-                    
+                    AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
                 }
             }
         })

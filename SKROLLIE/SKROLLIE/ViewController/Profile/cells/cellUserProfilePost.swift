@@ -10,7 +10,6 @@ import UIKit
 
 class cellUserProfilePost: UITableViewCell {
 
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var clvPost: UICollectionView!
     
     var collectionData = [Post]()
@@ -50,10 +49,18 @@ extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSou
         if  !datas.Isforever {
             cell.lblTimeOfPhotos.text = "24 H O U R S  L E F T"
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
+            if indexPath.row == collectionData.count - 1 {
+                NotificationCenter.default.post(name: TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY, object: nil)
+            }
         } else {
             cell.lblTimeOfPhotos.text = "F O R E V E R"
             cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
+            if indexPath.row == collectionData.count - 1 {
+                NotificationCenter.default.post(name: FOREVER_PAGINATION_NOTIFICATION_KEY, object: nil)
+            }
         }
+        
+        
         
         return cell
     }

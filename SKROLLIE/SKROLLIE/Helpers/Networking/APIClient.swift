@@ -127,12 +127,12 @@ class APIClient {
         })
     }
     
-    class func Get24HourPostByUserId(start : String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func Get24HourPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         
         //idUser=88&Start=0&Limit=10
         
-        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&Start=\(start)&Limit=10"
+        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
@@ -142,12 +142,12 @@ class APIClient {
         })
     }
     
-    class func GetForevetPostByUserId(start : String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func GetForevetPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         
         //idUser=88&Start=0&Limit=10
         
-        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&Start=\(start)&Limit=10"
+        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)

@@ -45,6 +45,8 @@ let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEn
 
 let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
 
+let TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY =   Notification.Name("TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY")
+let FOREVER_PAGINATION_NOTIFICATION_KEY          =   Notification.Name("FOREVER_PAGINATION_NOTIFICATION_KEY")
 
 let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
                                                       .zoomOut,

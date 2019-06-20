@@ -531,10 +531,10 @@ open class SwiftyCamViewController: UIViewController {
 		}
 
 		if currentCamera == .front && flashMode == .on  {
-			flashView = UIView(frame: view.frame)
+			/*flashView = UIView(frame: view.frame)
 			flashView?.backgroundColor = UIColor.white
 			flashView?.alpha = 0.85
-			previewLayer.addSubview(flashView!)
+			previewLayer.addSubview(flashView!)*/
 		}
 
         //Must be fetched before on main thread

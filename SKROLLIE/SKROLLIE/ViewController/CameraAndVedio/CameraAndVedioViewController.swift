@@ -512,13 +512,9 @@ extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavig
             
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-            if imagePickerController.mediaTypes == [kUTTypeImage as String] {
-                imagePickerController.allowsEditing = false
-            } else {
-                imagePickerController.allowsEditing = true
-                imagePickerController.videoMaximumDuration = 60
-                imagePickerController.videoQuality = .typeHigh
-            }
+            imagePickerController.allowsEditing = true
+            imagePickerController.videoMaximumDuration = 60
+            imagePickerController.videoQuality = .typeHigh
             
             imagePickerController.delegate = self
             

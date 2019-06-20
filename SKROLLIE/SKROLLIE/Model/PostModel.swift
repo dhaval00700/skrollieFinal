@@ -14,26 +14,34 @@ class Post {
     init() {}
     
     var Postid = ""
+    var idUser = ""
     var isPhoto = false
     var Isforever = false
+    var isPublish = false
     var Url = ""
     var Description = ""
     var Emoji1 = ""
     var Emoji2 = ""
     var CreatedDate = ""
+    var CreatedBy = ""
+    var Videothumbnailimage = ""
     var UserName = ""
     
     init(Post: [String: Any], userName: String) {
         
-        Postid = Post["PostId"] as? String ?? ""
-        isPhoto = Post["isPhoto"] as? Bool ?? false
-        Isforever = Post["Isforever"] as? Bool ?? false
+        Postid = Post["PostId"] as? String ?? (Post["PostId"] as? NSNumber)?.stringValue ?? (Post["id"] as? NSNumber)?.stringValue ?? Post["id"] as? String ?? ""
+        idUser = Post["idUser"] as? String ?? (Post["idUser"] as? NSNumber)?.stringValue ?? ""
+        isPhoto = Post["isPhoto"] as? Bool ?? (Post["isPhoto"] as? NSNumber)?.boolValue ?? false
+        Isforever = Post["Isforever"] as? Bool ?? (Post["Isforever"] as? NSNumber)?.boolValue ?? false
+        isPublish = Post["isPublish"] as? Bool ?? (Post["isPublish"] as? NSNumber)?.boolValue ?? false
         let url = prefixDataUrl + "\(Post["Url"] as? String ?? "")"
         Url = url
         Description = Post["Description"] as? String ?? ""
         Emoji1 = Post["id"] as? String ?? ""
         Emoji2 = Post["id"] as? String ?? ""
         CreatedDate = Post["CreatedDate"] as? String ?? ""
+        CreatedBy = Post["CreatedBy"] as? String ?? ""
+        Videothumbnailimage = Post["Videothumbnailimage"] as? String ?? ""
         UserName = userName
     }
     
@@ -46,7 +54,32 @@ class Post {
         
         return arrPost
     }
+}
+
+class Get24HourData {
     
+    init() {}
+    
+    var arr24HourData = [[Post]]()
+    
+    init(data: [[[String: Any]]]) {
+        for temp in data {
+            arr24HourData.append(Post.getArrayPost(data: temp, userName: ""))
+        }
+    }
+}
+
+class GetFourEverHourData {
+    
+    init() {}
+    
+    var arrFourEverHourData = [[Post]]()
+    
+    init(data: [[[String: Any]]]) {
+        for temp in data {
+            arrFourEverHourData.append(Post.getArrayPost(data: temp, userName: ""))
+        }
+    }
 }
 
 class UserData
