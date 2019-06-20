@@ -28,13 +28,21 @@ class userProfileClass: UIViewController
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnToday: UIButton!
-
+    
     @IBOutlet weak var lblToday: UILabel!
     @IBOutlet weak var lblForever: UILabel!
     
     
     var resultForeverPost = [Post]()
     var result24HrPost = [Post]()
+    
+    private var isDataLoading24 = false
+    private var continueLoadingData24 = true
+    var skipCount24 = 0
+    
+    private var isDataLoadingForever = false
+    private var continueLoadingDataForever = true
+    var skipCountForever = 0
     
     override func viewDidLoad()
     {
@@ -56,7 +64,22 @@ class userProfileClass: UIViewController
         tableview.delegate = self
         tableview.dataSource = self
         
-        getAllPostByUserId()
+        get24HourPostByUserId()
+        getForeverPostByUserId()
+    }
+    
+    func reset24HoursPagination(){
+        isDataLoading24 = false
+        continueLoadingData24 = true
+        skipCount24 = 0
+        
+    }
+    
+    func resetForeverHoursPagination(){
+        
+        isDataLoadingForever = false
+        continueLoadingDataForever = true
+        skipCountForever = 0
     }
     
     @IBAction func btnSetting(_ sender: UIButton)
@@ -133,15 +156,59 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
 }
 extension userProfileClass {
     
-    func getAllPostByUserId() {
-        _ = APIClient.GetAllPostByIdUser { (responseObj) in
+    func get24HourPostByUserId() {
+        if(isDataLoading24 || !continueLoadingData24)
+        {
+            return
+        }
+        
+        isDataLoading24 = true
+        
+        _ = APIClient.Get24HourPostByUserId(start: "\(skipCount24)") { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                let arrNotForEverList = response["NotForEverList"] as? [[String: Any]] ?? [[String: Any]]()
+                
+                let tempArray = Post.getArrayPost(data: arrNotForEverList, userName: "")
+                self.result24HrPost.append(contentsOf: tempArray)
+                
+                if tempArray.count < 10
+                {
+                    self.continueLoadingData24 = false
+                }
+                self.isDataLoading24 = false
+                self.skipCount24 += 1
+                
+                self.tableview.reloadData()
+            }
+        }
+    }
+    
+    func getForeverPostByUserId() {
+        
+        if(isDataLoadingForever || !continueLoadingDataForever)
+        {
+            return
+        }
+        
+        isDataLoadingForever = true
+        
+        _ = APIClient.GetForevetPostByUserId(start: "\(skipCountForever)") { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 let arrForEverList = response["ForEverList"] as? [[String: Any]] ?? [[String: Any]]()
-                let arrNotForEverList = response["NotForEverList"] as? [[String: Any]] ?? [[String: Any]]()
-                self.resultForeverPost = Post.getArrayPost(data: arrForEverList, userName: "")
-                self.result24HrPost = Post.getArrayPost(data: arrNotForEverList, userName: "")
+                let tempArray =  Post.getArrayPost(data: arrForEverList, userName: "")
+                self.resultForeverPost.append(contentsOf: tempArray)
+                
+                if tempArray.count < 10
+                {
+                    self.continueLoadingDataForever = false
+                }
+                self.isDataLoadingForever = false
+                self.skipCountForever += 1
+                
                 self.tableview.reloadData()
             }
         }

@@ -127,11 +127,29 @@ class APIClient {
         })
     }
     
-    class func GetAllPostByIdUser(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func Get24HourPostByUserId(start : String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         
+        //idUser=88&Start=0&Limit=10
         
-        return ApiManager.requestApi(method: .get, urlString: API.getAllPostByIdUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&Start=\(start)&Limit=10"
+        
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func GetForevetPostByUserId(start : String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        
+        //idUser=88&Start=0&Limit=10
+        
+        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&Start=\(start)&Limit=10"
+        
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
