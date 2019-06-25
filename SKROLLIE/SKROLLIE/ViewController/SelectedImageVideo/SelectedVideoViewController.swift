@@ -11,7 +11,7 @@ import AVKit
 import AWSS3
 import AWSCore
 
-class SelectedVideoViewController: UIViewController {
+class SelectedVideoViewController: BaseViewController {
 
     //MARK: Outlets
     @IBOutlet weak var viwVideo: UIView!
@@ -87,11 +87,11 @@ class SelectedVideoViewController: UIViewController {
     private func setupSwipeGesture() {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        AppDelegate.sharedDelegate().window?.addGestureRecognizer(swipeLeft)
+        viwVideo.addGestureRecognizer(swipeLeft)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
-        AppDelegate.sharedDelegate().window?.addGestureRecognizer(swipeRight)
+        viwVideo.addGestureRecognizer(swipeRight)
     }
     
     private func setupEmogiPager() {
@@ -163,7 +163,8 @@ class SelectedVideoViewController: UIViewController {
                 if (!emoji1.isEmpty && emoji2.isEmpty) || (emoji1.isEmpty && !emoji2.isEmpty) {
                     AppDelegate.sharedDelegate().window?.showToastAtBottom(message:"Please Select Both Emoji")
                 } else {
-                    self.goToHomePage()
+                    let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
+                    navigationController?.pushViewController(navVc, animated: true)
                     uploadVideo(fileUrl: videoUrl)
                 }
             case UISwipeGestureRecognizer.Direction.up:
@@ -267,16 +268,6 @@ extension SelectedVideoViewController: FSPagerViewDelegate, FSPagerViewDataSourc
 }
 
 extension SelectedVideoViewController {
-    func goToHomePage() {
-        let navVc = AppDelegate.sharedDelegate().window?.rootViewController as! UINavigationController
-        for temp in navVc.viewControllers{
-            
-            if let vc = temp as? HomeViewController{
-                self.navigationController?.popToViewController(vc, animated: true)
-            }
-        }
-    }
-    
     func uploadVideo(fileUrl : URL) {
         let newKey = "video\(timestamp).mov"
         
@@ -292,7 +283,7 @@ extension SelectedVideoViewController {
                 let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
                 var dic = [String: Any]()
                 dic["uploadProgress"] = uploadProgress
-                NotificationCenter.default.post(name: Notification.Name("PROGRESS"), object: nil, userInfo: dic)
+                NotificationCenter.default.post(name: PROGRESS_NOTIFICATION_KEY, object: nil, userInfo: dic)
                 print("VideoUpload -> ", "\(totalBytesExpectedToSend)", "\(totalBytesSent)", "\(uploadProgress)")
             })
         }
@@ -329,7 +320,7 @@ extension SelectedVideoViewController {
                 let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
                 var dic = [String: Any]()
                 dic["uploadProgress"] = uploadProgress
-                NotificationCenter.default.post(name: Notification.Name("PROGRESS"), object: nil, userInfo: dic)
+                NotificationCenter.default.post(name: PROGRESS_NOTIFICATION_KEY, object: nil, userInfo: dic)
                 print("ImageThumbUpload -> ", "\(totalBytesExpectedToSend)", "\(totalBytesSent)", "\(uploadProgress)")
             })
         }
@@ -371,21 +362,7 @@ extension SelectedVideoViewController
             let responseData = ResponseDataModel(responseObj: response)
             
             if responseData.success {
-                let loginModel = LoginModel(data: response)
-                
-                AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
-                AppPrefsManager.shared.saveUserData(model: loginModel)
-                
-                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            } else if !responseData.success {
-                if responseData.message == "OTP" {
-                    AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
-                    
-                } else {
-                    
-                }
+                AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
             }
         })
     }

@@ -61,6 +61,8 @@ class CameraAndVedioViewController: SwiftyCamViewController
         self.view.bringSubviewToFront(self.btnPreviewImg)
         
         
+        btnPreviewImg.imageView?.contentMode = .scaleAspectFit
+        
         btnFlash.setImage(UIImage.init(named: "icon_Flash"), for: .normal)
         btnFlash.setImage(UIImage.init(named: "iconFlashStart"), for: .selected)
         
@@ -482,14 +484,14 @@ extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavig
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedImageViewController") as? SelectedImageViewController {
                 vc.selectedImage = editedImage
                 vc.selectedImageUrl = saveImageDocumentDirectory(image: editedImage)
                 navigationController?.pushViewController(vc, animated: false)
             }
             print("image")
-        } else{
+        } else {
             
             if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
                 if let vc = storyboard?.instantiateViewController(withIdentifier: "SelectedVideoViewController") as? SelectedVideoViewController {

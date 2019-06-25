@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import SVPinView
 import AudioToolbox
 
-class OTPViewController: UIViewController,UITextFieldDelegate
+class OTPViewController: BaseViewController,UITextFieldDelegate
 {
     
     //--------------------------------------------------------------

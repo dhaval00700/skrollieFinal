@@ -8,7 +8,7 @@
 
 import UIKit
 
-class userProfileClass: UIViewController
+class userProfileClass: BaseViewController
 {
     //Mark:= Outlet
     
@@ -31,6 +31,9 @@ class userProfileClass: UIViewController
     
     @IBOutlet weak var lblToday: UILabel!
     @IBOutlet weak var lblForever: UILabel!
+    
+    @IBOutlet weak var viwProgressBar: UIView!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     
     var resultForeverPost = GetFourEverHourData()
@@ -59,10 +62,35 @@ class userProfileClass: UIViewController
         tableview.register(UINib(nibName: "CellUserProfileSectionTableViewCell", bundle: nil), forCellReuseIdentifier: "CellUserProfileSectionTableViewCell")
         tableview.delegate = self
         tableview.dataSource = self
-        
+        viwProgressBar.isHidden = true
         btnCOnnect.isHidden = true
         
+        progressBar.layer.cornerRadius = 8
+        progressBar.clipsToBounds = true
+        progressBar.layer.sublayers!.first!.cornerRadius = 8
+        progressBar.subviews.first!.clipsToBounds = true
+        
         getForeverPostByUserId()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+    
+    private func setupUI() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)
+    }
+    
+    @objc func onProgress(_ notificaton: NSNotification) {
+        viwProgressBar.isHidden = false
+        guard let userInfo = notificaton.userInfo,
+            let obj = userInfo as? [String: Any] else { return }
+        let uploadProgress = obj["uploadProgress"] as! Float
+        progressBar.progress = uploadProgress
+        if uploadProgress == 1.0 {
+            viwProgressBar.isHidden = true
+        }
     }
     
     @IBAction func btnSetting(_ sender: UIButton)
@@ -71,7 +99,7 @@ class userProfileClass: UIViewController
     }
     @IBAction func btnUserProfile(_ sender: UIButton)
     {
-        _ = self.navigationController?.popViewController(animated: true)
+        goToHomePage()
     }
     @IBAction func btnUserPicture(_ sender: UIButton)
     {

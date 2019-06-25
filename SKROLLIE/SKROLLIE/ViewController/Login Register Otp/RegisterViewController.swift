@@ -10,7 +10,7 @@ import UIKit
 import AudioToolbox
 import SkyFloatingLabelTextField
 
-class RegisterViewController: UIViewController,UITextFieldDelegate
+class RegisterViewController: BaseViewController,UITextFieldDelegate
 {
     //--------------------------------------------------------------
     // MARK: -  Variable Declaration

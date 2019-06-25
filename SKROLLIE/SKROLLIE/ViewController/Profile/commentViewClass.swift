@@ -8,7 +8,7 @@
 
 import UIKit
 
-class commentViewClass: UIViewController
+class commentViewClass: BaseViewController
 {
     @IBOutlet weak var lblTotalCmt: UILabel!
     @IBOutlet weak var viewUserProfile: UIView!

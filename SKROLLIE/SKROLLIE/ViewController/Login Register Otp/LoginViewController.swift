@@ -11,7 +11,7 @@ import UIKit
 import AudioToolbox
 import SkyFloatingLabelTextField
 
-class LoginViewController: UIViewController
+class LoginViewController: BaseViewController
 {
     //MARK: Outlets
     @IBOutlet weak var ViewUserName: UIView!

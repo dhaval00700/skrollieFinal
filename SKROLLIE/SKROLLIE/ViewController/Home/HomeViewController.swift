@@ -8,19 +8,17 @@
 
 import UIKit
 
-class HomeViewController: UIViewController
+class HomeViewController: BaseViewController
 {
     
     //Mark: Outlets
-    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var tblData: UITableView!
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var viewMenu: UIView!
     
     @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     
-    @IBOutlet weak var viwProgressBar: UIView!
-    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var lblFrnds: UILabel!
     
     //MARK: Properties
@@ -31,39 +29,24 @@ class HomeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        tableview.delegate = self
-        tableview.dataSource = self
-        
-        tableview.register(UINib(nibName: "HomeTblCell", bundle: nil), forCellReuseIdentifier: "HomeTblCell")
-        
-        viwProgressBar.isHidden = true
+        setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("where from call?")
+    }
+    
+    func setupUI() {
+        tblData.register(UINib(nibName: "HomeTblCell", bundle: nil), forCellReuseIdentifier: "HomeTblCell")
+        tblData.delegate = self
+        tblData.dataSource = self
         lblFrnds.font = UIFont.Regular(ofSize: 16)
         lblTitle.font = UIFont.Regular(ofSize: 20)
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
         getAllPost()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupUI()
-    }
-    
-    private func setupUI() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: Notification.Name("PROGRESS"), object: nil)
-    }
-    
-    @objc func onProgress(_ notificaton: NSNotification) {
-        viwProgressBar.isHidden = false
-        guard let userInfo = notificaton.userInfo,
-            let obj = userInfo as? [String: Any] else { return }
-        let uploadProgress = obj["uploadProgress"] as! Float
-        progressBar.progress = uploadProgress
-        if uploadProgress == 1.0 {
-            viwProgressBar.isHidden = true
-        }
     }
     
     //MARK: Actions
@@ -99,12 +82,13 @@ class HomeViewController: UIViewController
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    /*func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         UIView.animate(withDuration: 0.4) {
             cell.transform = CGAffineTransform.identity
         }
-    }
+    }*/
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return resultImgPhoto.count
@@ -158,9 +142,8 @@ extension HomeViewController
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
-                
                 self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
-                self.tableview.reloadData()
+                self.tblData.reloadData()
             }
         }
     }
