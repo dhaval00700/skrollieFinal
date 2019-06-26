@@ -11,7 +11,6 @@ import UIKit
 class userProfileClass: BaseViewController
 {
     //Mark:= Outlet
-    
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var viewBottom: UIView!
@@ -36,14 +35,12 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var progressBar: UIProgressView!
     
     
-    var resultForeverPost = GetFourEverHourData()
-    var result24HrPost = Get24HourData()
+    var arrData = [GetPostData]()
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
@@ -93,29 +90,26 @@ class userProfileClass: BaseViewController
         }
     }
     
-    @IBAction func btnSetting(_ sender: UIButton)
-    {
+    @IBAction func btnSetting(_ sender: UIButton) {
         performSegue(withIdentifier: "unwineToLogout", sender: self)
     }
-    @IBAction func btnUserProfile(_ sender: UIButton)
-    {
+    
+    @IBAction func btnUserProfile(_ sender: UIButton) {
         goToHomePage()
     }
-    @IBAction func btnUserPicture(_ sender: UIButton)
-    {
-        
+    
+    @IBAction func btnUserPicture(_ sender: UIButton) {
     }
-    @IBAction func btnFrndReaction(_ sender: UIButton)
-    {
-        
+    
+    @IBAction func btnFrndReaction(_ sender: UIButton) {
     }
-    @IBAction func btnFrndList(_ sender: UIButton)
-    {
-        
+    
+    @IBAction func btnFrndList(_ sender: UIButton) {
     }
     
     @IBAction func btnConnect(_ sender: Any) {
     }
+    
     @IBAction func btnMore(_ sender: Any) {
     }
 }
@@ -136,7 +130,7 @@ extension userProfileClass: UIScrollViewDelegate {
 
 extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return arrData.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
@@ -156,35 +150,22 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellUserProfileSectionTableViewCell") as! CellUserProfileSectionTableViewCell
-        if section == 0 {
-            cell.lblTitle.text = "Forever"
-        } else {
-            cell.lblTitle.text = "24 Hour"
-        }
+        cell.ConfigureCellWithData(arrData[section].sectionName)
         return cell.contentView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if section == 0 {
-            return resultForeverPost.arrFourEverHourData.count
-        } else {
-            return result24HrPost.arr24HourData.count
-        }
+        return arrData[section].arrPostData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellUserProfilePost", for: indexPath) as! cellUserProfilePost
-        if indexPath.section == 0 {
-            cell.collectionData = resultForeverPost.arrFourEverHourData[indexPath.row]
-        } else {
-            cell.collectionData = result24HrPost.arr24HourData[indexPath.row]
-        }
-        cell.clvPost.reloadData()
+        let currentObj = arrData[indexPath.section].arrPostData[indexPath.row]
+        cell.ConfigureCellWithData(currentObj)
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -193,27 +174,27 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
 }
 extension userProfileClass {
     
-    @objc func get24HourPostByUserId() {
+    private func get24HourPostByUserId() {
         
         _ = APIClient.Get24HourPostByUserId() { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 let arrNotForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.result24HrPost = Get24HourData(data: arrNotForEverList)
+                self.arrData.append(GetPostData(arrNotForEverList, "24 Hour"))
                 self.tableview.reloadData()
             }
         }
     }
     
-    @objc func getForeverPostByUserId() {
+    private func getForeverPostByUserId() {
         
         _ = APIClient.GetForevetPostByUserId() { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 let arrForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.resultForeverPost = GetFourEverHourData(data: arrForEverList)
+                self.arrData.append(GetPostData(arrForEverList, "Forever"))
             }
             self.get24HourPostByUserId()
         }

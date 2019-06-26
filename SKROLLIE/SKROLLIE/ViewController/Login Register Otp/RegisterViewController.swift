@@ -569,7 +569,7 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
 extension RegisterViewController
 {
     
-    func registrationAtServer() {
+    private func registrationAtServer() {
         
         let parameter = ParameterRequest()
         
@@ -601,7 +601,7 @@ extension RegisterViewController
     }
     
     
-    func webserviceOfEmailFormateCheck() {
+    private func webserviceOfEmailFormateCheck() {
         
         _ = APIClient.CheckEmailAddress(email: txtEmailAddress.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
@@ -629,7 +629,7 @@ extension RegisterViewController
     }
 
     
-    func verifyEMailAtServer() {
+    private func verifyEMailAtServer() {
         
         _ = APIClient.VerifyEmailAddress(email: txtEmailAddress.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
@@ -655,7 +655,7 @@ extension RegisterViewController
         })
     }
     
-    func CheckUSerNameValidAtServer() {
+    private func CheckUSerNameValidAtServer() {
         
         _ = APIClient.VerifyUserName(username: txtUserName.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()

@@ -163,6 +163,7 @@ class SelectedVideoViewController: BaseViewController {
                 if (!emoji1.isEmpty && emoji2.isEmpty) || (emoji1.isEmpty && !emoji2.isEmpty) {
                     AppDelegate.sharedDelegate().window?.showToastAtBottom(message:"Please Select Both Emoji")
                 } else {
+                    onBtnPlayPause(btnPlayPause)
                     let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
                     navigationController?.pushViewController(navVc, animated: true)
                     uploadVideo(fileUrl: videoUrl)
@@ -201,7 +202,7 @@ class SelectedVideoViewController: BaseViewController {
         }
     }
     
-    @IBAction func onBtnPlayPause(_ sender: Any) {
+    @IBAction func onBtnPlayPause(_ sender: UIButton) {
         
         if btnPlayPause.isSelected  {
             avPlayer.pause()
@@ -341,7 +342,7 @@ extension SelectedVideoViewController {
 extension SelectedVideoViewController
 {
     
-    func SavePhoto(name: String, thumbImgName: String) {
+    private func SavePhoto(name: String, thumbImgName: String) {
         
         
         let parameter = ParameterRequest()

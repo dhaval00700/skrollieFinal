@@ -132,7 +132,7 @@ class APIClient {
         
         //idUser=88&Start=0&Limit=10
         
-        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)"
+        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
@@ -147,7 +147,7 @@ class APIClient {
         
         //idUser=88&Start=0&Limit=10
         
-        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)"
+        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)

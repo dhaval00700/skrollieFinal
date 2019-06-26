@@ -17,17 +17,19 @@ class cellUserProfilePost: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setupUI()
+    }
+    
+    private func setupUI() {
         clvPost.register(UINib(nibName: "HomeCollectionsViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionsViewCell")
         clvPost.delegate = self
         clvPost.dataSource = self
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    func ConfigureCellWithData(_ data: [Post]) {
+        collectionData = data
+        clvPost.reloadData()
+    }
 }
 
 extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -39,29 +41,8 @@ extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionsViewCell", for: indexPath) as! HomeCollectionsViewCell
-        
-        let datas = collectionData[indexPath.item]
-        
-        cell.imgBackGround.imageFromURL(link: datas.Url, errorImage: UIImage(named: "img1"), contentMode: .scaleAspectFill)
-        
-        cell.lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        
-        if  !datas.Isforever {
-            cell.lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
-            if indexPath.row == collectionData.count - 1 {
-                NotificationCenter.default.post(name: TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY, object: nil)
-            }
-        } else {
-            cell.lblTimeOfPhotos.text = "F O R E V E R"
-            cell.viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
-            if indexPath.row == collectionData.count - 1 {
-                NotificationCenter.default.post(name: FOREVER_PAGINATION_NOTIFICATION_KEY, object: nil)
-            }
-        }
-        
-        
-        
+        let currentObj = collectionData[indexPath.item]
+        cell.ConfigureCellWithData(currentObj)
         return cell
     }
     

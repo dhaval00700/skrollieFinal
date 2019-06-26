@@ -45,8 +45,6 @@ let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEn
 
 let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
 
-let TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY =   Notification.Name("TWENTY_FOUR_HOUR_PAGINATION_NOTIFICATION_KEY")
-let FOREVER_PAGINATION_NOTIFICATION_KEY          =   Notification.Name("FOREVER_PAGINATION_NOTIFICATION_KEY")
 let PROGRESS_NOTIFICATION_KEY                    =   Notification.Name("PROGRESS_NOTIFICATION_KEY")
 
 let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
@@ -62,6 +60,7 @@ var timestamp: String {
     return "\(NSDate().timeIntervalSince1970 * 1000)"
 }
 
+var PostCountLimit = 5
 
 //MARK: For Emoji
 var arrEmoji = [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2.png"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7"), #imageLiteral(resourceName: "8"), #imageLiteral(resourceName: "9.png"), #imageLiteral(resourceName: "10.png")]

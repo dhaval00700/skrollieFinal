@@ -203,7 +203,7 @@ class LoginViewController: BaseViewController
 
 //MARK: API Call
 extension LoginViewController {
-    func signIn() {
+    private func signIn() {
         
         let parameter = ParameterRequest()
         parameter.addParameter(key: ParameterRequest.username, value: txtUsername.text)

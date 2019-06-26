@@ -73,8 +73,7 @@ class commentViewClass: BaseViewController
         emojiPagerView.dataSource = self
         
         self.emojiPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-        let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
-        self.emojiPagerView.itemSize = CGSize.init(width: 60, height: 40)//self.emojiPagerView.frame.size.applying(transform)
+        self.emojiPagerView.itemSize = CGSize.init(width: 60, height: 40)
         self.emojiPagerView.decelerationDistance = FSPagerView.automaticDistance
         let type = self.transformerTypes[0]
         self.emojiPagerView.transformer = FSPagerViewTransformer(type:type)

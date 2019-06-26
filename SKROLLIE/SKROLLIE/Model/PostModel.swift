@@ -34,14 +34,18 @@ class Post {
         isPhoto = Post["isPhoto"] as? Bool ?? (Post["isPhoto"] as? NSNumber)?.boolValue ?? false
         Isforever = Post["Isforever"] as? Bool ?? (Post["Isforever"] as? NSNumber)?.boolValue ?? false
         isPublish = Post["isPublish"] as? Bool ?? (Post["isPublish"] as? NSNumber)?.boolValue ?? false
-        let url = prefixDataUrl + "\(Post["Url"] as? String ?? "")"
-        Url = url
         Description = Post["Description"] as? String ?? ""
         Emoji1 = Post["id"] as? String ?? ""
         Emoji2 = Post["id"] as? String ?? ""
         CreatedDate = Post["CreatedDate"] as? String ?? ""
         CreatedBy = Post["CreatedBy"] as? String ?? ""
         Videothumbnailimage = Post["Videothumbnailimage"] as? String ?? ""
+        
+        if isPhoto {
+            Url = prefixDataUrl + "\(Post["Url"] as? String ?? "")"
+        } else {
+            Url = prefixDataUrl + "\(Post["Videothumbnailimage"] as? String ?? "")"
+        }
         UserName = userName
     }
     
@@ -56,28 +60,17 @@ class Post {
     }
 }
 
-class Get24HourData {
+class GetPostData {
     
     init() {}
     
-    var arr24HourData = [[Post]]()
+    var sectionName = ""
+    var arrPostData = [[Post]]()
     
-    init(data: [[[String: Any]]]) {
+    init(_ data: [[[String: Any]]], _ name: String) {
+        sectionName = name
         for temp in data {
-            arr24HourData.append(Post.getArrayPost(data: temp, userName: ""))
-        }
-    }
-}
-
-class GetFourEverHourData {
-    
-    init() {}
-    
-    var arrFourEverHourData = [[Post]]()
-    
-    init(data: [[[String: Any]]]) {
-        for temp in data {
-            arrFourEverHourData.append(Post.getArrayPost(data: temp, userName: ""))
+            arrPostData.append(Post.getArrayPost(data: temp, userName: "").reversed())
         }
     }
 }

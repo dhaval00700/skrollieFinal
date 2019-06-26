@@ -168,7 +168,7 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
 extension MobileNumberAddVc
 {
     
-    func webServiceoFMobileNum() {
+    private func webServiceoFMobileNum() {
         
         _ = APIClient.CheckMobileNumber(mobileNumber: txtMobileNum.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
@@ -196,7 +196,7 @@ extension MobileNumberAddVc
     }
     
     
-    func SendOTPFromServer() {
+    private func SendOTPFromServer() {
         
         
         _ = APIClient.SendOTP(mobileNumber: txtMobileNum.text!, success: { responseObj in
@@ -218,5 +218,4 @@ extension MobileNumberAddVc
             }
         })
     }
-    
 }

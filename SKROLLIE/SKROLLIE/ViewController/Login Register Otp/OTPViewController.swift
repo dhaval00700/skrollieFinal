@@ -127,7 +127,7 @@ class OTPViewController: BaseViewController,UITextFieldDelegate
 extension OTPViewController
 {
     
-    func SendOTPFromServer() {
+    private func SendOTPFromServer() {
         
         
         _ = APIClient.SendOTP(mobileNumber: getDataMobileNum, success: { responseObj in
@@ -145,7 +145,7 @@ extension OTPViewController
         })
     }
     
-    func VerifyOTPFromServer() {
+    private func VerifyOTPFromServer() {
         let pin = viewOtP.getPin()
         
         _ = APIClient.VerifyOTP(OTP: pin, success: { responseObj in

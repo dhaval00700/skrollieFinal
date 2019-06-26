@@ -244,7 +244,7 @@ extension SelectedImageViewController {
 extension SelectedImageViewController
 {
     
-    func SavePhoto(name: String) {
+    private func SavePhoto(name: String) {
     
         
         let parameter = ParameterRequest()

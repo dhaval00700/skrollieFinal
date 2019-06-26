@@ -23,7 +23,6 @@ class HomeViewController: BaseViewController
     
     //MARK: Properties
     var resultImgPhoto = [UserData]()
-    var collectionData = UserData()
     
     //MARK: Lifecycle
     override func viewDidLoad()
@@ -82,12 +81,12 @@ class HomeViewController: BaseViewController
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    /*func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         UIView.animate(withDuration: 0.4) {
             cell.transform = CGAffineTransform.identity
         }
-    }*/
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -96,14 +95,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell1 = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
-        collectionData = resultImgPhoto[indexPath.row]
-        cell1.collectionData = resultImgPhoto[indexPath.row]
-        cell1.Collectionview.reloadData()
-        cell1.lblUserName.text = collectionData.ProfileName
-        cell1.lblUserName.font = UIFont.Regular(ofSize: 16)
-        
-        return cell1
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
+        cell.ConfigureCellWithData(resultImgPhoto[indexPath.row])
+        return cell
         
     }
     
@@ -124,8 +118,6 @@ extension HomeViewController: UIScrollViewDelegate {
         }
     }
     
-    
-    
     func scrollViewDidEndDragging(_: UIScrollView, willDecelerate: Bool)
     {
         UIView.animate(withDuration: 3) {
@@ -136,7 +128,7 @@ extension HomeViewController: UIScrollViewDelegate {
 
 extension HomeViewController
 {
-    func getAllPost() {
+    private func getAllPost() {
         _ = APIClient.GetAllPost { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
