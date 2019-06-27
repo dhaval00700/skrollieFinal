@@ -45,8 +45,10 @@
 		4F0F214122B76CDC002F69A7 /* AppPrefsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */; };
 		4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */; };
 		4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214722B79283002F69A7 /* LoginModel.swift */; };
+		4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */; };
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
 		4F761E0922BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */; };
+		4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBB1E022C514400048A596 /* SettingsViewController.swift */; };
 		4FF671F122C2326100BB4AAF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF671F022C2326100BB4AAF /* BaseViewController.swift */; };
 		4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E022B3661D004F2C62 /* emogie.swift */; };
 		4FF7D7E322B3661D004F2C62 /* emogie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E122B3661D004F2C62 /* emogie.xib */; };
@@ -183,8 +185,10 @@
 		4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrefsManager.swift; sourceTree = "<group>"; };
 		4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
 		4F0F214722B79283002F69A7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../Preferences/LoginModel.swift; sourceTree = "<group>"; };
+		4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
 		4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellUserProfileSectionTableViewCell.xib; sourceTree = "<group>"; };
+		4FBBB1E022C514400048A596 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FF671F022C2326100BB4AAF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4FF7D7E022B3661D004F2C62 /* emogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emogie.swift; sourceTree = "<group>"; };
 		4FF7D7E122B3661D004F2C62 /* emogie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = emogie.xib; sourceTree = "<group>"; };
@@ -399,8 +403,17 @@
 				4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */,
 				4F0F214722B79283002F69A7 /* LoginModel.swift */,
 				3486A86B22A661960053A1A1 /* PostModel.swift */,
+				4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4F19C0EC22C5138F00D12A1B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4FBBB1E022C514400048A596 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		4FF7D7DF22B365EC004F2C62 /* Cell */ = {
@@ -482,6 +495,7 @@
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
 				F73DD3B42284273A0096A943 /* Profile */,
+				4F19C0EC22C5138F00D12A1B /* Settings */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -879,6 +893,7 @@
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
 				4F0F210F22B762A1002F69A7 /* UITextField+Extensions.swift in Sources */,
 				4F0F213622B76C4D002F69A7 /* DataSelectionTableViewCell.swift in Sources */,
+				4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
 				3486A86C22A661960053A1A1 /* PostModel.swift in Sources */,
 				4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */,
@@ -928,6 +943,7 @@
 				7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */,
 				4F0F210E22B762A1002F69A7 /* UINavigationBar+Extension.swift in Sources */,
 				4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */,
+				4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

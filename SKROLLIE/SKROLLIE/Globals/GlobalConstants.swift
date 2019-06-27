@@ -155,17 +155,45 @@ struct API {
     static let SavePost     =   BASE_URL + "MobilePost/SavePost"
     static let CreateFriend     =   BASE_URL + "MobilePost/CreateFriend"
     static let SendOTP     =   BASE_URL + "MobileAccount/SendOTP"
-    static let EmailValidation = BASE_URL + "MobileAccount/CheckEmailValidator"
-    static let VerifyEmailAddress = BASE_URL + "MobileAccount/CheckEmailExist"
-    static let VerifiyUserName = BASE_URL + "MobileAccount/CheckUserExist"
-    static let verifyPhoneNumber = BASE_URL + "MobileAccount/CheckPhoneExist"
-    static let sendOtp = BASE_URL + "MobileAccount/SendOTP"
-    static let verifyOTPUrl = BASE_URL + "MobileAccount/VerifyOTP"
-    static let getAllPost = BASE_URL + "MobilePost/GetAllPost"
-    static let getAllPostByIdUser = BASE_URL + "MobilePost/GetAllPostByIdUser"
-    static let createFriend = BASE_URL + "MobilePost/CreateFriend"
-    static let deletePost = BASE_URL + "MobilePost/DeletePost"
-    
-    static let get24hoursPost = BASE_URL + "MobilePost/GetLatest24HoursPostByUser"
-    static let getForeverPost = BASE_URL + "MobilePost/GetForeverPostByUser"
+    static let CheckEmailValidator = BASE_URL + "MobileAccount/CheckEmailValidator"
+    static let CheckEmailExist = BASE_URL + "MobileAccount/CheckEmailExist"
+    static let CheckUserExist = BASE_URL + "MobileAccount/CheckUserExist"
+    static let CheckPhoneExist = BASE_URL + "MobileAccount/CheckPhoneExist"
+    static let VerifyOTP = BASE_URL + "MobileAccount/VerifyOTP"
+    static let GetAllPost = BASE_URL + "MobilePost/GetAllPost"
+    static let GetAllPostByIdUser = BASE_URL + "MobilePost/GetAllPostByIdUser"
+    static let DeletePost = BASE_URL + "MobilePost/DeletePost"
+    static let GetLatest24HoursPostByUser = BASE_URL + "MobilePost/GetLatest24HoursPostByUser"
+    static let GetForeverPostByUser = BASE_URL + "MobilePost/GetForeverPostByUser"
+    static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
 }
+
+
+/*//MARK: - API
+struct API1 {
+    
+    static let shared = API1()
+    
+    var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
+    
+    private func getFullUrl(_ suffix: String) -> String {
+        return API1.shared.BASE_URL + suffix
+    }
+    
+    static let Login     =   API1.shared.getFullUrl("MobileAccount/Mobilelogin")
+    static let Register     =   API1.shared.getFullUrl("MobileAccount/register")
+    static let SavePost     =   API1.shared.getFullUrl("MobilePost/SavePost")//API.shared.BASE_URL +
+    static let CreateFriend     =   API1.shared.getFullUrl("MobilePost/CreateFriend")
+    static let SendOTP     =   API1.shared.getFullUrl("MobileAccount/SendOTP")
+    static let CheckEmailValidator = API1.shared.getFullUrl("MobileAccount/CheckEmailValidator")
+    static let CheckEmailExist = API1.shared.getFullUrl("MobileAccount/CheckEmailExist")
+    static let CheckUserExist = API1.shared.getFullUrl("MobileAccount/CheckUserExist")
+    static let CheckPhoneExist = API1.shared.getFullUrl("MobileAccount/CheckPhoneExist")
+    static let VerifyOTP = API1.shared.getFullUrl("MobileAccount/VerifyOTP")
+    static let GetAllPost = API1.shared.getFullUrl("MobilePost/GetAllPost")
+    static let GetAllPostByIdUser = API1.shared.getFullUrl("MobilePost/GetAllPostByIdUser")
+    static let DeletePost = API1.shared.getFullUrl("MobilePost/DeletePost")
+    static let GetLatest24HoursPostByUser = API1.shared.getFullUrl("MobilePost/GetLatest24HoursPostByUser")
+    static let GetForeverPostByUser = API1.shared.getFullUrl("MobilePost/GetForeverPostByUser")
+    static let GetUserById = API1.shared.getFullUrl("MobileAccount/GetUserById")
+}*/

@@ -14,6 +14,8 @@ class ApiManager {
     
     class func requestApi(method: Alamofire.HTTPMethod, urlString: String, parameters: [String: Any]? = nil, headers: [String: String]? = nil, success successBlock:@escaping (([String: Any]) -> Void), failure failureBlock:((NSError) -> Bool)?) -> DataRequest
     {
+    
+        
         var finalParameters = [String: Any]()
         if(parameters != nil)
         {

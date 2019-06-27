@@ -78,9 +78,13 @@ class SelectedVideoViewController: BaseViewController {
         setupSwipeGesture()
         setupEmogiPager()
         setData()
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
+        } catch {
+            print(error)
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.avPlayer.play()
-            self.avPlayer.volume = 1
         }
     }
     

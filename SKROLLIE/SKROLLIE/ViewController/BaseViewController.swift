@@ -25,4 +25,14 @@ class BaseViewController: UIViewController {
             }
         }
     }
+    
+    func goToLoginPage() {
+        let navVc = AppDelegate.sharedDelegate().window?.rootViewController as! UINavigationController
+        for temp in navVc.viewControllers{
+            
+            if let vc = temp as? LoginViewController{
+                self.navigationController?.popToViewController(vc, animated: true)
+            }
+        }
+    }
 }

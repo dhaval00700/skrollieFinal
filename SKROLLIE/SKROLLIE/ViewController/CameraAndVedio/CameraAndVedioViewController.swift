@@ -256,7 +256,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
             let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)
             exporter!.outputURL = fileURL
             exporter!.outputFileType = AVFileType.mp4
-            exporter!.shouldOptimizeForNetworkUse = false
+            exporter!.shouldOptimizeForNetworkUse = true
             exporter!.exportAsynchronously() {
                 DispatchQueue.main.async(execute: { () -> Void in
                     // removed all videos

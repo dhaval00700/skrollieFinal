@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 
 class APIClient {
+    
     class func LogIn(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         return ApiManager.requestApi(method: .post, urlString: API.Login, parameters: parameters, headers: headers.parameters, success: { (response) in
@@ -32,9 +33,7 @@ class APIClient {
     
     class func CheckEmailAddress(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        
-        return ApiManager.requestApi(method: .get, urlString: API.EmailValidation + "?emailaddress=\(email)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.CheckEmailValidator + "?emailaddress=\(email)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -44,9 +43,7 @@ class APIClient {
     
     class func VerifyEmailAddress(email:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        
-        return ApiManager.requestApi(method: .get, urlString: API.VerifyEmailAddress + "?emailaddress=\(email)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.CheckEmailExist + "?emailaddress=\(email)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -56,9 +53,7 @@ class APIClient {
     
     class func VerifyUserName(username:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        
-        return ApiManager.requestApi(method: .get, urlString: API.VerifiyUserName + "?username=\(username)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.CheckUserExist + "?username=\(username)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -68,9 +63,7 @@ class APIClient {
     
     class func CheckMobileNumber(mobileNumber:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        
-        return ApiManager.requestApi(method: .get, urlString: API.verifyPhoneNumber + "?phone=\(mobileNumber)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.CheckPhoneExist + "?phone=\(mobileNumber)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -81,9 +74,7 @@ class APIClient {
     
     class func SendOTP(mobileNumber:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        let url = API.sendOtp + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&phone=\(mobileNumber)"
-        
+        let url = API.SendOTP + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&phone=\(mobileNumber)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -94,9 +85,7 @@ class APIClient {
     
     class func VerifyOTP(OTP:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        let url = API.verifyOTPUrl + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&OTP=\(OTP)"
-        
+        let url = API.VerifyOTP + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&OTP=\(OTP)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -117,9 +106,7 @@ class APIClient {
     
     class func GetAllPost(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        
-        return ApiManager.requestApi(method: .get, urlString: API.getAllPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.GetAllPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -129,11 +116,7 @@ class APIClient {
     
     class func Get24HourPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        //idUser=88&Start=0&Limit=10
-        
-        let url = API.get24hoursPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
-        
+        let url = API.GetLatest24HoursPostByUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -144,11 +127,28 @@ class APIClient {
     
     class func GetForevetPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        
-        //idUser=88&Start=0&Limit=10
-        
-        let url = API.getForeverPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
-        
+        let url = API.GetForeverPostByUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func GetUserById(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        return ApiManager.requestApi(method: .get, urlString: API.Register, parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func GetUserById(userId: String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.GetUserById + "?UserId=\(userId)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in

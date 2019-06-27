@@ -20,11 +20,7 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var imgUserTag: UIImageView!
     @IBOutlet weak var btnCOnnect: UIButton!
     @IBOutlet weak var lblDesc: UILabel!
-    @IBOutlet weak var btnTodayCnt: UIButton!
-    @IBOutlet weak var btnForeverCnt: UIButton!
-    @IBOutlet weak var lblFrnd: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnToday: UIButton!
     
@@ -36,22 +32,33 @@ class userProfileClass: BaseViewController
     
     
     var arrData = [GetPostData]()
+    var userPrifileData = UserProfileModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+    
+    private func setupUI() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblUserTag.font = UIFont.Regular(ofSize: 16)
-        lblFrnd.font = UIFont.Regular(ofSize: 16)
         btnCOnnect.titleLabel?.font =  UIFont.Regular(ofSize: 16)
         btnCOnnect.addCornerRadius(8)
         btnToday.addCornerRadius(8)
         btnForever.addCornerRadius(8)
         lblDesc.font = UIFont.Regular(ofSize: 9)
-        lblToday.font = UIFont.Regular(ofSize: 9)
+        lblToday.font = UIFont.Bold(ofSize: 15)
+        lblForever.font = UIFont.Bold(ofSize: 15)
         
         imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(.purple)
         
@@ -67,16 +74,16 @@ class userProfileClass: BaseViewController
         progressBar.layer.sublayers!.first!.cornerRadius = 8
         progressBar.subviews.first!.clipsToBounds = true
         
+        getUserProfileData()
         getForeverPostByUserId()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupUI()
-    }
-    
-    private func setupUI() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)
+    private func setData() {
+        imgUserPic.imageFromURL(link: userPrifileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        btnToday.setTitle(userPrifileData.TotalTodayPost, for: .normal)
+        btnForever.setTitle(userPrifileData.TotalForeverPost, for: .normal)
+        lblUserTag.text = "@" + userPrifileData.username
+        lblUsername.text = userPrifileData.username
     }
     
     @objc func onProgress(_ notificaton: NSNotification) {
@@ -91,7 +98,9 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnSetting(_ sender: UIButton) {
-        performSegue(withIdentifier: "unwineToLogout", sender: self)
+        let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
+        navVc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(navVc, animated: true, completion: nil)
     }
     
     @IBAction func btnUserProfile(_ sender: UIButton) {
@@ -107,10 +116,28 @@ class userProfileClass: BaseViewController
     @IBAction func btnFrndList(_ sender: UIButton) {
     }
     
-    @IBAction func btnConnect(_ sender: Any) {
+    @IBAction func btnConnect(_ sender: UIButton) {
     }
     
-    @IBAction func btnMore(_ sender: Any) {
+    @IBAction func btnMore(_ sender: UIButton) {
+    }
+    
+    @IBAction func onBtnToday(_ sender: UIButton) {
+        let indexToday = arrData.firstIndex { (obj) -> Bool in
+            return obj.sectionName == "24 Hour"
+        }
+        if indexToday != nil {
+            tableview.scrollToRow(at: IndexPath(row: 0, section: indexToday!), at: .none, animated: true)
+        }
+    }
+    
+    @IBAction func onBtnForever(_ sender: UIButton) {
+        let indexForever = arrData.firstIndex { (obj) -> Bool in
+            return obj.sectionName == "Forever"
+        }
+        if indexForever != nil {
+            tableview.scrollToRow(at: IndexPath(row: 0, section: indexForever!), at: .none, animated: true)
+        }
     }
 }
 
@@ -197,6 +224,20 @@ extension userProfileClass {
                 self.arrData.append(GetPostData(arrForEverList, "Forever"))
             }
             self.get24HourPostByUserId()
+        }
+    }
+    
+    private func getUserProfileData() {
+        
+        _ = APIClient.GetUserById(userId: AppPrefsManager.shared.getUserData().UserId) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
+                let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
+                self.userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
+                self.setData()
+            }
         }
     }
 }

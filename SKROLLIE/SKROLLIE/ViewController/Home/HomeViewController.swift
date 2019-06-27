@@ -15,11 +15,7 @@ class HomeViewController: BaseViewController
     @IBOutlet weak var tblData: UITableView!
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var viewMenu: UIView!
-    
-    @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
-    
-    @IBOutlet weak var lblFrnds: UILabel!
     
     //MARK: Properties
     var resultImgPhoto = [UserData]()
@@ -40,7 +36,6 @@ class HomeViewController: BaseViewController
         tblData.register(UINib(nibName: "HomeTblCell", bundle: nil), forCellReuseIdentifier: "HomeTblCell")
         tblData.delegate = self
         tblData.dataSource = self
-        lblFrnds.font = UIFont.Regular(ofSize: 16)
         lblTitle.font = UIFont.Regular(ofSize: 20)
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
@@ -51,7 +46,9 @@ class HomeViewController: BaseViewController
     //MARK: Actions
     @IBAction func btnSetting(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "UnwineSegueForLogout", sender: self)
+        let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
+        navVc.modalPresentationStyle = .overFullScreen
+        navigationController?.present(navVc, animated: true, completion: nil)
     }
     @IBAction func btnCamera(_ sender: UIButton)
     {

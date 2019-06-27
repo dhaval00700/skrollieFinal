@@ -517,7 +517,7 @@ open class SwiftyCamViewController: UIViewController {
 
 	public func startVideoRecording() {
 
-    
+        
         guard sessionRunning == true else {
             print("[SwiftyCam]: Cannot start video recoding. Capture session is not running")
             return
@@ -554,12 +554,17 @@ open class SwiftyCamViewController: UIViewController {
 				if self.currentCamera == .front {
 					movieFileOutputConnection?.isVideoMirrored = true
 				}
-
-				movieFileOutputConnection?.videoOrientation = self.orientation.getVideoOrientation() ?? previewOrientation
-
+                
 				// Start recording to a temporary file.
 				let outputFileName = UUID().uuidString
 				let outputFilePath = (self.outputFolder as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
+                    //all fine with jsonData here
+                } catch {
+                    //handle error
+                    print(error)
+                }
 				movieFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
 				self.isVideoRecording = true
 				DispatchQueue.main.async {
