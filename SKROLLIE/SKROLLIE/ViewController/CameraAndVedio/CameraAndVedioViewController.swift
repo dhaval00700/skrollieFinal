@@ -14,14 +14,14 @@ import SRCountdownTimer
 
 class CameraAndVedioViewController: SwiftyCamViewController
 {
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var Timerlabel: UILabel!
     @IBOutlet weak var ViewCount: SRCountdownTimer!
     @IBOutlet weak var btnFlash: UIButton!
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var btnPreviewImg: UIButton!
     
-    //MARK: Properties
+    // MARK: - Properties
     var VideoRecorderStatus:Int = 0
     var images:[UIImage] = []
     
@@ -35,7 +35,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
     var timer = Timer()
     var resumTapped = false
     
-    //MARK: Lifecycles
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         setupUI()
@@ -43,7 +43,7 @@ class CameraAndVedioViewController: SwiftyCamViewController
     }
     
     
-    //MARK: Methods
+    // MARK: - Methods
     func setupUI() {
         fetchPhotos()
         Timerlabel.isHidden = true
@@ -479,7 +479,7 @@ extension CameraAndVedioViewController: TapGestureDelegate {
     }
 }
 
-//MARK: - UIImagePickerControllerDelegate and Take a Photo or Choose from Gallery Methods
+// MARK: - UIImagePickerControllerDelegate and Take a Photo or Choose from Gallery Methods
 extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -529,6 +529,9 @@ extension CameraAndVedioViewController: UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        UIApplication.shared.isStatusBarHidden = true
+    }
 }
 
 

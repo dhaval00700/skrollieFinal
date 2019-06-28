@@ -46,4 +46,3 @@ class UserProfileModel {
         TotalForeverPost = totalForeverPost
     }
 }
-

@@ -14,7 +14,7 @@ import UserNotifications
 
 class Utility {
     
-    //MARK: - Variables
+    // MARK: - Variables
     static let shared = Utility()
     
     var enableLog = true
@@ -29,7 +29,7 @@ class Utility {
         return "\(Date().timeIntervalSince1970)"
     }
     
-    //MARK: - Functions
+    // MARK: - Functions
     class func isLogEnable() -> Bool {
         return self.shared.enableLog
     }
@@ -331,7 +331,7 @@ class Utility {
     }
 }
 
-//MARK: - Structs
+// MARK: - Structs
 struct IOS_VERSION
 {
     static var IS_IOS7 = Utility.getMajorSystemVersion() >= 7 && Utility.getMajorSystemVersion() < 8

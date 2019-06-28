@@ -10,16 +10,19 @@ import UIKit
 
 class HomeCollectionsViewCell: UICollectionViewCell {
 
+    // MARK: - Outlets
     @IBOutlet weak var imgUserPic: UIImageView!
     @IBOutlet weak var imgBackGround: UIImageView!
     @IBOutlet weak var lblTimeOfPhotos: UILabel!
     @IBOutlet weak var viewAllocColourDependOnTime: UIView!
     
+    // MARK: - LifeCycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
     
+    // MARK: - Methods
     private func setupUI() {
         lblTimeOfPhotos.isHidden = true
     }
@@ -37,5 +40,4 @@ class HomeCollectionsViewCell: UICollectionViewCell {
             viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
         }
     }
-    
 }

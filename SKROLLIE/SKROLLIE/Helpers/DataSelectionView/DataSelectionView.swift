@@ -32,7 +32,7 @@ class DataSelectionView: UIView {
     weak var dataSource: DataSelectionViewDataSource?
     weak var delegate: DataSelectionViewDelegate?
     
-    // MARK: - Lifecycles
+    // MARK: - LifeCycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()

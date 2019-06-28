@@ -16,7 +16,7 @@
 
 import UIKit
 
-//MARK: Public Protocol Declaration
+// MARK: - Public Protocol Declaration
 
 /// Delegate for SwiftyCamButton
 

@@ -204,7 +204,7 @@ open class SwiftMessages {
     }
 
     /**
-     Specifies events in the message lifecycle.
+     Specifies events in the message LifeCycles.
     */
     public enum Event {
         case willShow

@@ -13,21 +13,7 @@ import AudioToolbox
 
 class OTPViewController: BaseViewController,UITextFieldDelegate
 {
-    
-    //--------------------------------------------------------------
-    // MARK: - Variable Declaration
-    //--------------------------------------------------------------
-    
-    var getDataMobileNum = String()
-    
-    //Variable for Error message
-    private let textField = UITextField()
-    private let errorMessage = UILabel()
-    
-    //--------------------------------------------------------------
     // MARK: - Outlets
-    //--------------------------------------------------------------
-    
     @IBOutlet weak var viewOtP: SVPinView!
     
     @IBOutlet weak var btnNext: UIButton!
@@ -43,14 +29,20 @@ class OTPViewController: BaseViewController,UITextFieldDelegate
     @IBOutlet weak var lblUserNum: UILabel!
     @IBOutlet weak var lblOr: UILabel!
     
-    //--------------------------------------------------------------
-    // MARK: - View Methods
-    //--------------------------------------------------------------
+    // MARK: - Properties
+    var getDataMobileNum = String()
+    private let textField = UITextField()
+    private let errorMessage = UILabel()
     
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    // MARK: - Methods
+    private func setupUI() {
         viewOtP.becomeFirstResponderAtIndex = 0
         viewOtP.pinLength = 4
         viewOtP.textColor = UIColor.yellow
@@ -71,9 +63,6 @@ class OTPViewController: BaseViewController,UITextFieldDelegate
         setFont()
     }
     
-    //--------------------------------------------------------------
-    // MARK: - Error message
-    //--------------------------------------------------------------
     func setFont()
     {
         lblEnterthepinwesentto.font = UIFont.Bold(ofSize: 17)
@@ -97,10 +86,8 @@ class OTPViewController: BaseViewController,UITextFieldDelegate
         NSLayoutConstraint.activate([textField.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
                                      textField.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 10.0)])
     }
-    //--------------------------------------------------------------
-    // MARK: - Action Methods
-    //--------------------------------------------------------------
     
+    // MARK: - Action
     @IBAction func btnNext(_ sender: UIButton)
     {
         VerifyOTPFromServer()
@@ -119,10 +106,6 @@ class OTPViewController: BaseViewController,UITextFieldDelegate
         SendOTPFromServer()
     }
 }
-
-//--------------------------------------------------------------
-// MARK: - APiCall
-//--------------------------------------------------------------
 
 extension OTPViewController
 {

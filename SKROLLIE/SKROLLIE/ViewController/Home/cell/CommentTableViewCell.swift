@@ -10,7 +10,7 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
-    //MARK: - Outlet
+    // MARK: - Outlet
     
     
     @IBOutlet weak var imgUser: UIImageView!

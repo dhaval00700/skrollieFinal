@@ -13,7 +13,7 @@ import AWSCore
 
 class SelectedVideoViewController: BaseViewController {
 
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var viwVideo: UIView!
     @IBOutlet weak var emogiPager: FSPagerView!
     @IBOutlet weak var txtEnterDescription: UITextView!
@@ -29,18 +29,18 @@ class SelectedVideoViewController: BaseViewController {
     @IBOutlet weak var lctEnterDescriptionHeight: NSLayoutConstraint!
 
     
-    //MARK: Properties
+    // MARK: - Properties
     var videoUrl:URL!
     var avPlayer = AVPlayer()
     
-    //MARK: Lifecycle
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         // Do any additional setup after loading the view.
     }
     
-    //MARK: Methods
+    // MARK: - Methods
     private func setupUI() {
         navigationController?.isNavigationBarHidden = true
         

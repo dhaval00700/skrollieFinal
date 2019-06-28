@@ -10,16 +10,21 @@ import UIKit
 
 class cellUserProfilePost: UITableViewCell {
 
+    // MARK: - Outlets
     @IBOutlet weak var clvPost: UICollectionView!
     
+    // MARK: - Properties
     var collectionData = [Post]()
+    var viwMenu = UIView()
     
+    // MARK: - LifeCycles
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setupUI()
     }
     
+    // MARK: - Methods
     private func setupUI() {
         clvPost.register(UINib(nibName: "HomeCollectionsViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionsViewCell")
         clvPost.delegate = self
@@ -57,3 +62,16 @@ extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSou
     }
 }
 
+extension cellUserProfilePost: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        UIView.animate(withDuration: 1) {
+            self.viwMenu.alpha = 0
+        }
+    }
+    func scrollViewDidEndDragging(_: UIScrollView, willDecelerate: Bool)
+    {
+        UIView.animate(withDuration: 3) {
+            self.viwMenu.alpha = 1
+        }
+    }
+}

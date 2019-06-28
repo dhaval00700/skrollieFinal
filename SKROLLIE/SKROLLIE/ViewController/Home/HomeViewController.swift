@@ -11,16 +11,16 @@ import UIKit
 class HomeViewController: BaseViewController
 {
     
-    //Mark: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var tblData: UITableView!
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     
-    //MARK: Properties
+    // MARK: - Properties
     var resultImgPhoto = [UserData]()
     
-    //MARK: Lifecycle
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ class HomeViewController: BaseViewController
         print("where from call?")
     }
     
+    // MARK: - Methods
     func setupUI() {
         tblData.register(UINib(nibName: "HomeTblCell", bundle: nil), forCellReuseIdentifier: "HomeTblCell")
         tblData.delegate = self
@@ -40,37 +41,40 @@ class HomeViewController: BaseViewController
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
+        
+        for family in UIFont.familyNames {
+            print(family)
+        }
         getAllPost()
     }
     
-    //MARK: Actions
-    @IBAction func btnSetting(_ sender: UIButton)
-    {
+    // MARK: - Actions
+    @IBAction func btnSetting(_ sender: UIButton) {
         let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
         navVc.modalPresentationStyle = .overFullScreen
         navigationController?.present(navVc, animated: true, completion: nil)
     }
-    @IBAction func btnCamera(_ sender: UIButton)
-    {
+    
+    @IBAction func btnCamera(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "CameraAndVedioViewController") as? CameraAndVedioViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    @IBAction func btnUserProfile(_ sender: UIButton)
-    {
+    
+    @IBAction func btnUserProfile(_ sender: UIButton) {
         let obj: userProfileClass = self.storyboard?.instantiateViewController(withIdentifier: "userProfileClass") as! userProfileClass
         self.navigationController?.pushViewController(obj, animated: true)
     }
-    @IBAction func btnUserPicture(_ sender: UIButton)
-    {
+    
+    @IBAction func btnUserPicture(_ sender: UIButton) {
         
     }
-    @IBAction func btnFrndReaction(_ sender: UIButton)
-    {
+    
+    @IBAction func btnFrndReaction(_ sender: UIButton) {
         
     }
-    @IBAction func btnFrndList(_ sender: UIButton)
-    {
+    
+    @IBAction func btnFrndList(_ sender: UIButton) {
         
     }
 }

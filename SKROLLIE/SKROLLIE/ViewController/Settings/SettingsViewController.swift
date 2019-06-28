@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 
 class SettingsViewController: BaseViewController {
     
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var viwMainContainer: UIView!
     @IBOutlet weak var viwAccountTypeContainer: UIView!
     @IBOutlet weak var btnPublic: UIButton!
@@ -27,9 +27,9 @@ class SettingsViewController: BaseViewController {
     @IBOutlet weak var btnVerifyNow: UIButton!
     @IBOutlet weak var btnLogout: UIButton!
     
-    //MARK: Properties
+    // MARK: - Properties
     
-    //MARK: LifeCycle
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +37,7 @@ class SettingsViewController: BaseViewController {
         setupUI()
     }
     
-    //MARK: Methods
+    // MARK: - Methods
     private func setupUI() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
         self.view.addGestureRecognizer(tapGesture)
@@ -47,7 +47,7 @@ class SettingsViewController: BaseViewController {
         btnPublic.isSelected = true
     }
     
-    //MARK: Actions
+    // MARK: - Actions
     @objc func onTap() {
         self.dismiss(animated: true, completion: nil)
     }

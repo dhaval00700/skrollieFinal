@@ -10,7 +10,7 @@ import UIKit
 import AWSS3
 import AWSCore
 
-//MARK: - Global variables
+// MARK: - Global variables
 var isDevelopmentMode   = true
 var enableProductionApi = false
 
@@ -29,7 +29,7 @@ struct AppColor {
     static let KEY              =   #colorLiteral(red: 0.9568627451, green: 0.4862745098, blue: 0.2823529412, alpha: 1)
 }
 
-//MARK: For AWS Config
+// MARK: - For AWS Config
 private enum SpaceRegion: String {
     case sfo = "sfo2", ams = "ams3", sgp = "sgp1"
     
@@ -62,7 +62,7 @@ var timestamp: String {
 
 var PostCountLimit = 5
 
-//MARK: For Emoji
+// MARK: - For Emoji
 var arrEmoji = [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2.png"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7"), #imageLiteral(resourceName: "8"), #imageLiteral(resourceName: "9.png"), #imageLiteral(resourceName: "10.png")]
 
 func returnEmojiNumber(img: UIImage) -> String {
@@ -145,10 +145,9 @@ enum LoginType: String {
     case facebook = "FB"
 }
 
-//MARK: - API
+// MARK: - API
 struct API {
     static var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
-    
     
     static let Login     =   BASE_URL + "MobileAccount/Mobilelogin"
     static let Register     =   BASE_URL + "MobileAccount/register"
@@ -167,33 +166,3 @@ struct API {
     static let GetForeverPostByUser = BASE_URL + "MobilePost/GetForeverPostByUser"
     static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
 }
-
-
-/*//MARK: - API
-struct API1 {
-    
-    static let shared = API1()
-    
-    var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
-    
-    private func getFullUrl(_ suffix: String) -> String {
-        return API1.shared.BASE_URL + suffix
-    }
-    
-    static let Login     =   API1.shared.getFullUrl("MobileAccount/Mobilelogin")
-    static let Register     =   API1.shared.getFullUrl("MobileAccount/register")
-    static let SavePost     =   API1.shared.getFullUrl("MobilePost/SavePost")//API.shared.BASE_URL +
-    static let CreateFriend     =   API1.shared.getFullUrl("MobilePost/CreateFriend")
-    static let SendOTP     =   API1.shared.getFullUrl("MobileAccount/SendOTP")
-    static let CheckEmailValidator = API1.shared.getFullUrl("MobileAccount/CheckEmailValidator")
-    static let CheckEmailExist = API1.shared.getFullUrl("MobileAccount/CheckEmailExist")
-    static let CheckUserExist = API1.shared.getFullUrl("MobileAccount/CheckUserExist")
-    static let CheckPhoneExist = API1.shared.getFullUrl("MobileAccount/CheckPhoneExist")
-    static let VerifyOTP = API1.shared.getFullUrl("MobileAccount/VerifyOTP")
-    static let GetAllPost = API1.shared.getFullUrl("MobilePost/GetAllPost")
-    static let GetAllPostByIdUser = API1.shared.getFullUrl("MobilePost/GetAllPostByIdUser")
-    static let DeletePost = API1.shared.getFullUrl("MobilePost/DeletePost")
-    static let GetLatest24HoursPostByUser = API1.shared.getFullUrl("MobilePost/GetLatest24HoursPostByUser")
-    static let GetForeverPostByUser = API1.shared.getFullUrl("MobilePost/GetForeverPostByUser")
-    static let GetUserById = API1.shared.getFullUrl("MobileAccount/GetUserById")
-}*/

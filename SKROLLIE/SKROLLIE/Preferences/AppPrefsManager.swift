@@ -54,7 +54,7 @@ class AppPrefsManager {
         return isUserLogin == nil ? false: (isUserLogin as! Bool)
     }
     
-    //MARK: - User data
+    // MARK: - User data
     func saveUserData(model: LoginModel)
     {
         setDataToPreference(data: model.toDictionary() as AnyObject, forKey: USER_DATA_KEY)

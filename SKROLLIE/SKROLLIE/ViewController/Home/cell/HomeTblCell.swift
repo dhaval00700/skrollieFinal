@@ -8,24 +8,24 @@
 
 import UIKit
 
-class HomeTblCell: UITableViewCell
-{
-   
+class HomeTblCell: UITableViewCell {
+    
+    // MARK: - Outlets
     @IBOutlet weak var imgUser: UIImageView!
-    
     @IBOutlet weak var lblUserName: UILabel!
-    
     @IBOutlet weak var Collectionview: UICollectionView!
-    
     @IBOutlet weak var viewOfUserProfileBackground: UIView!
 
+    // MARK: - Properties
     var collectionData = UserData()
 
+    // MARK: - LifeCycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
     
+    // MARK: - Methods
     private func setupUI() {
         Collectionview.register(UINib(nibName: "HomeCollectionsViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionsViewCell")
         lblUserName.font = UIFont.Regular(ofSize: 16)

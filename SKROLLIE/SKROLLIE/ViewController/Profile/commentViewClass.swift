@@ -43,7 +43,7 @@ class commentViewClass: BaseViewController
                                                                       .cubic]
     
     
-    //MARK: - ViewMethods
+    // MARK: - ViewMethods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,7 +152,7 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     }
 }
 
-//MARK: - Comment Tableview Extention
+// MARK: - Comment Tableview Extention
 
 extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSelectOfComment{
     

@@ -13,7 +13,7 @@ import AWSCore
 
 class SelectedImageViewController: BaseViewController {
     
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var imgSelectedImage: UIImageView!
     @IBOutlet weak var txtEnterDescription: UITextView!
     @IBOutlet weak var emogiPagerView: FSPagerView!
@@ -28,11 +28,11 @@ class SelectedImageViewController: BaseViewController {
 
     
     
-    //MARK: Properties
+    // MARK: - Properties
     var selectedImage = UIImage()
     var selectedImageUrl: URL!
     
-    //MARK: Lifecycles
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -240,7 +240,6 @@ extension SelectedImageViewController {
     }
 }
 
-//MARk: - API call
 extension SelectedImageViewController
 {
     

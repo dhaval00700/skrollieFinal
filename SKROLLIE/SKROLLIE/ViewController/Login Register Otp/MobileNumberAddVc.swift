@@ -10,38 +10,29 @@ import UIKit
 import AudioToolbox
 import SkyFloatingLabelTextField
 
-class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
+class MobileNumberAddVc: BaseViewController
 {
-    
-    //-------------------------------------------------------------
-    // MARK: - Variable
-    //-------------------------------------------------------------
-    
-    //Variable for Error message
-    private let textField = UITextField()
-    private let errorMessage = UILabel()
-    
-    //-------------------------------------------------------------
     // MARK: - Outlet
-    //-------------------------------------------------------------
-    
     @IBOutlet weak var lblVerifyMobilenum: UILabel!
     @IBOutlet weak var lblErrorofMobile: UILabel!
     @IBOutlet weak var ViewOfMobile: UIView!
-    
     @IBOutlet weak var txtMobileNum: SkyFloatingLabelTextField!
-    
     @IBOutlet weak var btnAlreadyAUser: UIButton!
     @IBOutlet weak var btnRequestVerificationPin: UIButton!
     
-    //-------------------------------------------------------------
-    // MARK: - view Method
-    //-------------------------------------------------------------
+    // MARK: - Properies
+    private let textField = UITextField()
+    private let errorMessage = UILabel()
     
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    // MARK: - Methods
+    private func setupUI() {
         txtMobileNum.becomeFirstResponder()
         ViewOfMobile.layer.borderColor =  UIColor.lightGray.cgColor
         ViewOfMobile.layer.borderWidth = 1.0
@@ -57,9 +48,6 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
         setFont()
     }
     
-    //--------------------------------------------------------------
-    // MARK: - Function Of Viewdidload
-    //--------------------------------------------------------------
     func setFont()
     {
         lblVerifyMobilenum.font = UIFont.Bold(ofSize: 17)
@@ -67,10 +55,6 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
         btnAlreadyAUser.titleLabel?.font = UIFont.Regular(ofSize: 15)
         btnRequestVerificationPin.titleLabel?.font = UIFont.Bold(ofSize: 16)
     }
-    
-    //--------------------------------------------------------------
-    // MARK: -  Error message
-    //--------------------------------------------------------------
     
     func setupErrorMessage()
     {
@@ -84,40 +68,6 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
         NSLayoutConstraint.activate([textField.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
                                      textField.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 10.0)])
     }
-    
-    //--------------------------------------------------------------
-    // MARK: - UnWine Segue
-    //--------------------------------------------------------------
-    
-    @IBAction func unwindToContainerMobile(segue: UIStoryboardSegue){}
-    
-    
-    //-------------------------------------------------------------
-    // MARK: - validation of Mobile num Length
-    //-------------------------------------------------------------
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        if textField == txtMobileNum
-        {
-            let resultText: String? = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-            
-            if resultText!.count >= 11
-            {
-                return false
-            }
-            else
-            {
-                return true
-            }
-            
-        }
-        return true
-    }
-    
-    //-------------------------------------------------------------
-    // MARK: - validation
-    //-------------------------------------------------------------
     
     func validateAllFields() -> Bool
     {
@@ -144,9 +94,8 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
         return true
     }
     
-    //--------------------------------------------------------------
-    // MARK: - Button Action
-    //--------------------------------------------------------------
+    
+    // MARK: - Action
     @IBAction func btnRequestVerificationPin(_ sender: Any)
     {
         if validateAllFields()
@@ -159,15 +108,30 @@ class MobileNumberAddVc: BaseViewController,UITextFieldDelegate
     {
         AppDelegate.sharedDelegate().setLogin()
     }
-    
-    
-    
 }
 
-//MARK: -  Extenstion Webservice Methods
-extension MobileNumberAddVc
-{
-    
+extension MobileNumberAddVc : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField == txtMobileNum
+        {
+            let resultText: String? = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+            
+            if resultText!.count >= 11
+            {
+                return false
+            }
+            else
+            {
+                return true
+            }
+            
+        }
+        return true
+    }
+}
+
+extension MobileNumberAddVc {
     private func webServiceoFMobileNum() {
         
         _ = APIClient.CheckMobileNumber(mobileNumber: txtMobileNum.text!, success: { responseObj in
@@ -195,10 +159,7 @@ extension MobileNumberAddVc
         })
     }
     
-    
     private func SendOTPFromServer() {
-        
-        
         _ = APIClient.SendOTP(mobileNumber: txtMobileNum.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)

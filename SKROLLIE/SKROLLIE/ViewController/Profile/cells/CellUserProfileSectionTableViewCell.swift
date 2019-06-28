@@ -10,15 +10,16 @@ import UIKit
 
 class CellUserProfileSectionTableViewCell: UITableViewCell {
 
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var lblTitle: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: - LifeCycles
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
+    // MARK: - Methods
     func ConfigureCellWithData(_ data: String) {
         lblTitle.text = data
     }

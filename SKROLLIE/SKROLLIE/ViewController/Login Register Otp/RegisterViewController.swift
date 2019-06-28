@@ -12,25 +12,7 @@ import SkyFloatingLabelTextField
 
 class RegisterViewController: BaseViewController,UITextFieldDelegate
 {
-    //--------------------------------------------------------------
-    // MARK: -  Variable Declaration
-    //--------------------------------------------------------------
-    
-    //Variable for DatePicker
-    var datePicker : UIDatePicker!
-    
-    //Variable for Error message
-    private let textField = UITextField()
-    private let errorMessageUser = UILabel()
-    private let errorMessagePassword = UILabel()
-    private let errorMessageEmail = UILabel()
-    private let errorMessageBirthDate = UILabel()
-    
-    
-    //--------------------------------------------------------------
-    // MARK: -  Outlet
-    //--------------------------------------------------------------
-    
+    // MARK: -  Outlets
     @IBOutlet weak var txtUserName: SkyFloatingLabelTextField!
     @IBOutlet weak var txtPassword: SkyFloatingLabelTextField!
     @IBOutlet weak var txtEmailAddress: SkyFloatingLabelTextField!
@@ -50,14 +32,24 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var btnAlreadyaUser: UIButton!
     
-    //--------------------------------------------------------------
-    // MARK: -  View Methods
-    //--------------------------------------------------------------
+    // MARK: - Properties
+    var datePicker : UIDatePicker!
+    private let textField = UITextField()
+    private let errorMessageUser = UILabel()
+    private let errorMessagePassword = UILabel()
+    private let errorMessageEmail = UILabel()
+    private let errorMessageBirthDate = UILabel()
     
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    
+    // MARK: -  Methods
+    private func setupUI() {
         Setborder()
         
         txtEmailAddress.delegate = self
@@ -68,18 +60,9 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         txtPassword.titleFormatter = { $0.lowercased()}
         txtEmailAddress.titleFormatter = { $0.lowercased()}
         txtBirthdate.titleFormatter = { $0.lowercased()}
-        
-        //        self.txtEmailAddress.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEndOnExit)
-        //
-        //        self.txtUserName.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEndOnExit)
-        
         setupErrorMessage()
         setFont()
     }
-    
-    //--------------------------------------------------------------
-    // MARK: -  didload dataset
-    //--------------------------------------------------------------
     
     func setFont()
     {
@@ -91,10 +74,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         btnNext.titleLabel?.font = UIFont.Bold(ofSize: 16)
         btnAlreadyaUser.titleLabel?.font = UIFont.Bold(ofSize: 15)
     }
-    
-    //--------------------------------------------------------------
-    // MARK: -  Error message
-    //--------------------------------------------------------------
     
     func setupErrorMessage()
     {
@@ -167,9 +146,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         }
     }
     
-    //--------------------------------------------------------------
-    // MARK: -  Webservice Call
-    //--------------------------------------------------------------
     @available(iOS 10.0, *)
     @objc func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason)
     {
@@ -301,18 +277,18 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
             }
         }
     }
-    //--------------------------------------------------------------
+    
     // MARK: -   textFiled Delegate
-    //--------------------------------------------------------------
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         self.pickUpDate(self.txtBirthdate)
         
     }
-    //--------------------------------------------------------------
+    
     // MARK: - Function of datePicker
-    //--------------------------------------------------------------
+    
     
     func pickUpDate(_ textField : UITextField)
     {
@@ -343,7 +319,7 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         
     }
     
-    // MARK:- Button Done and Cancel
+    // MARK: -  Actions
     @objc func doneClick()
     {
         let dateFormatter1 = DateFormatter()
@@ -358,11 +334,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         txtBirthdate.resignFirstResponder()
     }
     
-    
-    //--------------------------------------------------------------
-    //  Mark: =  Action Methods
-    //--------------------------------------------------------------
-    
     @IBAction func btnNext(_ sender: UIButton)
     {
         
@@ -376,9 +347,9 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         navigationController?.popViewController(animated: true)
     }
     
-    //-------------------------------------------------------------
+    
     // MARK: - validation Email Methods
-    //-------------------------------------------------------------
+    
     func isValidEmailAddress(emailID: String) -> Bool
     {
         var returnValue = true
@@ -416,9 +387,9 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         }
         return true
     }
-    //-------------------------------------------------------------
+    
     // MARK: - validation
-    //-------------------------------------------------------------
+    
     
     func validateAllFields() -> Bool
     {
@@ -564,7 +535,7 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
 }
 
 
-//MARK: -  Webservie Call
+// MARK: -  Webservie Call
 
 extension RegisterViewController
 {
@@ -683,6 +654,7 @@ extension RegisterViewController
     }
     
 }
+
 extension UIDevice {
     static func vibrate() {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)

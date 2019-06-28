@@ -10,7 +10,7 @@ import UIKit
 
 class userProfileClass: BaseViewController
 {
-    //Mark:= Outlet
+    // MARK: - Outlet
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var viewBottom: UIView!
@@ -23,17 +23,18 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnToday: UIButton!
-    
     @IBOutlet weak var lblToday: UILabel!
     @IBOutlet weak var lblForever: UILabel!
-    
     @IBOutlet weak var viwProgressBar: UIView!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var btnEdit: UIButton!
     
-    
+    // MARK: - Properties
     var arrData = [GetPostData]()
     var userPrifileData = UserProfileModel()
+    var refreshControll = UIRefreshControl()
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +45,7 @@ class userProfileClass: BaseViewController
         setupUI()
     }
     
+    // MARK: - Methods
     private func setupUI() {
         NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)
         
@@ -58,7 +60,7 @@ class userProfileClass: BaseViewController
         btnForever.addCornerRadius(8)
         lblDesc.font = UIFont.Regular(ofSize: 9)
         lblToday.font = UIFont.Bold(ofSize: 15)
-        lblForever.font = UIFont.Bold(ofSize: 15)
+        lblForever.font = UIFont.Bold(ofSize: 14)
         
         imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(.purple)
         
@@ -74,6 +76,8 @@ class userProfileClass: BaseViewController
         progressBar.layer.sublayers!.first!.cornerRadius = 8
         progressBar.subviews.first!.clipsToBounds = true
         
+        btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
+        
         getUserProfileData()
         getForeverPostByUserId()
     }
@@ -86,6 +90,7 @@ class userProfileClass: BaseViewController
         lblUsername.text = userPrifileData.username
     }
     
+    // MARK: - Actions
     @objc func onProgress(_ notificaton: NSNotification) {
         viwProgressBar.isHidden = false
         guard let userInfo = notificaton.userInfo,
@@ -139,6 +144,10 @@ class userProfileClass: BaseViewController
             tableview.scrollToRow(at: IndexPath(row: 0, section: indexForever!), at: .none, animated: true)
         }
     }
+    
+    @IBAction func onBtnEdit(_ sender: Any) {
+        
+    }
 }
 
 extension userProfileClass: UIScrollViewDelegate {
@@ -191,6 +200,7 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellUserProfilePost", for: indexPath) as! cellUserProfilePost
         let currentObj = arrData[indexPath.section].arrPostData[indexPath.row]
         cell.ConfigureCellWithData(currentObj)
+        cell.viwMenu = viewMenu
         return cell
     }
     

@@ -13,7 +13,7 @@ import SkyFloatingLabelTextField
 
 class LoginViewController: BaseViewController
 {
-    //MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var ViewUserName: UIView!
     @IBOutlet weak var viewPassword: UIView!
     
@@ -30,12 +30,12 @@ class LoginViewController: BaseViewController
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     
-    //MARK: Properties
+    // MARK: - Properties
     private let textField = UITextField()
     private let errorMessageUser = UILabel()
     private let errorMessagePassword = UILabel()
     
-    //MARK: Lifecycles
+    // MARK: - LifeCycles
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class LoginViewController: BaseViewController
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    //MARK: Methods
+    // MARK: - Methods
     private func setupUI() {
         setBorder()
         txtUsername.titleFormatter = { $0.lowercased() }
@@ -179,7 +179,7 @@ class LoginViewController: BaseViewController
         return true
     }
     
-    //MARK: Actions
+    // MARK: - Actions
     @IBAction func btnRegister(_ sender: Any)
     {
         let vc = RegisterViewController.instantiate(fromAppStoryboard: .Main)
@@ -201,7 +201,7 @@ class LoginViewController: BaseViewController
     }
 }
 
-//MARK: API Call
+// MARK: - API Call
 extension LoginViewController {
     private func signIn() {
         

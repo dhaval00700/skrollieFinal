@@ -1125,7 +1125,7 @@ extension SwiftyCamViewController : AVCaptureFileOutputRecordingDelegate {
     }
 }
 
-// Mark: UIGestureRecognizer Declarations
+// MARK: - UIGestureRecognizer Declarations
 
 extension SwiftyCamViewController {
 
