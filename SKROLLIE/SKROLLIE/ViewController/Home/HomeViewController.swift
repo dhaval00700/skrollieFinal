@@ -16,9 +16,11 @@ class HomeViewController: BaseViewController
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imgMenuProfile: UIImageView!
     
     // MARK: - Properties
     var resultImgPhoto = [UserData]()
+    var refreshControl = UIRefreshControl()
     
     // MARK: - LifeCycles
     override func viewDidLoad()
@@ -39,16 +41,23 @@ class HomeViewController: BaseViewController
         tblData.dataSource = self
         lblTitle.font = UIFont.Regular(ofSize: 20)
         
+        imgMenuProfile.addCornerRadius(imgMenuProfile.frame.height/2.0)
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
-        
-        for family in UIFont.familyNames {
-            print(family)
-        }
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
+        tblData.addSubview(refreshControl)
+        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleAspectFill)
         getAllPost()
     }
     
     // MARK: - Actions
+    @objc func refresh(sender:AnyObject) {
+        getAllPost()
+    }
+    
     @IBAction func btnSetting(_ sender: UIButton) {
         let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
         navVc.modalPresentationStyle = .overFullScreen
@@ -98,6 +107,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
         cell.ConfigureCellWithData(resultImgPhoto[indexPath.row])
+        cell.viwMenu = viewMenu
         return cell
         
     }
@@ -136,8 +146,9 @@ extension HomeViewController
             if responseData.success {
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
-                self.tblData.reloadData()
             }
+            self.tblData.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }

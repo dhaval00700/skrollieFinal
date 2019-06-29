@@ -45,7 +45,8 @@ let configuration = AWSServiceConfiguration(region: .USEast1, endpoint: regionEn
 
 let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
 
-let PROGRESS_NOTIFICATION_KEY                    =   Notification.Name("PROGRESS_NOTIFICATION_KEY")
+let PROGRESS_NOTIFICATION_KEY                  =   Notification.Name("PROGRESS_NOTIFICATION_KEY")
+let REFRESH_NOTIFICATION_KEY                   =   Notification.Name("REFRESH_NOTIFICATION_KEY")
 
 let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
                                                       .zoomOut,
@@ -60,7 +61,11 @@ var timestamp: String {
     return "\(NSDate().timeIntervalSince1970 * 1000)"
 }
 
+// MARK: - Constants
 var PostCountLimit = 5
+var TwentyFourHourStr = "24 Hour"
+var ForeverStr = "Forever"
+var RefreshStr = "Updating Connections..."
 
 // MARK: - For Emoji
 var arrEmoji = [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2.png"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7"), #imageLiteral(resourceName: "8"), #imageLiteral(resourceName: "9.png"), #imageLiteral(resourceName: "10.png")]
@@ -137,12 +142,6 @@ enum FontName: String {
     case montserratBold    =   "MONTSERRAT-BOLD"
     case montserratRegular =   "MONTSERRAT-REGULAR"
     case montserratMedium  =   "MONTSERRAT-MEDIUM"
-}
-
-// MARK: - Login Type
-enum LoginType: String {
-    case local = "LOCAL"
-    case facebook = "FB"
 }
 
 // MARK: - API

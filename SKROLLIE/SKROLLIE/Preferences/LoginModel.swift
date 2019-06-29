@@ -12,18 +12,18 @@ import UIKit
 class LoginModel {
     
     init() {}
-    
+    var map: Map!
     var token = ""
     var UserId = ""
     var UserName = ""
     var UserRole = ""
     
     init(data: [String: Any]) {
-        
-        token = data["token"] as? String ?? ""
-        UserId = data["UserId"] as? String ?? (data["UserId"] as? NSNumber)?.stringValue ??  data["id"] as? String ?? (data["id"] as? NSNumber)?.stringValue ?? ""
-        UserName = data["UserName"] as? String ?? ""
-        UserRole = data["UserRole"] as? String ?? ""
+        map = Map(data: data)
+        token = map.value("token") ?? ""
+        UserId = map.value("UserId") ?? ""
+        UserName = map.value("UserName") ?? ""
+        UserRole = map.value("UserRole") ?? ""
     }
     
     func toDictionary() -> [String : Any] {

@@ -18,6 +18,7 @@ class HomeTblCell: UITableViewCell {
 
     // MARK: - Properties
     var collectionData = UserData()
+    var viwMenu = UIView()
 
     // MARK: - LifeCycles
     override func awakeFromNib() {
@@ -63,5 +64,20 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+}
+
+
+extension HomeTblCell: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        UIView.animate(withDuration: 1) {
+            self.viwMenu.alpha = 0
+        }
+    }
+    func scrollViewDidEndDragging(_: UIScrollView, willDecelerate: Bool)
+    {
+        UIView.animate(withDuration: 3) {
+            self.viwMenu.alpha = 1
+        }
     }
 }

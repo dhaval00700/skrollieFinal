@@ -13,6 +13,7 @@ class AppPrefsManager {
     
     private let USER_LOGIN  =   "USER_LOGIN"
     private let USER_DATA_KEY  =   "USER_DATA_KEY"
+    private let USER_PROFILE_DATA_KEY  =   "USER_PROFILE_DATA_KEY"
     
     init() {
     }
@@ -69,5 +70,24 @@ class AppPrefsManager {
     func removeUserData()
     {
         removeDataFromPreference(key: USER_DATA_KEY)
+    }
+    
+    
+    // MARK: - User data
+    func saveUserProfileData(model: UserProfileModel)
+    {
+        setDataToPreference(data: model.toDictionary() as AnyObject, forKey: USER_PROFILE_DATA_KEY)
+    }
+    
+    func getUserProfileData() -> UserProfileModel
+    {
+        let Obj = getDataFromPreference(key: USER_PROFILE_DATA_KEY) as? [String: Any] ?? [String: Any]()
+        let map = Map(data: Obj)
+        return UserProfileModel(data: Obj, totalTodayPost: map.value("TotalTodayPost") ?? "", totalForeverPost:  map.value("TotalForeverPost") ?? "")
+    }
+    
+    func removeUserProfileData()
+    {
+        removeDataFromPreference(key: USER_PROFILE_DATA_KEY)
     }
 }

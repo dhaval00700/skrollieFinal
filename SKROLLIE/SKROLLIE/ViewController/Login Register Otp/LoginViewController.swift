@@ -219,9 +219,12 @@ extension LoginViewController {
                 AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
                 AppPrefsManager.shared.saveUserData(model: loginModel)
                 
-                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                self.getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+                    if flg {
+                        let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                })
             } else if !responseData.success {
                 if responseData.message == "OTP" {
                     AppPrefsManager.shared.saveUserData(model: LoginModel(data: response["data"] as? [String : Any] ?? [String : Any]()))

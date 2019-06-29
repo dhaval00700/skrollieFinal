@@ -12,7 +12,7 @@ import UIKit
 class UserProfileModel {
     
     init() {}
-    
+    var map : Map!
     var id = ""
     var idrole = ""
     var username = ""
@@ -34,15 +34,63 @@ class UserProfileModel {
     var modifiedby = ""
     var modifieddate = ""
     var OTPTIME = ""
-    
     var TotalTodayPost = ""
     var TotalForeverPost = ""
     
     init(data: [String: Any], totalTodayPost: String, totalForeverPost: String) {
-        username = data["username"] as? String ?? ""
-        image = data["image"] as? String ?? ""
-        createdby = data["createdby"] as? String ?? ""
+        map = Map(data: data)
+        id = map.value("id") ?? ""
+        idrole = map.value("idrole") ?? ""
+        username = map.value("username") ?? ""
+        password = map.value("password") ?? ""
+        emailaddress = map.value("emailaddress") ?? ""
+        ProfileName = map.value("ProfileName") ?? ""
+        phone = map.value("phone") ?? ""
+        country = map.value("country") ?? ""
+        state = map.value("state") ?? ""
+        city = map.value("city") ?? ""
+        gender = map.value("gender") ?? ""
+        image = map.value("image") ?? ""
+        Birthdate = map.value("Birthdate") ?? ""
+        IsDelete = map.value("IsDelete") ?? false
+        OTP = map.value("OTP") ?? ""
+        IsMobileVerify = map.value("IsMobileVerify") ?? false
+        createdby = map.value("createdby") ?? ""
+        createddate = map.value("createddate") ?? ""
+        modifiedby = map.value("modifiedby") ?? ""
+        modifieddate = map.value("modifieddate") ?? ""
+        OTPTIME = map.value("OTPTIME") ?? ""
         TotalTodayPost = totalTodayPost
         TotalForeverPost = totalForeverPost
+    }
+    
+    func toDictionary() -> [String : Any] {
+        var itemDict = [String : Any]()
+        
+        itemDict["id"] = id
+        itemDict["idrole"] = idrole
+        itemDict["username"] = username
+        itemDict["password"] = password
+        itemDict["emailaddress"] = emailaddress
+        itemDict["ProfileName"] = ProfileName
+        itemDict["phone"] = phone
+        itemDict["country"] = country
+        itemDict["state"] = state
+        itemDict["city"] = city
+        itemDict["gender"] = gender
+        itemDict["image"] = image
+        itemDict["Birthdate"] = Birthdate
+        itemDict["IsDelete"] = IsDelete
+        itemDict["OTP"] = OTP
+        itemDict["IsMobileVerify"] = IsMobileVerify
+        itemDict["createdby"] = createdby
+        itemDict["createddate"] = createddate
+        itemDict["modifiedby"] = modifiedby
+        itemDict["modifieddate"] = modifieddate
+        itemDict["OTPTIME"] = OTPTIME
+        itemDict["TotalTodayPost"] = TotalTodayPost
+        itemDict["TotalForeverPost"] = TotalForeverPost
+        
+        return itemDict
     }
 }

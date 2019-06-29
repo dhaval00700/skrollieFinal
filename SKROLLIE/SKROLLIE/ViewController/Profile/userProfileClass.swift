@@ -31,8 +31,7 @@ class userProfileClass: BaseViewController
     
     // MARK: - Properties
     var arrData = [GetPostData]()
-    var userPrifileData = UserProfileModel()
-    var refreshControll = UIRefreshControl()
+    var refreshControl = UIRefreshControl()
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -48,9 +47,16 @@ class userProfileClass: BaseViewController
     // MARK: - Methods
     private func setupUI() {
         NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(afterSavePost), name: REFRESH_NOTIFICATION_KEY, object: nil)
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
+        tableview.addSubview(refreshControl)
+        
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblUserTag.font = UIFont.Regular(ofSize: 16)
@@ -78,11 +84,16 @@ class userProfileClass: BaseViewController
         
         btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
         
-        getUserProfileData()
+        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+            if flg {
+                self.setData()
+            }
+        })
         getForeverPostByUserId()
     }
     
     private func setData() {
+        let userPrifileData = AppPrefsManager.shared.getUserProfileData()
         imgUserPic.imageFromURL(link: userPrifileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
         btnToday.setTitle(userPrifileData.TotalTodayPost, for: .normal)
         btnForever.setTitle(userPrifileData.TotalForeverPost, for: .normal)
@@ -100,6 +111,22 @@ class userProfileClass: BaseViewController
         if uploadProgress == 1.0 {
             viwProgressBar.isHidden = true
         }
+    }
+    
+    @objc func afterSavePost(_ notificaton: NSNotification) {
+        delay(time: 1.0) {
+            self.refresh(sender: notificaton)
+        }
+    }
+    
+    @objc func refresh(sender:AnyObject) {
+        self.arrData.removeAll()
+        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+            if flg {
+                self.setData()
+            }
+        })
+        getForeverPostByUserId()
     }
     
     @IBAction func btnSetting(_ sender: UIButton) {
@@ -129,7 +156,7 @@ class userProfileClass: BaseViewController
     
     @IBAction func onBtnToday(_ sender: UIButton) {
         let indexToday = arrData.firstIndex { (obj) -> Bool in
-            return obj.sectionName == "24 Hour"
+            return obj.sectionName == TwentyFourHourStr
         }
         if indexToday != nil {
             tableview.scrollToRow(at: IndexPath(row: 0, section: indexToday!), at: .none, animated: true)
@@ -138,7 +165,7 @@ class userProfileClass: BaseViewController
     
     @IBAction func onBtnForever(_ sender: UIButton) {
         let indexForever = arrData.firstIndex { (obj) -> Bool in
-            return obj.sectionName == "Forever"
+            return obj.sectionName == ForeverStr
         }
         if indexForever != nil {
             tableview.scrollToRow(at: IndexPath(row: 0, section: indexForever!), at: .none, animated: true)
@@ -218,9 +245,10 @@ extension userProfileClass {
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 let arrNotForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.arrData.append(GetPostData(arrNotForEverList, "24 Hour"))
-                self.tableview.reloadData()
+                self.arrData.append(GetPostData(arrNotForEverList, TwentyFourHourStr))
             }
+            self.tableview.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
     
@@ -229,25 +257,12 @@ extension userProfileClass {
         _ = APIClient.GetForevetPostByUserId() { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
+            self.arrData.removeAll()
             if responseData.success {
                 let arrForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.arrData.append(GetPostData(arrForEverList, "Forever"))
+                self.arrData.append(GetPostData(arrForEverList, ForeverStr))
             }
             self.get24HourPostByUserId()
-        }
-    }
-    
-    private func getUserProfileData() {
-        
-        _ = APIClient.GetUserById(userId: AppPrefsManager.shared.getUserData().UserId) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
-                let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
-                self.userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
-                self.setData()
-            }
         }
     }
 }

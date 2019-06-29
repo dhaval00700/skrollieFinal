@@ -9,16 +9,17 @@
 import Foundation
 
 class ResponseDataModel {
-    
-    var success: Bool!
-    var message: String!
+    var map: Map!
+    var success = false
+    var message = ""
     var data: Any?
     
     init() {}
     
     init(responseObj: [String : Any]) {
-        success = responseObj["success"] as? Bool ?? false
-        message = responseObj["message"] as? String ?? ""
-        data = responseObj["data"]
+        map = Map(data: responseObj)
+        success = map.value("success") ?? false
+        message = map.value("message") ?? ""
+        data = map.value("data")
     }
 }

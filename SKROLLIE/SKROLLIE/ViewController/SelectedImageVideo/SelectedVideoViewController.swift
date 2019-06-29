@@ -367,6 +367,7 @@ extension SelectedVideoViewController
             let responseData = ResponseDataModel(responseObj: response)
             
             if responseData.success {
+                NotificationCenter.default.post(name: REFRESH_NOTIFICATION_KEY, object: nil)
                 AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
             }
         })
