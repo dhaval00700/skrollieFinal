@@ -517,7 +517,7 @@ open class SwiftyCamViewController: UIViewController {
 
 	public func startVideoRecording() {
 
-        
+        UIApplication.shared.isIdleTimerDisabled = true
         guard sessionRunning == true else {
             print("[SwiftyCam]: Cannot start video recoding. Capture session is not running")
             return
@@ -542,6 +542,7 @@ open class SwiftyCamViewController: UIViewController {
 
 		sessionQueue.async { [unowned self] in
 			if !movieFileOutput.isRecording {
+                
 				if UIDevice.current.isMultitaskingSupported {
 					self.backgroundRecordingID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
 				}
@@ -549,7 +550,7 @@ open class SwiftyCamViewController: UIViewController {
 				// Update the orientation on the movie file output video connection before starting recording.
 				let movieFileOutputConnection = self.movieFileOutput?.connection(with: AVMediaType.video)
 
-
+                
 				//flip video output if front facing camera is selected
 				if self.currentCamera == .front {
 					movieFileOutputConnection?.isVideoMirrored = true
@@ -572,6 +573,7 @@ open class SwiftyCamViewController: UIViewController {
 				}
 			}
 			else {
+                UIApplication.shared.isIdleTimerDisabled = false
 				movieFileOutput.stopRecording()
 			}
 		}
@@ -601,6 +603,7 @@ open class SwiftyCamViewController: UIViewController {
 				})
 			}
 			DispatchQueue.main.async {
+                UIApplication.shared.isIdleTimerDisabled = false
 				self.cameraDelegate?.swiftyCam(self, didFinishRecordingVideo: self.currentCamera)
 			}
 		}

@@ -2163,7 +2163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWr-so-TDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5836.875" y="1014.0845070422536"/>
+            <point key="canvasLocation" x="5591" y="1014"/>
         </scene>
         <!--Selected Image View Controller-->
         <scene sceneID="7Zc-eV-iRT">
@@ -3221,6 +3221,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqS-i2-iM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4839.375" y="1014.0845070422536"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YVl-zi-A60">
+            <objects>
+                <viewController id="nYo-eL-dEd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CGr-lu-oAU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkV-Nx-uuy">
+                                <rect key="frame" x="0.0" y="145" width="320" height="423"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuU-I4-2bf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="v5U-4X-Lq6"/>
+                                        </constraints>
+                                        <state key="normal" image="drag"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4c-g1-E0x">
+                                        <rect key="frame" x="110" y="378" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.6538911462" green="0.78253632780000004" blue="0.1612970829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="kaQ-y5-Q33"/>
+                                            <constraint firstAttribute="height" constant="30" id="wMX-gz-7em"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="13"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Verification Badge" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vkf-BG-Let">
+                                        <rect key="frame" x="20" y="30" width="280" height="18"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <color key="textColor" red="0.97899276020000003" green="0.58537977929999996" blue="0.062244921920000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-Fh-lD4">
+                                        <rect key="frame" x="20" y="58" width="280" height="84"/>
+                                        <string key="text">Apply for a verified badge that appears next to an Skrollie account's profile picture that the account is the real deal of a noteable public figure, global brand, celebrity or entity it represents.</string>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not all verifications will be approved." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bo9-mL-Wsi">
+                                        <rect key="frame" x="20" y="152" width="280" height="17"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not all verifications will be approved." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA2-tZ-Khs">
+                                        <rect key="frame" x="20" y="181" width="280" height="17"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23921568630000001" green="0.18039215689999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Vkf-BG-Let" firstAttribute="leading" secondItem="hkV-Nx-uuy" secondAttribute="leading" constant="20" id="5jf-gD-GQO"/>
+                                    <constraint firstItem="SuU-I4-2bf" firstAttribute="leading" secondItem="hkV-Nx-uuy" secondAttribute="leading" id="Ahq-ZL-Qbc"/>
+                                    <constraint firstItem="ecm-Fh-lD4" firstAttribute="leading" secondItem="Vkf-BG-Let" secondAttribute="leading" id="F4b-hS-en4"/>
+                                    <constraint firstItem="a4c-g1-E0x" firstAttribute="centerX" secondItem="hkV-Nx-uuy" secondAttribute="centerX" id="OHP-Fd-3sB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vkf-BG-Let" secondAttribute="trailing" constant="20" id="PYb-bK-fJA"/>
+                                    <constraint firstItem="bo9-mL-Wsi" firstAttribute="top" secondItem="ecm-Fh-lD4" secondAttribute="bottom" constant="10" id="QQK-A9-SYI"/>
+                                    <constraint firstItem="IA2-tZ-Khs" firstAttribute="trailing" secondItem="bo9-mL-Wsi" secondAttribute="trailing" id="R84-pR-uZQ"/>
+                                    <constraint firstItem="IA2-tZ-Khs" firstAttribute="leading" secondItem="bo9-mL-Wsi" secondAttribute="leading" id="WTa-2I-Lre"/>
+                                    <constraint firstAttribute="trailing" secondItem="SuU-I4-2bf" secondAttribute="trailing" id="cvD-vh-yLD"/>
+                                    <constraint firstItem="bo9-mL-Wsi" firstAttribute="trailing" secondItem="ecm-Fh-lD4" secondAttribute="trailing" id="f7X-gJ-0nc"/>
+                                    <constraint firstItem="ecm-Fh-lD4" firstAttribute="top" secondItem="Vkf-BG-Let" secondAttribute="bottom" constant="10" id="faX-BE-2i4"/>
+                                    <constraint firstItem="IA2-tZ-Khs" firstAttribute="top" secondItem="bo9-mL-Wsi" secondAttribute="bottom" constant="12" id="gSI-RX-7YK"/>
+                                    <constraint firstItem="Vkf-BG-Let" firstAttribute="top" secondItem="SuU-I4-2bf" secondAttribute="bottom" id="kfO-Ue-Xfi"/>
+                                    <constraint firstAttribute="bottom" secondItem="a4c-g1-E0x" secondAttribute="bottom" constant="15" id="ltr-e2-hAw"/>
+                                    <constraint firstItem="SuU-I4-2bf" firstAttribute="top" secondItem="hkV-Nx-uuy" secondAttribute="top" id="mMh-sv-2tS"/>
+                                    <constraint firstItem="ecm-Fh-lD4" firstAttribute="trailing" secondItem="Vkf-BG-Let" secondAttribute="trailing" id="qfx-ph-maS"/>
+                                    <constraint firstItem="bo9-mL-Wsi" firstAttribute="leading" secondItem="ecm-Fh-lD4" secondAttribute="leading" id="wYQ-WX-NiT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tRh-N8-Hlh" firstAttribute="bottom" secondItem="hkV-Nx-uuy" secondAttribute="bottom" id="Gu6-HN-fyC"/>
+                            <constraint firstItem="hkV-Nx-uuy" firstAttribute="leading" secondItem="tRh-N8-Hlh" secondAttribute="leading" id="HTY-HN-8U1"/>
+                            <constraint firstItem="tRh-N8-Hlh" firstAttribute="trailing" secondItem="hkV-Nx-uuy" secondAttribute="trailing" id="yoy-u2-PiQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tRh-N8-Hlh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uF6-z3-d2t"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DeP-5a-bbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7161" y="1012"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bPZ-Zc-e2H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="zdV-Z8-sSv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KsP-3P-AJK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nYo-eL-dEd" kind="relationship" relationship="rootViewController" id="xej-f2-sB7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1nd-vE-dLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6395.625" y="1011.9718309859155"/>
         </scene>
     </scenes>
     <resources>
