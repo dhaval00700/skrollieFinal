@@ -42,8 +42,6 @@ class SelectedImageViewController: BaseViewController {
     
     func setupUI() {
         navigationController?.isNavigationBarHidden = true
-
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         btnText.addCornerRadius(btnText.frame.height/2.0)
         btnEmogiHide.addCornerRadius(btnEmogiHide.frame.height/2.0)

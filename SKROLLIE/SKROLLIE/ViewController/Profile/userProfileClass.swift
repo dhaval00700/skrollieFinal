@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class userProfileClass: BaseViewController
 {
@@ -68,7 +69,7 @@ class userProfileClass: BaseViewController
         lblToday.font = UIFont.Bold(ofSize: 15)
         lblForever.font = UIFont.Bold(ofSize: 14)
         
-        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(.purple)
+        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
         
         tableview.register(UINib(nibName: "cellUserProfilePost", bundle: nil), forCellReuseIdentifier: "cellUserProfilePost")
         tableview.register(UINib(nibName: "CellUserProfileSectionTableViewCell", bundle: nil), forCellReuseIdentifier: "CellUserProfileSectionTableViewCell")
@@ -83,6 +84,7 @@ class userProfileClass: BaseViewController
         progressBar.subviews.first!.clipsToBounds = true
         
         btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
+        imgUserTag.isHidden = true
         
         getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
             if flg {
@@ -93,12 +95,18 @@ class userProfileClass: BaseViewController
     }
     
     private func setData() {
-        let userPrifileData = AppPrefsManager.shared.getUserProfileData()
-        imgUserPic.imageFromURL(link: userPrifileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
-        btnToday.setTitle(userPrifileData.TotalTodayPost, for: .normal)
-        btnForever.setTitle(userPrifileData.TotalForeverPost, for: .normal)
-        lblUserTag.text = "@" + userPrifileData.username
-        lblUsername.text = userPrifileData.username
+        let userProfileData = AppPrefsManager.shared.getUserProfileData()
+        if userProfileData.IsAccountVerify == AccountVerifyStatus.zero || userProfileData.IsAccountVerify == AccountVerifyStatus.one {
+            imgUserTag.isHidden = true
+        } else {
+            imgUserTag.isHidden = false
+        }
+        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        btnToday.setTitle(userProfileData.TotalTodayPost, for: .normal)
+        btnForever.setTitle(userProfileData.TotalForeverPost, for: .normal)
+        lblUserTag.text = "@" + userProfileData.username
+        lblDesc.text = userProfileData.description
+        lblUsername.text = userProfileData.ProfileName
     }
     
     // MARK: - Actions
@@ -173,7 +181,8 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func onBtnEdit(_ sender: Any) {
-        
+        let navVc = EditProfileViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(navVc, animated: true)
     }
 }
 

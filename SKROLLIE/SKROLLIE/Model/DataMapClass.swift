@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Map JSON
+// MARK: - Map JSON
 class Map {
     
     init() {}

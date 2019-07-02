@@ -135,6 +135,24 @@ enum Emoji : Int {
     }
 }
 
+
+enum AccountVerifyStatus : Int {
+    case zero = 0
+    case one = 1
+    case two = 2
+    
+    func description() -> (String) {
+        switch self {
+        case .zero:
+            return ""
+        case .one:
+            return "Pending"
+        case .two:
+            return "Approved"
+        }
+    }
+}
+
 // MARK: - FontName
 enum FontName: String {
     case montserratThin    =   "MONTSERRAT-THIN"
@@ -164,4 +182,5 @@ struct API {
     static let GetLatest24HoursPostByUser = BASE_URL + "MobilePost/GetLatest24HoursPostByUser"
     static let GetForeverPostByUser = BASE_URL + "MobilePost/GetForeverPostByUser"
     static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
+    static let UpdateUserById = BASE_URL + "MobileAccount/UpdateUserById"
 }

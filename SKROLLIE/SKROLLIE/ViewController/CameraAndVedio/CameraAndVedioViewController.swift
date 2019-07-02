@@ -181,16 +181,6 @@ class CameraAndVedioViewController: SwiftyCamViewController
         loadPhotoGalleryView()
     }
     
-    func saveImageDocumentDirectory(image: UIImage) -> URL
-    {
-        let fileManager = FileManager.default
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(timestamp)Imag.jpeg")
-        if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
-            fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
-        }
-        return URL(fileURLWithPath: path)
-    }
-    
     @objc func imagePhoto(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         
         let title = (error == nil) ? "Success" : "Error"

@@ -331,6 +331,16 @@ class Utility {
     }
 }
 
+func saveImageDocumentDirectory(image: UIImage) -> URL
+{
+    let fileManager = FileManager.default
+    let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(timestamp)Imag.jpeg")
+    if let imageData = UIImage.jpegData(image)(compressionQuality: 0.3) {
+        fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
+    }
+    return URL(fileURLWithPath: path)
+}
+
 // MARK: - Structs
 struct IOS_VERSION
 {

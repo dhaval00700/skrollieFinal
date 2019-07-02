@@ -31,7 +31,7 @@ class HomeViewController: BaseViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("where from call?")
+        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleAspectFill)
     }
     
     // MARK: - Methods
@@ -49,7 +49,6 @@ class HomeViewController: BaseViewController
         refreshControl.tintColor = UIColor.black
         refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
         tblData.addSubview(refreshControl)
-        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleAspectFill)
         getAllPost()
     }
     

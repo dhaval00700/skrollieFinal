@@ -44,8 +44,6 @@ class SelectedVideoViewController: BaseViewController {
     private func setupUI() {
         navigationController?.isNavigationBarHidden = true
         
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
         btnEmogi1.setImage(UIImage(named: "blankHappy"), for: .normal)
         btnEmogi2.setImage(UIImage(named: "blankSad"), for: .normal)
         

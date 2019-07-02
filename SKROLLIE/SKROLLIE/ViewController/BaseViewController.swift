@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSS3
+import AWSCore
 
 class BaseViewController: UIViewController {
     
@@ -14,6 +16,8 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
     }
     
     func goToHomePage() {
@@ -36,6 +40,23 @@ class BaseViewController: UIViewController {
                 let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
                 let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
                let userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
+                AppPrefsManager.shared.saveUserProfileData(model: userPrifileData)
+                if success != nil {
+                    success!(true)
+                }
+            }
+        }
+    }
+    
+    func updateUserProfileData(parameters: [String : Any], complation success: ((Bool) -> Void)? = nil) {
+        
+        _ = APIClient.UpdateUserById(parameters: parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
+                let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
+                let userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
                 AppPrefsManager.shared.saveUserProfileData(model: userPrifileData)
                 if success != nil {
                     success!(true)

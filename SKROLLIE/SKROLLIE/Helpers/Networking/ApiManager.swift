@@ -12,6 +12,17 @@ import Alamofire
 
 class ApiManager {
     
+    public static let apiSessionManager: SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        configuration.urlCache = nil
+        configuration.timeoutIntervalForRequest = 200
+        configuration.timeoutIntervalForResource = 200
+        
+        return SessionManager(configuration: configuration)
+    }()
+    
     class func requestApi(method: Alamofire.HTTPMethod, urlString: String, parameters: [String: Any]? = nil, headers: [String: String]? = nil, success successBlock:@escaping (([String: Any]) -> Void), failure failureBlock:((NSError) -> Bool)?) -> DataRequest
     {
     
@@ -27,7 +38,6 @@ class ApiManager {
         print("urlString = \(urlString)")
         
         var request = URLRequest(url: URL(string: urlString)!)
-        request.timeoutInterval = 60
         request.httpMethod = method.rawValue
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -39,7 +49,7 @@ class ApiManager {
         }
         
         
-        return Alamofire.request(request)
+        return apiSessionManager.request(request)
             .responseString { response in
                 
                 print( "Response String: \(String(describing: response.result.value))")
@@ -111,7 +121,75 @@ class ApiManager {
         }
     }
 
-    class func callApiWithUpload(apiURL: String, method: Alamofire.HTTPMethod, parameters: [String : Any]? = nil, headers: [String: String]? = nil, fileData: Data?, success successBlock: @escaping ((Any?, Int?) -> Void), failure failureBlock: ((Error, Int?) -> Bool)?) {
+    
+    class func callApiWithUpload(apiURL: String, method: Alamofire.HTTPMethod, parameters: [String: Any]? = nil, fileParameters: [FileParameterRequest]? = nil, headers: [String: String]? = nil, success successBlock:@escaping ((Any?, Int?) -> Void), failure failureBlock: ((Error, Int?) -> Bool)?) {
+        
+        var finalParameters = [String: Any]()
+        if parameters != nil {
+            finalParameters = parameters!
+        }
+        
+        DLog("parameters = ", finalParameters)
+        DLog("apiURL = ", apiURL)
+        
+        return Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            multipartFormData.append("".data(using: String.Encoding.utf8)!, withName: "")
+            
+            for (key, value) in finalParameters {
+                multipartFormData.append(String(describing: value).data(using: .utf8)!, withName: key)
+            }
+            
+            if fileParameters != nil && fileParameters!.count > 0 {
+                for i in 0...(fileParameters!.count - 1) {
+                    let dict = fileParameters![i].parameters
+                    multipartFormData.append(dict["file_data"] as! Data, withName: dict["param_name"] as! String, fileName: dict["file_name"] as! String, mimeType: dict["mime_type"] as! String)
+                }
+            }
+            
+        }, to: apiURL, headers: headers, encodingCompletion: { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                upload.responseString { response in
+                    
+                    DLog("Response String: \(String(describing: response.result.value))")
+                }
+                
+                upload.responseJSON { response in
+                    
+                    DLog("Response Error: ", response.result.error)
+                    DLog("Response JSON: ", response.result.value)
+                    DLog("response.request: ", response.request?.allHTTPHeaderFields)
+                    DLog("Response Status Code: ", response.response?.statusCode)
+                    
+                    DispatchQueue.main.async {
+                        if(response.response?.statusCode == 401)
+                        {
+                        }
+                        else if (response.result.error == nil || response.response?.statusCode == 200) {
+                            let responseObject = response.result.value
+                            successBlock(responseObject, response.response?.statusCode)
+                        } else {
+                            if failureBlock != nil && failureBlock!(response.result.error! as NSError, response.response?.statusCode) {
+                                if let statusCode = response.response?.statusCode {
+                                    ApiManager.handleAlamofireHttpFailureError(statusCode: statusCode)
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                }
+            case .failure(let encodingError):
+                
+                Utility.showMessageAlert(title: "Error", andMessage: "\(encodingError)", withOkButtonTitle: "OK")
+                
+            }
+        })
+        
+    }
+    /*class func callApiWithUpload(apiURL: String, method: Alamofire.HTTPMethod, parameters: [String : Any]? = nil, headers: [String: String]? = nil, fileData: Data?, success successBlock: @escaping ((Any?, Int?) -> Void), failure failureBlock: ((Error, Int?) -> Bool)?) {
         
         var finalParameters = [String : Any]()
         if parameters != nil {
@@ -244,7 +322,7 @@ class ApiManager {
             }
         })
         
-    }
+    }*/
     
     class func handleAlamofireHttpFailureError(statusCode: Int) {
         switch statusCode {

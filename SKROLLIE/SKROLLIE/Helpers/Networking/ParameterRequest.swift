@@ -16,7 +16,7 @@ class ParameterRequest {
     static let password = "password"
     static let emailaddress = "emailaddress"
     static let Birthdate = "Birthdate"
-     static let id = "id"
+    static let id = "id"
     static let idUser = "idUser"
     static let isPhoto = "isPhoto"
     static let Url = "Url"
@@ -26,8 +26,12 @@ class ParameterRequest {
     static let isPublish  = "isPublish"
     static let Isforever = "Isforever"
     static let Videothumbnailimage = "Videothumbnailimage"
-
-    
+    static let image = "image"
+    static let ProfileName = "ProfileName"
+    static let description = "description"
+    static let FullName = "FullName"
+    static let AKA = "AKA"
+    static let attachimage = "attachimage"
     
     init(){
     }
@@ -36,4 +40,20 @@ class ParameterRequest {
         parameters[key] = value
     }
     
+}
+
+
+class FileParameterRequest {
+    var parameters = [String: Any]()
+    
+    static let file_data = "file_data"
+    static let param_name = "param_name"
+    static let file_name = "file_name"
+    static let mime_type = "mime_type"
+    
+    init(){}
+    
+    func addParameter(key: String, value: Any?) {
+        parameters[key] = value
+    }
 }

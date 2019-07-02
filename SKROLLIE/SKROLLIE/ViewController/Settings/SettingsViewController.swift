@@ -37,6 +37,11 @@ class SettingsViewController: BaseViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setData()
+    }
+    
     // MARK: - Methods
     private func setupUI() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
@@ -45,6 +50,16 @@ class SettingsViewController: BaseViewController {
         btnSave.addCornerRadius(8)
         btnLogout.addCornerRadius(btnLogout.frame.height/2.0)
         btnPublic.isSelected = true
+        btnVerifyNow.isHidden = true
+    }
+    
+    func setData() {
+        lblAccountVerificationStatus.text = AppPrefsManager.shared.getUserProfileData().IsAccountVerify.description()
+        if AppPrefsManager.shared.getUserProfileData().IsAccountVerify == AccountVerifyStatus.two {
+            btnVerifyNow.isHidden = true
+        } else {
+            btnVerifyNow.isHidden = false
+        }
     }
     
     // MARK: - Actions
@@ -65,11 +80,30 @@ class SettingsViewController: BaseViewController {
     }
     
     @IBAction func onBtnVerifyNow(_ sender: Any) {
+        let navVc = storyboard?.instantiateViewController(withIdentifier: "VerificationBadgeVc") as! UINavigationController
+        let vc = navVc.viewControllers.first as! VerificationBadgeViewController
+        vc.delegate = self
+        navVc.modalPresentationStyle = .overFullScreen
+        self.present(navVc, animated:true, completion: nil)
+        
     }
     
     @IBAction func onBtnLogOut(_ sender: Any) {
         self.dismiss(animated: true) {
             AppDelegate.sharedDelegate().setLogin()
+        }
+    }
+    
+    @IBAction func onBtnDrag(_ sender: Any) {
+        onTap()
+    }
+}
+
+
+extension SettingsViewController: VerificationBadgeViewControllerDelegate {
+    func dismissAfterVerificationBadge() {
+        delay(time: 0.05) {
+            self.dismiss(animated: false, completion: nil)
         }
     }
 }

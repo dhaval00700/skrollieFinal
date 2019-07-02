@@ -46,8 +46,10 @@
 		4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */; };
 		4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214722B79283002F69A7 /* LoginModel.swift */; };
 		4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */; };
+		4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */; };
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
 		4F761E0922BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */; };
+		4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */; };
 		4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBB1E022C514400048A596 /* SettingsViewController.swift */; };
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
 		4FF671F122C2326100BB4AAF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF671F022C2326100BB4AAF /* BaseViewController.swift */; };
@@ -187,8 +189,10 @@
 		4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
 		4F0F214722B79283002F69A7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../Preferences/LoginModel.swift; sourceTree = "<group>"; };
 		4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationBadgeViewController.swift; sourceTree = "<group>"; };
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
 		4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellUserProfileSectionTableViewCell.xib; sourceTree = "<group>"; };
+		4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		4FBBB1E022C514400048A596 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapClass.swift; sourceTree = "<group>"; };
 		4FF671F022C2326100BB4AAF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBBB1E022C514400048A596 /* SettingsViewController.swift */,
+				4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				F73DD3B7228432FE0096A943 /* cells */,
 				7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */,
 				7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */,
+				4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -898,12 +904,14 @@
 				4F0F213622B76C4D002F69A7 /* DataSelectionTableViewCell.swift in Sources */,
 				4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
+				4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */,
 				3486A86C22A661960053A1A1 /* PostModel.swift in Sources */,
 				4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */,
 				7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */,
 				7F6D122C2295173600CB7988 /* PreviewView.swift in Sources */,
 				4F0F213822B76C4D002F69A7 /* DataSelectionView.swift in Sources */,
 				7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */,
+				4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */,
 				7F7F9FCF2285BA37004F85BD /* FSPagerView.swift in Sources */,
 				7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */,
 				7F7F9FD42285BA37004F85BD /* FSPageControl.swift in Sources */,
