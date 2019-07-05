@@ -55,7 +55,12 @@ class UserProfileModel {
         state = map.value("state") ?? ""
         city = map.value("city") ?? ""
         gender = map.value("gender") ?? ""
-        image = prefixDataUrl + (map.value("image") ?? "")
+        let str = (map.value("image") ?? "")
+        if str.contains(prefixDataUrl) {
+            image = (map.value("image") ?? "")
+        } else {
+            image = prefixDataUrl + (map.value("image") ?? "")
+        }
         Birthdate = map.value("Birthdate") ?? ""
         IsDelete = map.value("IsDelete") ?? false
         OTP = map.value("OTP") ?? ""

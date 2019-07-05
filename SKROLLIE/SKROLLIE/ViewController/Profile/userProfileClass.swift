@@ -150,9 +150,6 @@ class userProfileClass: BaseViewController
     @IBAction func btnUserPicture(_ sender: UIButton) {
     }
     
-    @IBAction func btnFrndReaction(_ sender: UIButton) {
-    }
-    
     @IBAction func btnFrndList(_ sender: UIButton) {
     }
     
@@ -182,7 +179,8 @@ class userProfileClass: BaseViewController
     
     @IBAction func onBtnEdit(_ sender: Any) {
         let navVc = EditProfileViewController.instantiate(fromAppStoryboard: .Main)
-        navigationController?.pushViewController(navVc, animated: true)
+        navVc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(navVc, animated: true, completion: nil)
     }
 }
 

@@ -17,7 +17,6 @@ import AWSCore
 class EditProfileViewController: BaseViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var imgUserPic: UIImageView!
     @IBOutlet weak var lblUserTag: UILabel!
     @IBOutlet weak var imgUserTag: UIImageView!
@@ -41,9 +40,9 @@ class EditProfileViewController: BaseViewController {
     // MARK: - Methods
     private func setupUI() {
         btnSubmit.addCornerRadius(btnSubmit.frame.height/2.0)
-        txvDesc.applyBorder(0.8, borderColor: #colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
+        txvDesc.applyBorder(0.8, borderColor: #colorLiteral(red: 0.9687328935, green: 0.6965460181, blue: 0.2085384429, alpha: 1))
         txvDesc.addCornerRadius(10)
-        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
+        imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.9687328935, green: 0.6965460181, blue: 0.2085384429, alpha: 1))
         imgUserTag.isHidden = true
         setData()
     }
@@ -71,7 +70,7 @@ class EditProfileViewController: BaseViewController {
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -118,6 +117,7 @@ extension EditProfileViewController {
         updateUserProfileData(parameters: parameter.parameters) { (flg) in
             if flg {
                 self.setData()
+                self.dismiss(animated: true, completion: nil)
                 AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Profile Updated!")
             }
         }
@@ -178,7 +178,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             imagePickerController.navigationBar.tintColor =  #colorLiteral(red: 0.2352941176, green: 0.5098039216, blue: 0.6666666667, alpha: 1)
             imagePickerController.sourceType = .camera
             imagePickerController.mediaTypes = [kUTTypeImage as String]
-            imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
             imagePickerController.showsCameraControls = true
             present(imagePickerController, animated: true, completion: nil)
@@ -193,7 +192,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             
             imagePickerController.sourceType = .savedPhotosAlbum
             imagePickerController.mediaTypes = [kUTTypeImage as String]
-            imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
             
             

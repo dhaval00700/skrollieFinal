@@ -78,10 +78,6 @@ class HomeViewController: BaseViewController
         
     }
     
-    @IBAction func btnFrndReaction(_ sender: UIButton) {
-        
-    }
-    
     @IBAction func btnFrndList(_ sender: UIButton) {
         
     }
