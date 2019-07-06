@@ -122,3 +122,43 @@ class UserProfileModel {
         return itemDict
     }
 }
+
+class BlockListData {
+    
+    init() {}
+    
+    var map : Map!
+    var id = ""
+    var idUser = ""
+    var idFriend = ""
+    var Isstatus = ""
+    var CreatedDate = ""
+    var CreatedBy = ""
+    var ModifiedDate = ""
+    var ModifiedBy = ""
+    var tbluserinformation = UserProfileModel()
+    
+    init(data: [String: Any]) {
+        map = Map(data: data)
+        id = map.value("id") ?? ""
+        idUser = map.value("idUser") ?? ""
+        idFriend = map.value("idFriend") ?? ""
+        Isstatus = map.value("Isstatus") ?? ""
+        CreatedDate = map.value("CreatedDate") ?? ""
+        CreatedBy = map.value("CreatedBy") ?? ""
+        ModifiedDate = map.value("ModifiedDate") ?? ""
+        ModifiedBy = map.value("ModifiedBy") ?? ""
+        let userData = map.value("tbluserinformation") ?? [String:Any]()
+        tbluserinformation = UserProfileModel(data: userData, totalTodayPost: "", totalForeverPost: "")
+    }
+    
+    class func getArray(data: [[String: Any]]) -> [BlockListData] {
+        var arrPost = [BlockListData]()
+        
+        for temp in data {
+            arrPost.append(BlockListData(data: temp))
+        }
+        
+        return arrPost
+    }
+}

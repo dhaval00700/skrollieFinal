@@ -40,6 +40,9 @@ class FriendListViewController: BaseViewController {
         createFriend(currebtObj: arrUserFriendList[sender.tag])
     }
     
+    @IBAction func onBtnBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     
 }
 
@@ -96,7 +99,7 @@ extension FriendListViewController
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 
-                let objectData = response["data"] as? [AnyObject] ?? [AnyObject]()
+                let objectData = response["data"] as? [[String: Any]] ?? [[String: Any]]()
                 let tempAray = UserFriendList.getArray(data: objectData)
                 
                 self.arrUserFriendList.append(contentsOf: tempAray)

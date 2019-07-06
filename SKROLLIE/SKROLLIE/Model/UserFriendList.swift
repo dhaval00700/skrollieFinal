@@ -23,7 +23,7 @@ class UserFriendList {
     
     var map: Map!
     
-    init(_ data: [String:AnyObject]) {
+    init(_ data: [String:Any]) {
         map = Map(data: data)
 
         FullName = map.value("FullName") ?? ""
@@ -41,11 +41,11 @@ class UserFriendList {
 
     }
     
-    class func getArray(data: [AnyObject]) -> [UserFriendList] {
+    class func getArray(data: [[String: Any]]) -> [UserFriendList] {
         var arrPost = [UserFriendList]()
         
         for temp in data {
-            arrPost.append(UserFriendList(temp as? [String : AnyObject] ?? [String : AnyObject]()))
+            arrPost.append(UserFriendList(temp))
         }
         
         return arrPost

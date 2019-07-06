@@ -26,6 +26,7 @@ class SettingsViewController: BaseViewController {
     @IBOutlet weak var btnSupport: UIButton!
     @IBOutlet weak var btnVerifyNow: UIButton!
     @IBOutlet weak var btnLogout: UIButton!
+    @IBOutlet weak var btnBlockList: UIButton!
     
     // MARK: - Properties
     
@@ -96,6 +97,11 @@ class SettingsViewController: BaseViewController {
     
     @IBAction func onBtnDrag(_ sender: Any) {
         onTap()
+    }
+    
+    @IBAction func onBtnBlockList(_ sender: Any) {
+        let navVc = BlockListViewController.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(navVc, animated: true)
     }
 }
 

@@ -359,13 +359,13 @@
 			path = CustomClass;
 			sourceTree = "<group>";
 		};
-		4F0BCF9222D0B2440094A351 /* New Group */ = {
+		4F0BCF9222D0B2440094A351 /* BlockList */ = {
 			isa = PBXGroup;
 			children = (
 				4F0BCF9322D0B2800094A351 /* BlockListViewController.swift */,
 			);
-			name = "New Group";
-			path = "Settings/New Group";
+			name = BlockList;
+			path = Settings/BlockList;
 			sourceTree = "<group>";
 		};
 		4F0F20F922B762A1002F69A7 /* Extensions */ = {
@@ -541,7 +541,7 @@
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
 				F73DD3B42284273A0096A943 /* Profile */,
-				4F0BCF9222D0B2440094A351 /* New Group */,
+				4F0BCF9222D0B2440094A351 /* BlockList */,
 				4F19C0EC22C5138F00D12A1B /* Settings */,
 				4F0BCF8822D07FA60094A351 /* FriendSearch */,
 			);
