@@ -137,7 +137,14 @@ extension String {
         return self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
     
+    // Emoji Encode Decode
+    func decode() -> String {
+        let data = self.data(using: .utf8)!
+        return String(data: data, encoding: .nonLossyASCII) ?? self
+    }
     
-   
-    
+    func encode() -> String {
+        let data = self.data(using: .nonLossyASCII, allowLossyConversion: true)!
+        return String(data: data, encoding: .utf8)!
+    }
 }

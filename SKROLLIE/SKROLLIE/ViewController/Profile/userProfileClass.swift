@@ -65,7 +65,6 @@ class userProfileClass: BaseViewController
         btnCOnnect.addCornerRadius(8)
         btnToday.addCornerRadius(8)
         btnForever.addCornerRadius(8)
-        lblDesc.font = UIFont.Regular(ofSize: 9)
         lblToday.font = UIFont.Bold(ofSize: 15)
         lblForever.font = UIFont.Bold(ofSize: 14)
         
@@ -179,6 +178,7 @@ class userProfileClass: BaseViewController
     
     @IBAction func onBtnEdit(_ sender: Any) {
         let navVc = EditProfileViewController.instantiate(fromAppStoryboard: .Main)
+        navVc.superVc = self
         navVc.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(navVc, animated: true, completion: nil)
     }

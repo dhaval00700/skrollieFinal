@@ -28,6 +28,7 @@ class EditProfileViewController: BaseViewController {
     
     // MARK: - Properties
     private var newKey = ""
+    public var superVc = userProfileClass()
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -39,6 +40,8 @@ class EditProfileViewController: BaseViewController {
     
     // MARK: - Methods
     private func setupUI() {
+        txtUsername.delegate = self
+        txvDesc.delegate = self
         btnSubmit.addCornerRadius(btnSubmit.frame.height/2.0)
         txvDesc.applyBorder(0.8, borderColor: #colorLiteral(red: 0.9687328935, green: 0.6965460181, blue: 0.2085384429, alpha: 1))
         txvDesc.addCornerRadius(10)
@@ -70,7 +73,9 @@ class EditProfileViewController: BaseViewController {
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.superVc.viewWillAppear(true)
+        })
     }
 }
 
@@ -110,14 +115,18 @@ extension EditProfileViewController {
     private func updateData() {
         let parameter = ParameterRequest()
         parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserData().UserId)
-        parameter.addParameter(key: ParameterRequest.image, value: newKey)
-        parameter.addParameter(key: ParameterRequest.ProfileName, value: txtUsername.text)
-        parameter.addParameter(key: ParameterRequest.description, value: txvDesc.text)
+        if !newKey.isEmpty {
+            parameter.addParameter(key: ParameterRequest.image, value: newKey)
+        }
+        parameter.addParameter(key: ParameterRequest.ProfileName, value: txtUsername.text!.encode())
+        parameter.addParameter(key: ParameterRequest.description, value: txvDesc.text.encode())
         
         updateUserProfileData(parameters: parameter.parameters) { (flg) in
             if flg {
                 self.setData()
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: {
+                    self.superVc.viewWillAppear(true)
+                })
                 AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Profile Updated!")
             }
         }
@@ -199,5 +208,52 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         } else {
             Utility.showMessageAlert(title: "Error", andMessage: "Photo library does not avaialable on this device.", withOkButtonTitle: "OK")
         }
+    }
+}
+
+extension EditProfileViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if(textField == txtUsername)
+        {
+            let finalString = (textField.text! as NSString).replacingCharacters(in: range, with: string).encode()
+            
+            if finalString.contains("\\u2714\\ufe0f") {
+                return false
+            }
+            if finalString.contains("\\u2611\\ufe0f") {
+                return false
+            }
+            if finalString.contains("\\u2705") {
+                return false
+            }
+            if finalString.count > 50 {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+
+extension EditProfileViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(textView == txvDesc)
+        {
+            let finalString = (textView.text! as NSString).replacingCharacters(in: range, with: text).encode()
+            
+            if finalString.contains("\\u2714\\ufe0f") {
+                return false
+            }
+            if finalString.contains("\\u2611\\ufe0f") {
+                return false
+            }
+            if finalString.contains("\\u2705") {
+                return false
+            }
+            if finalString.count > 300 {
+                return false
+            }
+        }
+        return true
     }
 }

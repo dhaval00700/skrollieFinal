@@ -16,6 +16,11 @@
 		34FC39F322A7A0F6009314D2 /* HomeTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34FC39F122A7A0F6009314D2 /* HomeTblCell.xib */; };
 		34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FC39F422A7ABF9009314D2 /* HomeCollectionsViewCell.swift */; };
 		34FC39F722A7ABF9009314D2 /* HomeCollectionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34FC39F522A7ABF9009314D2 /* HomeCollectionsViewCell.xib */; };
+		4F0BCF8A22D07FD00094A351 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BCF8922D07FD00094A351 /* FriendListViewController.swift */; };
+		4F0BCF8E22D081860094A351 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BCF8C22D081860094A351 /* FriendTableViewCell.swift */; };
+		4F0BCF8F22D081860094A351 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0BCF8D22D081860094A351 /* FriendTableViewCell.xib */; };
+		4F0BCF9122D09F260094A351 /* UserFriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BCF9022D09F260094A351 /* UserFriendList.swift */; };
+		4F0BCF9422D0B2800094A351 /* BlockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BCF9322D0B2800094A351 /* BlockListViewController.swift */; };
 		4F0F210722B762A1002F69A7 /* CollectionType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F20FB22B762A1002F69A7 /* CollectionType+Extension.swift */; };
 		4F0F210822B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F20FC22B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift */; };
 		4F0F210922B762A1002F69A7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F20FD22B762A1002F69A7 /* String+Extension.swift */; };
@@ -159,6 +164,11 @@
 		34FC39F422A7ABF9009314D2 /* HomeCollectionsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionsViewCell.swift; sourceTree = "<group>"; };
 		34FC39F522A7ABF9009314D2 /* HomeCollectionsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionsViewCell.xib; sourceTree = "<group>"; };
 		41F5268037B75A4D715C8E9B /* Pods-SKROLLIE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKROLLIE.debug.xcconfig"; path = "Target Support Files/Pods-SKROLLIE/Pods-SKROLLIE.debug.xcconfig"; sourceTree = "<group>"; };
+		4F0BCF8922D07FD00094A351 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		4F0BCF8C22D081860094A351 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		4F0BCF8D22D081860094A351 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		4F0BCF9022D09F260094A351 /* UserFriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendList.swift; sourceTree = "<group>"; };
+		4F0BCF9322D0B2800094A351 /* BlockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListViewController.swift; sourceTree = "<group>"; };
 		4F0F20FB22B762A1002F69A7 /* CollectionType+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+Extension.swift"; sourceTree = "<group>"; };
 		4F0F20FC22B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SkyFloatingLabelTextField+Extension.swift"; sourceTree = "<group>"; };
 		4F0F20FD22B762A1002F69A7 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -331,6 +341,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4F0BCF8822D07FA60094A351 /* FriendSearch */ = {
+			isa = PBXGroup;
+			children = (
+				4F0BCF8B22D081540094A351 /* CustomClass */,
+				4F0BCF8922D07FD00094A351 /* FriendListViewController.swift */,
+			);
+			path = FriendSearch;
+			sourceTree = "<group>";
+		};
+		4F0BCF8B22D081540094A351 /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F0BCF8C22D081860094A351 /* FriendTableViewCell.swift */,
+				4F0BCF8D22D081860094A351 /* FriendTableViewCell.xib */,
+			);
+			path = CustomClass;
+			sourceTree = "<group>";
+		};
+		4F0BCF9222D0B2440094A351 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4F0BCF9322D0B2800094A351 /* BlockListViewController.swift */,
+			);
+			name = "New Group";
+			path = "Settings/New Group";
+			sourceTree = "<group>";
+		};
 		4F0F20F922B762A1002F69A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +446,7 @@
 				4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */,
 				4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */,
 				4F0F214722B79283002F69A7 /* LoginModel.swift */,
+				4F0BCF9022D09F260094A351 /* UserFriendList.swift */,
 				3486A86B22A661960053A1A1 /* PostModel.swift */,
 				4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */,
 			);
@@ -503,7 +541,9 @@
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
 				F73DD3B42284273A0096A943 /* Profile */,
+				4F0BCF9222D0B2440094A351 /* New Group */,
 				4F19C0EC22C5138F00D12A1B /* Settings */,
+				4F0BCF8822D07FA60094A351 /* FriendSearch */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -756,6 +796,7 @@
 				7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */,
 				4F0F213922B76C4D002F69A7 /* DataSelectionView.xib in Resources */,
 				7FBEFF5722926EF300350BD5 /* MONTSERRAT-MEDIUMITALIC.OTF in Resources */,
+				4F0BCF8F22D081860094A351 /* FriendTableViewCell.xib in Resources */,
 				F73DD41D2284620F0096A943 /* MONTSERRATALTERNATES-ITALIC.OTF in Resources */,
 				34FC39F722A7ABF9009314D2 /* HomeCollectionsViewCell.xib in Resources */,
 				F73DD4042284620F0096A943 /* MONTSERRATALTERNATES-BOLD.OTF in Resources */,
@@ -901,6 +942,7 @@
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
 				4F0F210F22B762A1002F69A7 /* UITextField+Extensions.swift in Sources */,
+				4F0BCF9122D09F260094A351 /* UserFriendList.swift in Sources */,
 				4F0F213622B76C4D002F69A7 /* DataSelectionTableViewCell.swift in Sources */,
 				4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
@@ -929,7 +971,9 @@
 				7F7F9FD12285BA37004F85BD /* FSPagerViewCell.swift in Sources */,
 				4F0F210922B762A1002F69A7 /* String+Extension.swift in Sources */,
 				34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */,
+				4F0BCF8E22D081860094A351 /* FriendTableViewCell.swift in Sources */,
 				4F0F213322B76C4D002F69A7 /* ApiManager.swift in Sources */,
+				4F0BCF9422D0B2800094A351 /* BlockListViewController.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
 				4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
@@ -953,6 +997,7 @@
 				4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */,
 				4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */,
 				7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */,
+				4F0BCF8A22D07FD00094A351 /* FriendListViewController.swift in Sources */,
 				4F0F210E22B762A1002F69A7 /* UINavigationBar+Extension.swift in Sources */,
 				4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */,
 				4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */,

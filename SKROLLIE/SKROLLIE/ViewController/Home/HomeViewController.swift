@@ -31,7 +31,7 @@ class HomeViewController: BaseViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleAspectFill)
+        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleToFill)
     }
     
     // MARK: - Methods
@@ -79,7 +79,8 @@ class HomeViewController: BaseViewController
     }
     
     @IBAction func btnFrndList(_ sender: UIButton) {
-        
+        let navVc = FriendListViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(navVc, animated: true)
     }
 }
 

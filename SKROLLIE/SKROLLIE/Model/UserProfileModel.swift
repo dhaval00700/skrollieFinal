@@ -49,7 +49,7 @@ class UserProfileModel {
         username = map.value("username") ?? ""
         password = map.value("password") ?? ""
         emailaddress = map.value("emailaddress") ?? ""
-        ProfileName = map.value("ProfileName") ?? ""
+        ProfileName = (map.value("ProfileName") ?? "").decode()
         phone = map.value("phone") ?? ""
         country = map.value("country") ?? ""
         state = map.value("state") ?? ""
@@ -70,7 +70,7 @@ class UserProfileModel {
         modifiedby = map.value("modifiedby") ?? ""
         modifieddate = map.value("modifieddate") ?? ""
         OTPTIME = map.value("OTPTIME") ?? ""
-        description = map.value("description") ?? ""
+        description = (map.value("description") ?? "").decode()
         FullName = map.value("FullName") ?? ""
         AKA = map.value("AKA") ?? ""
         attachimage = map.value("attachimage") ?? ""

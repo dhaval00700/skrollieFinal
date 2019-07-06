@@ -183,4 +183,6 @@ struct API {
     static let GetForeverPostByUser = BASE_URL + "MobilePost/GetForeverPostByUser"
     static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
     static let UpdateUserById = BASE_URL + "MobileAccount/UpdateUserById"
+    static let GetAllUser = BASE_URL + "MobileAccount/GetAllUser"
+    
 }
