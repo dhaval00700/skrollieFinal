@@ -184,5 +184,5 @@ struct API {
     static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
     static let UpdateUserById = BASE_URL + "MobileAccount/UpdateUserById"
     static let GetAllUser = BASE_URL + "MobileAccount/GetAllUser"
-    static let GetAllBlockFriendByUser = BASE_URL + "MobileAccount/GetAllBlockFriendByUser"
+    static let GetAllBlockFriendByUser = BASE_URL + "MobilePost/GetAllBlockFriendByUser"
 }

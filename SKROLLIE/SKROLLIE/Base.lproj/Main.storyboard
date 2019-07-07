@@ -22,7 +22,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD.OTF">
+        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -3406,7 +3406,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Oy8-FX-prC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ELk-bh-GYE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingVc" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ELk-bh-GYE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PhG-gh-DJt">
                         <autoresizingMask key="autoresizingMask"/>

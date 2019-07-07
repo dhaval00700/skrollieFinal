@@ -63,6 +63,7 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         }
         cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
         cell.lblUserName.text = currentObj.username
+        cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.isHidden = currentObj.IsMyFriend
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)

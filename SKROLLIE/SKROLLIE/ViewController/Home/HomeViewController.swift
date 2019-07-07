@@ -58,9 +58,9 @@ class HomeViewController: BaseViewController
     }
     
     @IBAction func btnSetting(_ sender: UIButton) {
-        let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
-        navVc.modalPresentationStyle = .overFullScreen
-        navigationController?.present(navVc, animated: true, completion: nil)
+        let navController = storyboard?.instantiateViewController(withIdentifier: "SettingVc") as! UINavigationController
+        navController.modalPresentationStyle = .overFullScreen
+        self.present(navController, animated:true, completion: nil)
     }
     
     @IBAction func btnCamera(_ sender: UIButton) {

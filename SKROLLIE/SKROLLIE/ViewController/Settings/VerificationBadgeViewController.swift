@@ -11,10 +11,6 @@ import MobileCoreServices
 import AWSS3
 import AWSCore
 
-protocol VerificationBadgeViewControllerDelegate {
-    func dismissAfterVerificationBadge()
-}
-
 class VerificationBadgeViewController: BaseViewController {
     
     // MARK: - Outlets
@@ -33,7 +29,6 @@ class VerificationBadgeViewController: BaseViewController {
     @IBOutlet weak var btnSubmit: UIButton!
     
     // MARK: - Properties
-    var delegate: VerificationBadgeViewControllerDelegate?
     private var newKey = ""
     
     // MARK: - LifeCycles

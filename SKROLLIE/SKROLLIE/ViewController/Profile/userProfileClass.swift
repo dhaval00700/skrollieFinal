@@ -137,9 +137,9 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnSetting(_ sender: UIButton) {
-        let navVc = SettingsViewController.instantiate(fromAppStoryboard: .Main)
-        navVc.modalPresentationStyle = .overFullScreen
-        self.navigationController?.present(navVc, animated: true, completion: nil)
+        let navController = storyboard?.instantiateViewController(withIdentifier: "SettingVc") as! UINavigationController
+        navController.modalPresentationStyle = .overFullScreen
+        self.present(navController, animated:true, completion: nil)
     }
     
     @IBAction func btnUserProfile(_ sender: UIButton) {
@@ -150,6 +150,8 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnFrndList(_ sender: UIButton) {
+        let navVc = FriendListViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(navVc, animated: true)
     }
     
     @IBAction func btnConnect(_ sender: UIButton) {

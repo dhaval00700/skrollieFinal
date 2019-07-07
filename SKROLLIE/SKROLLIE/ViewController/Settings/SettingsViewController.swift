@@ -82,8 +82,6 @@ class SettingsViewController: BaseViewController {
     
     @IBAction func onBtnVerifyNow(_ sender: Any) {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "VerificationBadgeVc") as! UINavigationController
-        let vc = navVc.viewControllers.first as! VerificationBadgeViewController
-        vc.delegate = self
         navVc.modalPresentationStyle = .overFullScreen
         self.present(navVc, animated:true, completion: nil)
         
@@ -102,14 +100,5 @@ class SettingsViewController: BaseViewController {
     @IBAction func onBtnBlockList(_ sender: Any) {
         let navVc = BlockListViewController.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(navVc, animated: true)
-    }
-}
-
-
-extension SettingsViewController: VerificationBadgeViewControllerDelegate {
-    func dismissAfterVerificationBadge() {
-        delay(time: 0.05) {
-            self.dismiss(animated: false, completion: nil)
-        }
     }
 }
