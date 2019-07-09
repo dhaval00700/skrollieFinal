@@ -114,9 +114,9 @@ class APIClient {
         })
     }
     
-    class func Get24HourPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func Get24HourPostByUserId(userId: String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetLatest24HoursPostByUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
+        let url = API.GetLatest24HoursPostByUser + "?idUser=\(userId)" + "&Limit=\(PostCountLimit)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -125,9 +125,9 @@ class APIClient {
         })
     }
     
-    class func GetForevetPostByUserId(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func GetForevetPostByUserId(userId: String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetForeverPostByUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" + "&Limit=\(PostCountLimit)"
+        let url = API.GetForeverPostByUser + "?idUser=\(userId)" + "&Limit=\(PostCountLimit)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -185,6 +185,28 @@ class APIClient {
         let headers = HeaderRequestParameter()
         let url = API.GetAllBlockFriendByUser + "?idUser=\(userId)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func UpdateFriendStatus(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.UpdateFriendStatus
+        return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func ChangePassword(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.ChangePassword
+        return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)

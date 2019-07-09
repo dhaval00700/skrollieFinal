@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
     }
     
     
-    func getUserProfileData(userId: String, complation success: ((Bool) -> Void)? = nil) {
+    func getUserProfileData(userId: String, complation success: ((Bool, UserProfileModel) -> Void)? = nil) {
         
         _ = APIClient.GetUserById(userId: userId) { (responseObj) in
             let response = responseObj ?? [String : Any]()
@@ -39,10 +39,9 @@ class BaseViewController: UIViewController {
             if responseData.success {
                 let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
                 let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
-               let userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
-                AppPrefsManager.shared.saveUserProfileData(model: userPrifileData)
+               let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
                 if success != nil {
-                    success!(true)
+                    success!(true, userProfileData)
                 }
             }
         }
@@ -56,8 +55,8 @@ class BaseViewController: UIViewController {
             if responseData.success {
                 let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
                 let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
-                let userPrifileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
-                AppPrefsManager.shared.saveUserProfileData(model: userPrifileData)
+                let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
+                AppPrefsManager.shared.saveUserProfileData(model: userProfileData)
                 if success != nil {
                     success!(true)
                 }

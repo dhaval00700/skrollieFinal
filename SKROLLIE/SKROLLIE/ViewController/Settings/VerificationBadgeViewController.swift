@@ -14,6 +14,7 @@ import AWSCore
 class VerificationBadgeViewController: BaseViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var viwBackground: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     @IBOutlet weak var lblWarning: UILabel!
@@ -41,8 +42,12 @@ class VerificationBadgeViewController: BaseViewController {
     
     // MARK: - Functions
     private func setupUI() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        viwBackground.addGestureRecognizer(tapGesture)
         btnSubmit.addCornerRadius(btnSubmit.frame.height/2.0)
         btnUploadPhoto.setTitle("Upload ID", for: .normal)
+        
+        setData()
     }
     
     private func setData() {
@@ -50,6 +55,9 @@ class VerificationBadgeViewController: BaseViewController {
     }
     
     // MARK: - Actions
+    @objc func onTap() {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func onBtnUploadPhoto(_ sender: Any) {
         selectImage()
     }
@@ -59,7 +67,7 @@ class VerificationBadgeViewController: BaseViewController {
     }
     
     @IBAction func onBtnDrag(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        onTap()
     }
 }
 

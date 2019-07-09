@@ -14,9 +14,7 @@ class HeaderRequestParameter {
     static let authorization = "Authorization"
     
     init() {
-        if(AppPrefsManager.shared.isUserLogin()) {
-            addParameter(key: HeaderRequestParameter.authorization, value: AppPrefsManager.shared.getUserData().token)
-        }
+        
     }
 
     func addParameter(key: String, value: String) {

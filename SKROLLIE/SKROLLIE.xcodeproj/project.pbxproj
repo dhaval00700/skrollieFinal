@@ -50,6 +50,13 @@
 		4F0F214122B76CDC002F69A7 /* AppPrefsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */; };
 		4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */; };
 		4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214722B79283002F69A7 /* LoginModel.swift */; };
+		4F188C1422D3258300D340A1 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0B22D3258200D340A1 /* DPDConstants.swift */; };
+		4F188C1522D3258300D340A1 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0C22D3258200D340A1 /* DPDKeyboardListener.swift */; };
+		4F188C1622D3258300D340A1 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0D22D3258200D340A1 /* DPDUIView+Extension.swift */; };
+		4F188C1722D3258300D340A1 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F188C0F22D3258200D340A1 /* DropDownCell.xib */; };
+		4F188C1822D3258300D340A1 /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1122D3258200D340A1 /* DropDown+Appearance.swift */; };
+		4F188C1922D3258300D340A1 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1222D3258200D340A1 /* DropDown.swift */; };
+		4F188C1A22D3258300D340A1 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1322D3258200D340A1 /* DropDownCell.swift */; };
 		4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */; };
 		4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */; };
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
@@ -198,6 +205,14 @@
 		4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrefsManager.swift; sourceTree = "<group>"; };
 		4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
 		4F0F214722B79283002F69A7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../Preferences/LoginModel.swift; sourceTree = "<group>"; };
+		4F188C0922D3258200D340A1 /* DropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDown.h; sourceTree = "<group>"; };
+		4F188C0B22D3258200D340A1 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
+		4F188C0C22D3258200D340A1 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		4F188C0D22D3258200D340A1 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		4F188C0F22D3258200D340A1 /* DropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
+		4F188C1122D3258200D340A1 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		4F188C1222D3258200D340A1 /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
+		4F188C1322D3258200D340A1 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationBadgeViewController.swift; sourceTree = "<group>"; };
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -394,6 +409,7 @@
 		4F0F211A22B76BE4002F69A7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4F188C0822D3258200D340A1 /* DropDown */,
 				4F0F212722B76C4D002F69A7 /* DataSelectionView */,
 				4F0F212222B76C4C002F69A7 /* Networking */,
 				4F0F211B22B76C4C002F69A7 /* Utility.swift */,
@@ -451,6 +467,45 @@
 				4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4F188C0822D3258200D340A1 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				4F188C0922D3258200D340A1 /* DropDown.h */,
+				4F188C0A22D3258200D340A1 /* helpers */,
+				4F188C0E22D3258200D340A1 /* resources */,
+				4F188C1022D3258200D340A1 /* src */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		4F188C0A22D3258200D340A1 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4F188C0B22D3258200D340A1 /* DPDConstants.swift */,
+				4F188C0C22D3258200D340A1 /* DPDKeyboardListener.swift */,
+				4F188C0D22D3258200D340A1 /* DPDUIView+Extension.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		4F188C0E22D3258200D340A1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F188C0F22D3258200D340A1 /* DropDownCell.xib */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		4F188C1022D3258200D340A1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4F188C1122D3258200D340A1 /* DropDown+Appearance.swift */,
+				4F188C1222D3258200D340A1 /* DropDown.swift */,
+				4F188C1322D3258200D340A1 /* DropDownCell.swift */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		4F19C0EC22C5138F00D12A1B /* Settings */ = {
@@ -807,6 +862,7 @@
 				F73DD3F82284620F0096A943 /* MONTSERRAT-BOLD.OTF in Resources */,
 				F73DD40B2284620F0096A943 /* MONTSERRAT-SEMIBOLDITALIC.OTF in Resources */,
 				F73DD4162284620F0096A943 /* MONTSERRATALTERNATES-LIGHT.OTF in Resources */,
+				4F188C1722D3258300D340A1 /* DropDownCell.xib in Resources */,
 				34FC39F322A7A0F6009314D2 /* HomeTblCell.xib in Resources */,
 				F73DD4032284620F0096A943 /* MONTSERRATALTERNATES-BLACKITALIC.OTF in Resources */,
 				F73DD4122284620F0096A943 /* MONTSERRATALTERNATES-BOLDITALIC.OTF in Resources */,
@@ -940,6 +996,7 @@
 				4F0F210A22B762A1002F69A7 /* SVPinView+Extension.swift in Sources */,
 				4F0F210C22B762A1002F69A7 /* UIColor+Extension.swift in Sources */,
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
+				4F188C1422D3258300D340A1 /* DPDConstants.swift in Sources */,
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
 				4F0F210F22B762A1002F69A7 /* UITextField+Extensions.swift in Sources */,
 				4F0BCF9122D09F260094A351 /* UserFriendList.swift in Sources */,
@@ -947,12 +1004,15 @@
 				4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
 				4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */,
+				4F188C1922D3258300D340A1 /* DropDown.swift in Sources */,
 				3486A86C22A661960053A1A1 /* PostModel.swift in Sources */,
 				4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */,
 				7F7F9F6C2285B3B3004F85BD /* LoginViewController.swift in Sources */,
 				7F6D122C2295173600CB7988 /* PreviewView.swift in Sources */,
+				4F188C1522D3258300D340A1 /* DPDKeyboardListener.swift in Sources */,
 				4F0F213822B76C4D002F69A7 /* DataSelectionView.swift in Sources */,
 				7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */,
+				4F188C1622D3258300D340A1 /* DPDUIView+Extension.swift in Sources */,
 				4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */,
 				7F7F9FCF2285BA37004F85BD /* FSPagerView.swift in Sources */,
 				7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */,
@@ -973,6 +1033,7 @@
 				34FC39F622A7ABF9009314D2 /* HomeCollectionsViewCell.swift in Sources */,
 				4F0BCF8E22D081860094A351 /* FriendTableViewCell.swift in Sources */,
 				4F0F213322B76C4D002F69A7 /* ApiManager.swift in Sources */,
+				4F188C1A22D3258300D340A1 /* DropDownCell.swift in Sources */,
 				4F0BCF9422D0B2800094A351 /* BlockListViewController.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
 				4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */,
@@ -980,6 +1041,7 @@
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				345269EF22A7E450008B6613 /* Toast.swift in Sources */,
 				4F0F210B22B762A1002F69A7 /* UIButton+Extension.swift in Sources */,
+				4F188C1822D3258300D340A1 /* DropDown+Appearance.swift in Sources */,
 				4F0F213F22B76CDC002F69A7 /* GlobalConstants.swift in Sources */,
 				4F0F214122B76CDC002F69A7 /* AppPrefsManager.swift in Sources */,
 				4F0F213522B76C4D002F69A7 /* ParameterRequest.swift in Sources */,

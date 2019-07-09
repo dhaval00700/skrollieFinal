@@ -17,6 +17,7 @@ import AWSCore
 class EditProfileViewController: BaseViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var viwBackground: UIView!
     @IBOutlet weak var imgUserPic: UIImageView!
     @IBOutlet weak var lblUserTag: UILabel!
     @IBOutlet weak var imgUserTag: UIImageView!
@@ -40,6 +41,8 @@ class EditProfileViewController: BaseViewController {
     
     // MARK: - Methods
     private func setupUI() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        viwBackground.addGestureRecognizer(tapGesture)
         txtUsername.delegate = self
         txvDesc.delegate = self
         btnSubmit.addCornerRadius(btnSubmit.frame.height/2.0)
@@ -64,6 +67,11 @@ class EditProfileViewController: BaseViewController {
     }
     
     // MARK: - Actions
+    @objc func onTap() {
+        self.dismiss(animated: true, completion: {
+            self.superVc.viewWillAppear(true)
+        })
+    }
     @IBAction func onBtnSubmit(_ sender: Any) {
         updateData()
     }
@@ -73,9 +81,7 @@ class EditProfileViewController: BaseViewController {
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-            self.superVc.viewWillAppear(true)
-        })
+        onTap()
     }
 }
 
@@ -124,9 +130,7 @@ extension EditProfileViewController {
         updateUserProfileData(parameters: parameter.parameters) { (flg) in
             if flg {
                 self.setData()
-                self.dismiss(animated: true, completion: {
-                    self.superVc.viewWillAppear(true)
-                })
+                self.onTap()
                 AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Profile Updated!")
             }
         }

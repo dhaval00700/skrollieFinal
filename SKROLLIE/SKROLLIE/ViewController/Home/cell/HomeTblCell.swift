@@ -52,6 +52,7 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionsViewCell", for: indexPath) as! HomeCollectionsViewCell
         let currentObj = collectionData.arrPost[indexPath.item]
+        imgUser.imageFromURL(link: collectionData.ProfileImage, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         cell.ConfigureCellWithData(currentObj)
         return cell
     }

@@ -14,15 +14,21 @@ class FriendListViewController: BaseViewController {
     @IBOutlet weak var tblFriendList : UITableView!
     
     // MARK: - Properties
-    var arrUserFriendList = [UserFriendList]()
-    var isDataLoading = false
-    var continueLoadingData = true
-    var skip = 0
-    var take = 10
+    private var arrUserFriendList = [UserFriendList]()
+    private var isDataLoading = false
+    private var continueLoadingData = true
+    private var skip = 0
+    private var take = 10
+    private var refreshControl = UIRefreshControl()
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUpUI()
     }
     
@@ -31,11 +37,30 @@ class FriendListViewController: BaseViewController {
         tblFriendList.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         tblFriendList.delegate = self
         tblFriendList.dataSource = self
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
+        tblFriendList.addSubview(refreshControl)
+        
         getFriendList()
         
     }
     
+    private func resetAll() {
+        self.arrUserFriendList.removeAll()
+        isDataLoading = false
+        continueLoadingData = true
+        skip = 0
+        take = 10
+        getFriendList()
+    }
+    
     // MARK: - Actions
+    @objc func refresh(sender:AnyObject) {
+        resetAll()
+    }
+    
     @IBAction func clickToBtnConnect(_ sender : UIButton) {
         createFriend(currebtObj: arrUserFriendList[sender.tag])
     }
@@ -80,8 +105,13 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentObj = arrUserFriendList[indexPath.row]
+        let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
+        navVc.userId = currentObj.idUser
+        navVc.isFriend = currentObj.IsMyFriend
+        navigationController?.pushViewController(navVc, animated: true)
+    }
 }
 
 
@@ -113,7 +143,7 @@ extension FriendListViewController
                 }
                 self.tblFriendList.reloadData()
             }
-            
+            self.refreshControl.endRefreshing()
             self.isDataLoading = false
         })
         
@@ -125,13 +155,13 @@ extension FriendListViewController
         paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
         paramter["idFriend"] = currebtObj.idUser as AnyObject
         
-        
         _ = APIClient.createFriend(parameters: paramter, success: { (resposObject) in
             let response = resposObject ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 self.view.showToastAtBottom(message: responseData.message)
-                self.getFriendList()
+                currebtObj.IsMyFriend = true
+                self.tblFriendList.reloadData()
             }
         })
         

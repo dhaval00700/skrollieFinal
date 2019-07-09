@@ -55,8 +55,8 @@ class LoginViewController: BaseViewController
         txtPassword.titleFormatter = { $0.lowercased() }
         
         if isDevelopmentMode {
-            txtUsername.text = "bini"
-            txtPassword.text = "123456"
+            txtUsername.text = "Skrollie"//"bini"
+            txtPassword.text = "1234567890"//"123456"
         }
         
         setupErrorMessage()
@@ -218,9 +218,9 @@ extension LoginViewController {
                 
                 AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
                 AppPrefsManager.shared.saveUserData(model: loginModel)
-                
-                self.getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+                self.getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg, userProfileClass) in
                     if flg {
+                        AppPrefsManager.shared.saveUserProfileData(model: userProfileClass)
                         let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)
                     }

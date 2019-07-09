@@ -29,10 +29,15 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var viwProgressBar: UIView!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var btnEdit: UIButton!
+    @IBOutlet weak var btnMore: UIButton!
     
     // MARK: - Properties
     var arrData = [GetPostData]()
     var refreshControl = UIRefreshControl()
+    var userId = AppPrefsManager.shared.getUserData().UserId
+    var isFriend = false
+    fileprivate var moreDropDown: DropDown!
+    var userProfileData: UserProfileModel!
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -81,25 +86,57 @@ class userProfileClass: BaseViewController
         progressBar.clipsToBounds = true
         progressBar.layer.sublayers!.first!.cornerRadius = 8
         progressBar.subviews.first!.clipsToBounds = true
+        btnEdit.isHidden = true
         
         btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
         imgUserTag.isHidden = true
         
-        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+        getUserProfileData(userId: userId, complation: { (flg, userProfileModel) in
             if flg {
+                self.userProfileData = userProfileModel
                 self.setData()
             }
         })
         getForeverPostByUserId()
+        setDropDown()
+    }
+    
+    private func setDropDown() {
+        moreDropDown = DropDown()
+        
+        moreDropDown.anchorView = btnMore
+        moreDropDown.dataSource = ["Block"]
+        moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            if item == "Block" {
+                self.updateStatus()
+            }
+        }
+        moreDropDown.backgroundColor = .clear
+        moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y:(moreDropDown.anchorView!.plainView.bounds.height - 80))
+        
+        moreDropDown.width = 90
     }
     
     private func setData() {
-        let userProfileData = AppPrefsManager.shared.getUserProfileData()
         if userProfileData.IsAccountVerify == AccountVerifyStatus.zero || userProfileData.IsAccountVerify == AccountVerifyStatus.one {
             imgUserTag.isHidden = true
         } else {
             imgUserTag.isHidden = false
         }
+        if userId == AppPrefsManager.shared.getUserData().UserId || isFriend {
+            btnCOnnect.isHidden = true
+        } else {
+            btnCOnnect.isHidden = false
+        }
+        
+        if userId == AppPrefsManager.shared.getUserData().UserId {
+            btnMore.isHidden = true
+            btnEdit.isHidden = false
+        } else {
+            btnMore.isHidden = false
+            btnEdit.isHidden = true
+        }
+        
         imgUserPic.imageFromURL(link: userProfileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
         btnToday.setTitle(userProfileData.TotalTodayPost, for: .normal)
         btnForever.setTitle(userProfileData.TotalForeverPost, for: .normal)
@@ -128,8 +165,9 @@ class userProfileClass: BaseViewController
     
     @objc func refresh(sender:AnyObject) {
         self.arrData.removeAll()
-        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId, complation: { (flg) in
+        getUserProfileData(userId: userId, complation: { (flg, userProfileModel) in
             if flg {
+                self.userProfileData = userProfileModel
                 self.setData()
             }
         })
@@ -155,9 +193,11 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnConnect(_ sender: UIButton) {
+        createFriend()
     }
     
     @IBAction func btnMore(_ sender: UIButton) {
+        moreDropDown.show()
     }
     
     @IBAction func onBtnToday(_ sender: UIButton) {
@@ -249,7 +289,7 @@ extension userProfileClass {
     
     private func get24HourPostByUserId() {
         
-        _ = APIClient.Get24HourPostByUserId() { (responseObj) in
+        _ = APIClient.Get24HourPostByUserId(userId: userId) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
@@ -263,7 +303,7 @@ extension userProfileClass {
     
     private func getForeverPostByUserId() {
         
-        _ = APIClient.GetForevetPostByUserId() { (responseObj) in
+        _ = APIClient.GetForevetPostByUserId(userId: userId) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             self.arrData.removeAll()
@@ -272,6 +312,40 @@ extension userProfileClass {
                 self.arrData.append(GetPostData(arrForEverList, ForeverStr))
             }
             self.get24HourPostByUserId()
+        }
+    }
+    
+    private func createFriend() {
+        
+        var paramter = [String:AnyObject]()
+        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
+        paramter["idFriend"] = userId as AnyObject
+        
+        
+        _ = APIClient.createFriend(parameters: paramter, success: { (resposObject) in
+            let response = resposObject ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                self.btnCOnnect.isHidden = true
+                self.view.showToastAtBottom(message: responseData.message)
+            }
+        })
+        
+    }
+    
+    private func updateStatus() {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idFriend, value: userProfileData.id)
+        param.addParameter(key: ParameterRequest.Isstatus, value: false)
+        
+        _ = APIClient.UpdateFriendStatus(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ class BlockListViewController: BaseViewController {
     
     // MARK: - Properties
     var arrBlockList = [BlockListData]()
+    private var refreshControl = UIRefreshControl()
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -28,13 +29,25 @@ class BlockListViewController: BaseViewController {
         tblBlockList.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         tblBlockList.delegate = self
         tblBlockList.dataSource = self
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
+        tblBlockList.addSubview(refreshControl)
+        
         getBlockList()
         
     }
     
     // MARK: - Actions
+    
+    
+    @objc func refresh(sender:AnyObject) {
+        getBlockList()
+    }
+    
     @IBAction func clickToBtnConnect(_ sender : UIButton) {
-        //createFriend(currebtObj: arrUserFriendList[sender.tag])
+        updateStatus(arrBlockList[sender.tag])
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
@@ -56,7 +69,9 @@ extension BlockListViewController : UITableViewDelegate, UITableViewDataSource {
         }
         cell.imgProfile.imageFromURL(link: currentObj.tbluserinformation.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
         cell.lblUserName.text = currentObj.tbluserinformation.username
+        cell.lblUserDescription.text = currentObj.tbluserinformation.FullName
         cell.btnConnect.tag = indexPath.row
+        cell.btnConnect.setTitle("Unblock", for: .normal)
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)
         
         return cell
@@ -79,9 +94,27 @@ extension BlockListViewController {
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
+                self.arrBlockList.removeAll()
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.arrBlockList = BlockListData.getArray(data: aryGetPhotos)
                 self.tblBlockList.reloadData()
+            }
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    private func updateStatus(_ obj: BlockListData) {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idFriend, value: obj.idFriend)
+        param.addParameter(key: ParameterRequest.Isstatus, value: true)
+        
+        _ = APIClient.UpdateFriendStatus(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                self.getBlockList()
             }
         }
     }

@@ -11,6 +11,7 @@ import Foundation
 class ResponseDataModel {
     var map: Map!
     var success = false
+    var token = ""
     var message = ""
     var data: Any?
     
@@ -19,6 +20,7 @@ class ResponseDataModel {
     init(responseObj: [String : Any]) {
         map = Map(data: responseObj)
         success = map.value("success") ?? false
+        token = map.value("token") ?? ""
         message = map.value("message") ?? ""
         data = map.value("data")
     }

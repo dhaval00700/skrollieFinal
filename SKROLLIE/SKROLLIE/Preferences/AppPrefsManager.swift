@@ -13,6 +13,7 @@ class AppPrefsManager {
     
     private let USER_LOGIN  =   "USER_LOGIN"
     private let USER_DATA_KEY  =   "USER_DATA_KEY"
+    private let USER_TOKEN_KEY  =   "USER_TOKEN_KEY"
     private let USER_PROFILE_DATA_KEY  =   "USER_PROFILE_DATA_KEY"
     
     init() {
@@ -71,7 +72,6 @@ class AppPrefsManager {
     {
         removeDataFromPreference(key: USER_DATA_KEY)
     }
-    
     
     // MARK: - User data
     func saveUserProfileData(model: UserProfileModel)
