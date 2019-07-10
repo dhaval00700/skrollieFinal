@@ -41,8 +41,6 @@ class HomeViewController: BaseViewController
         tblData.dataSource = self
         lblTitle.font = UIFont.Regular(ofSize: 20)
         
-        imgMenuProfile.addCornerRadius(imgMenuProfile.frame.height/2.0)
-        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage.init(named: "ic_nav_hedder"),
                                                                     for: .default)
         refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)

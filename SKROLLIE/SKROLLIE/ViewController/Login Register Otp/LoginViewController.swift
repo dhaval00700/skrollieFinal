@@ -55,8 +55,8 @@ class LoginViewController: BaseViewController
         txtPassword.titleFormatter = { $0.lowercased() }
         
         if isDevelopmentMode {
-            txtUsername.text = "Skrollie"//"bini"
-            txtPassword.text = "1234567890"//"123456"
+            txtUsername.text = "bini"
+            txtPassword.text = "123456"
         }
         
         setupErrorMessage()

@@ -20,7 +20,7 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var lblUserTag: UILabel!
     @IBOutlet weak var imgUserTag: UIImageView!
     @IBOutlet weak var btnCOnnect: UIButton!
-    @IBOutlet weak var lblDesc: UILabel!
+    @IBOutlet weak var txvDesc: UITextView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnForever: UIButton!
     @IBOutlet weak var btnToday: UIButton!
@@ -30,10 +30,10 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnMore: UIButton!
+    @IBOutlet weak var lctTxvDescHeight: NSLayoutConstraint!
     
     // MARK: - Properties
     var arrData = [GetPostData]()
-    var refreshControl = UIRefreshControl()
     var userId = AppPrefsManager.shared.getUserData().UserId
     var isFriend = false
     fileprivate var moreDropDown: DropDown!
@@ -58,10 +58,6 @@ class userProfileClass: BaseViewController
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
         
-        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.black
-        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
-        tableview.addSubview(refreshControl)
         
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
@@ -87,6 +83,9 @@ class userProfileClass: BaseViewController
         progressBar.layer.sublayers!.first!.cornerRadius = 8
         progressBar.subviews.first!.clipsToBounds = true
         btnEdit.isHidden = true
+        
+        txvDesc.isEditable = false
+        lctTxvDescHeight.constant = 0
         
         btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
         imgUserTag.isHidden = true
@@ -141,7 +140,9 @@ class userProfileClass: BaseViewController
         btnToday.setTitle(userProfileData.TotalTodayPost, for: .normal)
         btnForever.setTitle(userProfileData.TotalForeverPost, for: .normal)
         lblUserTag.text = "@" + userProfileData.username
-        lblDesc.text = userProfileData.description
+        txvDesc.text = userProfileData.description
+        txvDesc.layoutIfNeeded()
+        lctTxvDescHeight.constant = txvDesc.contentSize.height
         lblUsername.text = userProfileData.ProfileName
     }
     
@@ -159,19 +160,14 @@ class userProfileClass: BaseViewController
     
     @objc func afterSavePost(_ notificaton: NSNotification) {
         delay(time: 1.0) {
-            self.refresh(sender: notificaton)
+            self.getForeverPostByUserId()
+            self.getUserProfileData(userId: self.userId, complation: { (flg, userProfileModel) in
+                if flg {
+                    self.userProfileData = userProfileModel
+                    self.setData()
+                }
+            })
         }
-    }
-    
-    @objc func refresh(sender:AnyObject) {
-        self.arrData.removeAll()
-        getUserProfileData(userId: userId, complation: { (flg, userProfileModel) in
-            if flg {
-                self.userProfileData = userProfileModel
-                self.setData()
-            }
-        })
-        getForeverPostByUserId()
     }
     
     @IBAction func btnSetting(_ sender: UIButton) {
@@ -297,7 +293,6 @@ extension userProfileClass {
                 self.arrData.append(GetPostData(arrNotForEverList, TwentyFourHourStr))
             }
             self.tableview.reloadData()
-            self.refreshControl.endRefreshing()
         }
     }
     

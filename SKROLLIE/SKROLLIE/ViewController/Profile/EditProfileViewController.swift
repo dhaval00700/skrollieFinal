@@ -230,7 +230,7 @@ extension EditProfileViewController: UITextFieldDelegate {
             if finalString.contains("\\u2705") {
                 return false
             }
-            if finalString.count > 50 {
+            if finalString.count > 30 {
                 return false
             }
         }
@@ -254,7 +254,7 @@ extension EditProfileViewController: UITextViewDelegate {
             if finalString.contains("\\u2705") {
                 return false
             }
-            if finalString.count > 300 {
+            if finalString.count > 250 {
                 return false
             }
         }
