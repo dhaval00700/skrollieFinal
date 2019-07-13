@@ -22,7 +22,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD.OTF">
+        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -1229,11 +1229,10 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00T-zU-a15">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="66"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img12" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-yZ-nwW">
-                                                                <rect key="frame" x="15" y="18" width="30" height="30"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img12" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-yZ-nwW">
+                                                                <rect key="frame" x="10" y="13" width="40" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="Iqi-yZ-nwW" secondAttribute="height" multiplier="1:1" id="YBP-fW-gZ8"/>
-                                                                    <constraint firstAttribute="height" constant="30" id="c9Z-db-1S2"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAK-y4-fIv">
@@ -1251,6 +1250,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.2509279847" green="0.18158608679999999" blue="0.35832792520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Iqi-yZ-nwW" secondAttribute="trailing" constant="10" id="A6j-11-E2V"/>
                                                             <constraint firstAttribute="trailing" secondItem="eAK-y4-fIv" secondAttribute="trailing" id="Lxs-fA-8ha"/>
                                                             <constraint firstItem="eAK-y4-fIv" firstAttribute="top" secondItem="00T-zU-a15" secondAttribute="top" id="U7A-9h-QVH"/>
                                                             <constraint firstAttribute="bottom" secondItem="eAK-y4-fIv" secondAttribute="bottom" id="kpz-jN-PXS"/>
