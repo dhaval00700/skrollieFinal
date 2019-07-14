@@ -58,6 +58,8 @@
 		4F188C1922D3258300D340A1 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1222D3258200D340A1 /* DropDown.swift */; };
 		4F188C1A22D3258300D340A1 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1322D3258200D340A1 /* DropDownCell.swift */; };
 		4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */; };
+		4F39B8DE22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F39B8DC22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift */; };
+		4F39B8DF22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F39B8DD22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib */; };
 		4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */; };
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
 		4F761E0922BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */; };
@@ -214,6 +216,8 @@
 		4F188C1222D3258200D340A1 /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		4F188C1322D3258200D340A1 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		4F39B8DC22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F39B8DD22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F57F44722CA29CA0005526C /* VerificationBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationBadgeViewController.swift; sourceTree = "<group>"; };
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
 		4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellUserProfileSectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 			children = (
 				4F0BCF8C22D081860094A351 /* FriendTableViewCell.swift */,
 				4F0BCF8D22D081860094A351 /* FriendTableViewCell.xib */,
+				4F39B8DC22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift */,
+				4F39B8DD22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib */,
 			);
 			path = CustomClass;
 			sourceTree = "<group>";
@@ -896,6 +902,7 @@
 				F73DD41E2284620F0096A943 /* MONTSERRAT-SEMIBOLD.OTF in Resources */,
 				F73DD3BB228434D10096A943 /* cellUserProfilePost.xib in Resources */,
 				F73DD40E2284620F0096A943 /* MONTSERRATALTERNATES-SEMIBOLD.OTF in Resources */,
+				4F39B8DF22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib in Resources */,
 				F73DD4172284620F0096A943 /* MONTSERRATALTERNATES-EXTRALIGHT.OTF in Resources */,
 				F73DD4072284620F0096A943 /* MONTSERRAT-ULTRALIGHT.OTF in Resources */,
 				7FCCA6E122644ADC00E8E9A1 /* Main.storyboard in Resources */,
@@ -1060,6 +1067,7 @@
 				4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */,
 				7FFE4251226EF1A400CBA91C /* HomeTableViewCell.swift in Sources */,
 				4F0BCF8A22D07FD00094A351 /* FriendListViewController.swift in Sources */,
+				4F39B8DE22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift in Sources */,
 				4F0F210E22B762A1002F69A7 /* UINavigationBar+Extension.swift in Sources */,
 				4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */,
 				4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */,

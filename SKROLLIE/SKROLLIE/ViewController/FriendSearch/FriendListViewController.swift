@@ -12,6 +12,7 @@ class FriendListViewController: BaseViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tblFriendList : UITableView!
+    @IBOutlet weak var clvFriendList: UICollectionView!
     
     // MARK: - Properties
     private var arrUserFriendList = [UserFriendList]()
@@ -37,6 +38,10 @@ class FriendListViewController: BaseViewController {
         tblFriendList.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         tblFriendList.delegate = self
         tblFriendList.dataSource = self
+        
+        clvFriendList.register(UINib(nibName: "FriendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FriendCollectionViewCell")
+        clvFriendList.delegate = self
+        clvFriendList.dataSource = self
         
         refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.black
@@ -164,6 +169,26 @@ extension FriendListViewController
                 self.tblFriendList.reloadData()
             }
         })
+        
+    }
+}
+
+extension FriendListViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCollectionViewCell", for: indexPath) as! FriendCollectionViewCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = collectionView.frame.width - (5 * 2)
+        return CGSize(width: itemWidth, height: 140)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
 }
