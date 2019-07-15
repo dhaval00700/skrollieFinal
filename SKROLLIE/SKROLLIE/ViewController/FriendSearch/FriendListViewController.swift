@@ -35,6 +35,14 @@ class FriendListViewController: BaseViewController {
     
     //MARK: - Methods
     func setUpUI() {
+        print("*")
+        print("**")
+        print("***")
+        print("****")
+        print("*****")
+        print("******")
+        
+        
         tblFriendList.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         tblFriendList.delegate = self
         tblFriendList.dataSource = self
