@@ -31,11 +31,14 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnMore: UIButton!
     @IBOutlet weak var lctTxvDescHeight: NSLayoutConstraint!
+    @IBOutlet weak var btnSearchOrBack: UIButton!
+    @IBOutlet weak var btnSetting: UIButton!
     
     // MARK: - Properties
     var arrData = [GetPostData]()
     var userId = AppPrefsManager.shared.getUserData().UserId
     var isFriend = false
+    var isThisDetail = false
     fileprivate var moreDropDown: DropDown!
     var userProfileData: UserProfileModel!
     
@@ -98,6 +101,16 @@ class userProfileClass: BaseViewController
         })
         getForeverPostByUserId()
         setDropDown()
+        
+        if isThisDetail {
+            btnSearchOrBack.setImage(#imageLiteral(resourceName: "iconBack"), for: .normal)
+            btnSetting.isHidden = true
+            viewMenu.isHidden = true
+        } else {
+            btnSearchOrBack.setImage(#imageLiteral(resourceName: "iconSearch"), for: .normal)
+            btnSetting.isHidden = false
+            viewMenu.isHidden = false
+        }
     }
     
     private func setDropDown() {
@@ -219,6 +232,12 @@ class userProfileClass: BaseViewController
         navVc.superVc = self
         navVc.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(navVc, animated: true, completion: nil)
+    }
+    
+    @IBAction func onBtnSearchOrBack(_ sender: Any) {
+        if isThisDetail {
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 

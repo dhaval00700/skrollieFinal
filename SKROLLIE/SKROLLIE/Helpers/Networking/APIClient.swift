@@ -158,9 +158,21 @@ class APIClient {
         })
     }
     
-    class func GetFriendList(limit:Int, page:Int, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func GetAllMyUnFriend(limit:Int, page:Int, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetAllUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&limit=\(limit)&page=\(page)"
+        let url = API.GetAllMyUnFriend + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&limit=\(limit)&page=\(page)"
+        
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func GetAllMyFriend(limit:Int, page:Int, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.GetAllMyFriend + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&limit=\(limit)&page=\(page)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)

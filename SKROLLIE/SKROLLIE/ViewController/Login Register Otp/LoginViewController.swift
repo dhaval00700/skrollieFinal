@@ -56,7 +56,7 @@ class LoginViewController: BaseViewController
         
         if isDevelopmentMode {
             txtUsername.text = "bini"
-            txtPassword.text = "123456"
+            txtPassword.text = "I4S5t?qhR"
         }
         
         setupErrorMessage()

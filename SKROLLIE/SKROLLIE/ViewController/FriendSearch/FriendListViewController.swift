@@ -15,12 +15,17 @@ class FriendListViewController: BaseViewController {
     @IBOutlet weak var clvFriendList: UICollectionView!
     
     // MARK: - Properties
-    private var arrUserFriendList = [UserFriendList]()
+    private var arrUnFriendList = [UserFriendList]()
     private var isDataLoading = false
     private var continueLoadingData = true
     private var skip = 0
     private var take = 10
-    private var refreshControl = UIRefreshControl()
+    
+    private var arrFriendList = [UserFriendList]()
+    private var isDataLoadingFriend = false
+    private var continueLoadingDataFriend = true
+    private var skipFriend = 0
+    private var takeFriend = 10
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -35,13 +40,6 @@ class FriendListViewController: BaseViewController {
     
     //MARK: - Methods
     func setUpUI() {
-        print("*")
-        print("**")
-        print("***")
-        print("****")
-        print("*****")
-        print("******")
-        
         
         tblFriendList.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         tblFriendList.delegate = self
@@ -51,22 +49,22 @@ class FriendListViewController: BaseViewController {
         clvFriendList.delegate = self
         clvFriendList.dataSource = self
         
-        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.black
-        refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
-        tblFriendList.addSubview(refreshControl)
-        
-        getFriendList()
-        
+        getAllMyUnFriend()
+        getAllMyFriend()
     }
     
     private func resetAll() {
-        self.arrUserFriendList.removeAll()
+        self.arrUnFriendList.removeAll()
         isDataLoading = false
         continueLoadingData = true
         skip = 0
         take = 10
-        getFriendList()
+        isDataLoadingFriend = false
+        continueLoadingDataFriend = true
+        skipFriend = 0
+        takeFriend = 10
+        getAllMyFriend()
+        getAllMyUnFriend()
     }
     
     // MARK: - Actions
@@ -75,7 +73,7 @@ class FriendListViewController: BaseViewController {
     }
     
     @IBAction func clickToBtnConnect(_ sender : UIButton) {
-        createFriend(currebtObj: arrUserFriendList[sender.tag])
+        createFriend(currebtObj: arrUnFriendList[sender.tag])
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
@@ -86,15 +84,15 @@ class FriendListViewController: BaseViewController {
 
 extension FriendListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrUserFriendList.count
+        return arrUnFriendList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
-        let currentObj = arrUserFriendList[indexPath.row]
-        if indexPath.row == arrUserFriendList.count - 1 {
-            getFriendList()
+        let currentObj = arrUnFriendList[indexPath.row]
+        if indexPath.row == arrUnFriendList.count - 1 {
+            getAllMyUnFriend()
         }
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
@@ -102,7 +100,6 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
         cell.lblUserName.text = currentObj.username
         cell.lblUserDescription.text = currentObj.FullName
-        cell.btnConnect.isHidden = currentObj.IsMyFriend
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)
         
@@ -119,10 +116,11 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentObj = arrUserFriendList[indexPath.row]
+        let currentObj = arrUnFriendList[indexPath.row]
         let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
         navVc.userId = currentObj.idUser
-        navVc.isFriend = currentObj.IsMyFriend
+        navVc.isFriend = false
+        navVc.isThisDetail = true
         navigationController?.pushViewController(navVc, animated: true)
     }
 }
@@ -130,7 +128,7 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
 
 extension FriendListViewController
 {
-    private func getFriendList() {
+    private func getAllMyUnFriend() {
         if(isDataLoading || !continueLoadingData)
         {
             return
@@ -138,7 +136,7 @@ extension FriendListViewController
         
         isDataLoading = true
         
-        _ = APIClient.GetFriendList(limit: take, page: skip, success: { (responseObj) in
+        _ = APIClient.GetAllMyUnFriend(limit: take, page: skip, success: { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
@@ -146,7 +144,7 @@ extension FriendListViewController
                 let objectData = response["data"] as? [[String: Any]] ?? [[String: Any]]()
                 let tempAray = UserFriendList.getArray(data: objectData)
                 
-                self.arrUserFriendList.append(contentsOf: tempAray)
+                self.arrUnFriendList.append(contentsOf: tempAray)
                 
                 self.skip += 1
                 
@@ -156,8 +154,38 @@ extension FriendListViewController
                 }
                 self.tblFriendList.reloadData()
             }
-            self.refreshControl.endRefreshing()
             self.isDataLoading = false
+        })
+        
+    }
+    
+    private func getAllMyFriend() {
+        if(isDataLoadingFriend || !continueLoadingDataFriend)
+        {
+            return
+        }
+        
+        isDataLoadingFriend = true
+        
+        _ = APIClient.GetAllMyFriend(limit: takeFriend, page: skipFriend, success: { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                
+                let objectData = response["data"] as? [[String: Any]] ?? [[String: Any]]()
+                let tempAray = UserFriendList.getArray(data: objectData)
+                
+                self.arrFriendList.append(contentsOf: tempAray)
+                
+                self.skipFriend += 1
+                
+                if tempAray.count < 10
+                {
+                    self.continueLoadingDataFriend = false
+                }
+                self.clvFriendList.reloadData()
+            }
+            self.isDataLoadingFriend = false
         })
         
     }
@@ -173,30 +201,44 @@ extension FriendListViewController
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 self.view.showToastAtBottom(message: responseData.message)
-                currebtObj.IsMyFriend = true
-                self.tblFriendList.reloadData()
+                self.resetAll()
             }
         })
-        
     }
 }
 
 extension FriendListViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return arrFriendList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCollectionViewCell", for: indexPath) as! FriendCollectionViewCell
+        let currentObj = arrFriendList[indexPath.row]
+        if indexPath.row == arrFriendList.count - 1 {
+            getAllMyFriend()
+        }
+        if currentObj.IsAccountVerify == AccountVerifyStatus.two {
+            cell.imgTag.isHidden = false
+        }
+        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        cell.lblUserName.text = currentObj.username
+        cell.btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
+        cell.btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.frame.width - (5 * 2)
-        return CGSize(width: itemWidth, height: 140)
+        let itemWidth = (collectionView.frame.width - (5 * 3)) / 2.0
+        return CGSize(width: itemWidth, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let currentObj = arrFriendList[indexPath.row]
+        let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
+        navVc.userId = currentObj.idUser
+        navVc.isFriend = true
+        navVc.isThisDetail = true
+        navigationController?.pushViewController(navVc, animated: true)
     }
 }
