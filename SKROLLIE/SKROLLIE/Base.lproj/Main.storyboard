@@ -2584,16 +2584,16 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcH-ad-Vv6">
-                                        <rect key="frame" x="283" y="51" width="22" height="22"/>
+                                        <rect key="frame" x="155" y="45" width="150" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="OcH-ad-Vv6" secondAttribute="height" multiplier="1:1" id="AH2-2n-kd6"/>
+                                            <constraint firstAttribute="width" constant="150" id="5SU-Pn-l7F"/>
                                         </constraints>
-                                        <state key="normal" image="iconSetting"/>
+                                        <state key="normal" title="Hello Setting"/>
                                         <connections>
                                             <action selector="btnSetting:" destination="ZRL-gj-9BD" eventType="touchUpInside" id="8xP-Cn-kjd"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S K R O L L I E" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fs-HB-qfp">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S K R O L L I E" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fs-HB-qfp">
                                         <rect key="frame" x="103" y="51.5" width="114" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

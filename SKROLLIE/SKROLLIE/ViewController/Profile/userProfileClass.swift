@@ -61,6 +61,7 @@ class userProfileClass: BaseViewController
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
         
+        btnSetting.isEnabled = false
         
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
@@ -86,7 +87,7 @@ class userProfileClass: BaseViewController
         progressBar.layer.sublayers!.first!.cornerRadius = 8
         progressBar.subviews.first!.clipsToBounds = true
         btnEdit.isHidden = true
-        
+
         txvDesc.isEditable = false
         lctTxvDescHeight.constant = 0
         
