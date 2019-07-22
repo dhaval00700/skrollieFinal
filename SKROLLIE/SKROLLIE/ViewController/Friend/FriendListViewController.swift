@@ -13,6 +13,7 @@ class FriendListViewController: BaseViewController {
     // MARK: - Outlets
     @IBOutlet weak var tblFriendList : UITableView!
     @IBOutlet weak var clvFriendList: UICollectionView!
+    @IBOutlet weak var onBtnRequestList: UIButton!
     
     // MARK: - Properties
     private var arrUnFriendList = [UserFriendList]()

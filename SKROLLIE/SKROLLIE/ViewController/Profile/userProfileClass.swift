@@ -118,10 +118,14 @@ class userProfileClass: BaseViewController
         moreDropDown = DropDown()
         
         moreDropDown.anchorView = btnMore
-        moreDropDown.dataSource = ["Block"]
+        moreDropDown.dataSource = ["Disconnect", "Report","Block"]
         moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if item == "Block" {
                 self.updateStatus()
+            } else if item == "Report" {
+                
+            } else {
+                
             }
         }
         moreDropDown.backgroundColor = .clear
@@ -353,9 +357,9 @@ extension userProfileClass {
         let param = ParameterRequest()
         param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
         param.addParameter(key: ParameterRequest.idFriend, value: userProfileData.id)
-        param.addParameter(key: ParameterRequest.Isstatus, value: false)
+        param.addParameter(key: ParameterRequest.IsBlock, value: true)
         
-        _ = APIClient.UpdateFriendStatus(parameters: param.parameters) { (responseObj) in
+        _ = APIClient.BlockUnblockFriendByUser(parameters: param.parameters) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {

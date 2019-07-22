@@ -108,9 +108,9 @@ extension BlockListViewController {
         let param = ParameterRequest()
         param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
         param.addParameter(key: ParameterRequest.idFriend, value: obj.idFriend)
-        param.addParameter(key: ParameterRequest.Isstatus, value: true)
+        param.addParameter(key: ParameterRequest.IsBlock, value: false)
         
-        _ = APIClient.UpdateFriendStatus(parameters: param.parameters) { (responseObj) in
+        _ = APIClient.BlockUnblockFriendByUser(parameters: param.parameters) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {

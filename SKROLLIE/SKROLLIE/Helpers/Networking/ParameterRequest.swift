@@ -22,7 +22,7 @@ class ParameterRequest {
     static let oldpassword = "oldpassword"
     static let confirmpassword = "confirmpassword"
     static let idFriend = "idFriend"
-    static let Isstatus = "Isstatus"
+    static let IsBlock = "IsBlock"
     static let isPhoto = "isPhoto"
     static let Url = "Url"
     static let Description  = "Description"
