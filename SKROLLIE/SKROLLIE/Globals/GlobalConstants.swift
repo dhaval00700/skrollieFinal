@@ -188,4 +188,10 @@ struct API {
     static let GetAllBlockFriendByUser = BASE_URL + "MobilePost/GetAllBlockFriendByUser"
     static let BlockUnblockFriendByUser = BASE_URL + "MobilePost/BlockUnblockFriendByUser"
     static let ChangePassword = BASE_URL + "MobileAccount/changepassword"
+    static let UnFriendUser = BASE_URL + "MobilePost/UnFriendByUser"
+    static let ReportUser = BASE_URL + "MobileAccount/CreateReportedUser"
+    static let GetFriendReuestedByUser = BASE_URL + "MobilePost/GetFriendReuestedByUser"
+    static let AcceptFriendRequest = BASE_URL + "MobilePost/AspectFriendRequest"
+    static let DeactivateAccount = BASE_URL + "MobileAccount/DeactivateAccount"
+
 }

@@ -66,10 +66,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Methods
     func setLogin()  {
-        let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        let Login = storyborad.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        let customNavigation = UINavigationController(rootViewController: Login)
-        UIApplication.shared.keyWindow?.rootViewController = customNavigation
+        DispatchQueue.main.async {
+            AppPrefsManager.shared.setIsUserLogin(isUserLogin: false)
+            let storyborad = UIStoryboard(name: "Main", bundle: nil)
+            let Login = storyborad.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let customNavigation = UINavigationController(rootViewController: Login)
+            UIApplication.shared.keyWindow?.rootViewController = customNavigation
+        }
+        
     }
 }
 

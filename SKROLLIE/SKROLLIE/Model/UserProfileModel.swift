@@ -29,6 +29,7 @@ class UserProfileModel {
     var IsDelete = false
     var OTP = ""
     var IsMobileVerify = false
+    var IsPublic = false
     var createdby = ""
     var createddate = ""
     var modifiedby = ""
@@ -65,6 +66,7 @@ class UserProfileModel {
         IsDelete = map.value("IsDelete") ?? false
         OTP = map.value("OTP") ?? ""
         IsMobileVerify = map.value("IsMobileVerify") ?? false
+        IsPublic = map.value("IsPublic") ?? false
         createdby = map.value("createdby") ?? ""
         createddate = map.value("createddate") ?? ""
         modifiedby = map.value("modifiedby") ?? ""
@@ -99,6 +101,7 @@ class UserProfileModel {
         itemDict["IsDelete"] = IsDelete
         itemDict["OTP"] = OTP
         itemDict["IsMobileVerify"] = IsMobileVerify
+        itemDict["IsPublic"] = IsPublic
         itemDict["createdby"] = createdby
         itemDict["createddate"] = createddate
         itemDict["modifiedby"] = modifiedby

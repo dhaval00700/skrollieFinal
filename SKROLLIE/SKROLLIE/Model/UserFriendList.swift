@@ -22,6 +22,8 @@ class UserFriendList {
     var idUser = ""
     var TodayPost = ""
     var ForeverPost = ""
+    var RequestedDate = ""
+    var IsRequested = false
     
     var map: Map!
     
@@ -41,6 +43,8 @@ class UserFriendList {
         }
         TodayPost = map.value("TodayPost") ?? ""
         ForeverPost = map.value("ForeverPost") ?? ""
+        RequestedDate = map.value("RequestedDate") ?? ""
+        IsRequested = map.value("IsRequested") ?? false
     }
     
     class func getArray(data: [[String: Any]]) -> [UserFriendList] {

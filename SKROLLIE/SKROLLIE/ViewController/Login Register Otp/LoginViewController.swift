@@ -46,6 +46,11 @@ class LoginViewController: BaseViewController
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
+        
+        if AppPrefsManager.shared.isUserLogin() {
+            let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     // MARK: - Methods

@@ -50,8 +50,7 @@ class FriendListViewController: BaseViewController {
         clvFriendList.delegate = self
         clvFriendList.dataSource = self
         
-        getAllMyUnFriend()
-        getAllMyFriend()
+        resetAll()
     }
     
     private func resetAll() {
@@ -81,6 +80,11 @@ class FriendListViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func onBtnRequstList(_ sender: Any) {
+        let vc = RequestListViewController.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension FriendListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -103,6 +107,7 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)
+         cell.btnConnect.isHidden = currentObj.IsRequested
         
         return cell
     }

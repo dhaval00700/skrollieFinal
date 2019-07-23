@@ -33,6 +33,8 @@ class userProfileClass: BaseViewController
     @IBOutlet weak var lctTxvDescHeight: NSLayoutConstraint!
     @IBOutlet weak var btnSearchOrBack: UIButton!
     @IBOutlet weak var btnSetting: UIButton!
+    @IBOutlet weak var lblNoData: UILabel!
+    
     
     // MARK: - Properties
     var arrData = [GetPostData]()
@@ -60,9 +62,7 @@ class userProfileClass: BaseViewController
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(named: "ic_nav_hedder"),
                                                                     for: .default)
-        
-        btnSetting.isEnabled = false
-        
+    
         lblTitle.font = UIFont.Regular(ofSize: 20)
         lblUsername.font = UIFont.Regular(ofSize: 16)
         lblUserTag.font = UIFont.Regular(ofSize: 16)
@@ -72,7 +72,7 @@ class userProfileClass: BaseViewController
         btnForever.addCornerRadius(8)
         lblToday.font = UIFont.Bold(ofSize: 15)
         lblForever.font = UIFont.Bold(ofSize: 14)
-        
+        lblNoData.isHidden = false
         imgUserTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
         
         tableview.register(UINib(nibName: "cellUserProfilePost", bundle: nil), forCellReuseIdentifier: "cellUserProfilePost")
@@ -123,15 +123,15 @@ class userProfileClass: BaseViewController
             if item == "Block" {
                 self.updateStatus()
             } else if item == "Report" {
-                
-            } else {
-                
+                self.reportUser()
+            } else if item == "Disconnect"  {
+                self.unFriendUser()
             }
         }
         moreDropDown.backgroundColor = .clear
-        moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y:(moreDropDown.anchorView!.plainView.bounds.height - 80))
+        moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y: -100)
         
-        moreDropDown.width = 90
+        moreDropDown.width = 110
     }
     
     private func setData() {
@@ -246,6 +246,7 @@ class userProfileClass: BaseViewController
     }
 }
 
+//MARK: - UIScrollViewDelegate
 extension userProfileClass: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         UIView.animate(withDuration: 1) {
@@ -259,6 +260,8 @@ extension userProfileClass: UIScrollViewDelegate {
         }
     }
 }
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -305,6 +308,7 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
         return 200
     }
 }
+//MARK: - userProfileClass
 extension userProfileClass {
     
     private func get24HourPostByUserId() {
@@ -315,6 +319,11 @@ extension userProfileClass {
             if responseData.success {
                 let arrNotForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
                 self.arrData.append(GetPostData(arrNotForEverList, TwentyFourHourStr))
+            }
+            if self.arrData.count > 0 {
+                self.lblNoData.isHidden = true
+            } else {
+                self.lblNoData.isHidden = false
             }
             self.tableview.reloadData()
         }
@@ -365,6 +374,34 @@ extension userProfileClass {
             if responseData.success {
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+    }
+    
+    private func unFriendUser() {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idFriend, value: userProfileData.id)
+        
+        _ = APIClient.UnFriendByUser(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    private func reportUser() {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.ReportedToUserId, value: userProfileData.id)
+        
+        _ = APIClient.ReportUser(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            Utility.showMessageAlert(title: "Alert", andMessage: responseData.message, withOkButtonTitle: "OK")
         }
     }
 }

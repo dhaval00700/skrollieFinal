@@ -12,6 +12,7 @@ class BlockListViewController: BaseViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tblBlockList : UITableView!
+    @IBOutlet weak var lblNoData: UILabel!
     
     // MARK: - Properties
     var arrBlockList = [BlockListData]()
@@ -35,6 +36,7 @@ class BlockListViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
         tblBlockList.addSubview(refreshControl)
         
+        lblNoData.isHidden = false
         getBlockList()
         
     }
@@ -97,6 +99,11 @@ extension BlockListViewController {
                 self.arrBlockList.removeAll()
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.arrBlockList = BlockListData.getArray(data: aryGetPhotos)
+                if self.arrBlockList.count > 0 {
+                    self.lblNoData.isHidden = true
+                } else {
+                    self.lblNoData.isHidden = false
+                }
                 self.tblBlockList.reloadData()
             }
             self.refreshControl.endRefreshing()

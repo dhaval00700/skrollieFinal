@@ -17,6 +17,7 @@ class HomeViewController: BaseViewController
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imgMenuProfile: UIImageView!
+    @IBOutlet weak var lblNoData: UILabel!
     
     // MARK: - Properties
     var resultImgPhoto = [UserData]()
@@ -47,6 +48,8 @@ class HomeViewController: BaseViewController
         refreshControl.tintColor = UIColor.black
         refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
         tblData.addSubview(refreshControl)
+        
+        lblNoData.isHidden = false
         getAllPost()
     }
     
@@ -140,6 +143,11 @@ extension HomeViewController
             if responseData.success {
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)
+            }
+            if self.resultImgPhoto.count > 0 {
+                self.lblNoData.isHidden = true
+            } else {
+                self.lblNoData.isHidden = false
             }
             self.tblData.reloadData()
             self.refreshControl.endRefreshing()

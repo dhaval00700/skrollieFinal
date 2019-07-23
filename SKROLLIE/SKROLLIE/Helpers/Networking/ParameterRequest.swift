@@ -20,6 +20,7 @@ class ParameterRequest {
     static let idUser = "idUser"
     static let UserId = "UserId"
     static let oldpassword = "oldpassword"
+    static let Password = "Password"
     static let confirmpassword = "confirmpassword"
     static let idFriend = "idFriend"
     static let IsBlock = "IsBlock"
@@ -37,6 +38,9 @@ class ParameterRequest {
     static let FullName = "FullName"
     static let AKA = "AKA"
     static let attachimage = "attachimage"
+    static let ReportedByUserId = "ReportedByUserId"
+    static let ReportedToUserId = "ReportedToUserId"
+    static let IsPublic = "IsPublic"
     
     init(){
     }
