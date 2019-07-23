@@ -83,6 +83,15 @@ class HomeViewController: BaseViewController
         let navVc = FriendListViewController.instantiate(fromAppStoryboard: .Main)
         navigationController?.pushViewController(navVc, animated: true)
     }
+    
+    @IBAction func onBtnUser(_ sender: UIButton) {
+        let currentObj = resultImgPhoto[sender.tag]
+        let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
+        navVc.userId = currentObj.arrPost[0].idUser
+        navVc.isFriend = true
+        navVc.isThisDetail = true
+        navigationController?.pushViewController(navVc, animated: true)
+    }
 }
 
 
@@ -104,17 +113,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTblCell", for: indexPath) as! HomeTblCell
         cell.ConfigureCellWithData(resultImgPhoto[indexPath.row])
+        cell.btnUser.tag = indexPath.row
+        cell.btnUser.addTarget(self, action: #selector(onBtnUser), for: .touchUpInside)
         cell.viwMenu = viewMenu
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180.0
+        return 210
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180.0
+        return 210
     }
 }
 

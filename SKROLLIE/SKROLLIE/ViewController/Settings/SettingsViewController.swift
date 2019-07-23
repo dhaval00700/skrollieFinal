@@ -73,12 +73,17 @@ class SettingsViewController: BaseViewController {
             btnVerifyNow.isHidden = false
         }
         
-        if AppPrefsManager.shared.getUserProfileData().IsPublic {
-            btnPublic.isSelected = true
-            btnPrivate.isSelected = false
-        } else {
-            btnPublic.isSelected = false
-            btnPrivate.isSelected = true
+        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId) { (flg, userProfileModel) in
+            if flg {
+                AppPrefsManager.shared.saveUserProfileData(model: userProfileModel)
+                if AppPrefsManager.shared.getUserProfileData().IsPublic {
+                    self.btnPublic.isSelected = true
+                    self.btnPrivate.isSelected = false
+                } else {
+                    self.btnPublic.isSelected = false
+                    self.btnPrivate.isSelected = true
+                }
+            }
         }
     }
     

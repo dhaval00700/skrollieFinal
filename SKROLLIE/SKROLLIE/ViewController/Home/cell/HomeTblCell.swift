@@ -15,7 +15,8 @@ class HomeTblCell: UITableViewCell {
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var Collectionview: UICollectionView!
     @IBOutlet weak var viewOfUserProfileBackground: UIView!
-
+    @IBOutlet weak var btnUser: UIButton!
+    
     // MARK: - Properties
     var collectionData = UserData()
     var viwMenu = UIView()

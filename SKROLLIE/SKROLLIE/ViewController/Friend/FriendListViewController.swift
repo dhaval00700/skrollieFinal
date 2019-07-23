@@ -55,6 +55,7 @@ class FriendListViewController: BaseViewController {
     
     private func resetAll() {
         self.arrUnFriendList.removeAll()
+        self.arrFriendList.removeAll()
         isDataLoading = false
         continueLoadingData = true
         skip = 0
