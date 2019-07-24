@@ -38,6 +38,7 @@ class HomeTblCell: UITableViewCell {
     func ConfigureCellWithData(_ data: UserData) {
         collectionData = data
         Collectionview.reloadData()
+        imgUser.imageFromURL(link: data.ProfileImage, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         lblUserName.text = collectionData.ProfileName
     }
 }

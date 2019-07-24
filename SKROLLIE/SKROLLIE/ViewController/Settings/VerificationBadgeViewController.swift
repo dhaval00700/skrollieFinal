@@ -54,6 +54,17 @@ class VerificationBadgeViewController: BaseViewController {
         lblUserName.text = AppPrefsManager.shared.getUserProfileData().username
     }
     
+    private func isValid() -> Bool {
+        if txtFullName.text != nil && txtFullName.text!.isEmpty {
+            AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Enter full name")
+            return false
+        } else if newKey.isEmpty {
+            AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Select Id photo")
+            return false
+        }
+        return true
+    }
+    
     // MARK: - Actions
     @objc func onTap() {
         self.dismiss(animated: true, completion: nil)
@@ -63,7 +74,9 @@ class VerificationBadgeViewController: BaseViewController {
     }
     
     @IBAction func onBtnSubmit(_ sender: Any) {
-        updateData()
+        if isValid() {
+            updateData()
+        }
     }
     
     @IBAction func onBtnDrag(_ sender: Any) {

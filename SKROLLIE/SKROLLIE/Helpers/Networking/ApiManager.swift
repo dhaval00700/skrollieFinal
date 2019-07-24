@@ -64,7 +64,12 @@ class ApiManager {
                 
                 if(response.result.error == nil) {
                     let responseObject = response.result.value as! [NSObject: Any]
-                    successBlock(responseObject as! [String : Any])
+                    let response = responseObject as! [String : Any]
+                    let resp = ResponseDataModel(responseObj: response)
+                    if resp.data as? String == "TOKEN" {
+                        AppDelegate.sharedDelegate().setLogin()
+                    }
+                    successBlock(response)
                 } else {
                     if(failureBlock != nil && failureBlock!(response.result.error! as NSError))
                     {

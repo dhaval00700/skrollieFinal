@@ -41,9 +41,6 @@
                                     <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rix-9l-qQg">
-                                <rect key="frame" x="8" y="15" width="381" height="30"/>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qn-dF-Y7w">
                                 <rect key="frame" x="8" y="15" width="50" height="50"/>
                                 <subviews>
@@ -76,6 +73,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rix-9l-qQg">
+                                <rect key="frame" x="8" y="15" width="381" height="47"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -87,6 +87,7 @@
                             <constraint firstItem="Rix-9l-qQg" firstAttribute="leading" secondItem="9Qn-dF-Y7w" secondAttribute="leading" id="UDW-vP-u3s"/>
                             <constraint firstItem="9Qn-dF-Y7w" firstAttribute="top" secondItem="w3L-ei-bve" secondAttribute="top" constant="15" id="UE5-V8-aeg"/>
                             <constraint firstItem="YLe-sR-fjO" firstAttribute="trailing" secondItem="fSV-VU-nyK" secondAttribute="trailing" id="Xta-sX-KGN"/>
+                            <constraint firstItem="Rix-9l-qQg" firstAttribute="bottom" secondItem="25A-gY-bcU" secondAttribute="bottom" id="bWB-il-x92"/>
                             <constraint firstItem="9Qn-dF-Y7w" firstAttribute="leading" secondItem="w3L-ei-bve" secondAttribute="leading" constant="8" id="emB-CE-4e3"/>
                             <constraint firstItem="fSV-VU-nyK" firstAttribute="leading" secondItem="9Qn-dF-Y7w" secondAttribute="trailing" constant="8" id="iQU-ts-iIB"/>
                             <constraint firstItem="Rix-9l-qQg" firstAttribute="top" secondItem="fSV-VU-nyK" secondAttribute="top" id="qT5-us-Mgb"/>

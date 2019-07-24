@@ -69,7 +69,7 @@ extension BlockListViewController : UITableViewDelegate, UITableViewDataSource {
         if currentObj.tbluserinformation.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
         }
-        cell.imgProfile.imageFromURL(link: currentObj.tbluserinformation.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        cell.imgProfile.imageFromURL(link: currentObj.tbluserinformation.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.tbluserinformation.username
         cell.lblUserDescription.text = currentObj.tbluserinformation.FullName
         cell.btnConnect.tag = indexPath.row
@@ -95,17 +95,18 @@ extension BlockListViewController {
         _ = APIClient.GetAllBlockFriendByUser(userId: AppPrefsManager.shared.getUserData().UserId) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
+            self.arrBlockList.removeAll()
             if responseData.success {
-                self.arrBlockList.removeAll()
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.arrBlockList = BlockListData.getArray(data: aryGetPhotos)
-                if self.arrBlockList.count > 0 {
-                    self.lblNoData.isHidden = true
-                } else {
-                    self.lblNoData.isHidden = false
-                }
-                self.tblBlockList.reloadData()
             }
+            if self.arrBlockList.count > 0 {
+                self.lblNoData.isHidden = true
+            } else {
+                self.lblNoData.isHidden = false
+            }
+            
+            self.tblBlockList.reloadData()
             self.refreshControl.endRefreshing()
         }
     }

@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var imgMenuProfile: UIImageView!
+    @IBOutlet weak var btnMenuProfile: UIButton!
     @IBOutlet weak var lblNoData: UILabel!
     
     // MARK: - Properties
@@ -27,12 +27,15 @@ class HomeViewController: BaseViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleToFill)
+        setupUI()
+        let imge = UIImageView()
+        imge.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleToFill, isCache: true) {
+            self.btnMenuProfile.setImage(imge.image, for: .normal)
+        }
     }
     
     // MARK: - Methods
@@ -128,7 +131,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 210
     }
 }
-
 
 extension HomeViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

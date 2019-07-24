@@ -103,12 +103,13 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
         }
-        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        
+        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
         cell.lblUserName.text = currentObj.username
         cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)
-         cell.btnConnect.isHidden = currentObj.IsRequested
+        cell.btnConnect.isHidden = currentObj.IsRequested
         
         return cell
     }
@@ -207,7 +208,6 @@ extension FriendListViewController
             let response = resposObject ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
-                self.view.showToastAtBottom(message: responseData.message)
                 self.resetAll()
             }
         })
@@ -228,7 +228,7 @@ extension FriendListViewController : UICollectionViewDelegate, UICollectionViewD
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgTag.isHidden = false
         }
-        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.username
         cell.btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
         cell.btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)

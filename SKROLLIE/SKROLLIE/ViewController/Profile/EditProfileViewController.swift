@@ -60,7 +60,7 @@ class EditProfileViewController: BaseViewController {
         } else {
             imgUserTag.isHidden = false
         }
-        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: UIImage(named: "img3"), contentMode: .scaleAspectFit)
+        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: UIImage(named: "img3"), contentMode: .scaleAspectFill)
         lblUserTag.text = "@" + userProfileData.username
         txtUsername.text = userProfileData.ProfileName
         txvDesc.text = userProfileData.description

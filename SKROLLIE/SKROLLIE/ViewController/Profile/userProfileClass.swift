@@ -89,6 +89,7 @@ class userProfileClass: BaseViewController
         btnEdit.isHidden = true
 
         txvDesc.isEditable = false
+        txvDesc.delegate = self
         lctTxvDescHeight.constant = 0
         
         btnEdit.setImage(UIImage(named: "Edit")?.tintWithColor(#colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1)), for: .normal)
@@ -154,7 +155,7 @@ class userProfileClass: BaseViewController
             btnEdit.isHidden = true
         }
         
-        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
         btnToday.setTitle(userProfileData.TotalTodayPost, for: .normal)
         btnForever.setTitle(userProfileData.TotalForeverPost, for: .normal)
         lblUserTag.text = "@" + userProfileData.username
@@ -308,6 +309,19 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
         return 200
     }
 }
+
+extension userProfileClass: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        if textView == txvDesc {
+            DLog("\(URL)")
+           let navVc = WebViewController.instantiate(fromAppStoryboard: .Main)
+            navVc.webUrl = "\(URL)"
+            navigationController?.pushViewController(navVc, animated: true)
+        }
+         return false
+    }
+}
+
 //MARK: - userProfileClass
 extension userProfileClass {
     

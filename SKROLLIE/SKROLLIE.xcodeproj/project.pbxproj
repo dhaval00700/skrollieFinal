@@ -67,6 +67,7 @@
 		4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */; };
 		4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBB1E022C514400048A596 /* SettingsViewController.swift */; };
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
+		4FE4983D22E88EB800B9FE04 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4983C22E88EB800B9FE04 /* WebViewController.swift */; };
 		4FF671F122C2326100BB4AAF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF671F022C2326100BB4AAF /* BaseViewController.swift */; };
 		4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E022B3661D004F2C62 /* emogie.swift */; };
 		4FF7D7E322B3661D004F2C62 /* emogie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF7D7E122B3661D004F2C62 /* emogie.xib */; };
@@ -226,6 +227,7 @@
 		4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		4FBBB1E022C514400048A596 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapClass.swift; sourceTree = "<group>"; };
+		4FE4983C22E88EB800B9FE04 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4FF671F022C2326100BB4AAF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4FF7D7E022B3661D004F2C62 /* emogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emogie.swift; sourceTree = "<group>"; };
 		4FF7D7E122B3661D004F2C62 /* emogie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = emogie.xib; sourceTree = "<group>"; };
@@ -526,6 +528,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4FE4983B22E88E9900B9FE04 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				4FE4983C22E88EB800B9FE04 /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		4FF7D7DF22B365EC004F2C62 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +618,7 @@
 				4F0BCF9222D0B2440094A351 /* BlockList */,
 				4F19C0EC22C5138F00D12A1B /* Settings */,
 				4F0BCF8822D07FA60094A351 /* Friend */,
+				4FE4983B22E88E9900B9FE04 /* WebView */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1011,6 +1022,7 @@
 				4F0F210F22B762A1002F69A7 /* UITextField+Extensions.swift in Sources */,
 				4F0BCF9122D09F260094A351 /* UserFriendList.swift in Sources */,
 				4F0F213622B76C4D002F69A7 /* DataSelectionTableViewCell.swift in Sources */,
+				4FE4983D22E88EB800B9FE04 /* WebViewController.swift in Sources */,
 				4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */,
 				7F7F9F6A2285B3B3004F85BD /* OTPViewController.swift in Sources */,
 				4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */,

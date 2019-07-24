@@ -54,13 +54,13 @@ extension RequestListViewController {
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 self.arrUnFriendList = UserFriendList.getArray(data: response["data"] as? [[String : Any]] ?? [[String : Any]]())
-                if self.arrUnFriendList.count > 0 {
-                    self.lblNoData.isHidden = true
-                } else {
-                    self.lblNoData.isHidden = false
-                }
-                self.tblRequestList.reloadData()
             }
+            if self.arrUnFriendList.count > 0 {
+                self.lblNoData.isHidden = true
+            } else {
+                self.lblNoData.isHidden = false
+            }
+            self.tblRequestList.reloadData()
         })
     }
     
@@ -94,7 +94,7 @@ extension RequestListViewController : UITableViewDelegate, UITableViewDataSource
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
         }
-        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFit)
+        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.username
         cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.setTitle("Accept", for: .normal)

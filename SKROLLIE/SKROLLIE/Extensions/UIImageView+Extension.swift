@@ -12,18 +12,18 @@ import UIKit
 
 let imageCache = NSCache<NSString, UIImage>()
 
+
+
 extension UIImageView {
     
-    public func imageFromURL(link:String!, errorImage: UIImage?, contentMode mode: UIView.ContentMode?, isCache cache: Bool = true) {
+    public func imageFromURL(link:String!, errorImage: UIImage?, contentMode mode: UIView.ContentMode?, isCache cache: Bool = true, Complation completion:(() -> Void)? = nil) {
+        
         self.image = errorImage
-        self.imageFromURL(link: link, contentMode: contentMode, isCache: cache) {
-            self.image = errorImage
-        }
-    }
-    
-    public func imageFromURL(link:String!, contentMode mode: UIView.ContentMode?, isCache cache: Bool = true, fallAction:@escaping (() -> Void)) {
+        
         guard let url = URL(string: link) else {
-            DispatchQueue.main.async(execute: fallAction)
+            if completion != nil {
+                completion!()
+            }
             return
         }
         
@@ -38,10 +38,7 @@ extension UIImageView {
             contentMode = mode!
         }
         
-        self.image = nil
-        
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-            
             guard
                 
                 let httpURLResponse = response as? HTTPURLResponse , httpURLResponse.statusCode == 200,
@@ -50,14 +47,18 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 
                 else {
-                    
-                    DispatchQueue.main.async(execute: fallAction)
+                    if completion != nil {
+                        completion!()
+                    }
                     return
             }
             
             DispatchQueue.main.async {
                 imageCache.setObject(image, forKey: link as NSString)
                 self.image = image
+                if completion != nil {
+                    completion!()
+                }
             }
             
         }).resume()

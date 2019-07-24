@@ -87,7 +87,7 @@ class UserData
     init(data: [String: Any]) {
         map = Map(data: data)
         ProfileName = map.value("ProfileName") ?? ""
-        ProfileImage = map.value("ProfileImage") ?? ""
+        ProfileImage = prefixDataUrl + "\(map.value("ProfileImage") ?? "")"
         let post = map.value("Post") ?? [[String:Any]]()
         arrPost = Post.getArrayPost(data: post, userName: ProfileName)
     }
