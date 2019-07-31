@@ -119,7 +119,11 @@ class userProfileClass: BaseViewController
         moreDropDown = DropDown()
         
         moreDropDown.anchorView = btnMore
-        moreDropDown.dataSource = ["Disconnect", "Report","Block"]
+        if isFriend {
+            moreDropDown.dataSource = ["Disconnect", "Report", "Block"]
+        } else {
+            moreDropDown.dataSource = ["Report", "Block"]
+        }
         moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if item == "Block" {
                 self.updateStatus()
