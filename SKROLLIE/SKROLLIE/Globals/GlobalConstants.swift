@@ -193,5 +193,6 @@ struct API {
     static let GetFriendReuestedByUser = BASE_URL + "MobilePost/GetFriendReuestedByUser"
     static let AcceptFriendRequest = BASE_URL + "MobilePost/AspectFriendRequest"
     static let DeactivateAccount = BASE_URL + "MobileAccount/DeactivateAccount"
+    static let GetAlluserWuthSearch = BASE_URL + "MobileAccount/GetAllUserWithSearch"
 
 }

@@ -58,6 +58,9 @@
 		4F188C1922D3258300D340A1 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1222D3258200D340A1 /* DropDown.swift */; };
 		4F188C1A22D3258300D340A1 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C1322D3258200D340A1 /* DropDownCell.swift */; };
 		4F19C0EB22C5047500D12A1B /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */; };
+		4F19E0D222F2AB6C00266010 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19E0D122F2AB6C00266010 /* SearchViewController.swift */; };
+		4F19E0D622F2B4F800266010 /* SearchItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19E0D422F2B4F800266010 /* SearchItemCollectionViewCell.swift */; };
+		4F19E0D722F2B4F800266010 /* SearchItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F19E0D522F2B4F800266010 /* SearchItemCollectionViewCell.xib */; };
 		4F1D9F8D22E5E366002184A2 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D9F8C22E5E366002184A2 /* RequestListViewController.swift */; };
 		4F39B8DE22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F39B8DC22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift */; };
 		4F39B8DF22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F39B8DD22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib */; };
@@ -218,6 +221,9 @@
 		4F188C1222D3258200D340A1 /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		4F188C1322D3258200D340A1 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		4F19E0D122F2AB6C00266010 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4F19E0D422F2B4F800266010 /* SearchItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F19E0D522F2B4F800266010 /* SearchItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F1D9F8C22E5E366002184A2 /* RequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		4F39B8DC22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F39B8DD22DB1B8D00AB3CD6 /* FriendCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -528,6 +534,24 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4F19E0D322F2B4DC00266010 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				4F19E0D422F2B4F800266010 /* SearchItemCollectionViewCell.swift */,
+				4F19E0D522F2B4F800266010 /* SearchItemCollectionViewCell.xib */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		4F1CDDC422F2A953003D3934 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				4F19E0D122F2AB6C00266010 /* SearchViewController.swift */,
+				4F19E0D322F2B4DC00266010 /* CustomCell */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		4FE4983B22E88E9900B9FE04 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +632,7 @@
 		7F71355F2264689600E30429 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4F1CDDC422F2A953003D3934 /* Search */,
 				7FCCA6DB22644ADC00E8E9A1 /* AppDelegate.swift */,
 				4FF671F022C2326100BB4AAF /* BaseViewController.swift */,
 				0E19045D229BCD18005DEA7B /* SelectedImageVideo */,
@@ -866,6 +891,7 @@
 			files = (
 				F73DD41B2284620F0096A943 /* MONTSERRAT-HAIRLINE.OTF in Resources */,
 				F73DD3F92284620F0096A943 /* MONTSERRAT-BLACKITALIC.OTF in Resources */,
+				4F19E0D722F2B4F800266010 /* SearchItemCollectionViewCell.xib in Resources */,
 				7AF03916229D58CC00A0F74D /* CommentItemTableViewCell.xib in Resources */,
 				F73DD4112284620F0096A943 /* MONTSERRATALTERNATES-EXTRABOLD.OTF in Resources */,
 				7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */,
@@ -1046,6 +1072,7 @@
 				7F6D122D2295173600CB7988 /* SwiftyCamViewController.swift in Sources */,
 				4F0F211722B76391002F69A7 /* UIImageView+Extension.swift in Sources */,
 				7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */,
+				4F19E0D222F2AB6C00266010 /* SearchViewController.swift in Sources */,
 				4F0F213222B76C4D002F69A7 /* APIClient.swift in Sources */,
 				7AF03915229D58CC00A0F74D /* CommentItemTableViewCell.swift in Sources */,
 				4F0F210722B762A1002F69A7 /* CollectionType+Extension.swift in Sources */,
@@ -1071,6 +1098,7 @@
 				0ED298C4229BCDDE009A5C66 /* SelectedImageViewController.swift in Sources */,
 				7F7F9F6D2285B3B3004F85BD /* RegisterViewController.swift in Sources */,
 				4F0F211122B762A1002F69A7 /* UIViewController+Extension.swift in Sources */,
+				4F19E0D622F2B4F800266010 /* SearchItemCollectionViewCell.swift in Sources */,
 				7F30F2532293BE63005F13A8 /* CommentTableViewCell.swift in Sources */,
 				7A64AFF022B7A8C70078967A /* Date+Extension.swift in Sources */,
 				4F0F211322B762E1002F69A7 /* UIFont+Extension.swift in Sources */,

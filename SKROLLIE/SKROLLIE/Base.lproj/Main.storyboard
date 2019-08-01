@@ -22,7 +22,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
+        <array key="MONTSERRAT-SEMIBOLD.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -1175,11 +1175,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bul-ab-XCX">
-                                        <rect key="frame" x="15" y="49" width="22" height="22"/>
+                                        <rect key="frame" x="15" y="45" width="30" height="30"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ATX-nu-dQ3"/>
                                             <constraint firstAttribute="width" secondItem="Bul-ab-XCX" secondAttribute="height" multiplier="1:1" id="SGC-qT-kPQ"/>
                                         </constraints>
                                         <state key="normal" image="iconSearch"/>
+                                        <connections>
+                                            <action selector="btnSearch:" destination="s5O-ot-DUp" eventType="touchUpInside" id="yk0-Mc-uvl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGW-EF-AlV">
                                         <rect key="frame" x="283" y="49" width="22" height="22"/>
@@ -1727,7 +1731,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLN-te-lqz">
-                                <rect key="frame" x="0.0" y="103" width="320" height="465"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXF-Z7-XwL">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -1798,10 +1802,10 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="n6u-ms-aZB">
-                                        <rect key="frame" x="20" y="93.5" width="280" height="65"/>
+                                        <rect key="frame" x="20" y="93.5" width="280" height="83.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j63-4a-efK" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="39.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1830,7 +1834,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uQ3-bD-2nk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="35" width="280" height="30"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="280" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -1861,10 +1865,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ryo-d3-Hfq">
-                                        <rect key="frame" x="20" y="163.5" width="172" height="65"/>
+                                        <rect key="frame" x="20" y="182" width="172" height="83.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQZ-Gj-9go" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="172" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="39.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -1893,7 +1897,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgO-pM-pW4" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="35" width="172" height="30"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="172" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -1924,7 +1928,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1eB-ny-rdo">
-                                        <rect key="frame" x="200" y="158.5" width="100" height="70"/>
+                                        <rect key="frame" x="200" y="195.5" width="100" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-LS-ylO">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -1959,7 +1963,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fJ-os-lef">
-                                        <rect key="frame" x="20" y="277.5" width="280" height="55.5"/>
+                                        <rect key="frame" x="20" y="314.5" width="280" height="55.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55u-6S-TDr">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
@@ -2005,14 +2009,14 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JoB-T0-9mo">
-                                        <rect key="frame" x="20" y="379" width="280" height="33"/>
+                                        <rect key="frame" x="20" y="416" width="280" height="33"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="Support">
                                             <color key="titleColor" red="0.97899276020000003" green="0.58537977929999996" blue="0.062244921920000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wwl-go-mQE">
-                                        <rect key="frame" x="110" y="420" width="100" height="30"/>
+                                        <rect key="frame" x="110" y="457" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.6538911462" green="0.78253632780000004" blue="0.1612970829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="2HB-qm-E7K"/>
@@ -2027,7 +2031,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoB-QR-eqI">
-                                        <rect key="frame" x="20" y="236.5" width="280" height="33"/>
+                                        <rect key="frame" x="20" y="273.5" width="280" height="33"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="Blocked List">
                                             <color key="titleColor" red="0.97899276020000003" green="0.58537977929999996" blue="0.062244921920000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2037,7 +2041,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRe-Eh-5gZ">
-                                        <rect key="frame" x="20" y="341" width="280" height="33"/>
+                                        <rect key="frame" x="20" y="378" width="280" height="33"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="Deactive My Account">
                                             <color key="titleColor" red="0.97899276020000003" green="0.58537977929999996" blue="0.062244921920000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2081,7 +2085,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iod-KD-QM0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -2127,10 +2131,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zko-bF-6u2">
-                            <rect key="frame" x="15" y="226.5" width="290" height="115"/>
+                            <rect key="frame" x="15" y="222" width="290" height="124"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8q0-oh-ap6" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="10" y="15" width="270" height="30"/>
+                                    <rect key="frame" x="10" y="15" width="270" height="39"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -2159,7 +2163,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGE-Ag-BYo">
-                                    <rect key="frame" x="95" y="65" width="100" height="30"/>
+                                    <rect key="frame" x="95" y="74" width="100" height="30"/>
                                     <color key="backgroundColor" red="0.23921568630000001" green="0.18039215689999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="Pzr-Ts-LkI"/>
@@ -3296,7 +3300,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTZ-Xr-B3T">
-                                <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                                <rect key="frame" x="0.0" y="103.5" width="320" height="464.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70n-mr-5R6">
                                         <rect key="frame" x="105" y="40" width="110" height="110"/>
@@ -3351,7 +3355,7 @@
                                         <color key="highlightedColor" red="0.2509279847" green="0.18158608679999999" blue="0.35832792520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CSj-mV-CwR" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                        <rect key="frame" x="25" y="246" width="270" height="128"/>
+                                        <rect key="frame" x="25" y="256.5" width="270" height="128"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="IOP-mw-jFT"/>
@@ -3367,7 +3371,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JJF-5W-5Ne" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="25" y="196" width="270" height="30"/>
+                                        <rect key="frame" x="25" y="196" width="270" height="40.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -3394,7 +3398,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnR-P1-gnc">
-                                        <rect key="frame" x="110" y="404" width="100" height="35"/>
+                                        <rect key="frame" x="110" y="414.5" width="100" height="35"/>
                                         <color key="backgroundColor" red="0.6538911462" green="0.78253632780000004" blue="0.1612970829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="V6O-PR-2TW"/>
@@ -3446,7 +3450,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgK-Ag-eKP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="103.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -3477,6 +3481,109 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cm-4J-5Ts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6214" y="215"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="6sO-T7-gvf">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="VG6-Lh-nIH" customClass="SearchViewController" customModule="SKROLLIE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5I4-t6-hvm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-2K-3MY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-Ri-W9o">
+                                        <rect key="frame" x="15" y="42" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="kB6-Ri-W9o" secondAttribute="height" multiplier="1:1" id="Cic-EW-aLp"/>
+                                            <constraint firstAttribute="height" constant="30" id="yJ6-4C-8KE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
+                                        <state key="normal" image="iconBack"/>
+                                        <connections>
+                                            <action selector="onBtnBack:" destination="VG6-Lh-nIH" eventType="touchUpInside" id="Ws0-Pn-60V"/>
+                                            <action selector="onBtnBack:" destination="H5H-6m-1ME" eventType="touchUpInside" id="yjh-yl-uA4"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="mV1-iw-B4R">
+                                        <rect key="frame" x="47" y="29" width="273" height="56"/>
+                                        <color key="barTintColor" red="0.23744130129999999" green="0.18167164920000001" blue="0.33313217760000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23921568630000001" green="0.18039215689999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="kB6-Ri-W9o" firstAttribute="leading" secondItem="zK1-2K-3MY" secondAttribute="leading" constant="15" id="2D4-Qf-cjb"/>
+                                    <constraint firstAttribute="trailing" secondItem="mV1-iw-B4R" secondAttribute="trailing" id="9eC-YJ-Ysf"/>
+                                    <constraint firstAttribute="bottom" secondItem="kB6-Ri-W9o" secondAttribute="bottom" constant="18" id="Rto-du-yfP"/>
+                                    <constraint firstItem="mV1-iw-B4R" firstAttribute="centerY" secondItem="kB6-Ri-W9o" secondAttribute="centerY" id="WcO-K2-KLu"/>
+                                    <constraint firstAttribute="height" constant="90" id="bUk-Ky-IF7"/>
+                                    <constraint firstItem="mV1-iw-B4R" firstAttribute="leading" secondItem="kB6-Ri-W9o" secondAttribute="trailing" constant="2" id="gCY-rQ-qJd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xa-FI-Ggu">
+                                <rect key="frame" x="0.0" y="90" width="320" height="478"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3C7-0v-WMX">
+                                        <rect key="frame" x="0.0" y="27" width="320" height="451"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="qT1-8s-as1">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2dP-VT-xbu">
+                                                <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBx-kw-n1e">
+                                        <rect key="frame" x="5" y="5" width="310" height="22"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96873289350000003" green="0.69654601810000005" blue="0.20853844290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="IBx-kw-n1e" firstAttribute="leading" secondItem="8xa-FI-Ggu" secondAttribute="leading" constant="5" id="1cd-8j-dHd"/>
+                                    <constraint firstAttribute="trailing" secondItem="3C7-0v-WMX" secondAttribute="trailing" id="GEv-pd-Mf7"/>
+                                    <constraint firstItem="3C7-0v-WMX" firstAttribute="top" secondItem="IBx-kw-n1e" secondAttribute="bottom" id="KSv-ol-lPe"/>
+                                    <constraint firstAttribute="bottom" secondItem="3C7-0v-WMX" secondAttribute="bottom" id="cHn-Dd-ilv"/>
+                                    <constraint firstItem="IBx-kw-n1e" firstAttribute="top" secondItem="8xa-FI-Ggu" secondAttribute="top" constant="5" id="hZA-oK-3oB"/>
+                                    <constraint firstAttribute="trailing" secondItem="IBx-kw-n1e" secondAttribute="trailing" constant="5" id="ige-JU-0j0"/>
+                                    <constraint firstItem="3C7-0v-WMX" firstAttribute="leading" secondItem="8xa-FI-Ggu" secondAttribute="leading" id="uvz-cX-gP3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zK1-2K-3MY" firstAttribute="leading" secondItem="YKt-hu-A6N" secondAttribute="leading" id="6Wf-U6-a6e"/>
+                            <constraint firstItem="8xa-FI-Ggu" firstAttribute="leading" secondItem="YKt-hu-A6N" secondAttribute="leading" id="IV1-bX-rzz"/>
+                            <constraint firstItem="8xa-FI-Ggu" firstAttribute="top" secondItem="zK1-2K-3MY" secondAttribute="bottom" id="P1t-RO-Xxk"/>
+                            <constraint firstItem="YKt-hu-A6N" firstAttribute="bottom" secondItem="8xa-FI-Ggu" secondAttribute="bottom" id="UYT-6N-FzV"/>
+                            <constraint firstItem="zK1-2K-3MY" firstAttribute="trailing" secondItem="YKt-hu-A6N" secondAttribute="trailing" id="neP-I1-Wgk"/>
+                            <constraint firstItem="zK1-2K-3MY" firstAttribute="top" secondItem="5I4-t6-hvm" secondAttribute="top" id="peW-Oz-Abr"/>
+                            <constraint firstAttribute="trailing" secondItem="8xa-FI-Ggu" secondAttribute="trailing" id="yL1-Zg-rzg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YKt-hu-A6N"/>
+                    </view>
+                    <connections>
+                        <outlet property="clvSearchFriend" destination="3C7-0v-WMX" id="ICU-Yi-CdV"/>
+                        <outlet property="txtSearch" destination="mV1-iw-B4R" id="Q8c-1a-Ivr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wru-dL-Qjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7042.5" y="238.73239436619718"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oy8-FX-prC">

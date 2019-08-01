@@ -95,6 +95,12 @@ class HomeViewController: BaseViewController
         navVc.isThisDetail = true
         navigationController?.pushViewController(navVc, animated: true)
     }
+    
+    @IBAction func btnSearch(_ sender: UIButton) {
+        
+        let navVc = SearchViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(navVc, animated: true)
+    }
 }
 
 
