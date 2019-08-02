@@ -62,6 +62,7 @@ var timestamp: String {
 }
 
 // MARK: - Constants
+var oneDayTimeInterval = 86400.0
 var PostCountLimit = 5
 var TwentyFourHourStr = "24 Hour"
 var ForeverStr = "Forever"

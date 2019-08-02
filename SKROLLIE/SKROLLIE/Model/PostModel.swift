@@ -28,6 +28,8 @@ class Post {
     var Videothumbnailimage = ""
     var UserName = ""
     var EndDate = Date()
+    var timer = Timer()
+    var timeIntervalFromCurrent = 0.0
     
     init(Post: [String: Any], userName: String) {
         map = Map(data: Post)
@@ -50,6 +52,7 @@ class Post {
         UserName = userName
         let date = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")
         EndDate = date.addDays(1)
+        timeIntervalFromCurrent = Double(EndDate.seconds(from: Date()))
     }
     
     class func getArrayPost(data: [[String: Any]], userName: String) -> [Post] {

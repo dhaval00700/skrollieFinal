@@ -37,11 +37,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-NK-b6P">
-                                <rect key="frame" x="0.0" y="29" width="5" height="100"/>
+                                <rect key="frame" x="0.0" y="49" width="5" height="80"/>
                                 <color key="backgroundColor" red="0.60550564529999995" green="0.75030201669999996" blue="0.1318067312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="5" id="9wC-rx-pgd"/>
-                                    <constraint firstAttribute="height" constant="100" id="S1F-Q2-AZh"/>
+                                    <constraint firstAttribute="height" constant="80" id="S1F-Q2-AZh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -76,6 +76,7 @@
                 <outlet property="imgBackGround" destination="exX-t3-eYW" id="db5-iL-4UE"/>
                 <outlet property="imgUserPic" destination="1x1-gP-T87" id="8rU-c9-GSl"/>
                 <outlet property="lblTimeOfPhotos" destination="SyE-h0-UoM" id="YJ3-9c-Pmo"/>
+                <outlet property="lctViewAllocHeight" destination="S1F-Q2-AZh" id="DC7-Hi-9Nr"/>
                 <outlet property="viewAllocColourDependOnTime" destination="EWI-NK-b6P" id="mgA-T2-BEN"/>
             </connections>
             <point key="canvasLocation" x="63.768115942028992" y="133.59375"/>
