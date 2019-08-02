@@ -135,6 +135,12 @@ enum Emoji : Int {
     }
 }
 
+struct FriendStatus {
+    static let UnFriend   =   "UnFriend"
+    static let Friend     =   "Friend"
+    static let Disconnect =   "Disconnect"
+    static let Requested  =   "Requested"
+}
 
 enum AccountVerifyStatus : Int {
     case zero = 0
@@ -194,5 +200,5 @@ struct API {
     static let AcceptFriendRequest = BASE_URL + "MobilePost/AspectFriendRequest"
     static let DeactivateAccount = BASE_URL + "MobileAccount/DeactivateAccount"
     static let GetAlluserWuthSearch = BASE_URL + "MobileAccount/GetAllUserWithSearch"
-
+    static let ForgotPassword     =   BASE_URL + "MobileAccount/ForgotPassword"
 }

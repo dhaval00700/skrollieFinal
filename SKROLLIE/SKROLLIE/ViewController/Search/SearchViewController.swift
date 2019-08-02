@@ -34,6 +34,11 @@ class SearchViewController: BaseViewController {
     //MARK: - Methods
     func setUpUI() {
         
+        txtSearch.showsCancelButton = false
+        
+        let searchBarStyle = txtSearch.value(forKey: "searchField") as? UITextField
+        searchBarStyle?.clearButtonMode = .never
+        
         clvSearchFriend.register(UINib(nibName: "SearchItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchItemCollectionViewCell")
         clvSearchFriend.delegate = self
         clvSearchFriend.dataSource = self
@@ -68,6 +73,24 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
         cell.lblUserName.text = currentObj.username
         cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
         
+        cell.btnConnect.isUserInteractionEnabled = true
+        if currentObj.FriendStatus == FriendStatus.Disconnect {
+            cell.btnConnect.setTitle("Connect", for: .normal)
+            cell.btnConnect.isUserInteractionEnabled = false
+
+        }
+        if currentObj.FriendStatus == FriendStatus.Friend {
+            cell.btnConnect.setTitle("Connected", for: .normal)
+
+        }
+        if currentObj.FriendStatus == FriendStatus.UnFriend {
+            cell.btnConnect.setTitle("Connect", for: .normal)
+
+        }
+        if currentObj.FriendStatus == FriendStatus.Requested {
+            cell.btnConnect.setTitle("Connect Requested", for: .normal)
+
+        }
         return cell
     }
     
@@ -85,13 +108,27 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
 extension SearchViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         searchString = (searchBar.text! as NSString).replacingCharacters(in: range, with: text).encode()
+        searchString = searchString.replacingOccurrences(of: "\n", with: "")
         doSearch()
         
         return true
     }
     
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        self.view.endEditing(true)
+        doSearch()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        self.view.endEditing(true)
     }
 }
 

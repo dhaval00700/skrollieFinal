@@ -37,11 +37,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-NK-b6P">
-                                <rect key="frame" x="0.0" y="69" width="5" height="60"/>
+                                <rect key="frame" x="0.0" y="29" width="5" height="100"/>
                                 <color key="backgroundColor" red="0.60550564529999995" green="0.75030201669999996" blue="0.1318067312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="5" id="9wC-rx-pgd"/>
-                                    <constraint firstAttribute="height" constant="60" id="S1F-Q2-AZh"/>
+                                    <constraint firstAttribute="height" constant="100" id="S1F-Q2-AZh"/>
                                 </constraints>
                             </view>
                         </subviews>

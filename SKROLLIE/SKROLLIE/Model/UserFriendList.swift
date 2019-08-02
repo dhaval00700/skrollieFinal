@@ -24,6 +24,7 @@ class UserFriendList {
     var ForeverPost = ""
     var RequestedDate = ""
     var IsRequested = false
+    var FriendStatus  = ""
     
     var map: Map!
     
@@ -44,6 +45,7 @@ class UserFriendList {
         TodayPost = map.value("TodayPost") ?? ""
         ForeverPost = map.value("ForeverPost") ?? ""
         RequestedDate = map.value("RequestedDate") ?? ""
+        FriendStatus = map.value("FriendStatus") ?? ""
         IsRequested = map.value("IsRequested") ?? false
     }
     

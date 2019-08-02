@@ -202,11 +202,12 @@ class LoginViewController: BaseViewController
     
     @IBAction func btnForgotPass(_ sender: UIButton)
     {
-        
+     let vc = ForgotPasswordViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-// MARK: - API Call
+// MARK: - API Call
 extension LoginViewController {
     private func signIn() {
         

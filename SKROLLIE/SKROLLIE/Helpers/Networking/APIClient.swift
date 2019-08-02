@@ -21,6 +21,17 @@ class APIClient {
         })
     }
     
+    
+    class func ForgotPassword(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        return ApiManager.requestApi(method: .post, urlString: API.ForgotPassword, parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
     class func Register(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         return ApiManager.requestApi(method: .post, urlString: API.Register, parameters: parameters, headers: headers.parameters, success: { (response) in

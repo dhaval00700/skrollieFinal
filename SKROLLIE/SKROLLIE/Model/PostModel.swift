@@ -27,6 +27,7 @@ class Post {
     var CreatedBy = ""
     var Videothumbnailimage = ""
     var UserName = ""
+    var EndDate = Date()
     
     init(Post: [String: Any], userName: String) {
         map = Map(data: Post)
@@ -41,13 +42,14 @@ class Post {
         CreatedDate = map.value("CreatedDate") ?? ""
         CreatedBy = map.value("CreatedBy") ?? ""
         Videothumbnailimage = map.value("Videothumbnailimage") ?? ""
-        
         if isPhoto {
             Url = prefixDataUrl + "\(map.value("Url") ?? "")"
         } else {
             Url = prefixDataUrl + "\(map.value("Videothumbnailimage") ?? "")"
         }
         UserName = userName
+        let date = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")
+        EndDate = date.addDays(1)
     }
     
     class func getArrayPost(data: [[String: Any]], userName: String) -> [Post] {

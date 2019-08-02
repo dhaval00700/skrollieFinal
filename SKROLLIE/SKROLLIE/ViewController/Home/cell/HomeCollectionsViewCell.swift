@@ -34,10 +34,10 @@ class HomeCollectionsViewCell: UICollectionViewCell {
         
         if  !data.Isforever {
             lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-            viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 154/255, green: 191/255, blue: 34/255, alpha: 1.0)//9ABF22
+            viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.6039215686, green: 0.7490196078, blue: 0.1333333333, alpha: 1)
         } else {
             lblTimeOfPhotos.text = "F O R E V E R"
-            viewAllocColourDependOnTime.backgroundColor = UIColor.init(red: 245/255, green: 232/255, blue: 39/255, alpha: 1.0)//F5E827
+            viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9098039216, blue: 0.1529411765, alpha: 1)
         }
     }
 }

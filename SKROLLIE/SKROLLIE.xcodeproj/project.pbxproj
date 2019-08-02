@@ -50,6 +50,7 @@
 		4F0F214122B76CDC002F69A7 /* AppPrefsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */; };
 		4F0F214422B76F18002F69A7 /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */; };
 		4F0F214822B79283002F69A7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F214722B79283002F69A7 /* LoginModel.swift */; };
+		4F1443D522F41537006407C5 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1443D422F41537006407C5 /* ForgotPasswordViewController.swift */; };
 		4F188C1422D3258300D340A1 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0B22D3258200D340A1 /* DPDConstants.swift */; };
 		4F188C1522D3258300D340A1 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0C22D3258200D340A1 /* DPDKeyboardListener.swift */; };
 		4F188C1622D3258300D340A1 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F188C0D22D3258200D340A1 /* DPDUIView+Extension.swift */; };
@@ -212,6 +213,7 @@
 		4F0F213E22B76CDC002F69A7 /* AppPrefsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrefsManager.swift; sourceTree = "<group>"; };
 		4F0F214322B76F18002F69A7 /* ResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
 		4F0F214722B79283002F69A7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../Preferences/LoginModel.swift; sourceTree = "<group>"; };
+		4F1443D422F41537006407C5 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		4F188C0922D3258200D340A1 /* DropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDown.h; sourceTree = "<group>"; };
 		4F188C0B22D3258200D340A1 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		4F188C0C22D3258200D340A1 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
@@ -486,6 +488,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4F1443D322F411D9006407C5 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4F1443D422F41537006407C5 /* ForgotPasswordViewController.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		4F188C0822D3258200D340A1 /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +642,7 @@
 		7F71355F2264689600E30429 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4F1443D322F411D9006407C5 /* New Group */,
 				4F1CDDC422F2A953003D3934 /* Search */,
 				7FCCA6DB22644ADC00E8E9A1 /* AppDelegate.swift */,
 				4FF671F022C2326100BB4AAF /* BaseViewController.swift */,
@@ -1061,6 +1072,7 @@
 				4F0F213822B76C4D002F69A7 /* DataSelectionView.swift in Sources */,
 				7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */,
 				4F188C1622D3258300D340A1 /* DPDUIView+Extension.swift in Sources */,
+				4F1443D522F41537006407C5 /* ForgotPasswordViewController.swift in Sources */,
 				4F57F44822CA29CA0005526C /* VerificationBadgeViewController.swift in Sources */,
 				7F7F9FCF2285BA37004F85BD /* FSPagerView.swift in Sources */,
 				7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */,
