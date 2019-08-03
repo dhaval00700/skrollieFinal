@@ -66,3 +66,47 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
+var datePicker: UIDatePicker!
+extension UITextField: UIPickerViewDelegate
+{
+    
+    func addDatePicker()
+    {
+        
+        datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        
+        let keyboardToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        keyboardToolbar.barStyle = .black
+        keyboardToolbar.tintColor = UIColor.white
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(clickToKeyboardToolbarDone(_:)))
+        
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let items = [flex, barButtonItem]
+        keyboardToolbar.setItems(items, animated: true)
+        
+        self.inputAccessoryView = keyboardToolbar
+        
+        self.inputView = datePicker
+        
+        
+    }
+    
+    
+    @IBAction func clickToKeyboardToolbarDone(_ sender: UIBarButtonItem)
+    {
+        if(self.isFirstResponder)
+        {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            self.text = formatter.string(from: datePicker.date)
+        }
+        
+        self.resignFirstResponder()
+    }
+    
+}

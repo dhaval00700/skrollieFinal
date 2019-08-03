@@ -62,6 +62,8 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
         txtBirthdate.titleFormatter = { $0.lowercased()}
         setupErrorMessage()
         setFont()
+        
+        txtBirthdate.addDatePicker()
     }
     
     func setFont()
@@ -276,62 +278,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate
                 viewPassword.layer.borderWidth = 1.0
             }
         }
-    }
-    
-    // MARK: -   textFiled Delegate
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
-        self.pickUpDate(self.txtBirthdate)
-        
-    }
-    
-    // MARK: - Function of datePicker
-    
-    
-    func pickUpDate(_ textField : UITextField)
-    {
-        // DatePicker
-        self.datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
-        self.datePicker.backgroundColor = UIColor.clear
-        
-        textField.inputView = self.datePicker
-        datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
-        self.datePicker.datePickerMode = UIDatePicker.Mode.date
-        
-        // ToolBar
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 61/255, green: 46/255, blue: 85/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        // Adding Button ToolBar
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(RegisterViewController.doneClick))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(RegisterViewController.cancelClick))
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        textField.inputAccessoryView = toolBar
-        
-    }
-    
-    // MARK: -  Actions
-    @objc func doneClick()
-    {
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateStyle = .medium
-        dateFormatter1.timeStyle = .none
-        txtBirthdate.text = dateFormatter1.string(from: datePicker.date)
-        txtBirthdate.resignFirstResponder()
-    }
-    
-    @objc func cancelClick()
-    {
-        txtBirthdate.resignFirstResponder()
     }
     
     @IBAction func btnNext(_ sender: UIButton)
@@ -563,10 +509,8 @@ extension RegisterViewController
                 AppPrefsManager.shared.saveUserData(model: LoginModel(data: response["data"] as? [String : Any] ?? [String : Any]()))
                 let vc = MobileNumberAddVc.instantiate(fromAppStoryboard: .Main)
                 self.navigationController?.pushViewController(vc, animated: true)
-                
-                
             } else if !responseData.success {
-                
+                AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
             }
         })
     }

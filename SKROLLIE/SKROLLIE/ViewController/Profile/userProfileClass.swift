@@ -55,6 +55,16 @@ class userProfileClass: BaseViewController
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        for tempObj in arrData {
+            for tempData in tempObj.arrPostData {
+                for temp in tempData {
+                    temp.timer.invalidate()
+                }
+            }
+        }
+    }
+    
     // MARK: - Methods
     private func setupUI() {
         NotificationCenter.default.addObserver(self, selector: #selector(onProgress), name: PROGRESS_NOTIFICATION_KEY, object: nil)

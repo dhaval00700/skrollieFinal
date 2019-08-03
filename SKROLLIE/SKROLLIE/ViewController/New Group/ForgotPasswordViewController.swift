@@ -12,13 +12,10 @@ import SkyFloatingLabelTextField
 class ForgotPasswordViewController: UIViewController {
     
     @IBOutlet weak var txtUsername: SkyFloatingLabelTextField!
-    
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var ViewUserName: UIView!
     
     private let errorMessageUser = UILabel()
-
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +27,6 @@ class ForgotPasswordViewController: UIViewController {
     private func setupUI() {
         txtUsername.titleFormatter = { $0.lowercased() }
         
-        if isDevelopmentMode {
-            txtUsername.text = "bini"
-        }
         ViewUserName.layer.borderColor =  UIColor.lightGray.cgColor
         ViewUserName.layer.borderWidth = 1.0
         ViewUserName.layer.cornerRadius = 3.0
@@ -64,9 +58,16 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func btnForgotPassword(_ sender: UIButton) {
-        
+        if txtUsername.text!.isEmpty {
+            AppDelegate.sharedDelegate().window?.showToastAtBottom(message: "Enter Username or Email")
+        } else {
+            forgotPassword()
+        }
     }
     
+    @IBAction func onBtnBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - API Call
@@ -83,6 +84,8 @@ extension ForgotPasswordViewController {
             if responseData.success {
                 AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
                 self.navigationController?.popViewController(animated: true)
+            } else {
+                AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
             }
         })
     }

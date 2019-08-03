@@ -72,24 +72,20 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
         let currentObj = arrSearchUserList[indexPath.row]
         cell.lblUserName.text = currentObj.username
         cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
-        
+         cell.btnConnect.isHidden = false
         cell.btnConnect.isUserInteractionEnabled = true
-        if currentObj.FriendStatus == FriendStatus.Disconnect {
+        if currentObj.FriendStatus.lowercased() == FriendStatus.Disconnect.lowercased() {
             cell.btnConnect.setTitle("Connect", for: .normal)
-            cell.btnConnect.isUserInteractionEnabled = false
-
         }
-        if currentObj.FriendStatus == FriendStatus.Friend {
-            cell.btnConnect.setTitle("Connected", for: .normal)
-
+        if currentObj.FriendStatus.lowercased() == FriendStatus.Friend.lowercased() {
+            cell.btnConnect.isHidden = true
         }
-        if currentObj.FriendStatus == FriendStatus.UnFriend {
+        if currentObj.FriendStatus.lowercased() == FriendStatus.UnFriend.lowercased() {
             cell.btnConnect.setTitle("Connect", for: .normal)
-
         }
-        if currentObj.FriendStatus == FriendStatus.Requested {
+        if currentObj.FriendStatus.lowercased() == FriendStatus.Requested.lowercased() {
             cell.btnConnect.setTitle("Connect Requested", for: .normal)
-
+            cell.btnConnect.isUserInteractionEnabled = false
         }
         return cell
     }

@@ -59,7 +59,10 @@ class HomeCollectionsViewCell: UICollectionViewCell {
             print("Post Time percentage", percentage)
             let height = (80 * percentage) / 100
             print("View Height", height)
-            lctViewAllocHeight.constant = CGFloat(height)
+            UIView.animate(withDuration: 1.5) {
+                self.lctViewAllocHeight.constant = CGFloat(height)
+                self.viewAllocColourDependOnTime.layoutIfNeeded()
+            }
         }
     }
 }

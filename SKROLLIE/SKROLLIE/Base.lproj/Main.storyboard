@@ -2678,7 +2678,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcH-ad-Vv6">
-                                        <rect key="frame" x="283" y="51" width="22" height="22"/>
+                                        <rect key="frame" x="289" y="51" width="16" height="22"/>
                                         <state key="normal" image="iconSetting"/>
                                         <connections>
                                             <action selector="btnSetting:" destination="ZRL-gj-9BD" eventType="touchUpInside" id="8xP-Cn-kjd"/>
@@ -4219,7 +4219,7 @@
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
                                                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Username"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Username or Email"/>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
                                                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </userDefinedRuntimeAttribute>
@@ -4290,11 +4290,25 @@
                                                             <action selector="btnForgotPassword:" destination="y1T-RM-n9f" eventType="touchUpInside" id="x7U-5H-Dm1"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qK9-b3-S7Z">
+                                                        <rect key="frame" x="15" y="25" width="35" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="6kV-oi-zZH"/>
+                                                            <constraint firstAttribute="width" secondItem="qK9-b3-S7Z" secondAttribute="height" multiplier="1:1" id="xAj-iO-yqo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
+                                                        <state key="normal" image="iconBack"/>
+                                                        <connections>
+                                                            <action selector="onBtnBack:" destination="VG6-Lh-nIH" eventType="touchUpInside" id="Y6e-JK-PkX"/>
+                                                            <action selector="onBtnBack:" destination="y1T-RM-n9f" eventType="touchUpInside" id="bHH-x1-YrI"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="AaH-M3-kFY" firstAttribute="top" secondItem="bIp-0f-0dv" secondAttribute="bottom" constant="10" id="0n1-Gv-gUL"/>
                                                     <constraint firstAttribute="trailing" secondItem="bIp-0f-0dv" secondAttribute="trailing" constant="25" id="8Di-Mn-thg"/>
+                                                    <constraint firstItem="qK9-b3-S7Z" firstAttribute="leading" secondItem="BIa-NW-gUl" secondAttribute="leading" constant="15" id="8fr-cJ-VW6"/>
                                                     <constraint firstAttribute="trailing" secondItem="Vor-zw-o0D" secondAttribute="trailing" id="BJ6-CE-96i"/>
                                                     <constraint firstAttribute="bottom" secondItem="AaH-M3-kFY" secondAttribute="bottom" constant="20" id="DQM-4g-fut"/>
                                                     <constraint firstItem="bIp-0f-0dv" firstAttribute="top" secondItem="Vor-zw-o0D" secondAttribute="bottom" constant="20" id="Psm-bh-pwg"/>
@@ -4304,6 +4318,7 @@
                                                     <constraint firstItem="Vor-zw-o0D" firstAttribute="top" secondItem="Hfg-GV-Bsm" secondAttribute="bottom" constant="20" id="aNP-YX-oNi"/>
                                                     <constraint firstItem="AaH-M3-kFY" firstAttribute="centerX" secondItem="BIa-NW-gUl" secondAttribute="centerX" id="dRw-Ew-zWi"/>
                                                     <constraint firstItem="Hfg-GV-Bsm" firstAttribute="centerX" secondItem="BIa-NW-gUl" secondAttribute="centerX" id="nl8-bv-4nd"/>
+                                                    <constraint firstItem="qK9-b3-S7Z" firstAttribute="top" secondItem="BIa-NW-gUl" secondAttribute="top" constant="25" id="rDZ-lJ-4b1"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -4343,6 +4358,7 @@
                     <navigationItem key="navigationItem" id="sCx-pQ-qtL"/>
                     <connections>
                         <outlet property="ViewUserName" destination="xBK-12-7ZH" id="mHb-MG-ZpA"/>
+                        <outlet property="btnBack" destination="qK9-b3-S7Z" id="w3R-e7-T08"/>
                         <outlet property="txtUsername" destination="lwj-v0-Xc3" id="uao-zS-PJh"/>
                     </connections>
                 </viewController>
