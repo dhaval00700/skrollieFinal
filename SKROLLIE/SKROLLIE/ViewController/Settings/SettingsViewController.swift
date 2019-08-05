@@ -172,6 +172,12 @@ class SettingsViewController: BaseViewController {
             deActiveAccount()
         }
     }
+    
+    @IBAction func onBtnSupport(_ sender: Any) {
+        let navVc = WebViewController.instantiate(fromAppStoryboard: .Main)
+        navVc.webUrl = "https://www.skrollie.com/support.html"
+        navigationController?.pushViewController(navVc, animated: true)
+    }
 }
 
 

@@ -42,7 +42,7 @@ class userProfileClass: BaseViewController
     var isFriend = false
     var isThisDetail = false
     fileprivate var moreDropDown: DropDown!
-    var userProfileData: UserProfileModel!
+    private var userProfileData: UserProfileModel!
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -109,10 +109,10 @@ class userProfileClass: BaseViewController
             if flg {
                 self.userProfileData = userProfileModel
                 self.setData()
+                self.setDropDown()
             }
         })
         getForeverPostByUserId()
-        setDropDown()
         
         if isThisDetail {
             btnSearchOrBack.setImage(#imageLiteral(resourceName: "iconBack"), for: .normal)
@@ -136,11 +136,19 @@ class userProfileClass: BaseViewController
         }
         moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if item == "Block" {
-                self.updateStatus()
+                self.updateStatus(userId: self.userProfileData.id, isBlock: true, completion: { (flg) in
+                    if flg {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
             } else if item == "Report" {
-                self.reportUser()
+                self.reportUser(userId: self.userProfileData.id)
             } else if item == "Disconnect"  {
-                self.unFriendUser()
+                self.unFriendUser(userId: self.userProfileData.id, completion: { (flg) in
+                    if flg {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
             }
         }
         moreDropDown.backgroundColor = .clear
@@ -222,7 +230,11 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnConnect(_ sender: UIButton) {
-        createFriend()
+        createFriend(userId: userId) { (flg) in
+            if flg {
+                self.btnCOnnect.isHidden = true
+            }
+        }
     }
     
     @IBAction func btnMore(_ sender: UIButton) {
@@ -328,7 +340,7 @@ extension userProfileClass: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         if textView == txvDesc {
             DLog("\(URL)")
-           let navVc = WebViewController.instantiate(fromAppStoryboard: .Main)
+            let navVc = WebViewController.instantiate(fromAppStoryboard: .Main)
             navVc.webUrl = "\(URL)"
             navigationController?.pushViewController(navVc, animated: true)
         }
@@ -368,68 +380,6 @@ extension userProfileClass {
                 self.arrData.append(GetPostData(arrForEverList, ForeverStr))
             }
             self.get24HourPostByUserId()
-        }
-    }
-    
-    private func createFriend() {
-        
-        var paramter = [String:AnyObject]()
-        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
-        paramter["idFriend"] = userId as AnyObject
-        
-        
-        _ = APIClient.createFriend(parameters: paramter, success: { (resposObject) in
-            let response = resposObject ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                self.btnCOnnect.isHidden = true
-                self.view.showToastAtBottom(message: responseData.message)
-            }
-        })
-        
-    }
-    
-    private func updateStatus() {
-        
-        let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
-        param.addParameter(key: ParameterRequest.idFriend, value: userProfileData.id)
-        param.addParameter(key: ParameterRequest.IsBlock, value: true)
-        
-        _ = APIClient.BlockUnblockFriendByUser(parameters: param.parameters) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
-    private func unFriendUser() {
-        
-        let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
-        param.addParameter(key: ParameterRequest.idFriend, value: userProfileData.id)
-        
-        _ = APIClient.UnFriendByUser(parameters: param.parameters) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
-    private func reportUser() {
-        
-        let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
-        param.addParameter(key: ParameterRequest.ReportedToUserId, value: userProfileData.id)
-        
-        _ = APIClient.ReportUser(parameters: param.parameters) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            Utility.showMessageAlert(title: "Alert", andMessage: responseData.message, withOkButtonTitle: "OK")
         }
     }
 }

@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.8.2)
-  - AWSCore (2.9.9)
-  - AWSS3 (2.9.9):
-    - AWSCore (= 2.9.9)
-  - IQKeyboardManagerSwift (6.3.0)
+  - AWSCore (2.10.2)
+  - AWSS3 (2.10.2):
+    - AWSCore (= 2.10.2)
+  - IQKeyboardManagerSwift (6.4.1)
   - KMPlaceholderTextView (1.4.0)
   - SkyFloatingLabelTextField (3.7.0)
   - SRCountdownTimer (1.1)
@@ -45,9 +45,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AWSCore: 705dbb60efeec05bc6bbee416e7f5e9837af0749
-  AWSS3: fd75bd3b80d832398308d0b82b6e1d973db5dd34
-  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  AWSCore: 2e91f89187d1238be35ce8c57aac98c42def640f
+  AWSS3: f0f81ee725de69f631051cead12791ff5dfbba14
+  IQKeyboardManagerSwift: d2df660d0b8d64a15cb2537c9ff303213fa515b2
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SRCountdownTimer: 9c92e444b5403c92f01dd6610299b8c634bc8562
@@ -57,6 +57,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: edf98c5324ea75e9961d89e74fdd6ff60f916d09
+PODFILE CHECKSUM: e2cda2cf828550fbcbaab70721e7a5e0faafa4cc
 
 COCOAPODS: 1.6.1

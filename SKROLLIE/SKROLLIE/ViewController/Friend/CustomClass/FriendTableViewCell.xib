@@ -48,7 +48,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="giO-CN-Dea">
-                                <rect key="frame" x="231" y="16" width="70" height="27"/>
+                                <rect key="frame" x="206" y="16" width="70" height="27"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nY1-aQ-DPE">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="27"/>
@@ -69,20 +69,37 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-fU-Try">
+                                <rect key="frame" x="276" y="14.5" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WUB-ka-prH"/>
+                                    <constraint firstAttribute="width" secondItem="PTi-fU-Try" secondAttribute="height" multiplier="1:1" id="aBX-Sx-HaY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" image="ic_more">
+                                    <color key="titleColor" red="0.20042407509999999" green="0.1467479169" blue="0.2840772271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onBtnMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="D6M-4h-4gY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="giO-CN-Dea" firstAttribute="centerY" secondItem="yZk-sK-X5Y" secondAttribute="centerY" id="1JS-ZH-FE3"/>
+                            <constraint firstItem="PTi-fU-Try" firstAttribute="centerY" secondItem="7Th-Q2-bSv" secondAttribute="centerY" id="3E6-rN-cKB"/>
                             <constraint firstItem="giO-CN-Dea" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SK3-Zz-Sot" secondAttribute="trailing" constant="5" id="3Sg-9q-qxp"/>
                             <constraint firstItem="7Th-Q2-bSv" firstAttribute="leading" secondItem="yZk-sK-X5Y" secondAttribute="leading" constant="5" id="5CT-9E-BYl"/>
                             <constraint firstAttribute="height" constant="58.5" id="9f9-Jn-PFW"/>
-                            <constraint firstAttribute="trailing" secondItem="giO-CN-Dea" secondAttribute="trailing" constant="5" id="E1x-vB-pRn"/>
                             <constraint firstItem="giO-CN-Dea" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qPH-jw-xGD" secondAttribute="trailing" constant="5" id="RVG-or-1HS"/>
                             <constraint firstItem="7Th-Q2-bSv" firstAttribute="centerY" secondItem="yZk-sK-X5Y" secondAttribute="centerY" id="Srz-Hw-ik9"/>
                             <constraint firstItem="SK3-Zz-Sot" firstAttribute="leading" secondItem="fzR-Qy-scR" secondAttribute="trailing" constant="3" id="Vbo-13-lul"/>
                             <constraint firstItem="qPH-jw-xGD" firstAttribute="top" secondItem="fzR-Qy-scR" secondAttribute="bottom" constant="5" id="du0-X0-ZPj"/>
+                            <constraint firstAttribute="trailing" secondItem="PTi-fU-Try" secondAttribute="trailing" id="itT-hx-eNa"/>
                             <constraint firstItem="fzR-Qy-scR" firstAttribute="leading" secondItem="7Th-Q2-bSv" secondAttribute="trailing" constant="5" id="mFn-Vm-aGD"/>
                             <constraint firstItem="fzR-Qy-scR" firstAttribute="top" secondItem="7Th-Q2-bSv" secondAttribute="top" constant="3" id="mR9-ea-eqc"/>
+                            <constraint firstItem="PTi-fU-Try" firstAttribute="leading" secondItem="giO-CN-Dea" secondAttribute="trailing" id="myp-eA-2wN"/>
                             <constraint firstItem="qPH-jw-xGD" firstAttribute="leading" secondItem="fzR-Qy-scR" secondAttribute="leading" id="xFo-MT-xeL"/>
                             <constraint firstItem="SK3-Zz-Sot" firstAttribute="centerY" secondItem="fzR-Qy-scR" secondAttribute="centerY" id="yLQ-BA-qfi"/>
                         </constraints>
@@ -100,6 +117,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnConnect" destination="nY1-aQ-DPE" id="4Z3-M0-3X0"/>
+                <outlet property="btnMore" destination="PTi-fU-Try" id="w8f-At-Pv7"/>
                 <outlet property="imgProfile" destination="7Th-Q2-bSv" id="ctG-2t-L5r"/>
                 <outlet property="imgShield" destination="SK3-Zz-Sot" id="UgE-tp-AKD"/>
                 <outlet property="lblUserDescription" destination="qPH-jw-xGD" id="7PL-vy-6mi"/>
@@ -110,6 +128,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_more" width="5.5" height="20"/>
         <image name="ic_shield" width="25" height="25"/>
     </resources>
 </document>

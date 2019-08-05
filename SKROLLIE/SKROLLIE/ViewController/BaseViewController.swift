@@ -63,4 +63,92 @@ class BaseViewController: UIViewController {
             }
         }
     }
+    
+    func createFriend(userId: String, completion success: ((Bool) -> Void)? = nil) {
+        
+        var paramter = [String:AnyObject]()
+        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
+        paramter["idFriend"] = userId as AnyObject
+        
+        
+        _ = APIClient.createFriend(parameters: paramter, success: { (resposObject) in
+            let response = resposObject ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                if success != nil {
+                    success!(true)
+                }
+                AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
+            }
+        })
+        
+    }
+    
+    func CancleFriendRequest(userId: String, completion success: ((Bool) -> Void)? = nil) {
+        
+        var paramter = [String:AnyObject]()
+        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
+        paramter["idFriend"] = userId as AnyObject
+        
+        
+        _ = APIClient.CancleFriendRequest(parameters: paramter, success: { (resposObject) in
+            let response = resposObject ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                if success != nil {
+                    success!(true)
+                }
+                AppDelegate.sharedDelegate().window?.showToastAtBottom(message: responseData.message)
+            }
+        })
+        
+    }
+    
+    func updateStatus(userId: String, isBlock: Bool, completion success: ((Bool) -> Void)? = nil) {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idFriend, value: userId)
+        param.addParameter(key: ParameterRequest.IsBlock, value: isBlock)
+        
+        _ = APIClient.BlockUnblockFriendByUser(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                if success != nil {
+                    success!(true)
+                }
+            }
+        }
+    }
+    
+    func unFriendUser(userId: String, completion success: ((Bool) -> Void)? = nil) {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idFriend, value: userId)
+        
+        _ = APIClient.UnFriendByUser(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                if success != nil {
+                    success!(true)
+                }
+            }
+        }
+    }
+    
+    func reportUser(userId: String) {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.ReportedToUserId, value: userId)
+        
+        _ = APIClient.ReportUser(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            Utility.showMessageAlert(title: "Alert", andMessage: responseData.message, withOkButtonTitle: "OK")
+        }
+    }
 }

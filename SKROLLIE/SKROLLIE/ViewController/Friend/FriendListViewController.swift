@@ -21,6 +21,7 @@ class FriendListViewController: BaseViewController {
     private var continueLoadingData = true
     private var skip = 0
     private var take = 10
+    private var oldSkipUnfriend = 0
     
     private var arrFriendList = [UserFriendList]()
     private var isDataLoadingFriend = false
@@ -74,7 +75,11 @@ class FriendListViewController: BaseViewController {
     }
     
     @IBAction func clickToBtnConnect(_ sender : UIButton) {
-        createFriend(currebtObj: arrUnFriendList[sender.tag])
+        createFriend(userId: arrUnFriendList[sender.tag].idUser) { (flg) in
+            if flg {
+                self.resetAll()
+            }
+        }
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
@@ -86,6 +91,10 @@ class FriendListViewController: BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func onBtnSearch(_ sender: Any) {
+        let navVc = SearchViewController.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(navVc, animated: true)
+    }
 }
 
 extension FriendListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -97,20 +106,23 @@ extension FriendListViewController : UITableViewDelegate, UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         let currentObj = arrUnFriendList[indexPath.row]
+        cell.configureCellWithData(currentObj: currentObj)
         if indexPath.row == arrUnFriendList.count - 1 {
             getAllMyUnFriend()
         }
-        if currentObj.IsAccountVerify == AccountVerifyStatus.two {
-            cell.imgShield.isHidden = false
-        }
-        
-        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
-        cell.lblUserName.text = currentObj.username
-        cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(clickToBtnConnect(_:)), for: .touchUpInside)
-        cell.btnConnect.isHidden = currentObj.IsRequested
-        
+        cell.moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            if item == "Report" {
+                self.reportUser(userId: currentObj.idUser)
+            } else if item == "Cancle Request" {
+                self.CancleFriendRequest(userId: currentObj.idUser, completion: { (flg) in
+                    if flg {
+                        self.resetAll()
+                    }
+                })
+            }
+        }
         return cell
     }
     
@@ -196,21 +208,6 @@ extension FriendListViewController
             self.isDataLoadingFriend = false
         })
         
-    }
-    
-    private func createFriend(currebtObj:UserFriendList) {
-        
-        var paramter = [String:AnyObject]()
-        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
-        paramter["idFriend"] = currebtObj.idUser as AnyObject
-        
-        _ = APIClient.createFriend(parameters: paramter, success: { (resposObject) in
-            let response = resposObject ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                self.resetAll()
-            }
-        })
     }
 }
 

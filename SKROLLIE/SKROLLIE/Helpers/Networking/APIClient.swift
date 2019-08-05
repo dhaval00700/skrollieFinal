@@ -85,7 +85,7 @@ class APIClient {
     
     class func SendOTP(mobileNumber:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.SendOTP + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&phone=\(mobileNumber)"
+        let url = API.SendOTP + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)&phone=\(mobileNumber)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -96,7 +96,7 @@ class APIClient {
     
     class func VerifyOTP(OTP:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.VerifyOTP + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&OTP=\(OTP)"
+        let url = API.VerifyOTP + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)&OTP=\(OTP)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -196,6 +196,17 @@ class APIClient {
     class func createFriend(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
         let url = API.CreateFriend
+        return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func CancleFriendRequest(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.CancelledFriendRequest
         return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in

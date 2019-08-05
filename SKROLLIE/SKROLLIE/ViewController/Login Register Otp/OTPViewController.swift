@@ -136,10 +136,13 @@ extension OTPViewController
             let responseData = ResponseDataModel(responseObj: response)
             
             if responseData.success {
-                
-                let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                self.getUserProfileData(userId: AppPrefsManager.shared.getUserProfileData().id, complation: { (flg, userProfileClass) in
+                    if flg {
+                        AppPrefsManager.shared.saveUserProfileData(model: userProfileClass)
+                        let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                })
                 
             } else if !responseData.success {
                 

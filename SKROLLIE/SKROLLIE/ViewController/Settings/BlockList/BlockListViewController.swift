@@ -49,7 +49,11 @@ class BlockListViewController: BaseViewController {
     }
     
     @IBAction func clickToBtnConnect(_ sender : UIButton) {
-        updateStatus(arrBlockList[sender.tag])
+        updateStatus(userId: arrBlockList[sender.tag].idFriend, isBlock: false) { (flg) in
+            if flg {
+                self.getBlockList()
+            }
+        }
     }
     
     @IBAction func onBtnBack(_ sender: Any) {
@@ -108,22 +112,6 @@ extension BlockListViewController {
             
             self.tblBlockList.reloadData()
             self.refreshControl.endRefreshing()
-        }
-    }
-    
-    private func updateStatus(_ obj: BlockListData) {
-        
-        let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
-        param.addParameter(key: ParameterRequest.idFriend, value: obj.idFriend)
-        param.addParameter(key: ParameterRequest.IsBlock, value: false)
-        
-        _ = APIClient.BlockUnblockFriendByUser(parameters: param.parameters) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                self.getBlockList()
-            }
         }
     }
 }

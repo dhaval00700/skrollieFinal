@@ -21,6 +21,7 @@ class SearchViewController: BaseViewController {
     private var continueLoadingData = true
     private var skip = 0
     private var take = 10
+    private var oldSkipForSearch = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,8 @@ class SearchViewController: BaseViewController {
     func setUpUI() {
         
         txtSearch.showsCancelButton = false
-        
+        txtSearch.applyBorder(1, borderColor: #colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.white
         let searchBarStyle = txtSearch.value(forKey: "searchField") as? UITextField
         searchBarStyle?.clearButtonMode = .never
         
@@ -60,6 +62,18 @@ class SearchViewController: BaseViewController {
     @IBAction func onBtnBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func onBtnConnect(_ sender: UIButton) {
+        let currentObj = arrSearchUserList[sender.tag]
+        if currentObj.FriendStatus.lowercased() == FriendStatus.Disconnect.lowercased() || currentObj.FriendStatus.lowercased() == FriendStatus.UnFriend.lowercased() {
+            createFriend(userId: currentObj.idUser) { (flg) in
+                if flg {
+                    self.skip = self.oldSkipForSearch
+                    self.searchFriend()
+                }
+            }
+        }
+    }
 }
 
 extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -70,22 +84,37 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchItemCollectionViewCell", for: indexPath) as! SearchItemCollectionViewCell
         let currentObj = arrSearchUserList[indexPath.row]
-        cell.lblUserName.text = currentObj.username
-        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
-         cell.btnConnect.isHidden = false
-        cell.btnConnect.isUserInteractionEnabled = true
-        if currentObj.FriendStatus.lowercased() == FriendStatus.Disconnect.lowercased() {
-            cell.btnConnect.setTitle("Connect", for: .normal)
+        if indexPath.row == arrSearchUserList.count - 1 {
+            searchFriend()
         }
-        if currentObj.FriendStatus.lowercased() == FriendStatus.Friend.lowercased() {
-            cell.btnConnect.isHidden = true
-        }
-        if currentObj.FriendStatus.lowercased() == FriendStatus.UnFriend.lowercased() {
-            cell.btnConnect.setTitle("Connect", for: .normal)
-        }
-        if currentObj.FriendStatus.lowercased() == FriendStatus.Requested.lowercased() {
-            cell.btnConnect.setTitle("Connect Requested", for: .normal)
-            cell.btnConnect.isUserInteractionEnabled = false
+        cell.configureCellWithData(currentObj)
+        cell.btnConnect.tag = indexPath.row
+        cell.btnConnect.addTarget(self, action: #selector(onBtnConnect), for: .touchUpInside)
+        cell.moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            if item == "Block" {
+                self.updateStatus(userId: currentObj.idUser, isBlock: true, completion: { (flg) in
+                    if flg {
+                        self.skip = self.oldSkipForSearch
+                        self.searchFriend()
+                    }
+                })
+            } else if item == "Report" {
+                self.reportUser(userId: currentObj.idUser)
+            } else if item == "Disconnect"  {
+                self.unFriendUser(userId: currentObj.idUser, completion: { (flg) in
+                    if flg {
+                        self.skip = self.oldSkipForSearch
+                        self.searchFriend()
+                    }
+                })
+            } else if item == "Cancle Request" {
+                self.CancleFriendRequest(userId: currentObj.idUser, completion: { (flg) in
+                    if flg {
+                        self.skip = self.oldSkipForSearch
+                        self.searchFriend()
+                    }
+                })
+            }
         }
         return cell
     }
@@ -105,6 +134,7 @@ extension SearchViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         searchString = (searchBar.text! as NSString).replacingCharacters(in: range, with: text).encode()
         searchString = searchString.replacingOccurrences(of: "\n", with: "")
+        searchString = searchString.replacingOccurrences(of: " ", with: "")
         doSearch()
         
         return true
@@ -117,6 +147,7 @@ extension SearchViewController : UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        searchString = ""
         searchBar.showsCancelButton = false
         self.view.endEditing(true)
         doSearch()
@@ -150,7 +181,7 @@ extension SearchViewController {
                 let tempAray = UserFriendList.getArray(data: objectData)
                 
                 self.arrSearchUserList.append(contentsOf: tempAray)
-                
+                self.oldSkipForSearch = self.skip
                 self.skip += 1
 
                 if tempAray.count < 10 {

@@ -18,16 +18,13 @@ target 'SKROLLIE' do
   pod 'SwiftyComments'
   pod 'AWSS3'
   pod 'KMPlaceholderTextView'
+  
+  # https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-381279098
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings.delete('CODE_SIGNING_ALLOWED')
+      config.build_settings.delete('CODE_SIGNING_REQUIRED')
+    end
+  end
+  
 end
-
-# For Pod Version Check so plz Don't delete it.
-
-# Alamofire (4.8.1)
-# Using CameraManager (4.3.1)
-# Using IQKeyboardManagerSwift (6.2.0)
-# Using SDWebImage (4.4.6)
-# Using SRCountdownTimer (1.1)
-# Using SVPinView (1.0.6)
-# Using SkyFloatingLabelTextField (3.6.0)
-# Using SwiftMessages (6.0.2)
-# Using SwiftyJSON (4.2.0)

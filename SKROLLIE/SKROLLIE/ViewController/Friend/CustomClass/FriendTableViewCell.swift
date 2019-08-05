@@ -17,8 +17,10 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var lblUserDescription: UILabel!
     @IBOutlet weak var imgShield: UIImageView!
     @IBOutlet weak var btnConnect: UIButton!
+    @IBOutlet weak var btnMore: UIButton!
     
     // MARK: - Properties
+    var moreDropDown: DropDown!
 
     // MARK: - LifeCycles
     override func awakeFromNib() {
@@ -41,6 +43,41 @@ class FriendTableViewCell: UITableViewCell {
         btnConnect.addCornerRadius(8.0)
     }
     
+    func configureCellWithData(currentObj: UserFriendList) {
+        if currentObj.IsAccountVerify == AccountVerifyStatus.two {
+            imgShield.isHidden = false
+        }
+        
+        imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
+        lblUserName.text = currentObj.username
+        lblUserDescription.text = currentObj.FullName
+        if currentObj.IsRequested {
+            btnConnect.setTitle("Connect Requested", for: .normal)
+            btnConnect.isUserInteractionEnabled = false
+        } else {
+            btnConnect.setTitle("Connect", for: .normal)
+        }
+        setDropDown(currentObj)
+    }
+    
+    private func setDropDown(_ currentObj: UserFriendList) {
+        moreDropDown = DropDown()
+        
+        moreDropDown.anchorView = btnMore
+        if currentObj.IsRequested {
+            moreDropDown.dataSource = ["Cancle Request", "Report"]
+        } else {
+            moreDropDown.dataSource = ["Report"]
+        }
+        moreDropDown.backgroundColor = .clear
+        moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y: -50)
+        
+        moreDropDown.width = 110
+    }
+    
     // MARK: - Actions
+    @IBAction func onBtnMore(_ sender: UIButton) {
+        moreDropDown.show()
+    }
     
 }

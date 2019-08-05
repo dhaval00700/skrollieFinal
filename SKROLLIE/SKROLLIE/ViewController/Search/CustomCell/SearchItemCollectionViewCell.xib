@@ -181,24 +181,31 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kau-WQ-2by">
-                                <rect key="frame" x="226.5" y="84" width="5.5" height="30"/>
+                                <rect key="frame" x="200" y="84" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="UYN-M6-1pF"/>
+                                </constraints>
                                 <state key="normal" image="ic_more"/>
+                                <connections>
+                                    <action selector="onBtnMore:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Bbn-xV-KQn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kau-WQ-2by" firstAttribute="trailing" secondItem="yH5-Hh-keZ" secondAttribute="trailing" id="1qB-MD-qSz"/>
                             <constraint firstAttribute="trailing" secondItem="GOe-2b-vNO" secondAttribute="trailing" constant="5" id="2CU-t6-bZ3"/>
                             <constraint firstItem="GOe-2b-vNO" firstAttribute="leading" secondItem="DNg-tz-8vL" secondAttribute="leading" id="57S-Rz-GhQ"/>
                             <constraint firstItem="ZlX-Un-wk3" firstAttribute="leading" secondItem="yH5-Hh-keZ" secondAttribute="leading" id="TF2-2c-LhD"/>
                             <constraint firstItem="GOe-2b-vNO" firstAttribute="top" secondItem="Ds6-BK-dsd" secondAttribute="top" constant="5" id="TVt-OV-cZZ"/>
                             <constraint firstItem="kau-WQ-2by" firstAttribute="bottom" secondItem="ZlX-Un-wk3" secondAttribute="bottom" id="UGM-MZ-126"/>
                             <constraint firstItem="yH5-Hh-keZ" firstAttribute="leading" secondItem="DNg-tz-8vL" secondAttribute="trailing" constant="10" id="aTv-e9-WVz"/>
+                            <constraint firstItem="kau-WQ-2by" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZlX-Un-wk3" secondAttribute="trailing" constant="5" id="hI8-ai-FjI"/>
                             <constraint firstItem="yH5-Hh-keZ" firstAttribute="top" secondItem="DNg-tz-8vL" secondAttribute="top" id="i7M-cK-8nq"/>
                             <constraint firstAttribute="bottom" secondItem="ZlX-Un-wk3" secondAttribute="bottom" constant="10" id="kQj-kX-rbp"/>
                             <constraint firstAttribute="trailing" secondItem="yH5-Hh-keZ" secondAttribute="trailing" constant="3" id="mjx-he-3ab"/>
                             <constraint firstItem="ZlX-Un-wk3" firstAttribute="top" secondItem="yH5-Hh-keZ" secondAttribute="bottom" constant="8" id="otR-nP-aNl"/>
                             <constraint firstItem="GOe-2b-vNO" firstAttribute="leading" secondItem="Ds6-BK-dsd" secondAttribute="leading" constant="5" id="vLX-i2-UJ0"/>
+                            <constraint firstAttribute="trailing" secondItem="kau-WQ-2by" secondAttribute="trailing" constant="5" id="wEg-Tb-S17"/>
                             <constraint firstItem="kau-WQ-2by" firstAttribute="top" secondItem="ZlX-Un-wk3" secondAttribute="top" id="yWJ-zi-e8y"/>
                             <constraint firstItem="DNg-tz-8vL" firstAttribute="top" secondItem="GOe-2b-vNO" secondAttribute="bottom" constant="5" id="zcx-Vi-tg8"/>
                         </constraints>
