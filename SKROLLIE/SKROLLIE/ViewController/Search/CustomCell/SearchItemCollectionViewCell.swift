@@ -40,7 +40,7 @@ class SearchItemCollectionViewCell: UICollectionViewCell {
     
     func configureCellWithData(_ currentObj: UserFriendList) {
         lblUserName.text = currentObj.username
-        imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         btnConnect.isHidden = false
         if currentObj.IsAccountVerify == AccountVerifyStatus.zero || currentObj.IsAccountVerify == AccountVerifyStatus.one {
             imgTag.isHidden = true

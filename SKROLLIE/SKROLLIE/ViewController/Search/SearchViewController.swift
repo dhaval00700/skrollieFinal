@@ -45,6 +45,7 @@ class SearchViewController: BaseViewController {
         clvSearchFriend.delegate = self
         clvSearchFriend.dataSource = self
         clvSearchFriend.reloadData()
+        txtSearch.placeholder = "search"
         txtSearch.delegate = self
         
     }

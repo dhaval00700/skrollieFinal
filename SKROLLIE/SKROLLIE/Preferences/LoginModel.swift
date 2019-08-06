@@ -21,7 +21,7 @@ class LoginModel {
     init(data: [String: Any]) {
         map = Map(data: data)
         token = map.value("token") ?? ""
-        UserId = map.value("UserId") ?? ""
+        UserId = map.value("UserId") ?? map.value("id") ?? ""
         UserName = map.value("UserName") ?? ""
         UserRole = map.value("UserRole") ?? ""
     }

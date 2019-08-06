@@ -48,7 +48,7 @@ class FriendTableViewCell: UITableViewCell {
             imgShield.isHidden = false
         }
         
-        imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
+        imgProfile.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill, isCache: true)
         lblUserName.text = currentObj.username
         lblUserDescription.text = currentObj.FullName
         if currentObj.IsRequested {

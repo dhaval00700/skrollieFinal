@@ -94,7 +94,7 @@ extension RequestListViewController : UITableViewDelegate, UITableViewDataSource
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
         }
-        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        cell.imgProfile.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.username
         cell.lblUserDescription.text = currentObj.FullName
         cell.btnConnect.setTitle("Accept", for: .normal)

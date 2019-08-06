@@ -29,7 +29,7 @@ class HomeCollectionsViewCell: UICollectionViewCell {
     }
     
     func ConfigureCellWithData(_ data: Post) {
-        imgBackGround.imageFromURL(link: data.Url, errorImage: UIImage(named: "img1"), contentMode: .scaleAspectFill)
+        imgBackGround.imageFromURL(link: data.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         
         lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
         

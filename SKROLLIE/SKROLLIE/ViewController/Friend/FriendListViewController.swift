@@ -225,7 +225,7 @@ extension FriendListViewController : UICollectionViewDelegate, UICollectionViewD
         if currentObj.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgTag.isHidden = false
         }
-        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.username
         cell.btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
         cell.btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)

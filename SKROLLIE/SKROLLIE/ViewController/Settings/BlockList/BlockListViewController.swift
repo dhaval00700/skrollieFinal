@@ -73,7 +73,7 @@ extension BlockListViewController : UITableViewDelegate, UITableViewDataSource {
         if currentObj.tbluserinformation.IsAccountVerify == AccountVerifyStatus.two {
             cell.imgShield.isHidden = false
         }
-        cell.imgProfile.imageFromURL(link: currentObj.tbluserinformation.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        cell.imgProfile.imageFromURL(link: currentObj.tbluserinformation.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         cell.lblUserName.text = currentObj.tbluserinformation.username
         cell.lblUserDescription.text = currentObj.tbluserinformation.FullName
         cell.btnConnect.tag = indexPath.row

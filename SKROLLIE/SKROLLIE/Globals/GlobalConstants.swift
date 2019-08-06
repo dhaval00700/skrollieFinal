@@ -67,6 +67,9 @@ var PostCountLimit = 5
 var TwentyFourHourStr = "24 Hour"
 var ForeverStr = "Forever"
 var RefreshStr = "Updating Connections..."
+let profilePlaceHolder = #imageLiteral(resourceName: "img3")
+let postPlaceHolder = #imageLiteral(resourceName: "img1")
+let menuProfilePlaceholder = #imageLiteral(resourceName: "img12")
 
 // MARK: - For Emoji
 var arrEmoji = [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2.png"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7"), #imageLiteral(resourceName: "8"), #imageLiteral(resourceName: "9.png"), #imageLiteral(resourceName: "10.png")]
@@ -171,7 +174,7 @@ enum FontName: String {
 
 // MARK: - API
 struct API {
-    static var BASE_URL = enableProductionApi ? "http://103.232.124.170:18012/" : "http://103.232.124.170:18012/"
+    static var BASE_URL = enableProductionApi ? "https://api.skrollie.com/" : "https://api.skrollie.com/"
     
     static let Login     =   BASE_URL + "MobileAccount/Mobilelogin"
     static let Register     =   BASE_URL + "MobileAccount/register"

@@ -33,8 +33,10 @@ class HomeViewController: BaseViewController
         super.viewWillAppear(animated)
         setupUI()
         let imge = UIImageView()
-        imge.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: #imageLiteral(resourceName: "img12"), contentMode: .scaleToFill, isCache: true) {
-            self.btnMenuProfile.setImage(imge.image, for: .normal)
+        imge.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: menuProfilePlaceholder, contentMode: .scaleToFill, isCache: true) {
+            DispatchQueue.main.async {
+                self.btnMenuProfile.setImage(imge.image, for: .normal)
+            }
         }
     }
     

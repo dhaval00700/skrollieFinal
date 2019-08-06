@@ -38,7 +38,7 @@ class HomeTblCell: UITableViewCell {
     func ConfigureCellWithData(_ data: UserData) {
         collectionData = data
         Collectionview.reloadData()
-        imgUser.imageFromURL(link: data.ProfileImage, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        imgUser.imageFromURL(link: data.ProfileImage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         lblUserName.text = collectionData.ProfileName
     }
 }
@@ -54,7 +54,7 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionsViewCell", for: indexPath) as! HomeCollectionsViewCell
         let currentObj = collectionData.arrPost[indexPath.item]
-        imgUser.imageFromURL(link: collectionData.ProfileImage, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill)
+        imgUser.imageFromURL(link: collectionData.ProfileImage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         cell.ConfigureCellWithData(currentObj)
         return cell
     }

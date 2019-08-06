@@ -177,7 +177,7 @@ class userProfileClass: BaseViewController
             btnEdit.isHidden = true
         }
         
-        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: #imageLiteral(resourceName: "img3"), contentMode: .scaleAspectFill, isCache: true)
+        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill, isCache: true)
         btnToday.setTitle(userProfileData.TotalTodayPost, for: .normal)
         btnForever.setTitle(userProfileData.TotalForeverPost, for: .normal)
         lblUserTag.text = "@" + userProfileData.username
