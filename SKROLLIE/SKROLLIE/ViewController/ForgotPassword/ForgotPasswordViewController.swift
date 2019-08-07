@@ -9,7 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: BaseViewController {
     
     @IBOutlet weak var txtUsername: SkyFloatingLabelTextField!
     @IBOutlet weak var btnBack: UIButton!

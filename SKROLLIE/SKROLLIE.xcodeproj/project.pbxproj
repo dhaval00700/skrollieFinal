@@ -241,8 +241,8 @@
 		4FF7D7E122B3661D004F2C62 /* emogie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = emogie.xib; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A64AFEF22B7A8C70078967A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserItemCollectionViewCell.swift; path = ../UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserItemCollectionViewCell.xib; path = ../UserItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		7AF03913229D58CB00A0F74D /* CommentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentItemTableViewCell.swift; sourceTree = "<group>"; };
 		7AF03914229D58CC00A0F74D /* CommentItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentItemTableViewCell.xib; sourceTree = "<group>"; };
 		7AF03918229D5AE200A0F74D /* AllCommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -488,12 +488,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4F1443D322F411D9006407C5 /* New Group */ = {
+		4F1443D322F411D9006407C5 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
 				4F1443D422F41537006407C5 /* ForgotPasswordViewController.swift */,
 			);
-			path = "New Group";
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		4F188C0822D3258200D340A1 /* DropDown */ = {
@@ -562,6 +562,16 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		4F25DAD722FAA817001A350C /* UserComment */ = {
+			isa = PBXGroup;
+			children = (
+				7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */,
+				F7FB4EB82285442E00A390AE /* commentViewClass.swift */,
+				7AF03917229D5AC000A0F74D /* CustomCells */,
+			);
+			path = UserComment;
+			sourceTree = "<group>";
+		};
 		4FE4983B22E88E9900B9FE04 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +616,8 @@
 				7AF03914229D58CC00A0F74D /* CommentItemTableViewCell.xib */,
 				7AF03918229D5AE200A0F74D /* AllCommentsTableViewCell.swift */,
 				7AF03919229D5AE200A0F74D /* AllCommentsTableViewCell.xib */,
+				7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */,
+				7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -642,15 +654,16 @@
 		7F71355F2264689600E30429 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4F1443D322F411D9006407C5 /* New Group */,
-				4F1CDDC422F2A953003D3934 /* Search */,
 				7FCCA6DB22644ADC00E8E9A1 /* AppDelegate.swift */,
 				4FF671F022C2326100BB4AAF /* BaseViewController.swift */,
+				4F1443D322F411D9006407C5 /* ForgotPassword */,
+				4F1CDDC422F2A953003D3934 /* Search */,
 				0E19045D229BCD18005DEA7B /* SelectedImageVideo */,
 				7F7F9F652285B3B3004F85BD /* Login Register Otp */,
 				7F6D12222295169900CB7988 /* CameraAndVedio */,
 				7F1EA73E2270415A009D2EF5 /* Home */,
 				F73DD3B42284273A0096A943 /* Profile */,
+				4F25DAD722FAA817001A350C /* UserComment */,
 				4F0BCF9222D0B2440094A351 /* BlockList */,
 				4F19C0EC22C5138F00D12A1B /* Settings */,
 				4F0BCF8822D07FA60094A351 /* Friend */,
@@ -755,11 +768,8 @@
 			isa = PBXGroup;
 			children = (
 				F73DD3B5228427580096A943 /* userProfileClass.swift */,
-				F7FB4EB82285442E00A390AE /* commentViewClass.swift */,
-				7AF03917229D5AC000A0F74D /* CustomCells */,
-				7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */,
-				F73DD3B7228432FE0096A943 /* cells */,
 				4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */,
+				F73DD3B7228432FE0096A943 /* cells */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -771,8 +781,6 @@
 				F73DD3B9228434D10096A943 /* cellUserProfilePost.xib */,
 				4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */,
 				4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */,
-				7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */,
-				7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
