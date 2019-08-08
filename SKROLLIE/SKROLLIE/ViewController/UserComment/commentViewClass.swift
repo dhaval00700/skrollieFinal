@@ -11,20 +11,15 @@ import UIKit
 class commentViewClass: BaseViewController
 {
     @IBOutlet weak var lblTotalCmt: UILabel!
-    @IBOutlet weak var viewUserProfile: UIView!
     @IBOutlet weak var viewEmoji: UIView!
     @IBOutlet weak var viewAllComment: UIView!
-    @IBOutlet weak var viewSavePhotos: UIView!
     @IBOutlet weak var viwUserListContainer: UIView!
     @IBOutlet weak var btnViewAllComment: UIButton!
     @IBOutlet weak var txtWriteReview: UITextField!
-    @IBOutlet weak var imgUserProfile: UIImageView!
-    @IBOutlet weak var imgPost: UIImageView!
     @IBOutlet weak var collectionUserList: UICollectionView!
-    @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var tblForComment: UITableView!
     @IBOutlet weak var emojiPagerView: FSPagerView!
-    
+    @IBOutlet weak var clvPost: UICollectionView!
     @IBOutlet weak var constraintHightOfTblComment: NSLayoutConstraint!
     
     var aryUserList = [String]()
@@ -53,8 +48,6 @@ class commentViewClass: BaseViewController
     
     func setUpUI(){
         
-        tblView.delegate = self
-        tblView.dataSource = self
         tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
         tblForComment.dataSource = self
         tblForComment.delegate = self
@@ -67,7 +60,6 @@ class commentViewClass: BaseViewController
         aryImg = ["img5","img6","img5"]
         
         collectionUserList.reloadData()
-        tblView.reloadData()
         tblForComment.reloadData()
         emojiPagerView.delegate = self
         emojiPagerView.dataSource = self
@@ -86,10 +78,6 @@ class commentViewClass: BaseViewController
         else{
             viewAllComment.isHidden = true
         }
-
-        tblView.applyBorder(3.0, borderColor: UIColor.init(red: 49/255, green: 36/255, blue: 77/255, alpha: 1.0))
-        tblView.layer.cornerRadius = 5.0
-        tblView.layer.masksToBounds = true
         
         tblForComment.reloadData()
         tblForComment.layoutIfNeeded()
@@ -165,15 +153,7 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSe
         let imgOfUser = aryImg[indexPath.row]
         let Username = aryUserList[indexPath.row]
         
-        if tableView == tblView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userShowViewTableViewCell", for: indexPath) as! userShowViewTableViewCell
-            
-            cell.imgUserViewarProfile.image = UIImage.init(named: imgOfUser)
-            CountOfUserProfile = aryUserList.count
-            
-            return cell
-        }
-        else{
+        
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "AllCommentsTableViewCell", for: indexPath) as! AllCommentsTableViewCell
             
@@ -185,7 +165,6 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSe
             cell.lctSubCommentTableHeight.constant = cell.tblSubComment.contentSize.height
             
             return cell
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

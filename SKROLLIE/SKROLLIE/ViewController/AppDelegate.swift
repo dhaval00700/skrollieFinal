@@ -68,6 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setLogin()  {
         DispatchQueue.main.async {
             AppPrefsManager.shared.setIsUserLogin(isUserLogin: false)
+            AppPrefsManager.shared.removeUserData()
+            AppPrefsManager.shared.removeUserProfileData()
             let storyborad = UIStoryboard(name: "Main", bundle: nil)
             let Login = storyborad.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             let customNavigation = UINavigationController(rootViewController: Login)
