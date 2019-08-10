@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ScalingCarousel
 
 class commentViewClass: BaseViewController
 {
@@ -19,8 +20,8 @@ class commentViewClass: BaseViewController
     @IBOutlet weak var collectionUserList: UICollectionView!
     @IBOutlet weak var tblForComment: UITableView!
     @IBOutlet weak var emojiPagerView: FSPagerView!
-    @IBOutlet weak var clvPost: UICollectionView!
     @IBOutlet weak var constraintHightOfTblComment: NSLayoutConstraint!
+    @IBOutlet var clvCarousel: ScalingCarouselView!
     
     var aryUserList = [String]()
     var aryImg = [String]()
@@ -46,7 +47,17 @@ class commentViewClass: BaseViewController
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        clvCarousel.deviceRotated()
+    }
+    
     func setUpUI(){
+        
+        clvCarousel.register(UINib(nibName: "UserPostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserPostCollectionViewCell")
+        
+        clvCarousel.delegate = self
+        clvCarousel.dataSource = self
         
         tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
         tblForComment.dataSource = self
@@ -119,29 +130,7 @@ extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource{
     }
 }
 
-// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
-
-extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserItemCollectionViewCell", for: indexPath) as!  UserItemCollectionViewCell
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let width = 110.0
-        let height = 90.0
-        
-        return CGSize(width: width, height: height)
-    }
-}
-
 // MARK: - Comment Tableview Extention
-
 extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSelectOfComment{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -173,5 +162,44 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource,delegateSe
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+//MARK: - Extension For Scalling Carosouel
+typealias CarouselDatasource = commentViewClass
+extension CarouselDatasource: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPostCollectionViewCell", for: indexPath) as!  UserPostCollectionViewCell
+        
+        cell.addShadow(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), opacity: 0.5, offset: CGSize.zero, radius: 0.8)
+        
+        DispatchQueue.main.async {
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
+        
+        return cell
+    }
+    
+}
+
+private typealias ScalingCarouselFlowDelegate = commentViewClass
+extension ScalingCarouselFlowDelegate: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
     }
 }

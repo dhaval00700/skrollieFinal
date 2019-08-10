@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7DED56C0BE8F6EDD4306BF8458BC7F17"
-               BuildableName = "SkyFloatingLabelTextField.framework"
-               BlueprintName = "SkyFloatingLabelTextField"
+               BlueprintIdentifier = "21102BFAFBC73CE4886FCDC27AC58ECD"
+               BuildableName = "ScalingCarousel.framework"
+               BlueprintName = "ScalingCarousel"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol cellUserProfilePostDelegate {
+    func selectedPost(indexpath: IndexPath, object: Post)
+}
+
 class cellUserProfilePost: UITableViewCell {
 
     // MARK: - Outlets
@@ -15,6 +20,7 @@ class cellUserProfilePost: UITableViewCell {
     
     // MARK: - Properties
     var collectionData = [Post]()
+    var delegate : cellUserProfilePostDelegate?
     var viwMenu = UIView()
     
     // MARK: - LifeCycles
@@ -58,7 +64,8 @@ extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let currentObj = collectionData[indexPath.item]
+        delegate?.selectedPost(indexpath: indexPath, object: currentObj)
     }
 }
 

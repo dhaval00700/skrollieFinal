@@ -326,6 +326,7 @@ extension userProfileClass: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellUserProfilePost", for: indexPath) as! cellUserProfilePost
         let currentObj = arrData[indexPath.section].arrPostData[indexPath.row]
         cell.ConfigureCellWithData(currentObj)
+        cell.delegate = self
         cell.viwMenu = viewMenu
         return cell
     }
@@ -347,6 +348,13 @@ extension userProfileClass: UITextViewDelegate {
          return false
     }
 }
+
+extension userProfileClass: cellUserProfilePostDelegate {
+    func selectedPost(indexpath: IndexPath, object: Post) {
+        
+    }
+}
+
 
 //MARK: - userProfileClass
 extension userProfileClass {
