@@ -109,7 +109,6 @@
 		7F7F9FD52285BA37004F85BD /* FSPagerViewObjcCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9FCD2285BA37004F85BD /* FSPagerViewObjcCompat.m */; };
 		7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F9FCE2285BA37004F85BD /* FSPagerCollectionView.swift */; };
 		7F841DEA22943463008A4D18 /* userViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F841DE922943463008A4D18 /* userViewerCollectionViewCell.swift */; };
-		7F9A73E922956B8100E92721 /* userShowViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */; };
 		7FB58947227B075E0062EE71 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB58945227B075E0062EE71 /* Photos.framework */; };
 		7FB58948227B075E0062EE71 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB58946227B075E0062EE71 /* PhotosUI.framework */; };
 		7FBEFF5722926EF300350BD5 /* MONTSERRAT-MEDIUMITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F73DD3CF2284620F0096A943 /* MONTSERRAT-MEDIUMITALIC.OTF */; };
@@ -278,7 +277,6 @@
 		7F7F9FCD2285BA37004F85BD /* FSPagerViewObjcCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPagerViewObjcCompat.m; sourceTree = "<group>"; };
 		7F7F9FCE2285BA37004F85BD /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		7F841DE922943463008A4D18 /* userViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userViewerCollectionViewCell.swift; sourceTree = "<group>"; };
-		7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userShowViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		7FB58945227B075E0062EE71 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		7FB58946227B075E0062EE71 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		7FCCA6D822644ADC00E8E9A1 /* SKROLLIE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKROLLIE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -569,7 +567,6 @@
 		4F25DAD722FAA817001A350C /* UserComment */ = {
 			isa = PBXGroup;
 			children = (
-				7F9A73E822956B8100E92721 /* userShowViewCollectionViewCell.swift */,
 				F7FB4EB82285442E00A390AE /* commentViewClass.swift */,
 				7AF03917229D5AC000A0F74D /* CustomCells */,
 			);
@@ -1133,7 +1130,6 @@
 				7A64AFF022B7A8C70078967A /* Date+Extension.swift in Sources */,
 				4F0F211322B762E1002F69A7 /* UIFont+Extension.swift in Sources */,
 				7F7F9FD02285BA37004F85BD /* FSPageViewTransformer.swift in Sources */,
-				7F9A73E922956B8100E92721 /* userShowViewCollectionViewCell.swift in Sources */,
 				4F0F211022B762A1002F69A7 /* UIView+Extensions.swift in Sources */,
 				34FC39F222A7A0F6009314D2 /* HomeTblCell.swift in Sources */,
 				4FF7D7E222B3661D004F2C62 /* emogie.swift in Sources */,

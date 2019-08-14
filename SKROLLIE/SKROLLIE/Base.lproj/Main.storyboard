@@ -1410,7 +1410,7 @@
         <!--Comment View Class-->
         <scene sceneID="yCS-5u-cb8">
             <objects>
-                <viewController storyboardIdentifier="commentViewClass" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v54-uE-t7W" customClass="commentViewClass" customModule="SKROLLIE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="commentViewClass" modalPresentationStyle="overCurrentContext" id="v54-uE-t7W" customClass="commentViewClass" customModule="SKROLLIE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="alS-KC-cO6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1425,10 +1425,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-O7-asY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="764"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="814"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9P-yL-ZcY">
+                                                            <rect key="frame" x="10" y="30" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="c9P-yL-ZcY" secondAttribute="height" multiplier="1:1" id="B8c-6K-nUZ"/>
+                                                                <constraint firstAttribute="height" constant="40" id="uuy-V2-kCT"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="50"/>
+                                                            <state key="normal" image="iconBack"/>
+                                                            <connections>
+                                                                <action selector="btnDismiss:" destination="v54-uE-t7W" eventType="touchUpInside" id="Zas-ef-9yl"/>
+                                                                <action selector="onBtnBack:" destination="VG6-Lh-nIH" eventType="touchUpInside" id="d1X-vW-27d"/>
+                                                                <action selector="onBtnBack:" destination="y1T-RM-n9f" eventType="touchUpInside" id="xl5-04-s5I"/>
+                                                            </connections>
+                                                        </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f66-hl-mye" customClass="FSPagerView" customModule="SKROLLIE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="365" width="320" height="60"/>
+                                                            <rect key="frame" x="0.0" y="415" width="320" height="60"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="RTc-kd-GiH"/>
@@ -1438,17 +1452,17 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3TQ-jd-2cz">
-                                                            <rect key="frame" x="10" y="445" width="300" height="80"/>
+                                                            <rect key="frame" x="10" y="495" width="300" height="80"/>
                                                             <color key="backgroundColor" red="0.19215686269999999" green="0.14117647059999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KLx-0r-UwB">
-                                                            <rect key="frame" x="30" y="455" width="260" height="90"/>
+                                                            <rect key="frame" x="30" y="505" width="260" height="90"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="90" id="Z4N-Wu-6Px"/>
                                                             </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6ZL-k6-NKu">
-                                                                <size key="itemSize" width="199" height="60.5"/>
+                                                                <size key="itemSize" width="110" height="90"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1456,14 +1470,14 @@
                                                             <cells/>
                                                         </collectionView>
                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RC0-e7-9Zq">
-                                                            <rect key="frame" x="10" y="555" width="300" height="128"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <rect key="frame" x="10" y="605" width="300" height="128"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="128" id="FYR-QC-bJ9"/>
                                                             </constraints>
                                                         </tableView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WxS-Os-sGH" customClass="paddingTextField" customModule="SKROLLIE" customModuleProvider="target">
-                                                            <rect key="frame" x="10" y="708" width="300" height="36"/>
+                                                            <rect key="frame" x="10" y="758" width="300" height="36"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="OkO-4r-MKV"/>
@@ -1481,7 +1495,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZH7-gb-Qg0">
-                                                            <rect key="frame" x="180" y="668" width="130" height="30"/>
+                                                            <rect key="frame" x="180" y="718" width="130" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfV-1K-J4q">
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
@@ -1525,8 +1539,8 @@
                                                             </constraints>
                                                         </view>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-rg-orN" customClass="ScalingCarouselView" customModule="ScalingCarousel">
-                                                            <rect key="frame" x="0.0" y="30" width="320" height="320"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <rect key="frame" x="0.0" y="80" width="320" height="320"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="QPu-rg-orN" secondAttribute="height" multiplier="1:1" id="shV-Tg-UUJ"/>
                                                             </constraints>
@@ -1546,15 +1560,21 @@
                                                                     </view>
                                                                 </collectionViewCell>
                                                             </cells>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                                    <real key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </collectionView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="WxS-Os-sGH" firstAttribute="leading" secondItem="RC0-e7-9Zq" secondAttribute="leading" id="0mW-e7-neu"/>
                                                         <constraint firstAttribute="bottom" secondItem="WxS-Os-sGH" secondAttribute="bottom" constant="20" id="CnZ-jg-mqO"/>
+                                                        <constraint firstItem="c9P-yL-ZcY" firstAttribute="leading" secondItem="0zz-O7-asY" secondAttribute="leading" constant="10" id="Ef6-Cr-z00"/>
+                                                        <constraint firstItem="c9P-yL-ZcY" firstAttribute="top" secondItem="0zz-O7-asY" secondAttribute="top" constant="30" id="KFW-ZY-3Kg"/>
                                                         <constraint firstItem="3TQ-jd-2cz" firstAttribute="leading" secondItem="0zz-O7-asY" secondAttribute="leading" constant="10" id="NGY-kr-Ard"/>
                                                         <constraint firstItem="f66-hl-mye" firstAttribute="leading" secondItem="0zz-O7-asY" secondAttribute="leading" id="NTu-3G-dUe"/>
-                                                        <constraint firstItem="QPu-rg-orN" firstAttribute="top" secondItem="0zz-O7-asY" secondAttribute="top" constant="30" id="NkI-ba-Qpy"/>
                                                         <constraint firstItem="ZH7-gb-Qg0" firstAttribute="trailing" secondItem="RC0-e7-9Zq" secondAttribute="trailing" id="S6M-zq-df9"/>
                                                         <constraint firstItem="3TQ-jd-2cz" firstAttribute="bottom" secondItem="KLx-0r-UwB" secondAttribute="bottom" constant="-20" id="Sn7-8Y-tvQ"/>
                                                         <constraint firstItem="RC0-e7-9Zq" firstAttribute="top" secondItem="KLx-0r-UwB" secondAttribute="bottom" constant="10" id="Tg5-2v-Mqf"/>
@@ -1570,6 +1590,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="f66-hl-mye" secondAttribute="trailing" id="k4a-qd-Qgo"/>
                                                         <constraint firstItem="f66-hl-mye" firstAttribute="top" secondItem="QPu-rg-orN" secondAttribute="bottom" constant="15" id="oGi-Ma-MPC"/>
                                                         <constraint firstItem="3TQ-jd-2cz" firstAttribute="top" secondItem="f66-hl-mye" secondAttribute="bottom" constant="20" id="pQR-mI-8aM"/>
+                                                        <constraint firstItem="QPu-rg-orN" firstAttribute="top" secondItem="c9P-yL-ZcY" secondAttribute="bottom" constant="10" id="prX-1U-JYB"/>
                                                         <constraint firstItem="WxS-Os-sGH" firstAttribute="trailing" secondItem="RC0-e7-9Zq" secondAttribute="trailing" id="sIe-9y-1z4"/>
                                                         <constraint firstItem="RC0-e7-9Zq" firstAttribute="leading" secondItem="3TQ-jd-2cz" secondAttribute="leading" id="xQW-Hg-u4q"/>
                                                     </constraints>

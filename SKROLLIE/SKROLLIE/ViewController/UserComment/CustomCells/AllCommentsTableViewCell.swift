@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-protocol delegateSelectOfComment {
-}
-
 class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var imgUser: UIImageView!
@@ -24,7 +20,6 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     var aryImg = [String]()
     var imgOfUser = String()
     var Username = String()
-    var delegateOfSelectedComment : delegateSelectOfComment!
     
     override func awakeFromNib()
     {

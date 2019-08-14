@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ku4-ZC-gLK" firstAttribute="top" secondItem="BPF-a4-dCX" secondAttribute="top" constant="10" id="10l-MZ-OwF"/>
                             <constraint firstItem="Ku4-ZC-gLK" firstAttribute="top" secondItem="ESi-Ia-DJV" secondAttribute="top" id="1ps-jQ-ox0"/>
@@ -60,6 +60,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="BPF-a4-dCX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PRB-tI-4bx"/>
                     <constraint firstAttribute="bottom" secondItem="BPF-a4-dCX" secondAttribute="bottom" id="SWX-Rh-euz"/>
@@ -67,6 +68,7 @@
                     <constraint firstItem="BPF-a4-dCX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mCX-cl-oEl"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgUser" destination="ESi-Ia-DJV" id="rfi-DV-s8e"/>

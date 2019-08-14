@@ -47,7 +47,7 @@ class Post {
         if isPhoto {
             Url = prefixDataUrl + "\(map.value("Url") ?? "")"
         } else {
-            Url = prefixDataUrl + "\(map.value("Videothumbnailimage") ?? "")"
+            Url = prefixDataUrl + "\(map.value("Url") ?? "")"
         }
         UserName = userName
         let date = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")

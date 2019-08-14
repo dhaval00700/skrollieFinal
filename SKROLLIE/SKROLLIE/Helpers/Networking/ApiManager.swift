@@ -35,7 +35,6 @@ class ApiManager {
         
         
         print("parameters = \(finalParameters)")
-        print("urlString = \(urlString)")
         
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = method.rawValue
@@ -57,9 +56,11 @@ class ApiManager {
             }
             .responseJSON { response in
                 
+               
+                print("urlString = \(urlString)")
+                print( "response.request: \(String(describing: response.request?.allHTTPHeaderFields))")
                 print( "Response Error: \(String(describing: response.result.error))")
                 print( "Response JSON: \(String(describing: response.result.value))")
-                print( "response.request: \(String(describing: response.request?.allHTTPHeaderFields))")
                 
                 
                 if(response.result.error == nil) {

@@ -350,8 +350,11 @@ extension userProfileClass: UITextViewDelegate {
 }
 
 extension userProfileClass: cellUserProfilePostDelegate {
-    func selectedPost(indexpath: IndexPath, object: Post) {
-        
+    func selectedPost(indexpath: IndexPath, arrPost: [Post]) {
+        let navVc = commentViewClass.instantiate(fromAppStoryboard: .Main)
+        navVc.arrPost = arrPost
+        navVc.indexpath = indexpath
+        navigationController?.present(navVc, animated: true, completion: nil)
     }
 }
 

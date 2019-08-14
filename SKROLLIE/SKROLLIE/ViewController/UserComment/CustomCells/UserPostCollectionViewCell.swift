@@ -7,12 +7,60 @@
 //
 
 import UIKit
+import AVKit
 
 class UserPostCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var viwPost: UIView!
+    @IBOutlet weak var imgUserProfile: UIImageView!
+    @IBOutlet weak var lblUserName: UILabel!
+    @IBOutlet weak var imgPost: UIImageView!
+    @IBOutlet weak var viwHrLine: UIView!
+    @IBOutlet weak var emoji1: UIButton!
+    @IBOutlet weak var emoji2: UIButton!
+    @IBOutlet weak var btnUserProfile: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setupUI()
+    }
+    
+    private func setupUI() {
+        imgPost.isHidden = false
+        viwPost.isHidden = true
     }
 
+    var playerLayer : AVPlayerLayer!
+    
+    func ConfigureDatWithCell(_ currentObj: Post) {
+        lblUserName.text = currentObj.UserName
+        
+        imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        
+        if !currentObj.isPhoto {
+            let playerItem = AVPlayerItem(url: URL(string: currentObj.Url)!)
+            var avPlayer = AVPlayer()
+            avPlayer = AVPlayer(playerItem: playerItem)
+            playerLayer = AVPlayerLayer(player: avPlayer)
+            
+            playerLayer.videoGravity = .resizeAspectFill
+            delay(time: 1.5) {
+                self.viwPost.layoutIfNeeded()
+                self.viwPost.layoutIfNeeded()
+                self.playerLayer.frame.size = self.viwPost.bounds.size
+                self.playerLayer.layoutIfNeeded()
+                self.viwPost.layer.addSublayer(self.playerLayer)
+                avPlayer.play()
+                self.imgPost.isHidden = true
+                self.viwPost.isHidden = false
+            }
+        } else {
+            imgPost.isHidden = false
+            viwPost.isHidden = true
+            if playerLayer != nil {
+                playerLayer.removeFromSuperlayer()
+            }
+        }
+    }
 }
