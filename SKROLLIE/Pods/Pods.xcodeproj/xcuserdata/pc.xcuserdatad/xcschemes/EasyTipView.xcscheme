@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3F134496F8D6F69AFC2320FA69BD1DB"
-               BuildableName = "SwiftyComments.framework"
-               BlueprintName = "SwiftyComments"
+               BlueprintIdentifier = "DD575E57A0BFF2E4BF60364534545F7E"
+               BuildableName = "EasyTipView.framework"
+               BlueprintName = "EasyTipView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

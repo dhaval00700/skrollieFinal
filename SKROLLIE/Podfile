@@ -19,6 +19,7 @@ target 'SKROLLIE' do
   pod 'AWSS3'
   pod 'KMPlaceholderTextView'
   pod 'ScalingCarousel'
+  pod 'EasyTipView'
   
   # https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-381279098
   post_install do |installer|

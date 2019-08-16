@@ -70,6 +70,7 @@
 		4F645AE822FC44EC0003FC6F /* UserPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F645AE622FC44EC0003FC6F /* UserPostCollectionViewCell.xib */; };
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
 		4F761E0922BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */; };
+		4F7C982523069A1700A73DC9 /* CAShapeLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C982423069A1700A73DC9 /* CAShapeLayer+Extension.swift */; };
 		4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */; };
 		4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBB1E022C514400048A596 /* SettingsViewController.swift */; };
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
@@ -235,6 +236,7 @@
 		4F645AE622FC44EC0003FC6F /* UserPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
 		4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellUserProfileSectionTableViewCell.xib; sourceTree = "<group>"; };
+		4F7C982423069A1700A73DC9 /* CAShapeLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Extension.swift"; sourceTree = "<group>"; };
 		4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		4FBBB1E022C514400048A596 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapClass.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				4F0F211622B76391002F69A7 /* UIImageView+Extension.swift */,
 				4F0F211822B764F7002F69A7 /* UITableView+Extension.swift */,
 				7A64AFEF22B7A8C70078967A /* Date+Extension.swift */,
+				4F7C982423069A1700A73DC9 /* CAShapeLayer+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SRCountdownTimer/SRCountdownTimer.framework",
@@ -1027,6 +1031,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SRCountdownTimer.framework",
@@ -1093,6 +1098,7 @@
 				7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */,
 				7F7F9FD42285BA37004F85BD /* FSPageControl.swift in Sources */,
 				4F0F214022B76CDC002F69A7 /* GlobalFunctions.swift in Sources */,
+				4F7C982523069A1700A73DC9 /* CAShapeLayer+Extension.swift in Sources */,
 				4F0F212C22B76C4D002F69A7 /* Utility.swift in Sources */,
 				4F0F211522B7633C002F69A7 /* UIScrollView+Extension.swift in Sources */,
 				F7FB4EB92285442E00A390AE /* commentViewClass.swift in Sources */,
