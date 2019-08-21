@@ -33,7 +33,21 @@
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIN-zq-8X7">
                                 <rect key="frame" x="10" y="33" width="276" height="223"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Fk-TDs">
+                                        <rect key="frame" x="125.5" y="99" width="25" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Dt3-KB-uab"/>
+                                            <constraint firstAttribute="width" constant="25" id="q60-3o-fH2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="UYs-Fk-TDs" firstAttribute="centerX" secondItem="fIN-zq-8X7" secondAttribute="centerX" id="UHo-B8-X4c"/>
+                                    <constraint firstItem="UYs-Fk-TDs" firstAttribute="centerY" secondItem="fIN-zq-8X7" secondAttribute="centerY" id="f2P-rR-lxR"/>
+                                </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="n3S-e1-wHw">
                                 <rect key="frame" x="190" y="36" width="93" height="45"/>
