@@ -19,6 +19,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var emoji1: UIButton!
     @IBOutlet weak var emoji2: UIButton!
     @IBOutlet weak var btnUserProfile: UIButton!
+    @IBOutlet weak var imgWaterMark: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         imgPost.isHidden = false
         viwPost.isHidden = true
+        imgWaterMark.alpha = 0
     }
 
     var playerLayer : AVPlayerLayer!

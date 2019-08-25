@@ -67,6 +67,8 @@ class commentViewClass: BaseViewController
     }
     
     private func setupEasyTip() {
+        tipView?.removeFromSuperview()
+        tipView = nil
         var pf = EasyTipView.Preferences()
         pf.drawing.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         pf.drawing.foregroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -78,7 +80,7 @@ class commentViewClass: BaseViewController
         pf.animating.showInitialAlpha = 0
         pf.animating.showDuration = 1
         pf.animating.dismissDuration = 1
-        tipView = nil
+        
         tipView = EasyTipView(contentView: self.tbl, preferences: pf, delegate: self)
         
         setupTableComment()
