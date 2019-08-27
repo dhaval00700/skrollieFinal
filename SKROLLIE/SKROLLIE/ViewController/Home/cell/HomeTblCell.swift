@@ -16,6 +16,7 @@ class HomeTblCell: UITableViewCell {
     @IBOutlet weak var Collectionview: UICollectionView!
     @IBOutlet weak var viewOfUserProfileBackground: UIView!
     @IBOutlet weak var btnUser: UIButton!
+    @IBOutlet weak var imgTag: UIImageView!
     
     // MARK: - Properties
     var collectionData = UserData()
@@ -33,6 +34,8 @@ class HomeTblCell: UITableViewCell {
         lblUserName.font = UIFont.Regular(ofSize: 16)
         Collectionview.delegate = self
         Collectionview.dataSource = self
+        imgTag.isHidden = true
+        imgTag.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2509279847, green: 0.1815860868, blue: 0.3583279252, alpha: 1))
     }
     
     func ConfigureCellWithData(_ data: UserData) {
@@ -40,6 +43,12 @@ class HomeTblCell: UITableViewCell {
         Collectionview.reloadData()
         imgUser.imageFromURL(link: data.ProfileImage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         lblUserName.text = collectionData.ProfileName
+        
+        if collectionData.IsAccountVerify == AccountVerifyStatus.zero || collectionData.IsAccountVerify == AccountVerifyStatus.one {
+            imgTag.isHidden = true
+        } else {
+            imgTag.isHidden = false
+        }
     }
 }
 

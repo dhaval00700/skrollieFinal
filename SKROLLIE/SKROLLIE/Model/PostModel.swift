@@ -87,12 +87,15 @@ class UserData
     var map: Map!
     var ProfileName = ""
     var ProfileImage = ""
+    var IsAccountVerify = AccountVerifyStatus.one
     var arrPost = [Post]()
     
     init(data: [String: Any]) {
         map = Map(data: data)
         ProfileName = map.value("ProfileName") ?? ""
         ProfileImage = prefixDataUrl + "\(map.value("ProfileImage") ?? "")"
+        let staus = map.value("IsAccountVerify") ?? 0
+        IsAccountVerify = AccountVerifyStatus(rawValue: staus)!
         let post = map.value("Post") ?? [[String:Any]]()
         arrPost = Post.getArrayPost(data: post, userName: ProfileName)
     }

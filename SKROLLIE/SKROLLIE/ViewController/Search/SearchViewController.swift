@@ -34,7 +34,7 @@ class SearchViewController: BaseViewController {
     
     //MARK: - Methods
     func setUpUI() {
-        
+        txtSearch.placeholder = "Search"
         txtSearch.showsCancelButton = false
         txtSearch.applyBorder(1, borderColor: #colorLiteral(red: 0.2374413013, green: 0.1816716492, blue: 0.3331321776, alpha: 1))
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.white
@@ -121,6 +121,7 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let itemWidth = (collectionView.frame.width - (5 * 3)) / 2.0
         return CGSize(width: itemWidth, height: 124)
     }

@@ -47,15 +47,24 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img3" translatesAutoresizingMaskIntoConstraints="NO" id="25A-gY-bcU">
                                         <rect key="frame" x="3" y="3" width="44" height="44"/>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shield" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-uQ-c5P">
+                                        <rect key="frame" x="40" y="-5" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="jUW-GR-YP2"/>
+                                            <constraint firstAttribute="height" constant="15" id="zia-ow-zPe"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="559-D5-Gnc"/>
+                                    <constraint firstItem="FmI-uQ-c5P" firstAttribute="top" secondItem="9Qn-dF-Y7w" secondAttribute="top" constant="-5" id="I0Y-w4-W0A"/>
                                     <constraint firstItem="25A-gY-bcU" firstAttribute="leading" secondItem="9Qn-dF-Y7w" secondAttribute="leading" constant="3" id="LHm-yM-EJ0"/>
                                     <constraint firstAttribute="bottom" secondItem="25A-gY-bcU" secondAttribute="bottom" constant="3" id="TET-N9-sbz"/>
                                     <constraint firstItem="25A-gY-bcU" firstAttribute="top" secondItem="9Qn-dF-Y7w" secondAttribute="top" constant="3" id="Xbl-jL-4eL"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="aU4-JU-VNm"/>
                                     <constraint firstAttribute="height" constant="50" id="iKf-TD-Yg8"/>
+                                    <constraint firstAttribute="trailing" secondItem="FmI-uQ-c5P" secondAttribute="trailing" constant="-5" id="uhy-OJ-8DF"/>
                                     <constraint firstAttribute="trailing" secondItem="25A-gY-bcU" secondAttribute="trailing" constant="3" id="yvu-4O-b7o"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -106,6 +115,7 @@
             <connections>
                 <outlet property="Collectionview" destination="YLe-sR-fjO" id="mtS-sD-SF7"/>
                 <outlet property="btnUser" destination="Rix-9l-qQg" id="8S0-kc-vuC"/>
+                <outlet property="imgTag" destination="FmI-uQ-c5P" id="Bwm-8U-uUh"/>
                 <outlet property="imgUser" destination="25A-gY-bcU" id="DfX-Qf-OaC"/>
                 <outlet property="lblUserName" destination="fSV-VU-nyK" id="eNx-5g-h36"/>
                 <outlet property="viewOfUserProfileBackground" destination="9Qn-dF-Y7w" id="p8P-WW-Bk2"/>
@@ -114,6 +124,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_shield" width="25" height="25"/>
         <image name="img3" width="212" height="132"/>
     </resources>
 </document>

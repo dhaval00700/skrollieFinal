@@ -22,7 +22,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
+        <array key="MONTSERRAT-SEMIBOLD.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -1353,8 +1353,8 @@
                                     <constraint firstItem="wEe-lV-k7s" firstAttribute="centerY" secondItem="zWl-kR-aoM" secondAttribute="centerY" id="p1x-Nn-wwc"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skrollie is fun with friends. Use the search above &amp; make connections right now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFW-qL-ShE">
-                                <rect key="frame" x="10" y="105" width="300" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skrollie is fun with friends." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFW-qL-ShE">
+                                <rect key="frame" x="10" y="105" width="300" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" red="0.23921568630000001" green="0.18039215689999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3451,7 +3451,7 @@
                                 <rect key="frame" x="0.0" y="90" width="320" height="478"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3C7-0v-WMX">
-                                        <rect key="frame" x="0.0" y="27" width="320" height="451"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="478"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="qT1-8s-as1">
                                             <size key="itemSize" width="50" height="50"/>
@@ -3470,21 +3470,12 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBx-kw-n1e">
-                                        <rect key="frame" x="5" y="5" width="310" height="22"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96873289350000003" green="0.69654601810000005" blue="0.20853844290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="IBx-kw-n1e" firstAttribute="leading" secondItem="8xa-FI-Ggu" secondAttribute="leading" constant="5" id="1cd-8j-dHd"/>
+                                    <constraint firstItem="3C7-0v-WMX" firstAttribute="top" secondItem="8xa-FI-Ggu" secondAttribute="top" id="CkR-DO-Cyk"/>
                                     <constraint firstAttribute="trailing" secondItem="3C7-0v-WMX" secondAttribute="trailing" id="GEv-pd-Mf7"/>
-                                    <constraint firstItem="3C7-0v-WMX" firstAttribute="top" secondItem="IBx-kw-n1e" secondAttribute="bottom" id="KSv-ol-lPe"/>
                                     <constraint firstAttribute="bottom" secondItem="3C7-0v-WMX" secondAttribute="bottom" id="cHn-Dd-ilv"/>
-                                    <constraint firstItem="IBx-kw-n1e" firstAttribute="top" secondItem="8xa-FI-Ggu" secondAttribute="top" constant="5" id="hZA-oK-3oB"/>
-                                    <constraint firstAttribute="trailing" secondItem="IBx-kw-n1e" secondAttribute="trailing" constant="5" id="ige-JU-0j0"/>
                                     <constraint firstItem="3C7-0v-WMX" firstAttribute="leading" secondItem="8xa-FI-Ggu" secondAttribute="leading" id="uvz-cX-gP3"/>
                                 </constraints>
                             </view>
@@ -3938,8 +3929,8 @@
                                 <rect key="frame" x="0.0" y="90" width="320" height="478"/>
                                 <color key="backgroundColor" red="0.96873289350000003" green="0.69654601810000005" blue="0.20853844290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No connection Requests are Available!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgb-Mq-OQP">
-                                <rect key="frame" x="10" y="105" width="300" height="43.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No connection requests" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgb-Mq-OQP">
+                                <rect key="frame" x="10" y="105" width="300" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" red="0.23921568630000001" green="0.18039215689999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
