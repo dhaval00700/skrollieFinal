@@ -112,6 +112,10 @@ class userProfileClass: BaseViewController
                 self.setDropDown()
             }
         })
+        self.viewBottom.isHidden = true
+        UIView.animate(withDuration: 1) {
+            self.viewBottom.alpha = 0
+        }
         getForeverPostByUserId()
         
         if isThisDetail {
@@ -185,6 +189,10 @@ class userProfileClass: BaseViewController
         txvDesc.layoutIfNeeded()
         lctTxvDescHeight.constant = txvDesc.contentSize.height
         lblUsername.text = userProfileData.ProfileName
+        self.viewBottom.isHidden = false
+        UIView.animate(withDuration: 1) {
+            self.viewBottom.alpha = 1
+        }
     }
     
     // MARK: - Actions
@@ -354,6 +362,7 @@ extension userProfileClass: cellUserProfilePostDelegate {
         let navVc = commentViewClass.instantiate(fromAppStoryboard: .Main)
         navVc.arrPost = arrPost
         navVc.indexpath = indexpath
+        navVc.isOwnProfile = true
         navigationController?.present(navVc, animated: true, completion: nil)
     }
 }
@@ -365,32 +374,39 @@ extension userProfileClass {
     private func get24HourPostByUserId() {
         
         _ = APIClient.Get24HourPostByUserId(userId: userId) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            if responseData.success {
-                let arrNotForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.arrData.append(GetPostData(arrNotForEverList, TwentyFourHourStr))
+            
+            DispatchQueue.main.async {
+                let response = responseObj ?? [String : Any]()
+                let responseData = ResponseDataModel(responseObj: response)
+                if responseData.success {
+                    let arrNotForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
+                    self.arrData.append(GetPostData(arrNotForEverList, TwentyFourHourStr))
+                }
+                if self.arrData.count > 0 {
+                    self.lblNoData.isHidden = true
+                } else {
+                    self.lblNoData.isHidden = false
+                }
+                self.tableview.reloadData()
+
             }
-            if self.arrData.count > 0 {
-                self.lblNoData.isHidden = true
-            } else {
-                self.lblNoData.isHidden = false
-            }
-            self.tableview.reloadData()
         }
     }
     
     private func getForeverPostByUserId() {
         
         _ = APIClient.GetForevetPostByUserId(userId: userId) { (responseObj) in
-            let response = responseObj ?? [String : Any]()
-            let responseData = ResponseDataModel(responseObj: response)
-            self.arrData.removeAll()
-            if responseData.success {
-                let arrForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
-                self.arrData.append(GetPostData(arrForEverList, ForeverStr))
+             DispatchQueue.main.async {
+                let response = responseObj ?? [String : Any]()
+                let responseData = ResponseDataModel(responseObj: response)
+                self.arrData.removeAll()
+                if responseData.success {
+                    let arrForEverList = responseData.data as? [[[String: Any]]] ?? [[[String: Any]]]()
+                    self.arrData.append(GetPostData(arrForEverList, ForeverStr))
+                }
+                self.get24HourPostByUserId()
             }
-            self.get24HourPostByUserId()
+            
         }
     }
 }

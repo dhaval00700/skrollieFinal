@@ -54,7 +54,7 @@ class HomeViewController: BaseViewController
         refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
         tblData.addSubview(refreshControl)
         
-        lblNoData.isHidden = false
+        lblNoData.isHidden = true
         getAllPost()
     }
     
@@ -104,6 +104,16 @@ class HomeViewController: BaseViewController
     }
 }
 
+//MARK: - cellUserProfilePostDelegate
+extension HomeViewController: cellUserProfilePostDelegate {
+    func selectedPost(indexpath: IndexPath, arrPost: [Post]) {
+        let navVc = commentViewClass.instantiate(fromAppStoryboard: .Main)
+        navVc.arrPost = arrPost
+        navVc.indexpath = indexpath
+        navigationController?.present(navVc, animated: true, completion: nil)
+    }
+}
+
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -125,6 +135,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.btnUser.tag = indexPath.row
         cell.btnUser.addTarget(self, action: #selector(onBtnUser), for: .touchUpInside)
         cell.viwMenu = viewMenu
+        cell.delegate = self
         return cell
         
     }

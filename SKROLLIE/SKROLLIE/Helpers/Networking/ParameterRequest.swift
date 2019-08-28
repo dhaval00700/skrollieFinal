@@ -41,6 +41,8 @@ class ParameterRequest {
     static let ReportedByUserId = "ReportedByUserId"
     static let ReportedToUserId = "ReportedToUserId"
     static let IsPublic = "IsPublic"
+    static let idPost = "idPost"
+    static let Emoji = "Emoji"
     
     init(){
     }

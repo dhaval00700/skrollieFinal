@@ -13,6 +13,9 @@ class FriendListViewController: BaseViewController {
     // MARK: - Outlets
     @IBOutlet weak var tblFriendList : UITableView!
     @IBOutlet weak var clvFriendList: UICollectionView!
+    @IBOutlet weak var viwConnections: UIView!
+    @IBOutlet weak var viwDisConnections: UIView!
+
     @IBOutlet weak var onBtnRequestList: UIButton!
     
     // MARK: - Properties
@@ -50,6 +53,9 @@ class FriendListViewController: BaseViewController {
         clvFriendList.register(UINib(nibName: "FriendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FriendCollectionViewCell")
         clvFriendList.delegate = self
         clvFriendList.dataSource = self
+        
+        viwConnections.isHidden = true
+        viwDisConnections.isHidden = true
         
         resetAll()
     }
@@ -175,6 +181,12 @@ extension FriendListViewController
                 self.tblFriendList.reloadData()
             }
             self.isDataLoading = false
+            
+            if self.arrUnFriendList.isEmpty {
+                self.viwDisConnections.isHidden = true
+            } else {
+                self.viwDisConnections.isHidden = false
+            }
         })
         
     }
@@ -206,6 +218,12 @@ extension FriendListViewController
                 self.clvFriendList.reloadData()
             }
             self.isDataLoadingFriend = false
+            
+            if self.arrFriendList.isEmpty {
+                self.viwConnections.isHidden = true
+            } else {
+                self.viwConnections.isHidden = false
+            }
         })
         
     }

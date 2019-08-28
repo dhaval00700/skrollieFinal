@@ -17,6 +17,8 @@ class HomeTblCell: UITableViewCell {
     @IBOutlet weak var viewOfUserProfileBackground: UIView!
     @IBOutlet weak var btnUser: UIButton!
     @IBOutlet weak var imgTag: UIImageView!
+    var delegate : cellUserProfilePostDelegate?
+
     
     // MARK: - Properties
     var collectionData = UserData()
@@ -75,7 +77,7 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        delegate?.selectedPost(indexpath: indexPath, arrPost: collectionData.arrPost)
     }
 }
 

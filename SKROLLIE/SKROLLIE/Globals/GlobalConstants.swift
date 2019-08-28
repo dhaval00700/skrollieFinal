@@ -206,4 +206,8 @@ struct API {
     static let GetAlluserWuthSearch = BASE_URL + "MobileAccount/GetAllUserWithSearch"
     static let ForgotPassword     =   BASE_URL + "MobileAccount/ForgotPassword"
     static let CancelledFriendRequest  =   BASE_URL + "MobilePost/CancelledFriendRequest"
+    static let LikePostByUser  =   BASE_URL + "MobilePost/LikePostByUser"
+
+    
+    
 }

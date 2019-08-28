@@ -24,6 +24,11 @@ class commentViewClass: BaseViewController
     @IBOutlet weak var constraintHightOfTblComment: NSLayoutConstraint!
     @IBOutlet var clvCarousel: ScalingCarouselView!
     
+    @IBOutlet weak var viwUnblockUser: UIView!
+    @IBOutlet weak var viwComments: UIView!
+    @IBOutlet weak var viwWriteReview: UIView!
+
+    
     var aryUserList = [String]()
     var aryImg = [String]()
     var isOwnProfile: Bool = false
@@ -31,6 +36,7 @@ class commentViewClass: BaseViewController
     var indexpath : IndexPath!
     var tipView: EasyTipView?
     var tbl = UITableView(frame: CGRect(x: 0, y: 0, width: 60, height: 0))
+    var currentIndexForLike = 0
     
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
     
@@ -54,13 +60,22 @@ class commentViewClass: BaseViewController
         
         viwUserListContainer.layer.cornerRadius = 8.0
         
+        viwComments.isHidden = true
+        viwUnblockUser.isHidden = true
+        viwWriteReview.isHidden = true
+        
         if isOwnProfile {
-            viewAllComment.isHidden = true
+            viwUnblockUser.isHidden = false
+            viwComments.isHidden = false
+            viwComments.isHidden = true
+
         }
         else{
-            viewAllComment.isHidden = true
+            viewAllComment.isHidden = false
+            viwWriteReview.isHidden = true
+
         }
-        
+       
         setupCollectionView()
         setupEmogiPager()
         setupEasyTip()
@@ -91,6 +106,7 @@ class commentViewClass: BaseViewController
         clvCarousel.delegate = self
         clvCarousel.dataSource = self
         clvCarousel.reloadData()
+        currentIndexForLike = self.indexpath.row
         delay(time: 2.0) {
             self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: false)
         }
@@ -183,7 +199,10 @@ extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource {
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        
+        if !isOwnProfile {
+            let currentEmoji = arrEmoji[ index]
+            likeUser(emojiLike: Int(returnEmojiNumber(img: currentEmoji))!)
+        }
     }
     
     func pagerViewWillBeginDragging(_ pagerView: FSPagerView) {
@@ -275,5 +294,45 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    }
+}
+
+
+extension commentViewClass {
+    
+    private func likeUser(emojiLike:Int) {
+        
+        let param = ParameterRequest()
+        let obj = arrPost[currentIndexForLike]
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idPost, value: obj.Postid)
+        param.addParameter(key: ParameterRequest.Emoji, value: "")
+
+        _ = APIClient.DeactivateAccount(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+               
+            }
+        }
+    }
+}
+
+
+extension commentViewClass : UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var visibleRect = CGRect()
+        
+        visibleRect.origin = clvCarousel.contentOffset
+        visibleRect.size = clvCarousel.bounds.size
+        
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        
+        guard let indexPath = clvCarousel.indexPathForItem(at: visiblePoint) else { return }
+        currentIndexForLike = indexPath.row
     }
 }
