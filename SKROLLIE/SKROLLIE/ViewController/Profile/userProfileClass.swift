@@ -363,6 +363,7 @@ extension userProfileClass: cellUserProfilePostDelegate {
         navVc.arrPost = arrPost
         navVc.indexpath = indexpath
         navVc.isOwnProfile = true
+        navVc.userProfileDataObj = userProfileData
         navigationController?.present(navVc, animated: true, completion: nil)
     }
 }

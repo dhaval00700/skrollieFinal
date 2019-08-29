@@ -40,6 +40,9 @@ class commentViewClass: BaseViewController
     
     var arrUserLike = [UserLike]()
     
+    var userProfileDataObj: UserProfileModel!
+
+    
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
     
     
@@ -261,11 +264,17 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if tableView == tblForComment {
+           return UITableView.automaticDimension
+        }
+        return 70
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if tableView == tblForComment {
+           return UITableView.automaticDimension
+        }
+        return 70
     }
 }
 
@@ -296,6 +305,7 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
             if isOwnProfile {
                 cell.emoji1.isHidden = true
                 cell.emoji2.isHidden = true
+                cell.imgUserProfile.imageFromURL(link: userProfileDataObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             }
             return cell
         }
@@ -343,6 +353,9 @@ extension commentViewClass {
             if responseData.success {
                 self.arrUserLike = UserLike.getArray(data: response["response"] as? [[String : Any]] ?? [[String : Any]]())
             }
+            self.tbl.reloadData()
+            self.tbl.layoutIfNeeded()
+            self.tbl.frame = CGRect(x: 0, y: 0, width: 60, height: self.tbl.contentSize.height)
             self.emojiPagerView.reloadData()
         }
     }
@@ -352,14 +365,18 @@ extension commentViewClass {
 extension commentViewClass : UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        var visibleRect = CGRect()
         
-        visibleRect.origin = clvCarousel.contentOffset
-        visibleRect.size = clvCarousel.bounds.size
-        
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        
-        guard let indexPath = clvCarousel.indexPathForItem(at: visiblePoint) else { return }
-        currentIndexForLike = indexPath.row
+            var visibleRect = CGRect()
+            
+            visibleRect.origin = clvCarousel.contentOffset
+            visibleRect.size = clvCarousel.bounds.size
+            
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            
+            guard let indexPath = clvCarousel.indexPathForItem(at: visiblePoint) else { return }
+            currentIndexForLike = indexPath.row
+            getAllLike()
+       
+       
     }
 }
