@@ -38,6 +38,8 @@ class commentViewClass: BaseViewController
     var tbl = UITableView(frame: CGRect(x: 0, y: 0, width: 60, height: 0))
     var currentIndexForLike = 0
     
+    var arrUserLike = [UserLike]()
+    
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
     
     
@@ -46,6 +48,7 @@ class commentViewClass: BaseViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        getAllLike()
         
     }
     
@@ -121,7 +124,6 @@ class commentViewClass: BaseViewController
         tbl.register(UINib(nibName: "CommentItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentItemTableViewCell")
         tbl.dataSource = self
         tbl.delegate = self
-        tbl.reloadData()
         tbl.layoutIfNeeded()
         tbl.frame = CGRect(x: 0, y: 0, width: 60, height: tbl.contentSize.height)
         
@@ -147,13 +149,18 @@ class commentViewClass: BaseViewController
         self.dismiss(animated: true, completion: nil)
     }
     
+    var selectedToolTipIndex = 0
+    
     @objc func handlePressGesture(gesture: UILongPressGestureRecognizer!) {
         let position = gesture.location(in: emojiPagerView.collectionView)
         let indexpath = self.emojiPagerView.collectionView.indexPathForItem(at: position)
         let cell = emojiPagerView.cellForItem(at: indexpath!.item)
+        
         switch gesture.state {
         case .began:
+            selectedToolTipIndex = indexpath!.item
             tipView?.show(forView: cell!.imageView!)
+            tbl.reloadData()
             break
         case .cancelled:
             
@@ -181,20 +188,21 @@ extension commentViewClass: EasyTipViewDelegate {
 // MARK: - FSPagerViewDelegate,FSPagerViewDataSource
 extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return arrEmoji.count
+        return arrUserLike.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        let currentEmoji = arrEmoji[ index]
-        cell.imageView?.image = currentEmoji
+        let currentEmoji = arrUserLike[ index]
+        cell.imageView?.image = currentEmoji.likeEmoji
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
-        cell.contentView.setBadge(text: "12", withOffsetFromTopRight: .zero, andColor: .red, andFilled: true, andFontSize: 8)
+        cell.contentView.setBadge(text: currentEmoji.TotalLike, withOffsetFromTopRight: .zero, andColor: .red, andFilled: true, andFontSize: 8)
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handlePressGesture))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         cell.contentView.addGestureRecognizer(lpgr)
+        
         return cell
     }
     
@@ -225,7 +233,7 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
         if tableView == tblForComment {
             return aryImg.count
         } else {
-            return 3
+            return arrUserLike.count > 0 ? arrUserLike[selectedToolTipIndex].arrLikeUsers.count : 0
         }
     }
     
@@ -246,7 +254,8 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
-            cell.lblUserComment.text = "smit"
+            let currentObj = arrUserLike[selectedToolTipIndex].arrLikeUsers[indexPath.row]
+            cell.imgUser.imageFromURL(link: prefixDataUrl + currentObj.attachimage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
             return cell
         }
     }
@@ -282,6 +291,12 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
             let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPostCollectionViewCell", for: indexPath) as!  UserPostCollectionViewCell
             let currentObj = arrPost[indexPath.row]
             cell.ConfigureDatWithCell(currentObj)
+            cell.emoji1.isHidden = false
+            cell.emoji2.isHidden = false
+            if isOwnProfile {
+                cell.emoji1.isHidden = true
+                cell.emoji2.isHidden = true
+            }
             return cell
         }
     }
@@ -300,7 +315,7 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     }
 }
 
-
+//MARK: - Webservice Call
 extension commentViewClass {
     
     private func likeUser(emojiLike:Int) {
@@ -309,14 +324,26 @@ extension commentViewClass {
         let obj = arrPost[currentIndexForLike]
         param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
         param.addParameter(key: ParameterRequest.idPost, value: obj.Postid)
-        param.addParameter(key: ParameterRequest.Emoji, value: "")
+        param.addParameter(key: ParameterRequest.Emoji, value: emojiLike)
 
-        _ = APIClient.DeactivateAccount(parameters: param.parameters) { (responseObj) in
+        _ = APIClient.LikePostByUser(parameters: param.parameters) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                
             }
+        }
+    }
+    
+    private func getAllLike() {
+        let obj = arrPost[currentIndexForLike]
+        _ = APIClient.GetAllLike(idPost: obj.Postid) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                self.arrUserLike = UserLike.getArray(data: response["response"] as? [[String : Any]] ?? [[String : Any]]())
+            }
+            self.emojiPagerView.reloadData()
         }
     }
 }

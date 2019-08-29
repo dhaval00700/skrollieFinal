@@ -34,6 +34,9 @@ class Post {
     init(Post: [String: Any], userName: String) {
         map = Map(data: Post)
         Postid = map.value("PostId") ?? ""
+        if Postid.isEmpty {
+            Postid = map.value("id") ?? ""
+        }
         idUser = map.value("idUser") ?? ""
         isPhoto = map.value("isPhoto") ?? false
         Isforever = map.value("Isforever") ?? false

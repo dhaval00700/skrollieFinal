@@ -124,6 +124,16 @@ class UserProfileModel {
         
         return itemDict
     }
+    
+    class func getArray(data: [[String: Any]]) -> [UserProfileModel] {
+        var arrPost = [UserProfileModel]()
+        
+        for temp in data {
+            arrPost.append(UserProfileModel(data: temp, totalTodayPost: "", totalForeverPost: ""))
+        }
+        
+        return arrPost
+    }
 }
 
 class BlockListData {

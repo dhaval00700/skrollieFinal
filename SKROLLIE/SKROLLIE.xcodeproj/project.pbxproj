@@ -76,6 +76,7 @@
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
 		4FE4983D22E88EB800B9FE04 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4983C22E88EB800B9FE04 /* WebViewController.swift */; };
 		4FF671F122C2326100BB4AAF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF671F022C2326100BB4AAF /* BaseViewController.swift */; };
+		7A20384923179FCF00366323 /* UserLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A20384823179FCF00366323 /* UserLike.swift */; };
 		7A64AFF022B7A8C70078967A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A64AFEF22B7A8C70078967A /* Date+Extension.swift */; };
 		7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */; };
 		7AF03912229D35E500A0F74D /* UserItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */; };
@@ -235,6 +236,7 @@
 		4FE4983C22E88EB800B9FE04 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4FF671F022C2326100BB4AAF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A20384823179FCF00366323 /* UserLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLike.swift; sourceTree = "<group>"; };
 		7A64AFEF22B7A8C70078967A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				4F0BCF9022D09F260094A351 /* UserFriendList.swift */,
 				3486A86B22A661960053A1A1 /* PostModel.swift */,
 				4F19C0EA22C5047500D12A1B /* UserProfileModel.swift */,
+				7A20384823179FCF00366323 /* UserLike.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1081,6 +1084,7 @@
 				4F188C1A22D3258300D340A1 /* DropDownCell.swift in Sources */,
 				4F0BCF9422D0B2800094A351 /* BlockListViewController.swift in Sources */,
 				7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */,
+				7A20384923179FCF00366323 /* UserLike.swift in Sources */,
 				4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */,
 				F73DD3B6228427580096A943 /* userProfileClass.swift in Sources */,
 				7F6D122E2295173600CB7988 /* SwiftyCamViewControllerDelegate.swift in Sources */,

@@ -101,7 +101,7 @@ func returnEmojiNumber(img: UIImage) -> String {
     }
 }
 
-enum Emoji : Int {
+enum EmojiStatus : Int {
     case one = 1
     case two = 2
     case three = 3
@@ -207,7 +207,7 @@ struct API {
     static let ForgotPassword     =   BASE_URL + "MobileAccount/ForgotPassword"
     static let CancelledFriendRequest  =   BASE_URL + "MobilePost/CancelledFriendRequest"
     static let LikePostByUser  =   BASE_URL + "MobilePost/LikePostByUser"
-
+    static let GetAllLikeByPostId = BASE_URL + "MobilePost/GetAllLikeByPostId"
     
     
 }
