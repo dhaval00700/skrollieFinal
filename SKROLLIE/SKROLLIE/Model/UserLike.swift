@@ -42,3 +42,42 @@ class UserLike {
         return arrPost
     }
 }
+
+
+class UserComment {
+    
+    init() {}
+    
+    var map: Map!
+    var Comment = ""
+    var CommentDate = ""
+    var idComment = ""
+    var UserObj = UserProfileModel()
+    var likeEmoji = UIImage()
+    var LstReplayComment = [UserComment]()
+    
+    
+    init(Post: [String: Any], userName: String) {
+        map = Map(data: Post)
+        Comment = map.value("Comment") ?? ""
+        CommentDate = map.value("CommentDate") ?? ""
+        idComment = map.value("idComment") ?? ""
+        
+        let likeU = map.value("User") ?? [String : Any]()
+        UserObj = UserProfileModel(data: likeU, totalTodayPost: "", totalForeverPost: "")
+        
+        let LstReplayCommentU = map.value("LstReplayComment") ?? [[String : Any]]()
+        LstReplayComment = UserComment.getArray(data:LstReplayCommentU )
+        
+    }
+    
+    class func getArray(data: [[String: Any]]) -> [UserComment] {
+        var arrPost = [UserComment]()
+        
+        for temp in data {
+            arrPost.append(UserComment(Post: temp,userName: ""))
+        }
+        
+        return arrPost
+    }
+}

@@ -40,6 +40,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         
         imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         
+
+        
         if !currentObj.isPhoto {
             let playerItem = AVPlayerItem(url: URL(string: currentObj.Url)!)
             var avPlayer = AVPlayer()

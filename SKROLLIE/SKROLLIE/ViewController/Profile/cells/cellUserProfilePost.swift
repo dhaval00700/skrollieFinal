@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol cellUserProfilePostDelegate {
-    func selectedPost(indexpath: IndexPath, arrPost: [Post])
+    func selectedPost(indexpath: IndexPath, arrPost: [Post], selectedPostUserData: UserData)
 }
 
 class cellUserProfilePost: UITableViewCell {
@@ -64,7 +64,7 @@ extension cellUserProfilePost: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.selectedPost(indexpath: indexPath, arrPost: collectionData)
+        delegate?.selectedPost(indexpath: indexPath, arrPost: collectionData, selectedPostUserData: UserData())
     }
 }
 

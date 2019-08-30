@@ -335,4 +335,37 @@ class APIClient {
             return true
         })
     }
+    
+    class func UnlockComment(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.SavePostUnblock
+        return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func GetAllComment(idPost:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.GetAllCommentByPostId + "?idPost=\(idPost)"
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
+    
+    class func SavePostComment(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.SavePostComment
+        return ApiManager.requestApi(method: .post, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
 }

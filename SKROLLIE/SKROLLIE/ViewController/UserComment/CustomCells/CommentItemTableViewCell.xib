@@ -37,24 +37,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pld-VW-ayj">
-                                <rect key="frame" x="68" y="34" width="244" height="26"/>
+                                <rect key="frame" x="68" y="34" width="189" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.74509803921568629" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-5s-u8O">
+                                <rect key="frame" x="265" y="31.5" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="TG4-jZ-xnR"/>
+                                </constraints>
+                                <state key="normal" title="Reply"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ku4-ZC-gLK" firstAttribute="top" secondItem="BPF-a4-dCX" secondAttribute="top" constant="10" id="10l-MZ-OwF"/>
                             <constraint firstItem="Ku4-ZC-gLK" firstAttribute="top" secondItem="ESi-Ia-DJV" secondAttribute="top" id="1ps-jQ-ox0"/>
                             <constraint firstItem="Pld-VW-ayj" firstAttribute="leading" secondItem="Ku4-ZC-gLK" secondAttribute="leading" id="37h-Oh-hcb"/>
+                            <constraint firstItem="4FW-5s-u8O" firstAttribute="leading" secondItem="Pld-VW-ayj" secondAttribute="trailing" constant="8" id="9Ag-CF-joQ"/>
                             <constraint firstItem="Pld-VW-ayj" firstAttribute="top" secondItem="Ku4-ZC-gLK" secondAttribute="bottom" constant="3" id="9Pi-8z-dWb"/>
+                            <constraint firstAttribute="bottom" secondItem="4FW-5s-u8O" secondAttribute="bottom" constant="8" id="Fs8-9e-bUF"/>
                             <constraint firstItem="ESi-Ia-DJV" firstAttribute="top" secondItem="BPF-a4-dCX" secondAttribute="top" constant="10" id="Row-Zv-Vmg"/>
                             <constraint firstAttribute="bottom" secondItem="ESi-Ia-DJV" secondAttribute="bottom" constant="9.5" id="Y6v-Ad-6Wm"/>
                             <constraint firstItem="Ku4-ZC-gLK" firstAttribute="leading" secondItem="ESi-Ia-DJV" secondAttribute="trailing" constant="8" id="afm-88-T9g"/>
-                            <constraint firstItem="Pld-VW-ayj" firstAttribute="trailing" secondItem="Ku4-ZC-gLK" secondAttribute="trailing" id="g02-I0-0aV"/>
+                            <constraint firstAttribute="trailing" secondItem="4FW-5s-u8O" secondAttribute="trailing" constant="10" id="bUG-wl-Sdw"/>
                             <constraint firstItem="ESi-Ia-DJV" firstAttribute="bottom" secondItem="Pld-VW-ayj" secondAttribute="bottom" id="gds-cc-o1j"/>
-                            <constraint firstAttribute="bottom" secondItem="Pld-VW-ayj" secondAttribute="bottom" constant="9.5" id="hvX-GM-Hs0"/>
                             <constraint firstAttribute="trailing" secondItem="Ku4-ZC-gLK" secondAttribute="trailing" constant="8" id="lY9-0o-sMd"/>
                             <constraint firstItem="ESi-Ia-DJV" firstAttribute="leading" secondItem="BPF-a4-dCX" secondAttribute="leading" constant="10" id="n5P-pF-2Fr"/>
                         </constraints>
@@ -71,6 +79,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnReply" destination="4FW-5s-u8O" id="iuw-Yf-6Ph"/>
                 <outlet property="imgUser" destination="ESi-Ia-DJV" id="rfi-DV-s8e"/>
                 <outlet property="lblUser" destination="Ku4-ZC-gLK" id="GgW-i5-Hgc"/>
                 <outlet property="lblUserComment" destination="Pld-VW-ayj" id="3Ws-HM-Xxx"/>

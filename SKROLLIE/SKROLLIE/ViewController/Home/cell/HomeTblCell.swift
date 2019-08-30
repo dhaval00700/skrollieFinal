@@ -77,7 +77,7 @@ extension HomeTblCell: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.selectedPost(indexpath: indexPath, arrPost: collectionData.arrPost)
+        delegate?.selectedPost(indexpath: indexPath, arrPost: collectionData.arrPost, selectedPostUserData: collectionData)
     }
 }
 

@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejl-9q-B2n">
-                                <rect key="frame" x="68" y="34" width="255" height="26"/>
+                                <rect key="frame" x="68" y="34" width="202" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.74509803919999995" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -56,24 +56,33 @@
                                     <constraint firstAttribute="height" constant="1" id="xba-9g-1TO"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReA-ey-xIt">
+                                <rect key="frame" x="278" y="30" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="EZs-0d-fLw"/>
+                                </constraints>
+                                <state key="normal" title="Reply"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kN2-yF-KcH" firstAttribute="leading" secondItem="mgT-sZ-yNv" secondAttribute="leading" constant="50" id="1Jn-qH-RNv"/>
                             <constraint firstItem="jN8-sE-1w8" firstAttribute="top" secondItem="mgT-sZ-yNv" secondAttribute="top" constant="10" id="25S-9V-Rm9"/>
+                            <constraint firstItem="ReA-ey-xIt" firstAttribute="bottom" secondItem="ejl-9q-B2n" secondAttribute="bottom" id="2WZ-6V-zNt"/>
                             <constraint firstItem="IoV-QA-qpR" firstAttribute="top" secondItem="mgT-sZ-yNv" secondAttribute="top" constant="10" id="3za-Rl-c9N"/>
                             <constraint firstItem="ejl-9q-B2n" firstAttribute="top" secondItem="IoV-QA-qpR" secondAttribute="bottom" constant="3" id="9WB-gH-HKM"/>
                             <constraint firstItem="ejl-9q-B2n" firstAttribute="leading" secondItem="IoV-QA-qpR" secondAttribute="leading" id="ApZ-TN-tbc"/>
                             <constraint firstItem="kN2-yF-KcH" firstAttribute="top" secondItem="ejl-9q-B2n" secondAttribute="bottom" constant="10" id="NE8-FK-KMl"/>
                             <constraint firstAttribute="trailing" secondItem="PoO-Re-Hzc" secondAttribute="trailing" id="QnL-Gt-K7d"/>
                             <constraint firstAttribute="trailing" secondItem="IoV-QA-qpR" secondAttribute="trailing" constant="8" id="Rbk-uL-HMC"/>
+                            <constraint firstItem="ReA-ey-xIt" firstAttribute="leading" secondItem="ejl-9q-B2n" secondAttribute="trailing" constant="8" id="Se5-fu-d8a"/>
                             <constraint firstItem="PoO-Re-Hzc" firstAttribute="leading" secondItem="mgT-sZ-yNv" secondAttribute="leading" id="avi-pH-GCm"/>
-                            <constraint firstItem="ejl-9q-B2n" firstAttribute="trailing" secondItem="IoV-QA-qpR" secondAttribute="trailing" id="dec-ED-TmX"/>
                             <constraint firstAttribute="trailing" secondItem="kN2-yF-KcH" secondAttribute="trailing" constant="10" id="fWX-C6-e0h"/>
                             <constraint firstItem="jN8-sE-1w8" firstAttribute="leading" secondItem="mgT-sZ-yNv" secondAttribute="leading" constant="10" id="mBp-FL-4e8"/>
                             <constraint firstAttribute="bottom" secondItem="kN2-yF-KcH" secondAttribute="bottom" constant="10" id="o2d-za-ze1"/>
                             <constraint firstItem="kN2-yF-KcH" firstAttribute="top" secondItem="jN8-sE-1w8" secondAttribute="bottom" constant="10" id="oLb-Ft-Nc3"/>
                             <constraint firstAttribute="bottom" secondItem="PoO-Re-Hzc" secondAttribute="bottom" id="oYd-t0-gLE"/>
+                            <constraint firstAttribute="trailing" secondItem="ReA-ey-xIt" secondAttribute="trailing" constant="8" id="z8x-Q6-hpM"/>
                             <constraint firstItem="IoV-QA-qpR" firstAttribute="leading" secondItem="jN8-sE-1w8" secondAttribute="trailing" constant="8" id="zhL-pT-DLV"/>
                         </constraints>
                     </view>
@@ -89,6 +98,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnReply" destination="ReA-ey-xIt" id="V0x-m9-VbJ"/>
                 <outlet property="imgUser" destination="jN8-sE-1w8" id="fWU-7T-SuP"/>
                 <outlet property="lblUser" destination="IoV-QA-qpR" id="bS1-cJ-aAa"/>
                 <outlet property="lblUserComment" destination="ejl-9q-B2n" id="cpe-u3-0UJ"/>

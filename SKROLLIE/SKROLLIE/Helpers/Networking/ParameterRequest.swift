@@ -43,6 +43,9 @@ class ParameterRequest {
     static let IsPublic = "IsPublic"
     static let idPost = "idPost"
     static let Emoji = "Emoji"
+    static let PostId = "PostId"
+    static let Comment = "Comment"
+    static let idComment = "idComment"
     
     init(){
     }

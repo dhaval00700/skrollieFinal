@@ -208,6 +208,10 @@ struct API {
     static let CancelledFriendRequest  =   BASE_URL + "MobilePost/CancelledFriendRequest"
     static let LikePostByUser  =   BASE_URL + "MobilePost/LikePostByUser"
     static let GetAllLikeByPostId = BASE_URL + "MobilePost/GetAllLikeByPostId"
-    
+    static let SavePostUnblock = BASE_URL + "MobilePost/SavePostUnblock"
+    static let GetAllCommentByPostId = BASE_URL + "MobilePost/GetAllCommentByPostId"
+    static let SavePostComment = BASE_URL + "MobilePost/SavePostComment"
+
+
     
 }

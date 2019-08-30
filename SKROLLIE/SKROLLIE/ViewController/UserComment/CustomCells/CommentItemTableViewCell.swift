@@ -13,6 +13,8 @@ class CommentItemTableViewCell: UITableViewCell {
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblUser: UILabel!
     @IBOutlet weak var lblUserComment: UILabel!
+    @IBOutlet weak var btnReply: UIButton!
+
     
     var imgOfUser = String()
     var Username = String()

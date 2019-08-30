@@ -106,12 +106,15 @@ class HomeViewController: BaseViewController
 
 //MARK: - cellUserProfilePostDelegate
 extension HomeViewController: cellUserProfilePostDelegate {
-    func selectedPost(indexpath: IndexPath, arrPost: [Post]) {
+    func selectedPost(indexpath: IndexPath, arrPost: [Post], selectedPostUserData: UserData) {
         let navVc = commentViewClass.instantiate(fromAppStoryboard: .Main)
         navVc.arrPost = arrPost
         navVc.indexpath = indexpath
+        navVc.selectedPostuserData = selectedPostUserData
+        navVc.isOwnProfile = false
         navigationController?.present(navVc, animated: true, completion: nil)
     }
+    
 }
 
 

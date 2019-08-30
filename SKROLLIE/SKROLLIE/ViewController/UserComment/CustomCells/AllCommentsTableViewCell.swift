@@ -15,11 +15,12 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     @IBOutlet weak var lblUserComment: UILabel!
     @IBOutlet weak var lctSubCommentTableHeight: NSLayoutConstraint!
     @IBOutlet weak var tblSubComment: UITableView!
+    @IBOutlet weak var btnReply: UIButton!
+
     
-    var aryUserList = [String]()
-    var aryImg = [String]()
     var imgOfUser = String()
     var Username = String()
+    var arrReplyComment = [UserComment]()
     
     override func awakeFromNib()
     {
@@ -30,23 +31,26 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
         
         tblSubComment.register(UINib(nibName: "CommentItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentItemTableViewCell")
         
-        aryUserList = ["@horedude","@doggylover","@happyCampper"]
-        aryImg = ["img6","img6","img6"]
+       
+    }
+    
+    func reloadData() {
+        tblSubComment.reloadData()
+        tblSubComment.layoutIfNeeded()
+        lctSubCommentTableHeight.constant = tblSubComment.contentSize.height
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return aryImg.count
+        return arrReplyComment.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
-        
-        imgOfUser = aryImg[indexPath.row]
-        Username = aryUserList[indexPath.row]
-        
-        cell.imgUser.image = UIImage.init(named: imgOfUser)
-        cell.lblUser.text = Username
+        let currentObj = arrReplyComment[indexPath.row]
+        cell.imgUser.image = UIImage.init(named: prefixDataUrl + currentObj.UserObj.image)
+        cell.lblUser.text = currentObj.UserObj.username
+        cell.lblUserComment.text = currentObj.Comment
         
         return cell
     }
