@@ -81,3 +81,38 @@ class UserComment {
         return arrPost
     }
 }
+
+class UserUnblock {
+    
+    init() {}
+    
+    var map: Map!
+    var id = ""
+    var PostId = ""
+    var idUser = ""
+    var Date = ""
+    var UserObj = UserProfileModel()
+    
+    init(Post: [String: Any], userName: String) {
+        map = Map(data: Post)
+        id = map.value("id") ?? ""
+        PostId = map.value("PostId") ?? ""
+        idUser = map.value("idUser") ?? ""
+        Date = map.value("Date") ?? ""
+        
+        let likeU = map.value("User") ?? [String : Any]()
+        UserObj = UserProfileModel(data: likeU, totalTodayPost: "", totalForeverPost: "")
+        
+        
+    }
+    
+    class func getArray(data: [[String: Any]]) -> [UserUnblock] {
+        var arrPost = [UserUnblock]()
+        
+        for temp in data {
+            arrPost.append(UserUnblock(Post: temp,userName: ""))
+        }
+        
+        return arrPost
+    }
+}

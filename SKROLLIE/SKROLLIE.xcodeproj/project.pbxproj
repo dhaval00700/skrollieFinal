@@ -84,6 +84,8 @@
 		7AF03916229D58CC00A0F74D /* CommentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF03914229D58CC00A0F74D /* CommentItemTableViewCell.xib */; };
 		7AF0391A229D5AE200A0F74D /* AllCommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF03918229D5AE200A0F74D /* AllCommentsTableViewCell.swift */; };
 		7AF0391B229D5AE200A0F74D /* AllCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF03919229D5AE200A0F74D /* AllCommentsTableViewCell.xib */; };
+		7AF1CF97231A77A90015B620 /* LikeUserItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1CF95231A77A90015B620 /* LikeUserItemTableViewCell.swift */; };
+		7AF1CF98231A77A90015B620 /* LikeUserItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1CF96231A77A90015B620 /* LikeUserItemTableViewCell.xib */; };
 		7F05A9FF227866500079963D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FD227866500079963D /* CoreAudio.framework */; };
 		7F05AA00227866500079963D /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F05A9FE227866500079963D /* CoreAudioKit.framework */; };
 		7F6D1224229516DF00CB7988 /* CameraAndVedioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D1223229516DF00CB7988 /* CameraAndVedioViewController.swift */; };
@@ -244,6 +246,8 @@
 		7AF03914229D58CC00A0F74D /* CommentItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentItemTableViewCell.xib; sourceTree = "<group>"; };
 		7AF03918229D5AE200A0F74D /* AllCommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommentsTableViewCell.swift; sourceTree = "<group>"; };
 		7AF03919229D5AE200A0F74D /* AllCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllCommentsTableViewCell.xib; sourceTree = "<group>"; };
+		7AF1CF95231A77A90015B620 /* LikeUserItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUserItemTableViewCell.swift; sourceTree = "<group>"; };
+		7AF1CF96231A77A90015B620 /* LikeUserItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeUserItemTableViewCell.xib; sourceTree = "<group>"; };
 		7F05A9FD227866500079963D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		7F05A9FE227866500079963D /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		7F2DA18E2265981500630D3E /* SKROLLIE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SKROLLIE.entitlements; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 				7AF03910229D35E500A0F74D /* UserItemCollectionViewCell.xib */,
 				4F645AE522FC44EC0003FC6F /* UserPostCollectionViewCell.swift */,
 				4F645AE622FC44EC0003FC6F /* UserPostCollectionViewCell.xib */,
+				7AF1CF95231A77A90015B620 /* LikeUserItemTableViewCell.swift */,
+				7AF1CF96231A77A90015B620 /* LikeUserItemTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -921,6 +927,7 @@
 				F73DD3FB2284620F0096A943 /* MONTSERRATALTERNATES-LIGHTITALIC.OTF in Resources */,
 				F73DD40D2284620F0096A943 /* MONTSERRAT-ITALIC.OTF in Resources */,
 				F73DD4022284620F0096A943 /* MONTSERRAT-EXTRALIGHT.OTF in Resources */,
+				7AF1CF98231A77A90015B620 /* LikeUserItemTableViewCell.xib in Resources */,
 				7FCCA6E322644ADD00E8E9A1 /* Assets.xcassets in Resources */,
 				F73DD4052284620F0096A943 /* MONTSERRATALTERNATES-EXTRALIGHTITALIC.OTF in Resources */,
 				F73DD40A2284620F0096A943 /* MONTSERRATALTERNATES-SEMIBOLDITALIC.OTF in Resources */,
@@ -1033,6 +1040,7 @@
 				7F6D122B2295173600CB7988 /* SwiftyCamButton.swift in Sources */,
 				7F7F9FD22285BA37004F85BD /* FSPagerViewLayoutAttributes.swift in Sources */,
 				7F6D122F2295173600CB7988 /* Orientation.swift in Sources */,
+				7AF1CF97231A77A90015B620 /* LikeUserItemTableViewCell.swift in Sources */,
 				7F7F9F6B2285B3B3004F85BD /* MobileNumberAddVc.swift in Sources */,
 				0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */,
 				4F0F210822B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift in Sources */,

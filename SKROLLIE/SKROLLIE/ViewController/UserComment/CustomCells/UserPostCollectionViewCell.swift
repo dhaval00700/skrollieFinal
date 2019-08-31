@@ -39,7 +39,12 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         lblUserName.text = currentObj.UserName
         
         imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
-        
+        if !currentObj.LikeEmoji.isEmpty {
+            let likeEmoji = EmojiStatus(rawValue: Int(currentObj.LikeEmoji)!)!.description()
+            imgWaterMark.image = likeEmoji
+            imgWaterMark.alpha = 0.7
+            imgWaterMark.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)
+        }
 
         
         if !currentObj.isPhoto {

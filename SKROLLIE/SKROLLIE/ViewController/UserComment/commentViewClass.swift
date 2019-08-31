@@ -37,10 +37,13 @@ class commentViewClass: BaseViewController
     var currentIndexForLike = 0
     
     var arrUserLike = [UserLike]()
+    var arrUserUnblock = [UserUnblock]()
+
     
     var userProfileDataObj: UserProfileModel!
     var selectedPostuserData = UserData()
     var selectedEmojiButton: UIButton!
+    
     
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
     
@@ -52,6 +55,7 @@ class commentViewClass: BaseViewController
         setUpUI()
         getAllLike()
         getAllComment()
+        getUnblockPost()
         
     }
     
@@ -64,30 +68,32 @@ class commentViewClass: BaseViewController
         
         viwUserListContainer.layer.cornerRadius = 8.0
         
-        viwComments.isHidden = false
+        viwComments.isHidden = true
         viwUnblockUser.isHidden = true
-        viwWriteReview.isHidden = false
-        
+        viwWriteReview.isHidden = true
+        viewAllComment.isHidden = true
+
         if isOwnProfile {
             viwUnblockUser.isHidden = false
             viwComments.isHidden = false
-            viwComments.isHidden = true
+            viewAllComment.isHidden = true
+            viwWriteReview.isHidden = true
+
         }
-        else {
-            viewAllComment.isHidden = false
-            viwWriteReview.isHidden = false
-        }
-       
+        
+        tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
+        tblForComment.dataSource = self
+        tblForComment.delegate = self
+        
         setupCollectionView()
         setupEmogiPager()
-        setupEasyTip()
         setCommentView()
     }
-    
+    var pf = EasyTipView.Preferences()
     private func setupEasyTip() {
         tipView?.removeFromSuperview()
         tipView = nil
-        var pf = EasyTipView.Preferences()
+        
         pf.drawing.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         pf.drawing.foregroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         pf.drawing.textAlignment = NSTextAlignment.center
@@ -99,9 +105,8 @@ class commentViewClass: BaseViewController
         pf.animating.showDuration = 1
         pf.animating.dismissDuration = 1
         
-        tipView = EasyTipView(contentView: self.tbl, preferences: pf, delegate: self)
-        
         setupTableComment()
+        tipView = EasyTipView(contentView: self.tbl, preferences: pf, delegate: self)
     }
     
     private func setupCollectionView() {
@@ -110,8 +115,13 @@ class commentViewClass: BaseViewController
         clvCarousel.dataSource = self
         clvCarousel.reloadData()
         currentIndexForLike = self.indexpath.row
-        delay(time: 2.0) {
-            self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: false)
+        let object = arrPost[currentIndexForLike]
+        if object.IsUnBlockPost && !isOwnProfile {
+            self.viewAllComment.isHidden = false
+            self.viwWriteReview.isHidden = false
+        }
+        delay(time: 1.0) {
+            self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: true)
         }
         
         collectionUserList.register(UINib(nibName: "UserItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserItemCollectionViewCell")
@@ -126,20 +136,32 @@ class commentViewClass: BaseViewController
         }
     }
     
+    func resetDataWhenScroll() {
+         selectedEmojiIndex = 0
+         selectedEmoji1 = -1
+         selectedEmoji2 = -1
+        self.arrUserComment.removeAll()
+        getAllLike()
+        getAllComment()
+        setCommentView()
+        getUnblockPost()
+        
+        let object = arrPost[currentIndexForLike]
+        if object.IsUnBlockPost && !isOwnProfile {
+            self.viewAllComment.isHidden = false
+            self.viwWriteReview.isHidden = false
+        } else if object.Emoji1.isEmpty && object.Emoji2.isEmpty && !isOwnProfile  {
+            self.viwWriteReview.isHidden = false
+        }
+    }
+    
     private func setupTableComment() {
         
-        tbl.register(UINib(nibName: "CommentItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentItemTableViewCell")
+        tbl.register(UINib(nibName: "LikeUserItemTableViewCell", bundle: nil), forCellReuseIdentifier: "LikeUserItemTableViewCell")
         tbl.dataSource = self
         tbl.delegate = self
-        tbl.layoutIfNeeded()
-        tbl.frame = CGRect(x: 0, y: 0, width: 60, height: tbl.contentSize.height)
         
-        tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
-        tblForComment.dataSource = self
-        tblForComment.delegate = self
-        tblForComment.reloadData()
-        tblForComment.layoutIfNeeded()
-        constraintHightOfTblComment.constant = tblForComment.contentSize.height
+        
     }
     
     private func setupEmogiPager() {
@@ -195,6 +217,7 @@ class commentViewClass: BaseViewController
     }
     
     @IBAction func btnSendComment(_ sender: UIButton) {
+        self.view.endEditing(true)
         if !txtWriteReview.text!.isEmpty {
             sendComment(idComment: "")
         }
@@ -218,8 +241,16 @@ class commentViewClass: BaseViewController
         switch gesture.state {
         case .began:
             selectedToolTipIndex = indexpath!.item
-            tipView?.show(forView: cell!.imageView!)
-            tbl.reloadData()
+
+            if arrUserLike[selectedToolTipIndex].arrLikeUsers.count > 0 {
+                tbl.reloadData()
+                tbl.layoutIfNeeded()
+                tbl.frame = CGRect(x: 0, y: 0, width: 60, height: tbl.contentSize.height)
+                tipView = nil
+                tipView = EasyTipView(contentView: self.tbl, preferences: pf, delegate: self)
+                tipView?.show(forView: cell!.imageView!)
+            }
+            
             break
         case .cancelled:
             
@@ -307,7 +338,7 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tblForComment {
-            return arrUserComment.count
+            return arrUserComment.count > 3 ? 3 : arrUserComment.count
         } else {
             return arrUserLike.count > 0 ? arrUserLike[selectedToolTipIndex].arrLikeUsers.count : 0
         }
@@ -318,21 +349,23 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "AllCommentsTableViewCell", for: indexPath) as! AllCommentsTableViewCell
             
-            cell.imgUser.image = UIImage.init(named: prefixDataUrl + currentObj.UserObj.image)
+            cell.imgUser.image = UIImage.init(named: currentObj.UserObj.image)
             cell.lblUser.text = currentObj.UserObj.username
             cell.lblUserComment.text = currentObj.Comment
             
             cell.arrReplyComment = currentObj.LstReplayComment
             cell.reloadData()
+            self.tblForComment.layoutIfNeeded()
+            self.constraintHightOfTblComment.constant = self.tblForComment.contentSize.height
             
             cell.btnReply.tag = indexPath.row
             cell.btnReply.addTarget(self, action: #selector(btnCommentReply(_:)), for: .touchUpInside)
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
+             let cell = tableView.dequeueReusableCell(withIdentifier: "LikeUserItemTableViewCell", for: indexPath) as! LikeUserItemTableViewCell
             let currentObj = arrUserLike[selectedToolTipIndex].arrLikeUsers[indexPath.row]
-            cell.imgUser.imageFromURL(link: prefixDataUrl + currentObj.attachimage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
+            cell.imgUserProfile.imageFromURL(link: prefixDataUrl + currentObj.attachimage, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
             return cell
         }
     }
@@ -341,14 +374,14 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
         if tableView == tblForComment {
            return UITableView.automaticDimension
         }
-        return 70
+        return 60
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == tblForComment {
            return UITableView.automaticDimension
         }
-        return 70
+        return 60
     }
 }
 
@@ -358,7 +391,7 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if collectionView == collectionUserList {
-            return 3
+            return arrUserUnblock.count
         } else {
             return arrPost.count
         }
@@ -368,6 +401,9 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     {
         if collectionView == collectionUserList {
             let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserItemCollectionViewCell", for: indexPath) as!  UserItemCollectionViewCell
+            let currentObj = arrUserUnblock[indexPath.row]
+cell.lblUserName.text = currentObj.UserObj.username
+              cell.imgUserProfile.imageFromURL(link: currentObj.UserObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             
             return cell
         } else {
@@ -381,8 +417,14 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
                 cell.emoji2.isHidden = true
                 cell.imgUserProfile.imageFromURL(link: userProfileDataObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             } else {
-                 cell.emoji1.isHidden = currentObj.Emoji1.isEmpty
-                cell.emoji2.isHidden = currentObj.Emoji2.isEmpty
+                if currentObj.IsUnBlockPost {
+                    cell.emoji1.isHidden = true
+                    cell.emoji2.isHidden = true
+                } else if currentObj.Emoji1.isEmpty && currentObj.Emoji2.isEmpty {
+                    cell.emoji1.isHidden = true
+                    cell.emoji2.isHidden = true
+                }
+                
                 cell.imgUserProfile.imageFromURL(link: selectedPostuserData.ProfileImage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             }
             
@@ -420,6 +462,7 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
 extension commentViewClass {
     
     private func likeUser(emojiLike:Int) {
+         self.showNetworkIndicator()
         
         let param = ParameterRequest()
         let obj = arrPost[currentIndexForLike]
@@ -431,8 +474,12 @@ extension commentViewClass {
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
-               
+               obj.LikeEmoji = "\(emojiLike)"
+                self.arrPost.remove(at: self.currentIndexForLike)
+                self.arrPost.insert(obj, at: self.currentIndexForLike)
+                self.clvCarousel.reloadData()
             }
+            self.hideNewtworkIndicator()
         }
     }
     
@@ -441,6 +488,7 @@ extension commentViewClass {
         _ = APIClient.GetAllLike(idPost: obj.Postid) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
+            self.arrUserLike.removeAll()
             if responseData.success {
                 self.arrUserLike = UserLike.getArray(data: response["response"] as? [[String : Any]] ?? [[String : Any]]())
             }
@@ -463,27 +511,45 @@ extension commentViewClass {
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 self.viewAllComment.isHidden = false
+                self.viwComments.isHidden = false
+
             }
         }
     }
     
     private func getAllComment() {
+        
         let obj = arrPost[currentIndexForLike]
         _ = APIClient.GetAllComment(idPost: obj.Postid) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
+            self.arrUserComment.removeAll()
             if responseData.success {
                 
                 self.arrUserComment = UserComment.getArray(data: response["data"] as? [[String : Any]] ?? [[String : Any]]())
-                self.tblForComment.reloadData()
-                self.tblForComment.layoutIfNeeded()
-                self.constraintHightOfTblComment.constant = self.tblForComment.contentSize.height
             }
+            
+            if self.arrUserComment.count > 3 {
+                self.viewAllComment.isHidden = false
+                self.lblTotalCmt.text = "\(self.arrUserComment.count)"
+            } else if self.arrUserComment.isEmpty {
+                self.viewAllComment.isHidden = true
+                self.viwComments.isHidden = true
+            } else {
+                self.viewAllComment.isHidden = true
+                self.viwComments.isHidden = false
+
+            }
+            
+            self.tblForComment.reloadData()
+            self.tblForComment.layoutIfNeeded()
+            self.constraintHightOfTblComment.constant = self.tblForComment.contentSize.height
            
         }
     }
     
     private func sendComment(idComment:String) {
+        self.showNetworkIndicator()
         
         let param = ParameterRequest()
         let obj = arrPost[currentIndexForLike]
@@ -491,7 +557,6 @@ extension commentViewClass {
         param.addParameter(key: ParameterRequest.idPost, value: obj.Postid)
         param.addParameter(key: ParameterRequest.Comment, value: txtWriteReview.text!)
         param.addParameter(key: ParameterRequest.idComment, value: idComment)
-
         
         _ = APIClient.SavePostComment(parameters: param.parameters) { (responseObj) in
             let response = responseObj ?? [String : Any]()
@@ -500,6 +565,30 @@ extension commentViewClass {
                 self.txtWriteReview.text = ""
                 self.getAllComment()
             }
+            self.hideNewtworkIndicator()
+        }
+    }
+    
+    private func getUnblockPost() {
+        
+        let obj = arrPost[currentIndexForLike]
+        _ = APIClient.GetUnblockPost(idPost: obj.Postid) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            self.arrUserComment.removeAll()
+            self.arrUserUnblock.removeAll()
+            if responseData.success {
+                self.arrUserUnblock = UserUnblock.getArray(data: response["data"] as? [[String : Any]] ?? [[String : Any]]())
+            }
+            
+            if self.arrUserUnblock.count > 0 {
+                self.viwUnblockUser.isHidden = false
+            } else {
+                self.viwUnblockUser.isHidden = true
+            }
+            
+            self.collectionUserList.reloadData()
+            
         }
     }
 }
@@ -518,9 +607,10 @@ extension commentViewClass : UIScrollViewDelegate {
             
             guard let indexPath = clvCarousel.indexPathForItem(at: visiblePoint) else { return }
             currentIndexForLike = indexPath.row
-            getAllLike()
-        setCommentView()
+        resetDataWhenScroll()
+        
        
        
     }
+   
 }

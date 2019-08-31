@@ -30,6 +30,16 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func showNetworkIndicator() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+    }
+    
+    func hideNewtworkIndicator() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+    }
+    
     
     func getUserProfileData(userId: String, complation success: ((Bool, UserProfileModel) -> Void)? = nil) {
         

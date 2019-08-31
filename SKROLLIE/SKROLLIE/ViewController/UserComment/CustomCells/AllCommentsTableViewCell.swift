@@ -48,7 +48,7 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
         let currentObj = arrReplyComment[indexPath.row]
-        cell.imgUser.image = UIImage.init(named: prefixDataUrl + currentObj.UserObj.image)
+        cell.imgUser.image = UIImage.init(named: currentObj.UserObj.image)
         cell.lblUser.text = currentObj.UserObj.username
         cell.lblUserComment.text = currentObj.Comment
         
@@ -56,11 +56,11 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         return 70.0
+         return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
+        return UITableView.automaticDimension
     }
     
     override func setSelected(_ selected: Bool, animated: Bool){

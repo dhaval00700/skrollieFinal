@@ -30,6 +30,11 @@ class Post {
     var EndDate = Date()
     var timer = Timer()
     var timeIntervalFromCurrent = 0.0
+    var IsAccountVerify = false
+    var IsUnBlockPost = false
+    
+    var LikeEmoji = ""
+    
     
     init(Post: [String: Any], userName: String) {
         map = Map(data: Post)
@@ -41,7 +46,10 @@ class Post {
         isPhoto = map.value("isPhoto") ?? false
         Isforever = map.value("Isforever") ?? false
         isPublish = map.value("isPublish") ?? false
+        IsAccountVerify = map.value("IsAccountVerify") ?? false
+        IsUnBlockPost  = map.value("IsUnBlockPost") ?? false
         Description = map.value("Description") ?? ""
+        LikeEmoji = map.value("LikeEmoji") ?? ""
         Emoji1 = map.value("Emoji1") ?? ""
         Emoji2 = map.value("Emoji2") ?? ""
         CreatedDate = map.value("CreatedDate") ?? ""
