@@ -76,6 +76,7 @@
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
 		4FE4983D22E88EB800B9FE04 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4983C22E88EB800B9FE04 /* WebViewController.swift */; };
 		4FF671F122C2326100BB4AAF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF671F022C2326100BB4AAF /* BaseViewController.swift */; };
+		7A15D660231CFCBF00437010 /* AllCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A15D65F231CFCBF00437010 /* AllCommentViewController.swift */; };
 		7A20384923179FCF00366323 /* UserLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A20384823179FCF00366323 /* UserLike.swift */; };
 		7A64AFF022B7A8C70078967A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A64AFEF22B7A8C70078967A /* Date+Extension.swift */; };
 		7AF03911229D35E500A0F74D /* UserItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */; };
@@ -238,6 +239,7 @@
 		4FE4983C22E88EB800B9FE04 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4FF671F022C2326100BB4AAF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		650F1A1C6DEC2114ACAB6E2B /* Pods_SKROLLIEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKROLLIEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A15D65F231CFCBF00437010 /* AllCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommentViewController.swift; sourceTree = "<group>"; };
 		7A20384823179FCF00366323 /* UserLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLike.swift; sourceTree = "<group>"; };
 		7A64AFEF22B7A8C70078967A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7AF0390F229D35E500A0F74D /* UserItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 			children = (
 				F7FB4EB82285442E00A390AE /* commentViewClass.swift */,
 				7AF03917229D5AC000A0F74D /* CustomCells */,
+				7A15D65F231CFCBF00437010 /* AllCommentViewController.swift */,
 			);
 			path = UserComment;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				7F7F9F6B2285B3B3004F85BD /* MobileNumberAddVc.swift in Sources */,
 				0ED298C6229BECD4009A5C66 /* SelectedVideoViewController.swift in Sources */,
 				4F0F210822B762A1002F69A7 /* SkyFloatingLabelTextField+Extension.swift in Sources */,
+				7A15D660231CFCBF00437010 /* AllCommentViewController.swift in Sources */,
 				4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */,
 				4F0F210A22B762A1002F69A7 /* SVPinView+Extension.swift in Sources */,
 				4F0F210C22B762A1002F69A7 /* UIColor+Extension.swift in Sources */,

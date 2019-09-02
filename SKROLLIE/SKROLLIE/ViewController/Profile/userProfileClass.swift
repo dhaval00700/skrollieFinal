@@ -359,12 +359,16 @@ extension userProfileClass: UITextViewDelegate {
 
 extension userProfileClass: cellUserProfilePostDelegate {
     func selectedPost(indexpath: IndexPath, arrPost: [Post], selectedPostUserData: UserData) {
-        let navVc = commentViewClass.instantiate(fromAppStoryboard: .Main)
+        let navController = storyboard?.instantiateViewController(withIdentifier: "commentVC") as! UINavigationController
+        let navVc = navController.viewControllers.first as! commentViewClass
         navVc.arrPost = arrPost
         navVc.indexpath = indexpath
+        navVc.selectedPostuserData = selectedPostUserData
         navVc.isOwnProfile = true
         navVc.userProfileDataObj = userProfileData
-        navigationController?.present(navVc, animated: true, completion: nil)
+        navController.modalPresentationStyle = .overFullScreen
+
+        self.present(navController, animated:true, completion: nil)
     }
     
     

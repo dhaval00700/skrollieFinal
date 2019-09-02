@@ -46,6 +46,10 @@ class UserProfileModel {
     init(data: [String: Any], totalTodayPost: String, totalForeverPost: String) {
         map = Map(data: data)
         id = map.value("id") ?? ""
+        if id.isEmpty {
+            id = map.value("UserId") ?? ""
+
+        }
         idrole = map.value("idrole") ?? ""
         username = map.value("username") ?? ""
         password = map.value("password") ?? ""

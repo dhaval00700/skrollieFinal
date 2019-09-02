@@ -20,6 +20,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var emoji2: UIButton!
     @IBOutlet weak var btnUserProfile: UIButton!
     @IBOutlet weak var imgWaterMark: UIImageView!
+    @IBOutlet weak var imgAccountVerified: UIImageView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +33,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         imgPost.isHidden = false
         viwPost.isHidden = true
         imgWaterMark.alpha = 0
+        imgAccountVerified.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2509279847, green: 0.1815860868, blue: 0.3583279252, alpha: 1))
+
     }
 
     var playerLayer : AVPlayerLayer!

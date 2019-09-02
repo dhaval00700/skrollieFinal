@@ -27,8 +27,9 @@ class commentViewClass: BaseViewController
     @IBOutlet weak var viwUnblockUser: UIView!
     @IBOutlet weak var viwComments: UIView!
     @IBOutlet weak var viwWriteReview: UIView!
+    @IBOutlet weak var viwReply: UIView!
+    @IBOutlet weak var lblReplyuserName: UILabel!
 
-    
     var isOwnProfile: Bool = false
     var arrPost = [Post]()
     var indexpath : IndexPath!
@@ -43,6 +44,9 @@ class commentViewClass: BaseViewController
     var userProfileDataObj: UserProfileModel!
     var selectedPostuserData = UserData()
     var selectedEmojiButton: UIButton!
+    
+    var subRply = false
+    var subUserComment = UserComment()
     
     
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
@@ -72,6 +76,7 @@ class commentViewClass: BaseViewController
         viwUnblockUser.isHidden = true
         viwWriteReview.isHidden = true
         viewAllComment.isHidden = true
+        viwReply.isHidden = true
 
         if isOwnProfile {
             viwUnblockUser.isHidden = false
@@ -216,18 +221,38 @@ class commentViewClass: BaseViewController
         selectedEmojiButton = sender
     }
     
+    @IBAction func tapAllCommentClick(_ sender: UIButton) {
+        let vc = AllCommentViewController.instantiate(fromAppStoryboard: .Main)
+        vc.postId = arrPost[currentIndexForLike].Postid
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func btnSendComment(_ sender: UIButton) {
         self.view.endEditing(true)
         if !txtWriteReview.text!.isEmpty {
-            sendComment(idComment: "")
+            if viwReply.isHidden == false && !subRply {
+                let obj = arrUserComment[sender.tag]
+                sendComment(idComment: obj.idComment)
+            } else if viwReply.isHidden == false && subRply {
+                sendComment(idComment: subUserComment.idComment)
+            }  else {
+                sendComment(idComment: "")
+            }
         }
     }
     
     @IBAction func btnCommentReply(_ sender: UIButton) {
-        if !txtWriteReview.text!.isEmpty {
-            let obj = arrUserComment[sender.tag]
-            sendComment(idComment: obj.idComment)
-        }
+        self.viwReply.isHidden = false
+        let obj = arrUserComment[sender.tag]
+        lblReplyuserName.text = "Replying to " + obj.UserObj.username
+    }
+    
+    @IBAction func btnClose(_ sender: UIButton) {
+         self.view.endEditing(true)
+        viwReply.isHidden = true
+        txtWriteReview.text = ""
+        self.subRply = false
+
     }
     
     var selectedToolTipIndex = 0
@@ -349,7 +374,7 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "AllCommentsTableViewCell", for: indexPath) as! AllCommentsTableViewCell
             
-            cell.imgUser.image = UIImage.init(named: currentObj.UserObj.image)
+            cell.imgUser.imageFromURL(link: currentObj.UserObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
             cell.lblUser.text = currentObj.UserObj.username
             cell.lblUserComment.text = currentObj.Comment
             
@@ -357,7 +382,8 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
             cell.reloadData()
             self.tblForComment.layoutIfNeeded()
             self.constraintHightOfTblComment.constant = self.tblForComment.contentSize.height
-            
+            cell.dalegate = self
+
             cell.btnReply.tag = indexPath.row
             cell.btnReply.addTarget(self, action: #selector(btnCommentReply(_:)), for: .touchUpInside)
             
@@ -412,6 +438,12 @@ cell.lblUserName.text = currentObj.UserObj.username
             cell.ConfigureDatWithCell(currentObj)
             cell.emoji1.isHidden = false
             cell.emoji2.isHidden = false
+            if !currentObj.IsAccountVerify {
+                cell.imgAccountVerified.isHidden = true
+            } else {
+                cell.imgAccountVerified.isHidden = false
+            }
+            
             if isOwnProfile {
                 cell.emoji1.isHidden = true
                 cell.emoji2.isHidden = true
@@ -450,11 +482,21 @@ cell.lblUserName.text = currentObj.UserObj.username
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         if collectionView == collectionUserList {
+            let obj: userProfileClass = self.storyboard?.instantiateViewController(withIdentifier: "userProfileClass") as! userProfileClass
+            obj.userId = arrUserUnblock[indexPath.row].UserObj.id
+            obj.isFriend = true
+            obj.isThisDetail = true
+
+            self.navigationController?.pushViewController(obj, animated: true)
+        }
     }
 }
 
@@ -512,7 +554,7 @@ extension commentViewClass {
             if responseData.success {
                 self.viewAllComment.isHidden = false
                 self.viwComments.isHidden = false
-
+                self.getUnblockPost()
             }
         }
     }
@@ -530,6 +572,7 @@ extension commentViewClass {
             }
             
             if self.arrUserComment.count > 3 {
+                self.viwComments.isHidden = false
                 self.viewAllComment.isHidden = false
                 self.lblTotalCmt.text = "\(self.arrUserComment.count)"
             } else if self.arrUserComment.isEmpty {
@@ -540,6 +583,10 @@ extension commentViewClass {
                 self.viwComments.isHidden = false
 
             }
+            
+            self.tblForComment.reloadData()
+            self.tblForComment.layoutIfNeeded()
+            self.constraintHightOfTblComment.constant = self.tblForComment.contentSize.height
             
             self.tblForComment.reloadData()
             self.tblForComment.layoutIfNeeded()
@@ -563,6 +610,8 @@ extension commentViewClass {
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
                 self.txtWriteReview.text = ""
+                self.viwReply.isHidden = true
+                self.subRply = false
                 self.getAllComment()
             }
             self.hideNewtworkIndicator()
@@ -581,7 +630,7 @@ extension commentViewClass {
                 self.arrUserUnblock = UserUnblock.getArray(data: response["data"] as? [[String : Any]] ?? [[String : Any]]())
             }
             
-            if self.arrUserUnblock.count > 0 {
+            if self.arrUserUnblock.count > 0 && self.isOwnProfile {
                 self.viwUnblockUser.isHidden = false
             } else {
                 self.viwUnblockUser.isHidden = true
@@ -613,4 +662,18 @@ extension commentViewClass : UIScrollViewDelegate {
        
     }
    
+}
+
+
+extension commentViewClass: AllCommentsTableViewCellDelegate {
+    func selectedReply(selectedObj: UserComment) {
+        
+        self.viwReply.isHidden = false
+        self.viwWriteReview.isHidden = false
+        
+        lblReplyuserName.text = "Replying to " + selectedObj.UserObj.username
+        
+        subRply = true
+        subUserComment = selectedObj
+    }
 }

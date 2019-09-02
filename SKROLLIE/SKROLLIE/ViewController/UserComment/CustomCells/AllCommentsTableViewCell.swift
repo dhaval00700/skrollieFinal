@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AllCommentsTableViewCellDelegate {
+    func selectedReply(selectedObj: UserComment)
+}
+
 class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var imgUser: UIImageView!
@@ -21,6 +25,7 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
     var imgOfUser = String()
     var Username = String()
     var arrReplyComment = [UserComment]()
+    var dalegate : AllCommentsTableViewCellDelegate?
     
     override func awakeFromNib()
     {
@@ -40,6 +45,11 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
         lctSubCommentTableHeight.constant = tblSubComment.contentSize.height
     }
     
+    @objc func selectedReply(_ sender: UIButton) {
+        let currentobj = arrReplyComment[sender.tag]
+        dalegate?.selectedReply(selectedObj: currentobj)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrReplyComment.count
     }
@@ -48,10 +58,11 @@ class AllCommentsTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentItemTableViewCell", for: indexPath) as! CommentItemTableViewCell
         let currentObj = arrReplyComment[indexPath.row]
-        cell.imgUser.image = UIImage.init(named: currentObj.UserObj.image)
+        cell.imgUser.imageFromURL(link: currentObj.UserObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         cell.lblUser.text = currentObj.UserObj.username
         cell.lblUserComment.text = currentObj.Comment
-        
+        cell.btnReply.tag = indexPath.row
+        cell.btnReply.addTarget(self, action: #selector(selectedReply), for: .touchUpInside)
         return cell
     }
     
