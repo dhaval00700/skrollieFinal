@@ -7,6 +7,9 @@ PODS:
   - IQKeyboardManagerSwift (6.4.1)
   - KMPlaceholderTextView (1.4.0)
   - ScalingCarousel (2.3)
+  - SDWebImage (5.1.0):
+    - SDWebImage/Core (= 5.1.0)
+  - SDWebImage/Core (5.1.0)
   - SkyFloatingLabelTextField (3.7.0)
   - SRCountdownTimer (1.1)
   - SVPinView (1.0.7)
@@ -25,6 +28,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KMPlaceholderTextView
   - ScalingCarousel
+  - SDWebImage
   - SkyFloatingLabelTextField (~> 3.0)
   - SRCountdownTimer
   - SVPinView (~> 1.0)
@@ -41,6 +45,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - KMPlaceholderTextView
     - ScalingCarousel
+    - SDWebImage
     - SkyFloatingLabelTextField
     - SRCountdownTimer
     - SVPinView
@@ -57,6 +62,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: d2df660d0b8d64a15cb2537c9ff303213fa515b2
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   ScalingCarousel: ee866c34c01b784b6edf9009f12ea73935517e3e
+  SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SRCountdownTimer: 9c92e444b5403c92f01dd6610299b8c634bc8562
   SVPinView: 6c1da57e4a1273298802f460c60511ba10f7c831
@@ -65,6 +71,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 3ed61b45f1760e386abd91b0a8aff30583e52623
+PODFILE CHECKSUM: 65277cfa5bc622b3ff1954f1eb73d36b0a3aa4dc
 
 COCOAPODS: 1.6.1

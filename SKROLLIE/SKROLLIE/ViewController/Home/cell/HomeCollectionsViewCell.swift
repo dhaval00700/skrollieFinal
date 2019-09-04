@@ -26,21 +26,24 @@ class HomeCollectionsViewCell: UICollectionViewCell {
     // MARK: - Methods
     private func setupUI() {
         lblTimeOfPhotos.isHidden = true
+        viewAllocColourDependOnTime.isHidden = true
     }
     
     func ConfigureCellWithData(_ data: Post) {
-        imgBackGround.imageFromURL(link: data.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         
         lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        
-        if  !data.Isforever || data.timeIntervalFromCurrent > 0 {
-            lblTimeOfPhotos.text = "24 H O U R S  L E F T"
-            viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.6039215686, green: 0.7490196078, blue: 0.1333333333, alpha: 1)
+        imgBackGround.imageFromURL(link: data.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        if  data.timeIntervalFromCurrent > 0 {
+            viewAllocColourDependOnTime.isHidden = false
+            if !data.Isforever {
+                viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.6039215686, green: 0.7490196078, blue: 0.1333333333, alpha: 1)
+            } else {
+                viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9098039216, blue: 0.1529411765, alpha: 1)
+            }
             getHeightFromTime(data)
         } else {
-            lblTimeOfPhotos.text = "F O R E V E R"
-            viewAllocColourDependOnTime.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9098039216, blue: 0.1529411765, alpha: 1)
-            lctViewAllocHeight.constant = 80
+            viewAllocColourDependOnTime.isHidden = true
+            lctViewAllocHeight.constant = 0
         }
     }
     
@@ -57,7 +60,7 @@ class HomeCollectionsViewCell: UICollectionViewCell {
             let percentage = (userInfo.timeIntervalFromCurrent / oneDayTimeInterval) * 100
             //print(userInfo.timeIntervalFromCurrent, oneDayTimeInterval)
             //print("Post Time percentage", percentage)
-            let height = (80 * percentage) / 100
+            let height = (120 * percentage) / 100
             //print("View Height", height)
             UIView.animate(withDuration: 1.5) {
                 self.lctViewAllocHeight.constant = CGFloat(height)

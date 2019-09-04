@@ -21,7 +21,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnUserProfile: UIButton!
     @IBOutlet weak var imgWaterMark: UIImageView!
     @IBOutlet weak var imgAccountVerified: UIImageView!
-
+    @IBOutlet weak var lctViwHrLine: NSLayoutConstraint!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -73,6 +74,43 @@ class UserPostCollectionViewCell: UICollectionViewCell {
             viwPost.isHidden = true
             if playerLayer != nil {
                 playerLayer.removeFromSuperlayer()
+            }
+        }
+        
+        
+        if  currentObj.timeIntervalFromCurrent > 0 {
+            viwHrLine.isHidden = false
+            if !currentObj.Isforever {
+                viwHrLine.backgroundColor = #colorLiteral(red: 0.6039215686, green: 0.7490196078, blue: 0.1333333333, alpha: 1)
+            } else {
+                viwHrLine.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9098039216, blue: 0.1529411765, alpha: 1)
+            }
+            getHeightFromTime(currentObj)
+        } else {
+            viwHrLine.isHidden = true
+            lctViwHrLine.constant = 0
+        }
+    }
+    
+    
+    func getHeightFromTime(_ data: Post) {
+        data.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: data, repeats: true)
+    }
+    
+    @objc func updateTimer(timer: Timer) {
+        let userInfo = timer.userInfo as! Post
+        if userInfo.timeIntervalFromCurrent < 0 {
+            timer.invalidate()
+        } else {
+            userInfo.timeIntervalFromCurrent -= 1
+            let percentage = (userInfo.timeIntervalFromCurrent / oneDayTimeInterval) * 100
+            //print(userInfo.timeIntervalFromCurrent, oneDayTimeInterval)
+            //print("Post Time percentage", percentage)
+            let height = (200 * percentage) / 100
+            //print("View Height", height)
+            UIView.animate(withDuration: 1.5) {
+                self.lctViwHrLine.constant = CGFloat(height)
+                self.viwHrLine.layoutIfNeeded()
             }
         }
     }

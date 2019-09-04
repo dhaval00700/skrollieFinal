@@ -20,6 +20,7 @@ target 'SKROLLIE' do
   pod 'KMPlaceholderTextView'
   pod 'ScalingCarousel'
   pod 'EasyTipView'
+  pod 'SDWebImage'
   
   # https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-381279098
   post_install do |installer|

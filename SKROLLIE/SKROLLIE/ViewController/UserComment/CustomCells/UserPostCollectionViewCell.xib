@@ -62,11 +62,11 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-mF-22U">
-                                <rect key="frame" x="10" y="51" width="4" height="205"/>
+                                <rect key="frame" x="10" y="56" width="4" height="200"/>
                                 <color key="backgroundColor" red="0.60550564529999995" green="0.75030201669999996" blue="0.1318067312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="7rI-jl-lDj"/>
-                                    <constraint firstAttribute="height" constant="205" id="ejX-EW-jlf"/>
+                                    <constraint firstAttribute="height" constant="200" id="ejX-EW-jlf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-PX-FlO">
@@ -165,6 +165,7 @@
                 <outlet property="imgUserProfile" destination="XpA-pb-DYp" id="PeU-dg-LLh"/>
                 <outlet property="imgWaterMark" destination="UYs-Fk-TDs" id="KKr-V7-b0d"/>
                 <outlet property="lblUserName" destination="IvR-UC-ZpW" id="6RL-gx-AWd"/>
+                <outlet property="lctViwHrLine" destination="ejX-EW-jlf" id="EBr-LK-yLW"/>
                 <outlet property="viwHrLine" destination="n6f-mF-22U" id="Q6t-bM-fsJ"/>
                 <outlet property="viwPost" destination="fIN-zq-8X7" id="ZRf-N9-sZf"/>
             </connections>

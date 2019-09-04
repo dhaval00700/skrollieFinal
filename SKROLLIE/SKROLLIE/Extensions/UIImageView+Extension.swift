@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 
 let imageCache = NSCache<NSString, UIImage>()
@@ -17,6 +18,10 @@ let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
     
     public func imageFromURL(link:String!, errorImage: UIImage?, contentMode mode: UIView.ContentMode?, isCache cache: Bool = true, Complation completion:(() -> Void)? = nil) {
+        self.sd_setImage(with: URL(string: link), placeholderImage: errorImage, options: .retryFailed, completed: nil)
+    }
+    
+    public func imageFromURLOld(link:String!, errorImage: UIImage?, contentMode mode: UIView.ContentMode?, isCache cache: Bool = true, Complation completion:(() -> Void)? = nil) {
         
         self.image = errorImage
         
