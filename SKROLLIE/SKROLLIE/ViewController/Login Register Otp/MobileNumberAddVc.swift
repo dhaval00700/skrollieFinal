@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import SkyFloatingLabelTextField
+import MRCountryPicker
 
 class MobileNumberAddVc: BaseViewController
 {
@@ -16,10 +17,15 @@ class MobileNumberAddVc: BaseViewController
     @IBOutlet weak var lblVerifyMobilenum: UILabel!
     @IBOutlet weak var lblErrorofMobile: UILabel!
     @IBOutlet weak var ViewOfMobile: UIView!
+    @IBOutlet weak var ViewOfCode: UIView!
+
     @IBOutlet weak var txtMobileNum: SkyFloatingLabelTextField!
     @IBOutlet weak var btnAlreadyAUser: UIButton!
     @IBOutlet weak var btnRequestVerificationPin: UIButton!
-    
+    @IBOutlet weak var txtCountryCode: SkyFloatingLabelTextField!
+
+    var countryPicker: MRCountryPicker!
+
     // MARK: - Properies
     private let textField = UITextField()
     private let errorMessage = UILabel()
@@ -36,6 +42,8 @@ class MobileNumberAddVc: BaseViewController
         txtMobileNum.becomeFirstResponder()
         ViewOfMobile.layer.borderColor =  UIColor.lightGray.cgColor
         ViewOfMobile.layer.borderWidth = 1.0
+        ViewOfCode.layer.borderColor =  UIColor.lightGray.cgColor
+        ViewOfCode.layer.borderWidth = 1.0
         txtMobileNum.delegate = self
         
         if let Logo = UIImage(named: "iconMobile")
@@ -44,8 +52,40 @@ class MobileNumberAddVc: BaseViewController
         }
         txtMobileNum.titleFormatter = { $0.lowercased() }
         
+        countryPicker = MRCountryPicker()
+        countryPicker.countryPickerDelegate = self
+        countryPicker.showPhoneNumbers = true
+        let locale = Locale.current
+        let code = locale.regionCode
+        countryPicker.setCountry(code!.uppercased())
+        
+        txtCountryCode.inputView = countryPicker
+        
+        let keyboardToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        keyboardToolbar.barStyle = .black
+        keyboardToolbar.tintColor = UIColor.white
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(clickToKeyboardToolbarDone))
+        
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let items = [flex, barButtonItem]
+        keyboardToolbar.setItems(items, animated: true)
+        
+        txtCountryCode.inputAccessoryView = keyboardToolbar
+        
         setupErrorMessage()
         setFont()
+    }
+    
+    @objc func clickToKeyboardToolbarDone()
+    {
+        if(txtCountryCode.isFirstResponder)
+        {
+            
+        }
+        
+        view.endEditing(true)
     }
     
     func setFont()
@@ -100,8 +140,14 @@ class MobileNumberAddVc: BaseViewController
     {
         if validateAllFields()
         {
+            if isDevelopmentMode {
+                let vc  =  OTPViewController.instantiate(fromAppStoryboard: .Main)
+                vc.getDataMobileNum = self.txtMobileNum.text!
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                webServiceoFMobileNum()
+            }
             
-            webServiceoFMobileNum()
         }
     }
     @IBAction func btnAlreayAUser(_ sender: Any)
@@ -133,8 +179,9 @@ extension MobileNumberAddVc : UITextFieldDelegate {
 
 extension MobileNumberAddVc {
     private func webServiceoFMobileNum() {
-        
-        _ = APIClient.CheckMobileNumber(mobileNumber: txtMobileNum.text!, success: { responseObj in
+        let str = txtCountryCode.text! +  txtMobileNum.text!
+
+        _ = APIClient.CheckMobileNumber(mobileNumber: str, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             
@@ -160,7 +207,8 @@ extension MobileNumberAddVc {
     }
     
     private func SendOTPFromServer() {
-        _ = APIClient.SendOTP(mobileNumber: txtMobileNum.text!, success: { responseObj in
+        let str = txtCountryCode.text! +  txtMobileNum.text!
+        _ = APIClient.SendOTP(mobileNumber: str, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             
@@ -178,5 +226,15 @@ extension MobileNumberAddVc {
                 
             }
         })
+    }
+}
+
+
+//MARK: - MRCountryPickerDelegate
+extension MobileNumberAddVc: MRCountryPickerDelegate
+{
+    func countryPhoneCodePicker(_ picker: MRCountryPicker, didSelectCountryWithName name: String, countryCode: String, phoneCode: String, flag: UIImage)
+    {
+        txtCountryCode.text = phoneCode //+ " " + name
     }
 }

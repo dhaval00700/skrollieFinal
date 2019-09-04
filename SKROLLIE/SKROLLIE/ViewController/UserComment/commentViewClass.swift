@@ -146,7 +146,7 @@ class commentViewClass: BaseViewController
         
         moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if index == 0 {
-                
+                self.reportPost(postId: self.arrPost[btn.tag].Postid)
             } else if index == 1 {
                 self.deletePost(postId: self.arrPost[btn.tag].Postid)
             }
@@ -692,7 +692,21 @@ extension commentViewClass {
                 self.arrPost.remove(at: self.currentIndexForLike)
                 self.clvCarousel.reloadData()
             }
-            
+        }
+    }
+    
+    private func reportPost(postId:String) {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.ReportedPostId, value: postId)
+       
+        _ = APIClient.ReportPost(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                Utility.showMessageAlert(title: "Alert", andMessage: responseData.message, withOkButtonTitle: "OK")
+            }
         }
     }
 }

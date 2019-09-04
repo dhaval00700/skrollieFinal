@@ -11,7 +11,7 @@ import AWSS3
 import AWSCore
 
 // MARK: - Global variables
-var isDevelopmentMode   = false
+var isDevelopmentMode   = true
 var enableProductionApi = false
 
 // MARK: - Colors
@@ -213,6 +213,7 @@ struct API {
     static let SavePostComment = BASE_URL + "MobilePost/SavePostComment"
     static let GetUnblockPost = BASE_URL + "MobilePost/GetUnblockPost"
     static let DeleteCurrentPost = BASE_URL + "MobilePost/DeletePost"
+    static let CreateReportedPost = BASE_URL + "MobilePost/CreateReportedPost"
 
 
     

@@ -104,7 +104,7 @@ open class MultipartFormData {
     private var bodyPartError: AFError?
     private let streamBufferSize: Int
 
-    // MARK: - LifeCycles
+    // MARK: - Lifecycle
 
     /// Creates a multipart form data object.
     ///

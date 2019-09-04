@@ -1,11 +1,12 @@
 PODS:
-  - Alamofire (4.8.2)
-  - AWSCore (2.10.2)
-  - AWSS3 (2.10.2):
-    - AWSCore (= 2.10.2)
+  - Alamofire (4.9.0)
+  - AWSCore (2.10.3)
+  - AWSS3 (2.10.3):
+    - AWSCore (= 2.10.3)
   - EasyTipView (2.0.4)
   - IQKeyboardManagerSwift (6.4.1)
   - KMPlaceholderTextView (1.4.0)
+  - MRCountryPicker (0.0.8)
   - ScalingCarousel (2.3)
   - SDWebImage (5.1.0):
     - SDWebImage/Core (= 5.1.0)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - EasyTipView
   - IQKeyboardManagerSwift
   - KMPlaceholderTextView
+  - MRCountryPicker
   - ScalingCarousel
   - SDWebImage
   - SkyFloatingLabelTextField (~> 3.0)
@@ -44,6 +46,7 @@ SPEC REPOS:
     - EasyTipView
     - IQKeyboardManagerSwift
     - KMPlaceholderTextView
+    - MRCountryPicker
     - ScalingCarousel
     - SDWebImage
     - SkyFloatingLabelTextField
@@ -55,12 +58,13 @@ SPEC REPOS:
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AWSCore: 2e91f89187d1238be35ce8c57aac98c42def640f
-  AWSS3: f0f81ee725de69f631051cead12791ff5dfbba14
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  AWSCore: f9b8a30d9e8ec07d1a6dd8f0ec5fe84b6a215041
+  AWSS3: c6f0f7a49a74384b9d0fe055c822d1fa5c633905
   EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
   IQKeyboardManagerSwift: d2df660d0b8d64a15cb2537c9ff303213fa515b2
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
+  MRCountryPicker: 1aeea66de25cdef79dce3b91d8ad9db643c1cc01
   ScalingCarousel: ee866c34c01b784b6edf9009f12ea73935517e3e
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 65277cfa5bc622b3ff1954f1eb73d36b0a3aa4dc
+PODFILE CHECKSUM: bbd94c0c4218d5839c45eede48b320fb58c633de
 
 COCOAPODS: 1.6.1

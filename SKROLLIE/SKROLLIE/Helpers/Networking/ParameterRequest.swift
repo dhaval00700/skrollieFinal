@@ -40,6 +40,7 @@ class ParameterRequest {
     static let attachimage = "attachimage"
     static let ReportedByUserId = "ReportedByUserId"
     static let ReportedToUserId = "ReportedToUserId"
+    static let ReportedPostId = "ReportedPostId"
     static let IsPublic = "IsPublic"
     static let idPost = "idPost"
     static let Emoji = "Emoji"

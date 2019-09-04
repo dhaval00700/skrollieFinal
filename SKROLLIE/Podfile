@@ -21,6 +21,8 @@ target 'SKROLLIE' do
   pod 'ScalingCarousel'
   pod 'EasyTipView'
   pod 'SDWebImage'
+  pod 'MRCountryPicker'
+
   
   # https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-381279098
   post_install do |installer|
