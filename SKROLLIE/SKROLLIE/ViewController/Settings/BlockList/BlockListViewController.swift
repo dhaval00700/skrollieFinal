@@ -96,7 +96,7 @@ extension BlockListViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension BlockListViewController {
     private func getBlockList() {
-        _ = APIClient.GetAllBlockFriendByUser(userId: AppPrefsManager.shared.getUserData().UserId) { (responseObj) in
+        _ = APIClient.GetAllBlockFriendByUser(userId: AppPrefsManager.shared.getUserProfileData().id) { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             self.arrBlockList.removeAll()

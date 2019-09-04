@@ -140,13 +140,8 @@ class MobileNumberAddVc: BaseViewController
     {
         if validateAllFields()
         {
-            if isDevelopmentMode {
-                let vc  =  OTPViewController.instantiate(fromAppStoryboard: .Main)
-                vc.getDataMobileNum = self.txtMobileNum.text!
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                webServiceoFMobileNum()
-            }
+            
+            webServiceoFMobileNum()
             
         }
     }
@@ -207,7 +202,7 @@ extension MobileNumberAddVc {
     }
     
     private func SendOTPFromServer() {
-        let str = txtCountryCode.text! +  txtMobileNum.text!
+        let str = txtCountryCode.text!.replacingOccurrences(of: "+", with: "") +  txtMobileNum.text!
         _ = APIClient.SendOTP(mobileNumber: str, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)

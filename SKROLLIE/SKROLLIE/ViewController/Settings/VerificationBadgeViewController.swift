@@ -119,7 +119,7 @@ extension VerificationBadgeViewController {
     
     private func updateData() {
         let parameter = ParameterRequest()
-        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserData().UserId)
+        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserProfileData().id)
         parameter.addParameter(key: ParameterRequest.attachimage, value: newKey)
         parameter.addParameter(key: ParameterRequest.FullName, value: txtFullName.text)
         parameter.addParameter(key: ParameterRequest.AKA, value: txtAka.text)

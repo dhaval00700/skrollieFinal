@@ -50,6 +50,7 @@ class BaseViewController: UIViewController {
                 let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
                 let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
                let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
+                AppPrefsManager.shared.saveUserProfileData(model: userProfileData)
                 if success != nil {
                     success!(true, userProfileData)
                 }
@@ -77,7 +78,7 @@ class BaseViewController: UIViewController {
     func createFriend(userId: String, completion success: ((Bool) -> Void)? = nil) {
         
         var paramter = [String:AnyObject]()
-        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
+        paramter["idUser"] = AppPrefsManager.shared.getUserProfileData().id as AnyObject
         paramter["idFriend"] = userId as AnyObject
         
         
@@ -97,7 +98,7 @@ class BaseViewController: UIViewController {
     func CancleFriendRequest(userId: String, completion success: ((Bool) -> Void)? = nil) {
         
         var paramter = [String:AnyObject]()
-        paramter["idUser"] = AppPrefsManager.shared.getUserData().UserId as AnyObject
+        paramter["idUser"] = AppPrefsManager.shared.getUserProfileData().id as AnyObject
         paramter["idFriend"] = userId as AnyObject
         
         
@@ -117,7 +118,7 @@ class BaseViewController: UIViewController {
     func updateStatus(userId: String, isBlock: Bool, completion success: ((Bool) -> Void)? = nil) {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idFriend, value: userId)
         param.addParameter(key: ParameterRequest.IsBlock, value: isBlock)
         
@@ -135,7 +136,7 @@ class BaseViewController: UIViewController {
     func unFriendUser(userId: String, completion success: ((Bool) -> Void)? = nil) {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idFriend, value: userId)
         
         _ = APIClient.UnFriendByUser(parameters: param.parameters) { (responseObj) in
@@ -152,7 +153,7 @@ class BaseViewController: UIViewController {
     func reportUser(userId: String) {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.ReportedToUserId, value: userId)
         
         _ = APIClient.ReportUser(parameters: param.parameters) { (responseObj) in

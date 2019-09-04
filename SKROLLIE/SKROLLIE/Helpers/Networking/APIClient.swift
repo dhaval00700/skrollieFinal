@@ -117,7 +117,7 @@ class APIClient {
     
     class func GetAllPost(success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        return ApiManager.requestApi(method: .get, urlString: API.GetAllPost + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)" , parameters: nil, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.GetAllPost + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)" , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
@@ -171,7 +171,7 @@ class APIClient {
     
     class func GetAllMyUnFriend(limit:Int, page:Int, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetAllMyUnFriend + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&limit=\(limit)&page=\(page)"
+        let url = API.GetAllMyUnFriend + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)&limit=\(limit)&page=\(page)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
@@ -183,7 +183,7 @@ class APIClient {
     
     class func GetAllMyFriend(limit:Int, page:Int, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetAllMyFriend + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)&limit=\(limit)&page=\(page)"
+        let url = API.GetAllMyFriend + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)&limit=\(limit)&page=\(page)"
         
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
@@ -272,7 +272,7 @@ class APIClient {
     
     class func GetFriendReuestedByUser(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetFriendReuestedByUser + "?idUser=\(AppPrefsManager.shared.getUserData().UserId)"
+        let url = API.GetFriendReuestedByUser + "?idUser=\(AppPrefsManager.shared.getUserProfileData().id)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: parameters, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
@@ -305,7 +305,7 @@ class APIClient {
     
     class func GetUserBySearch(limit:Int,page:Int,searchText:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        let url = API.GetAlluserWuthSearch + "?limit=\(limit)&page=\(page)&idUser=\(AppPrefsManager.shared.getUserData().UserId)&Search=\(searchText)"
+        let url = API.GetAlluserWuthSearch + "?limit=\(limit)&page=\(page)&idUser=\(AppPrefsManager.shared.getUserProfileData().id)&Search=\(searchText)"
         return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in

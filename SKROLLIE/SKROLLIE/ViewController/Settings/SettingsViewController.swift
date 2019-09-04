@@ -73,7 +73,7 @@ class SettingsViewController: BaseViewController {
             btnVerifyNow.isHidden = false
         }
         
-        getUserProfileData(userId: AppPrefsManager.shared.getUserData().UserId) { (flg, userProfileModel) in
+        getUserProfileData(userId: AppPrefsManager.shared.getUserProfileData().id) { (flg, userProfileModel) in
             if flg {
                 AppPrefsManager.shared.saveUserProfileData(model: userProfileModel)
                 if AppPrefsManager.shared.getUserProfileData().IsPublic {
@@ -189,7 +189,7 @@ extension SettingsViewController {
     private func changePassword() {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.UserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.UserId, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.oldpassword, value: txtCurrentPassword.text!)
         param.addParameter(key: ParameterRequest.password, value: txtNewPassword.text!)
         param.addParameter(key: ParameterRequest.confirmpassword, value: txtConfirmPassword.text!)
@@ -208,7 +208,7 @@ extension SettingsViewController {
     
     private func updateData(isFlag:Bool) {
         let parameter = ParameterRequest()
-        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserData().UserId)
+        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserProfileData().id)
         parameter.addParameter(key: ParameterRequest.IsPublic, value: isFlag)
         
         updateUserProfileData(parameters: parameter.parameters) { (flg) in
@@ -222,7 +222,7 @@ extension SettingsViewController {
     private func deActiveAccount() {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.Password, value: txtVerfyPass.text!)
         
         _ = APIClient.DeactivateAccount(parameters: param.parameters) { (responseObj) in

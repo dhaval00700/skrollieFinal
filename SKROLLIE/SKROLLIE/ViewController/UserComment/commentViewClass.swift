@@ -543,7 +543,7 @@ extension commentViewClass {
         
         let param = ParameterRequest()
         let obj = arrPost[currentIndexForLike]
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idPost, value: obj.Postid)
         param.addParameter(key: ParameterRequest.Emoji, value: emojiLike)
 
@@ -581,7 +581,7 @@ extension commentViewClass {
         
         let param = ParameterRequest()
         let obj = arrPost[currentIndexForLike]
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.PostId, value: obj.Postid)
         
         _ = APIClient.UnlockComment(parameters: param.parameters) { (responseObj) in
@@ -638,7 +638,7 @@ extension commentViewClass {
         
         let param = ParameterRequest()
         let obj = arrPost[currentIndexForLike]
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idPost, value: obj.Postid)
         param.addParameter(key: ParameterRequest.Comment, value: txtWriteReview.text!)
         param.addParameter(key: ParameterRequest.idComment, value: idComment)
@@ -698,7 +698,7 @@ extension commentViewClass {
     private func reportPost(postId:String) {
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.ReportedByUserId, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.ReportedPostId, value: postId)
        
         _ = APIClient.ReportPost(parameters: param.parameters) { (responseObj) in

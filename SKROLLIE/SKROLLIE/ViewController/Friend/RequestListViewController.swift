@@ -66,7 +66,7 @@ extension RequestListViewController {
     
     private func acceptFriendRequest(id:String) {
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idFriend, value: id)
         
         _ = APIClient.AcceptFriendRequest(parameters: param.parameters, success: { (resposObject) in

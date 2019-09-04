@@ -229,6 +229,8 @@ extension LoginViewController {
                         AppPrefsManager.shared.saveUserProfileData(model: userProfileClass)
                         let vc = HomeViewController.instantiate(fromAppStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)
+                        
+                        
                     }
                 })
             } else if !responseData.success {

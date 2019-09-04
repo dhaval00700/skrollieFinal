@@ -102,7 +102,7 @@ extension AllCommentViewController {
         self.showNetworkIndicator()
         
         let param = ParameterRequest()
-        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        param.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         param.addParameter(key: ParameterRequest.idPost, value: postId)
         param.addParameter(key: ParameterRequest.Comment, value: txtWriteReview.text!)
         param.addParameter(key: ParameterRequest.idComment, value: idComment)

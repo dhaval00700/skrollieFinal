@@ -38,7 +38,7 @@ class userProfileClass: BaseViewController
     
     // MARK: - Properties
     var arrData = [GetPostData]()
-    var userId = AppPrefsManager.shared.getUserData().UserId
+    var userId = AppPrefsManager.shared.getUserProfileData().id
     var isFriend = false
     var isThisDetail = false
     fileprivate var moreDropDown: DropDown!
@@ -167,13 +167,13 @@ class userProfileClass: BaseViewController
         } else {
             imgUserTag.isHidden = false
         }
-        if userId == AppPrefsManager.shared.getUserData().UserId || isFriend {
+        if userId == AppPrefsManager.shared.getUserProfileData().id || isFriend {
             btnCOnnect.isHidden = true
         } else {
             btnCOnnect.isHidden = false
         }
         
-        if userId == AppPrefsManager.shared.getUserData().UserId {
+        if userId == AppPrefsManager.shared.getUserProfileData().id {
             btnMore.isHidden = true
             btnEdit.isHidden = false
         } else {

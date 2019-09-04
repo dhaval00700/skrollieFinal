@@ -246,7 +246,7 @@ extension SelectedImageViewController
         
         let parameter = ParameterRequest()
         parameter.addParameter(key: ParameterRequest.id, value: "0")
-        parameter.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserData().UserId)
+        parameter.addParameter(key: ParameterRequest.idUser, value: AppPrefsManager.shared.getUserProfileData().id)
         parameter.addParameter(key: ParameterRequest.isPhoto, value: true)
         parameter.addParameter(key: ParameterRequest.Url, value: name)
         parameter.addParameter(key: ParameterRequest.Description, value: txtEnterDescription.text)

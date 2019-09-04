@@ -60,7 +60,7 @@ class EditProfileViewController: BaseViewController {
         } else {
             imgUserTag.isHidden = false
         }
-        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        imgUserPic.imageFromURL(link: userProfileData.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
         lblUserTag.text = "@" + userProfileData.username
         txtUsername.text = userProfileData.ProfileName
         txvDesc.text = userProfileData.description
@@ -120,7 +120,7 @@ extension EditProfileViewController {
     
     private func updateData() {
         let parameter = ParameterRequest()
-        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserData().UserId)
+        parameter.addParameter(key: ParameterRequest.id, value: AppPrefsManager.shared.getUserProfileData().id)
         if !newKey.isEmpty {
             parameter.addParameter(key: ParameterRequest.image, value: newKey)
         }
