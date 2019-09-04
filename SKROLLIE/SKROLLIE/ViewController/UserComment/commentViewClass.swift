@@ -47,6 +47,8 @@ class commentViewClass: BaseViewController
     
     var subRply = false
     var subUserComment = UserComment()
+    fileprivate var moreDropDown: DropDown!
+
     
     
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
@@ -132,6 +134,25 @@ class commentViewClass: BaseViewController
         collectionUserList.register(UINib(nibName: "UserItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserItemCollectionViewCell")
         collectionUserList.delegate = self
         collectionUserList.dataSource = self
+    }
+    
+    private func setDropDown(btn:UIButton) {
+        moreDropDown = DropDown()
+        
+        moreDropDown.anchorView = btn
+        moreDropDown.dataSource = ["Report", "Delete"]
+        
+        moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            if index == 0 {
+                
+            } else if index == 1 {
+                self.deletePost(postId: self.arrPost[btn.tag].Postid)
+            }
+        }
+        moreDropDown.backgroundColor = .clear
+       // moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y: -100)
+        
+        moreDropDown.width = 110
     }
     
     func setCommentView() {
@@ -252,7 +273,10 @@ class commentViewClass: BaseViewController
         viwReply.isHidden = true
         txtWriteReview.text = ""
         self.subRply = false
-
+    }
+    
+    @IBAction func btnMore(_ sender: UIButton) {
+        moreDropDown.show()
     }
     
     var selectedToolTipIndex = 0
@@ -335,6 +359,11 @@ extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource {
             else {
                 let currentEmoji = arrEmoji[ index]
                 likeUser(emojiLike: Int(returnEmojiNumber(img: currentEmoji))!)
+                let obj = arrPost[currentIndexForLike]
+                obj.LikeEmoji = "\(Int(returnEmojiNumber(img: currentEmoji))!)"
+                self.arrPost.remove(at: self.currentIndexForLike)
+                self.arrPost.insert(obj, at: self.currentIndexForLike)
+                self.clvCarousel.reloadData()
             }
             
         }
@@ -443,6 +472,7 @@ cell.lblUserName.text = currentObj.UserObj.username
             } else {
                 cell.imgAccountVerified.isHidden = false
             }
+            self.setDropDown(btn: cell.btnMore)
             
             if isOwnProfile {
                 cell.emoji1.isHidden = true
@@ -459,6 +489,9 @@ cell.lblUserName.text = currentObj.UserObj.username
                 
                 cell.imgUserProfile.imageFromURL(link: selectedPostuserData.ProfileImage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             }
+            
+            cell.btnMore.tag = indexPath.row
+            cell.btnMore.addTarget(self, action: #selector(btnMore(_:)), for: .touchUpInside)
             
             if !cell.emoji1.isHidden {
                 cell.emoji1.tag = indexPath.row
@@ -516,6 +549,7 @@ extension commentViewClass {
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
+                
                obj.LikeEmoji = "\(emojiLike)"
                 self.arrPost.remove(at: self.currentIndexForLike)
                 self.arrPost.insert(obj, at: self.currentIndexForLike)
@@ -637,6 +671,21 @@ extension commentViewClass {
             }
             
             self.collectionUserList.reloadData()
+            
+        }
+    }
+
+    private func deletePost(postId:String) {
+        
+        _ = APIClient.DeletePost(idPost: postId) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            self.arrUserComment.removeAll()
+            self.arrUserUnblock.removeAll()
+            if responseData.success {
+                self.arrPost.remove(at: self.currentIndexForLike)
+                self.clvCarousel.reloadData()
+            }
             
         }
     }

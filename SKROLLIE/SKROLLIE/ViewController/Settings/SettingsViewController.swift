@@ -121,10 +121,14 @@ class SettingsViewController: BaseViewController {
     }
     
     @IBAction func onBtnPublic(_ sender: Any) {
+        self.btnPublic.isSelected = true
+        self.btnPrivate.isSelected = false
         updateData(isFlag: true)
     }
     
     @IBAction func onBtnPrivate(_ sender: Any) {
+        self.btnPublic.isSelected = false
+        self.btnPrivate.isSelected = true
         updateData(isFlag: false)
 
     }

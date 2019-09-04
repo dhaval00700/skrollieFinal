@@ -56,6 +56,9 @@ class SearchItemCollectionViewCell: UICollectionViewCell {
             btnConnect.setTitle("Connect Requested", for: .normal)
             btnConnect.isUserInteractionEnabled = false
         }
+        
+        btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)
+        btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
         setDropDown(currentObj)
     }
     

@@ -379,4 +379,15 @@ class APIClient {
             return true
         })
     }
+    
+    class func DeletePost(idPost:String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+        let headers = HeaderRequestParameter()
+        let url = API.DeletePost + "?PostId=\(idPost)"
+        return ApiManager.requestApi(method: .get, urlString: url , parameters: nil, headers: headers.parameters, success: { (response) in
+            successBlock(response)
+        }, failure: { (error) -> Bool in
+            DLog(error)
+            return true
+        })
+    }
 }

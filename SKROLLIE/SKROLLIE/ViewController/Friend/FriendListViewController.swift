@@ -236,17 +236,21 @@ extension FriendListViewController : UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCollectionViewCell", for: indexPath) as! FriendCollectionViewCell
-        let currentObj = arrFriendList[indexPath.row]
-        if indexPath.row == arrFriendList.count - 1 {
-            getAllMyFriend()
+        
+        if arrFriendList.count > 0 {
+            let currentObj = arrFriendList[indexPath.row]
+            if indexPath.row == arrFriendList.count - 1 {
+                getAllMyFriend()
+            }
+            if currentObj.IsAccountVerify == AccountVerifyStatus.two {
+                cell.imgTag.isHidden = false
+            }
+            cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
+            cell.lblUserName.text = currentObj.username
+            cell.btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
+            cell.btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)
         }
-        if currentObj.IsAccountVerify == AccountVerifyStatus.two {
-            cell.imgTag.isHidden = false
-        }
-        cell.imgUserPhoto.imageFromURL(link: currentObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
-        cell.lblUserName.text = currentObj.username
-        cell.btnForeverCount.setTitle(currentObj.ForeverPost, for: .normal)
-        cell.btnTodayPostCount.setTitle(currentObj.TodayPost, for: .normal)
+       
         return cell
     }
     

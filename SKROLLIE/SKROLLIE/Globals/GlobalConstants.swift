@@ -212,6 +212,7 @@ struct API {
     static let GetAllCommentByPostId = BASE_URL + "MobilePost/GetAllCommentByPostId"
     static let SavePostComment = BASE_URL + "MobilePost/SavePostComment"
     static let GetUnblockPost = BASE_URL + "MobilePost/GetUnblockPost"
+    static let DeleteCurrentPost = BASE_URL + "MobilePost/DeletePost"
 
 
     

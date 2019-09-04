@@ -22,6 +22,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgWaterMark: UIImageView!
     @IBOutlet weak var imgAccountVerified: UIImageView!
     @IBOutlet weak var lctViwHrLine: NSLayoutConstraint!
+    @IBOutlet weak var btnMore: UIButton!
+
     
     
     override func awakeFromNib() {
@@ -41,7 +43,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     var playerLayer : AVPlayerLayer!
     
     func ConfigureDatWithCell(_ currentObj: Post) {
-        lblUserName.text = currentObj.UserName
+        lblUserName.text = currentObj.Description
         
         imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         if !currentObj.LikeEmoji.isEmpty {
