@@ -48,6 +48,8 @@ class commentViewClass: BaseViewController
     var subRply = false
     var subUserComment = UserComment()
     fileprivate var moreDropDown: DropDown!
+    
+    var pf = EasyTipView.Preferences()
 
     
     
@@ -62,7 +64,6 @@ class commentViewClass: BaseViewController
         getAllLike()
         getAllComment()
         getUnblockPost()
-        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -95,8 +96,9 @@ class commentViewClass: BaseViewController
         setupCollectionView()
         setupEmogiPager()
         setCommentView()
+        setupEasyTip()
     }
-    var pf = EasyTipView.Preferences()
+    
     private func setupEasyTip() {
         tipView?.removeFromSuperview()
         tipView = nil
@@ -588,7 +590,9 @@ extension commentViewClass {
             if responseData.success {
                 self.viewAllComment.isHidden = false
                 self.viwComments.isHidden = false
+                self.viwWriteReview.isHidden = false
                 self.getUnblockPost()
+                self.getAllComment()
             }
         }
     }
@@ -669,6 +673,8 @@ extension commentViewClass {
             } else {
                 self.viwUnblockUser.isHidden = true
             }
+            
+        
             
             self.collectionUserList.reloadData()
             

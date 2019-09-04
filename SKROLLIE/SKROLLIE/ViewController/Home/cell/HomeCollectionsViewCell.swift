@@ -58,10 +58,10 @@ class HomeCollectionsViewCell: UICollectionViewCell {
         } else {
             userInfo.timeIntervalFromCurrent -= 1
             let percentage = (userInfo.timeIntervalFromCurrent / oneDayTimeInterval) * 100
-            //print(userInfo.timeIntervalFromCurrent, oneDayTimeInterval)
-            //print("Post Time percentage", percentage)
+            //DLog(userInfo.timeIntervalFromCurrent, oneDayTimeInterval)
+            //DLog("Post Time percentage", percentage)
             let height = (120 * percentage) / 100
-            //print("View Height", height)
+            //DLog("View Height", height)
             UIView.animate(withDuration: 1.5) {
                 self.lctViewAllocHeight.constant = CGFloat(height)
                 self.viewAllocColourDependOnTime.layoutIfNeeded()
