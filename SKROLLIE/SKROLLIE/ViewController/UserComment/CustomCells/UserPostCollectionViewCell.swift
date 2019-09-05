@@ -23,6 +23,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgAccountVerified: UIImageView!
     @IBOutlet weak var lctViwHrLine: NSLayoutConstraint!
     @IBOutlet weak var btnMore: UIButton!
+    @IBOutlet weak var btnPlayPause: UIButton!
+    @IBOutlet weak var btnMuteControll: UIButton!
 
     
     
@@ -38,9 +40,19 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         imgWaterMark.alpha = 0
         imgAccountVerified.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2509279847, green: 0.1815860868, blue: 0.3583279252, alpha: 1))
 
+        btnMuteControll.addCornerRadius(btnMuteControll.frame.height/2.0)
+        
+        btnPlayPause.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        btnPlayPause.setImage(#imageLiteral(resourceName: "pause"), for: .selected)
+        
+        btnPlayPause.isSelected = true
+        
+        btnMuteControll.setImage(#imageLiteral(resourceName: "Unmute"), for: .normal)
+        btnMuteControll.setImage(#imageLiteral(resourceName: "Mute"), for: .selected)
     }
 
     var playerLayer : AVPlayerLayer!
+    var avPlayer = AVPlayer()
     
     func ConfigureDatWithCell(_ currentObj: Post) {
         lblUserName.text = currentObj.Description
@@ -56,7 +68,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         
         if !currentObj.isPhoto {
             let playerItem = AVPlayerItem(url: URL(string: currentObj.Url)!)
-            var avPlayer = AVPlayer()
+            
             avPlayer = AVPlayer(playerItem: playerItem)
             playerLayer = AVPlayerLayer(player: avPlayer)
             
@@ -67,7 +79,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
                 self.playerLayer.frame.size = self.viwPost.bounds.size
                 self.playerLayer.layoutIfNeeded()
                 self.viwPost.layer.addSublayer(self.playerLayer)
-                avPlayer.play()
+                self.avPlayer.play()
                 self.imgPost.isHidden = true
                 self.viwPost.isHidden = false
             }
@@ -115,5 +127,21 @@ class UserPostCollectionViewCell: UICollectionViewCell {
                 self.viwHrLine.layoutIfNeeded()
             }
         }
+    }
+    
+    @IBAction func onBtnPlayPause(_ sender: UIButton) {
+        
+        if btnPlayPause.isSelected  {
+            avPlayer.pause()
+            btnPlayPause.isSelected = false
+        } else {
+            avPlayer.play()
+            btnPlayPause.isSelected = true
+        }
+    }
+    
+    @IBAction func onBtnMuteControll(_ sender: Any) {
+        btnMuteControll.isSelected = !btnMuteControll.isSelected
+        avPlayer.isMuted = !avPlayer.isMuted
     }
 }

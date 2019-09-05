@@ -406,7 +406,6 @@ extension commentViewClass: UITableViewDelegate,UITableViewDataSource{
             cell.imgUser.imageFromURL(link: currentObj.UserObj.image, errorImage: profilePlaceHolder, contentMode: .scaleAspectFill)
             cell.lblUser.text = currentObj.UserObj.username
             cell.lblUserComment.text = currentObj.Comment
-            
             cell.arrReplyComment = currentObj.LstReplayComment
             cell.reloadData()
             self.tblForComment.layoutIfNeeded()
@@ -457,8 +456,8 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
         if collectionView == collectionUserList {
             let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "UserItemCollectionViewCell", for: indexPath) as!  UserItemCollectionViewCell
             let currentObj = arrUserUnblock[indexPath.row]
-cell.lblUserName.text = currentObj.UserObj.username
-              cell.imgUserProfile.imageFromURL(link: currentObj.UserObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+            cell.lblUserName.text = currentObj.UserObj.username
+            cell.imgUserProfile.imageFromURL(link: currentObj.UserObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             
             return cell
         } else {
@@ -501,7 +500,7 @@ cell.lblUserName.text = currentObj.UserObj.username
             if !cell.emoji2.isHidden {
                 cell.emoji2.tag = indexPath.row
                 cell.emoji2.addTarget(self, action: #selector(btnTapEmoji2(_:)), for: .touchUpInside)
-
+                
             }
             
             

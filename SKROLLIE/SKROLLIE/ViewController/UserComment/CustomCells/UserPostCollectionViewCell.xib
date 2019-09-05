@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="MONTSERRAT-MEDIUM.OTF">
+            <string>Montserrat-Medium</string>
+        </array>
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
@@ -31,9 +34,49 @@
                                 <rect key="frame" x="10" y="33" width="276" height="223"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIN-zq-8X7">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIN-zq-8X7">
                                 <rect key="frame" x="10" y="33" width="276" height="223"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndW-7f-DU0">
+                                        <rect key="frame" x="189" y="178" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="YbN-DU-qjy"/>
+                                            <constraint firstAttribute="width" constant="30" id="gxm-cV-6J4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBtnPlayPause:" destination="gTV-IL-0wX" eventType="touchUpInside" id="f5F-Uk-AFF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rip-ga-08u">
+                                        <rect key="frame" x="231" y="178" width="30" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.48159246579999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="MDZ-11-fPw"/>
+                                            <constraint firstAttribute="height" constant="30" id="wU2-Sd-SQs"/>
+                                        </constraints>
+                                        <state key="normal" image="Unmute">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected" image="mute"/>
+                                        <connections>
+                                            <action selector="onBtnMuteControll:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3VX-kn-bEK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rip-ga-08u" firstAttribute="leading" secondItem="ndW-7f-DU0" secondAttribute="trailing" constant="12" id="EY2-id-49B"/>
+                                    <constraint firstItem="ndW-7f-DU0" firstAttribute="bottom" secondItem="rip-ga-08u" secondAttribute="bottom" id="KB7-cX-WUB"/>
+                                    <constraint firstAttribute="trailing" secondItem="rip-ga-08u" secondAttribute="trailing" constant="15" id="Kyq-wG-TNq"/>
+                                    <constraint firstAttribute="bottom" secondItem="rip-ga-08u" secondAttribute="bottom" constant="15" id="vgn-FG-39J"/>
+                                </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Fk-TDs">
                                 <rect key="frame" x="135.5" y="119.5" width="25" height="25"/>
@@ -168,6 +211,8 @@
             <size key="customSize" width="296" height="264"/>
             <connections>
                 <outlet property="btnMore" destination="ctg-EV-4GE" id="ui6-Hh-FsG"/>
+                <outlet property="btnMuteControll" destination="rip-ga-08u" id="fqq-Nf-IyE"/>
+                <outlet property="btnPlayPause" destination="ndW-7f-DU0" id="HDw-sV-ucN"/>
                 <outlet property="btnUserProfile" destination="SOt-xJ-ddn" id="PX6-Rj-0YV"/>
                 <outlet property="emoji1" destination="c4c-Od-YXR" id="ZUa-Rn-hLp"/>
                 <outlet property="emoji2" destination="Ubh-LC-h4W" id="1lC-aU-W10"/>
@@ -184,10 +229,12 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Unmute" width="24" height="24"/>
         <image name="blankHappy" width="50" height="50"/>
         <image name="blankSad" width="50" height="50"/>
         <image name="ic_shield" width="25" height="25"/>
         <image name="img1" width="960" height="640"/>
         <image name="img3" width="640" height="640"/>
+        <image name="mute" width="16" height="16"/>
     </resources>
 </document>
