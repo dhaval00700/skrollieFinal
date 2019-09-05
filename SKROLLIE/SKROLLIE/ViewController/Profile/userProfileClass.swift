@@ -361,8 +361,9 @@ extension userProfileClass: cellUserProfilePostDelegate {
     func selectedPost(indexpath: IndexPath, arrPost: [Post], selectedPostUserData: UserData) {
         let navController = storyboard?.instantiateViewController(withIdentifier: "commentVC") as! UINavigationController
         let navVc = navController.viewControllers.first as! commentViewClass
-        navVc.arrPost = arrPost
-        navVc.indexpath = indexpath
+        let data = getAllPostData(id: arrPost[indexpath.row].Postid)
+        navVc.arrPost = data.0
+        navVc.indexpath = IndexPath(row: data.1, section: 0)
         navVc.selectedPostuserData = selectedPostUserData
         navVc.isOwnProfile = true
         navVc.userProfileDataObj = userProfileData
@@ -398,6 +399,31 @@ extension userProfileClass {
 
             }
         }
+    }
+    
+    func getAllPostData(id:String) -> ([Post], Int)  {
+        
+        var arrAllData = [Post]()
+        
+        for temp in self.arrData {
+            
+            for postObj in temp.arrPostData {
+                
+                arrAllData.append(contentsOf: postObj)
+            }
+        }
+        
+        let ind = arrAllData.firstIndex { (obj) -> Bool in
+            return obj.Postid == id
+        }
+        
+        if ind != nil {
+            return (arrAllData,ind!)
+        }
+        
+        return (arrAllData,0)
+
+        
     }
     
     private func getForeverPostByUserId() {

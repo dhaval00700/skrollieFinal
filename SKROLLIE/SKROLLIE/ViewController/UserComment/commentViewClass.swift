@@ -40,7 +40,6 @@ class commentViewClass: BaseViewController
     var arrUserLike = [UserLike]()
     var arrUserUnblock = [UserUnblock]()
 
-    
     var userProfileDataObj: UserProfileModel!
     var selectedPostuserData = UserData()
     var selectedEmojiButton: UIButton!
@@ -86,7 +85,6 @@ class commentViewClass: BaseViewController
             viwComments.isHidden = false
             viewAllComment.isHidden = true
             viwWriteReview.isHidden = true
-
         }
         
         tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
@@ -130,7 +128,7 @@ class commentViewClass: BaseViewController
             self.viwWriteReview.isHidden = false
         }
         delay(time: 1.0) {
-            self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: true)
+            self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: false)
         }
         
         collectionUserList.register(UINib(nibName: "UserItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserItemCollectionViewCell")
