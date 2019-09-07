@@ -25,7 +25,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnMore: UIButton!
     @IBOutlet weak var btnPlayPause: UIButton!
     @IBOutlet weak var btnMuteControll: UIButton!
-
+    @IBOutlet weak var stkViwControlls: UIStackView!
+    
     
     
     override func awakeFromNib() {
@@ -37,6 +38,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         imgPost.isHidden = false
         viwPost.isHidden = true
+        stkViwControlls.isHidden = true
         imgWaterMark.alpha = 0
         imgAccountVerified.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2509279847, green: 0.1815860868, blue: 0.3583279252, alpha: 1))
 
@@ -50,47 +52,37 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         btnMuteControll.setImage(#imageLiteral(resourceName: "Unmute"), for: .normal)
         btnMuteControll.setImage(#imageLiteral(resourceName: "Mute"), for: .selected)
     }
-
-    var playerLayer : AVPlayerLayer!
-    var avPlayer = AVPlayer()
+    
+    var curObj = Post()
     
     func ConfigureDatWithCell(_ currentObj: Post) {
+        curObj = currentObj
         lblUserName.text = currentObj.Description
-        
-        imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         if !currentObj.LikeEmoji.isEmpty {
             let likeEmoji = EmojiStatus(rawValue: Int(currentObj.LikeEmoji)!)!.description()
             imgWaterMark.image = likeEmoji
             imgWaterMark.alpha = 0.7
             imgWaterMark.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)
         }
-
         
         if !currentObj.isPhoto {
-            let playerItem = AVPlayerItem(url: URL(string: currentObj.Url)!)
-            
-            avPlayer = AVPlayer(playerItem: playerItem)
-            playerLayer = AVPlayerLayer(player: avPlayer)
-            
-            playerLayer.videoGravity = .resizeAspectFill
-            delay(time: 1.5) {
-                self.viwPost.layoutIfNeeded()
-                self.viwPost.layoutIfNeeded()
-                self.playerLayer.frame.size = self.viwPost.bounds.size
-                self.playerLayer.layoutIfNeeded()
-                self.viwPost.layer.addSublayer(self.playerLayer)
-                self.avPlayer.play()
+            stkViwControlls.isHidden = true
+            delay(time: 0.3) {
+                self.AssignPlayer(currentObj, completion: {
+                    currentObj.avPlayer.play()
+                    self.btnPlayPause.isSelected = true
+                })
                 self.imgPost.isHidden = true
                 self.viwPost.isHidden = false
+                self.stkViwControlls.isHidden = false
             }
         } else {
+            imgPost.imageFromURL(link: currentObj.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             imgPost.isHidden = false
             viwPost.isHidden = true
-            if playerLayer != nil {
-                playerLayer.removeFromSuperlayer()
-            }
+            stkViwControlls.isHidden = true
+            currentObj.playerLayer.removeFromSuperlayer()
         }
-        
         
         if  currentObj.timeIntervalFromCurrent > 0 {
             viwHrLine.isHidden = false
@@ -104,6 +96,27 @@ class UserPostCollectionViewCell: UICollectionViewCell {
             viwHrLine.isHidden = true
             lctViwHrLine.constant = 0
         }
+    }
+    
+    func AssignPlayer(_ currentObj: Post, completion : (() -> Void)? = nil) {
+        let playerItem = AVPlayerItem(url: URL(string: currentObj.Url)!)
+        currentObj.avPlayer = AVPlayer(playerItem: playerItem)
+        currentObj.playerLayer = AVPlayerLayer(player: currentObj.avPlayer)
+        currentObj.playerLayer.videoGravity = .resizeAspectFill
+        currentObj.playerLayer.layoutIfNeeded()
+        currentObj.playerLayer.frame.size = self.viwPost.bounds.size
+        self.viwPost.layoutIfNeeded()
+        self.viwPost.layer.addSublayer(currentObj.playerLayer)
+        if completion != nil {
+            completion!()
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.playerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: currentObj.avPlayer.currentItem)
+    }
+    
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        print("Video Finished")
+        btnPlayPause.isSelected = false
+        self.AssignPlayer(curObj, completion: nil)
     }
     
     
@@ -127,21 +140,5 @@ class UserPostCollectionViewCell: UICollectionViewCell {
                 self.viwHrLine.layoutIfNeeded()
             }
         }
-    }
-    
-    @IBAction func onBtnPlayPause(_ sender: UIButton) {
-        
-        if btnPlayPause.isSelected  {
-            avPlayer.pause()
-            btnPlayPause.isSelected = false
-        } else {
-            avPlayer.play()
-            btnPlayPause.isSelected = true
-        }
-    }
-    
-    @IBAction func onBtnMuteControll(_ sender: Any) {
-        btnMuteControll.isSelected = !btnMuteControll.isSelected
-        avPlayer.isMuted = !avPlayer.isMuted
     }
 }

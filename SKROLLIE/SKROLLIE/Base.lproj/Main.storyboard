@@ -22,7 +22,7 @@
         <array key="MONTSERRAT-REGULAR.OTF">
             <string>Montserrat-Regular</string>
         </array>
-        <array key="MONTSERRAT-SEMIBOLD_0.OTF">
+        <array key="MONTSERRAT-SEMIBOLD.OTF">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
@@ -687,13 +687,13 @@
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ZA-GB-eUy">
-                                                        <rect key="frame" x="119" y="615.5" width="82.5" height="25"/>
+                                                        <rect key="frame" x="112.5" y="615.5" width="95.5" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCopy" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-aH-YUv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="16" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLr-dn-qaO">
-                                                                <rect key="frame" x="17" y="0.0" width="65.5" height="25"/>
+                                                                <rect key="frame" x="30" y="0.0" width="65.5" height="25"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1697,7 +1697,7 @@
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-rg-orN" customClass="ScalingCarouselView" customModule="ScalingCarousel">
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-rg-orN" customClass="ScalingCarouselView" customModule="ScalingCarousel">
                                                             <rect key="frame" x="0.0" y="80" width="320" height="320"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>

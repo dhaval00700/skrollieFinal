@@ -61,10 +61,12 @@ class UserProfileModel {
         city = map.value("city") ?? ""
         gender = map.value("gender") ?? ""
         let str = (map.value("image") ?? "")
-        if str.contains(prefixDataUrl) {
-            image = (map.value("image") ?? "")
-        } else {
-            image = prefixDataUrl + (map.value("image") ?? "")
+        if !str.isEmpty {
+            if str.contains(prefixDataUrl) {
+                image = (map.value("image") ?? "")
+            } else {
+                image = prefixDataUrl + (map.value("image") ?? "")
+            }
         }
         Birthdate = map.value("Birthdate") ?? ""
         IsDelete = map.value("IsDelete") ?? false

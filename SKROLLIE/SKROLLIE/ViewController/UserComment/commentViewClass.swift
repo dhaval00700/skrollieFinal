@@ -48,6 +48,13 @@ class commentViewClass: BaseViewController
     var subUserComment = UserComment()
     fileprivate var moreDropDown: DropDown!
     
+    var selectedToolTipIndex = 0
+    var arrUserComment = [UserComment]()
+    
+    var selectedEmojiIndex = 0
+    var selectedEmoji1 = -1
+    var selectedEmoji2 = -1
+    
     var pf = EasyTipView.Preferences()
 
     
@@ -173,6 +180,7 @@ class commentViewClass: BaseViewController
         getUnblockPost()
         
         let object = arrPost[currentIndexForLike]
+        
         if object.IsUnBlockPost && !isOwnProfile {
             self.viewAllComment.isHidden = false
             self.viwWriteReview.isHidden = false
@@ -199,9 +207,6 @@ class commentViewClass: BaseViewController
         self.emojiPagerView.transformer = FSPagerViewTransformer(type:.linear)
     }
     
-    var selectedEmojiIndex = 0
-    var selectedEmoji1 = -1
-    var selectedEmoji2 = -1
     
     func setEmojis() {
         let cell = clvCarousel.cellForItem(at: IndexPath(item: currentIndexForLike, section: 0)) as! UserPostCollectionViewCell
@@ -279,9 +284,6 @@ class commentViewClass: BaseViewController
         moreDropDown.show()
     }
     
-    var selectedToolTipIndex = 0
-    var arrUserComment = [UserComment]()
-    
     @objc func handlePressGesture(gesture: UILongPressGestureRecognizer!) {
         let position = gesture.location(in: emojiPagerView.collectionView)
         let indexpath = self.emojiPagerView.collectionView.indexPathForItem(at: position)
@@ -312,6 +314,33 @@ class commentViewClass: BaseViewController
             break
         default:
             break
+        }
+    }
+    
+    @objc func onBtnPlayPause(_ sender: UIButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.clvCarousel)
+        let indexPath = self.clvCarousel.indexPathForItem(at: buttonPosition)
+        if indexPath != nil {
+            let cell = clvCarousel.cellForItem(at: indexPath!) as! UserPostCollectionViewCell
+            let currentObj = arrPost[sender.tag]
+            if cell.btnPlayPause.isSelected  {
+                currentObj.avPlayer.pause()
+                cell.btnPlayPause.isSelected = false
+            } else {
+                currentObj.avPlayer.play()
+                cell.btnPlayPause.isSelected = true
+            }
+        }
+    }
+    
+    @objc func onBtnMute(_ sender: UIButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.clvCarousel)
+        let indexPath = self.clvCarousel.indexPathForItem(at: buttonPosition)
+        if indexPath != nil {
+            let cell = clvCarousel.cellForItem(at: indexPath!) as! UserPostCollectionViewCell
+            let currentObj = arrPost[sender.tag]
+            cell.btnMuteControll.isSelected = !cell.btnMuteControll.isSelected
+            currentObj.avPlayer.isMuted = !currentObj.avPlayer.isMuted
         }
     }
 }
@@ -489,6 +518,12 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
                 cell.imgUserProfile.imageFromURL(link: selectedPostuserData.ProfileImage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             }
             
+            cell.btnPlayPause.tag = indexPath.item
+            cell.btnPlayPause.addTarget(self, action: #selector(onBtnPlayPause), for: .touchUpInside)
+            
+            cell.btnMuteControll.tag = indexPath.item
+            cell.btnMuteControll.addTarget(self, action: #selector(onBtnMute), for: .touchUpInside)
+            
             cell.btnMore.tag = indexPath.row
             cell.btnMore.addTarget(self, action: #selector(btnMore(_:)), for: .touchUpInside)
             
@@ -502,8 +537,6 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
                 cell.emoji2.addTarget(self, action: #selector(btnTapEmoji2(_:)), for: .touchUpInside)
                 
             }
-            
-            
             return cell
         }
     }
@@ -515,9 +548,6 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -722,10 +752,8 @@ extension commentViewClass : UIScrollViewDelegate {
             
             guard let indexPath = clvCarousel.indexPathForItem(at: visiblePoint) else { return }
             currentIndexForLike = indexPath.row
-        resetDataWhenScroll()
+            resetDataWhenScroll()
         
-       
-       
     }
    
 }

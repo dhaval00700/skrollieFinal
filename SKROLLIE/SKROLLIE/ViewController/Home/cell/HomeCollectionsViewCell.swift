@@ -32,7 +32,13 @@ class HomeCollectionsViewCell: UICollectionViewCell {
     func ConfigureCellWithData(_ data: Post) {
         
         lblTimeOfPhotos.font = UIFont.Regular(ofSize: 12)
-        imgBackGround.imageFromURL(link: data.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        if data.isPhoto {
+            imgBackGround.imageFromURL(link: data.Url, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        } else {
+            imgBackGround.imageFromURL(link: data.Videothumbnailimage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
+        }
+        
+        
         if  data.timeIntervalFromCurrent > 0 {
             viewAllocColourDependOnTime.isHidden = false
             if !data.Isforever {

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 class Post {
     
@@ -33,6 +34,9 @@ class Post {
     var IsAccountVerify = false
     var IsUnBlockPost = false
     
+    var playerLayer = AVPlayerLayer()
+    var avPlayer = AVPlayer()
+    
     var LikeEmoji = ""
     
     
@@ -54,10 +58,22 @@ class Post {
         Emoji2 = map.value("Emoji2") ?? ""
         CreatedDate = map.value("CreatedDate") ?? ""
         CreatedBy = map.value("CreatedBy") ?? ""
-        if isPhoto {
-            Url = prefixDataUrl + "\(map.value("Url") ?? "")"
-        } else {
-            Url = prefixDataUrl + "\(map.value("Videothumbnailimage") ?? "")"
+        
+        let str = (map.value("Url") ?? "")
+        if !str.isEmpty {
+            if str.contains(prefixDataUrl) {
+                Url = (map.value("Url") ?? "")
+            } else {
+                Url = prefixDataUrl + (map.value("Url") ?? "")
+            }
+        }
+        let str2 = (map.value("Videothumbnailimage") ?? "")
+        if !str2.isEmpty {
+            if str2.contains(prefixDataUrl) {
+                Videothumbnailimage = (map.value("Videothumbnailimage") ?? "")
+            } else {
+                Videothumbnailimage = prefixDataUrl + (map.value("Videothumbnailimage") ?? "")
+            }
         }
         UserName = userName
         let date = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")

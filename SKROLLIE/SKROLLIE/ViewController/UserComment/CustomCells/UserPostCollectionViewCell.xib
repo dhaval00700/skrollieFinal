@@ -30,15 +30,19 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="025-bW-jBE">
                         <rect key="frame" x="0.0" y="0.0" width="296" height="264"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img1" translatesAutoresizingMaskIntoConstraints="NO" id="BNv-4O-G0w">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img1" translatesAutoresizingMaskIntoConstraints="NO" id="BNv-4O-G0w">
                                 <rect key="frame" x="10" y="33" width="276" height="223"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIN-zq-8X7">
                                 <rect key="frame" x="10" y="33" width="276" height="223"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mcV-Ku-ZfB">
+                                <rect key="frame" x="206" y="218" width="72" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndW-7f-DU0">
-                                        <rect key="frame" x="189" y="178" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="YbN-DU-qjy"/>
                                             <constraint firstAttribute="width" constant="30" id="gxm-cV-6J4"/>
@@ -50,12 +54,9 @@
                                         <state key="selected">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="onBtnPlayPause:" destination="gTV-IL-0wX" eventType="touchUpInside" id="f5F-Uk-AFF"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rip-ga-08u">
-                                        <rect key="frame" x="231" y="178" width="30" height="30"/>
+                                        <rect key="frame" x="42" y="0.0" width="30" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.48159246579999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="MDZ-11-fPw"/>
@@ -65,19 +66,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected" image="mute"/>
-                                        <connections>
-                                            <action selector="onBtnMuteControll:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3VX-kn-bEK"/>
-                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="rip-ga-08u" firstAttribute="leading" secondItem="ndW-7f-DU0" secondAttribute="trailing" constant="12" id="EY2-id-49B"/>
-                                    <constraint firstItem="ndW-7f-DU0" firstAttribute="bottom" secondItem="rip-ga-08u" secondAttribute="bottom" id="KB7-cX-WUB"/>
-                                    <constraint firstAttribute="trailing" secondItem="rip-ga-08u" secondAttribute="trailing" constant="15" id="Kyq-wG-TNq"/>
-                                    <constraint firstAttribute="bottom" secondItem="rip-ga-08u" secondAttribute="bottom" constant="15" id="vgn-FG-39J"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Fk-TDs">
                                 <rect key="frame" x="135.5" y="119.5" width="25" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -176,6 +167,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mcV-Ku-ZfB" firstAttribute="bottom" secondItem="fIN-zq-8X7" secondAttribute="bottom" constant="-8" id="10q-55-rjj"/>
+                            <constraint firstItem="mcV-Ku-ZfB" firstAttribute="trailing" secondItem="fIN-zq-8X7" secondAttribute="trailing" constant="-8" id="3eS-WS-FbU"/>
                             <constraint firstItem="BNv-4O-G0w" firstAttribute="bottom" secondItem="fIN-zq-8X7" secondAttribute="bottom" id="4ld-fw-Jn1"/>
                             <constraint firstItem="n3S-e1-wHw" firstAttribute="top" secondItem="fIN-zq-8X7" secondAttribute="top" constant="3" id="6bI-vi-jaq"/>
                             <constraint firstAttribute="trailing" secondItem="fIN-zq-8X7" secondAttribute="trailing" constant="10" id="9dJ-Mf-Mwn"/>
@@ -222,6 +215,7 @@
                 <outlet property="imgWaterMark" destination="UYs-Fk-TDs" id="KKr-V7-b0d"/>
                 <outlet property="lblUserName" destination="IvR-UC-ZpW" id="6RL-gx-AWd"/>
                 <outlet property="lctViwHrLine" destination="ejX-EW-jlf" id="EBr-LK-yLW"/>
+                <outlet property="stkViwControlls" destination="mcV-Ku-ZfB" id="RaD-KS-eN1"/>
                 <outlet property="viwHrLine" destination="n6f-mF-22U" id="Q6t-bM-fsJ"/>
                 <outlet property="viwPost" destination="fIN-zq-8X7" id="ZRf-N9-sZf"/>
             </connections>

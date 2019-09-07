@@ -424,7 +424,7 @@ open class SwiftyCamViewController: UIViewController {
 		}
 
 		// Set background audio preference
-
+        
 		setBackgroundAudioPreference()
 
 		sessionQueue.async {

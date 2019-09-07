@@ -47,6 +47,7 @@ let prefixDataUrl = "https://dhaval.sfo2.digitaloceanspaces.com/Jayesh/"
 
 let PROGRESS_NOTIFICATION_KEY                  =   Notification.Name("PROGRESS_NOTIFICATION_KEY")
 let REFRESH_NOTIFICATION_KEY                   =   Notification.Name("REFRESH_NOTIFICATION_KEY")
+let STOP_VIDEO_NOTIFICATION_KEY                =   Notification.Name("STOP_VIDEO_NOTIFICATION_KEY")
 
 let transformerTypes: [FSPagerViewTransformerType] = [.linear,.crossFading,
                                                       .zoomOut,

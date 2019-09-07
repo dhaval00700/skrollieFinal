@@ -37,10 +37,12 @@ class UserFriendList {
         IsAccountVerify = AccountVerifyStatus(rawValue: staus)!
         idUser = map.value("idUser") ?? ""
         let str = (map.value("image") ?? "")
-        if str.contains(prefixDataUrl) {
-            image = (map.value("image") ?? "")
-        } else {
-            image = prefixDataUrl + (map.value("image") ?? "")
+        if !str.isEmpty {
+            if str.contains(prefixDataUrl) {
+                image = (map.value("image") ?? "")
+            } else {
+                image = prefixDataUrl + (map.value("image") ?? "")
+            }
         }
         TodayPost = map.value("TodayPost") ?? ""
         ForeverPost = map.value("ForeverPost") ?? ""
