@@ -255,7 +255,7 @@ extension FriendListViewController : UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = (collectionView.frame.width - (5 * 3)) / 2.0
+        let itemWidth = (ScreenSize.SCREEN_WIDTH - (5 * 3)) / 2.0
         return CGSize(width: itemWidth, height: 90)
     }
     

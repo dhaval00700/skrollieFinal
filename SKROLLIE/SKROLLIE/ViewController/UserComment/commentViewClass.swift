@@ -9,6 +9,7 @@
 import UIKit
 import ScalingCarousel
 import EasyTipView
+import AudioToolbox
 
 class commentViewClass: BaseViewController
 {
@@ -77,7 +78,12 @@ class commentViewClass: BaseViewController
         clvCarousel.deviceRotated()
     }
     
-    private func setUpUI(){
+    private func setUpUI() {
+        txtWriteReview.addLeftPadding(padding: 10.0)
+        viwWriteReview.addCornerRadius(8.0)
+        viwWriteReview.clipsToBounds = true
+        viwReply.addCornerRadius(8.0)
+        viwReply.clipsToBounds = true
         
         viwUserListContainer.layer.cornerRadius = 8.0
         
@@ -91,7 +97,7 @@ class commentViewClass: BaseViewController
             viwUnblockUser.isHidden = false
             viwComments.isHidden = false
             viewAllComment.isHidden = true
-            viwWriteReview.isHidden = true
+            viwWriteReview.isHidden = false
         }
         
         tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
@@ -174,6 +180,8 @@ class commentViewClass: BaseViewController
          selectedEmoji1 = -1
          selectedEmoji2 = -1
         self.arrUserComment.removeAll()
+        self.viwWriteReview.isHidden = true
+
         getAllLike()
         getAllComment()
         setCommentView()
@@ -228,9 +236,13 @@ class commentViewClass: BaseViewController
             } else { // vibrate
                 cell.emoji1.setImage(UIImage(named: "blankHappy"), for: .normal)
                 cell.emoji2.setImage(UIImage(named: "blankSad"), for: .normal)
+                selectedEmojiButton = nil
+                selectedEmoji1 = -1
+                selectedEmoji2 = -1
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             }
         }
-       
+       selectedEmojiButton = nil
         clvCarousel.reloadData()
     }
     
@@ -240,11 +252,17 @@ class commentViewClass: BaseViewController
     }
     
     @IBAction func btnTapEmoji1(_ sender: UIButton) {
+         let cell = clvCarousel.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! UserPostCollectionViewCell
+        cell.emoji1.isSelected = true
         selectedEmojiButton = sender
+        clvCarousel.reloadData()
     }
     
     @IBAction func btnTapEmoji2(_ sender: UIButton) {
+         let cell = clvCarousel.cellForItem(at: IndexPath(item: sender.tag, section: 0)) as! UserPostCollectionViewCell
+        cell.emoji2.isSelected = true
         selectedEmojiButton = sender
+        clvCarousel.reloadData()
     }
     
     @IBAction func tapAllCommentClick(_ sender: UIButton) {
@@ -403,6 +421,11 @@ extension commentViewClass: FSPagerViewDelegate,FSPagerViewDataSource {
         
     }
     
+    func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
+        tipView?.removeFromSuperview()
+        tipView = nil
+    }
+    
     func pagerView(_ pagerView: FSPagerView, didEndDisplaying cell: FSPagerViewCell, forItemAt index: Int) {
         
     }
@@ -536,6 +559,17 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
                 cell.emoji2.tag = indexPath.row
                 cell.emoji2.addTarget(self, action: #selector(btnTapEmoji2(_:)), for: .touchUpInside)
                 
+            }
+            
+            cell.emoji1.isHighlighted = false
+            cell.emoji2.isHighlighted = false
+
+            if cell.emoji1.imageView?.image == UIImage(named: "blankHappy") && !cell.emoji1.isSelected {
+               cell.emoji1.isHighlighted = true
+            }
+            
+            if cell.emoji2.imageView?.image == UIImage(named: "blankSad") && !cell.emoji2.isSelected {
+                cell.emoji2.isHighlighted = true
             }
             return cell
         }

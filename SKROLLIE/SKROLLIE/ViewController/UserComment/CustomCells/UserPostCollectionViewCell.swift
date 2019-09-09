@@ -51,6 +51,16 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         
         btnMuteControll.setImage(#imageLiteral(resourceName: "Unmute"), for: .normal)
         btnMuteControll.setImage(#imageLiteral(resourceName: "Mute"), for: .selected)
+        
+        emoji1.setBackgroundImage(UIImage(named: "blankHappy"), for: .highlighted)
+        emoji1.setBackgroundImage(UIImage(named: "blankHappy")?.tintWithColor(.lightGray), for: .normal)
+        
+        emoji2.setBackgroundImage(UIImage(named: "blankSad"), for: .highlighted)
+        emoji2.setBackgroundImage(UIImage(named: "blankSad")?.tintWithColor(.lightGray), for: .normal)
+        
+        emoji1.isHighlighted = false
+        emoji2.isHighlighted = false
+        
     }
     
     var curObj = Post()
@@ -69,7 +79,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
             stkViwControlls.isHidden = true
             delay(time: 0.3) {
                 self.AssignPlayer(currentObj, completion: {
-                    currentObj.avPlayer.play()
+                    //currentObj.avPlayer.play()
                     self.btnPlayPause.isSelected = true
                 })
                 self.imgPost.isHidden = true
