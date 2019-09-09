@@ -177,6 +177,7 @@ extension HomeViewController
         _ = APIClient.GetAllPost { (responseObj) in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
+            self.resultImgPhoto.removeAll() 
             if responseData.success {
                 let aryGetPhotos = responseData.data as? [[String: Any]] ?? [[String: Any]]()
                 self.resultImgPhoto = UserData.getArrayPost(datas: aryGetPhotos)

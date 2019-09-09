@@ -50,7 +50,7 @@ class BaseViewController: UIViewController {
                 let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
                 let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
                let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
-                AppPrefsManager.shared.saveUserProfileData(model: userProfileData)
+                
                 if success != nil {
                     success!(true, userProfileData)
                 }
