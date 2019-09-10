@@ -329,6 +329,24 @@ class Utility {
         OuterView.addCornerRadius(OuterRadius)
         OuterView.addShadow(color: color , opacity: opacity, offset: offset, radius: radius)
     }
+    
+    class func getPostTime(postDate: Date) -> String {
+        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: postDate, to: Date())
+        if components.day != nil && components.day! > 0 {
+            return postDate.getDateStringWithFormate("dd MMM HH:mm", timezone: TimeZone.current.abbreviation()!)
+        } else if components.day != nil && components.day! ==  0  {
+            if components.hour != nil && components.hour! >  0 {
+                let str = "\(components.hour!)" + " hour ago"
+                return str
+            } else {
+                let str = "\(components.minute ?? 0)" + " min ago"
+                return str
+            }
+            
+        }
+        
+        return ""
+    }
 }
 
 func saveImageDocumentDirectory(image: UIImage) -> URL

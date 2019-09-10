@@ -17,6 +17,8 @@ class HomeViewController: BaseViewController
     @IBOutlet weak var viewMenu: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnMenuProfile: UIButton!
+    @IBOutlet weak var imgMenuProfile: UIImageView!
+
     @IBOutlet weak var lblNoData: UILabel!
     
     // MARK: - Properties
@@ -32,13 +34,10 @@ class HomeViewController: BaseViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
-        let imge = UIImageView()
-        imge.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: menuProfilePlaceholder, contentMode: .scaleToFill, isCache: true) {
-            DispatchQueue.main.async {
-                self.btnMenuProfile.setImage(imge.image, for: .normal)
-            }
-        }
+        imgMenuProfile.imageFromURL(link: AppPrefsManager.shared.getUserProfileData().image, errorImage: menuProfilePlaceholder, contentMode: .scaleToFill)
+        
     }
+        
     
     // MARK: - Methods
     func setupUI() {

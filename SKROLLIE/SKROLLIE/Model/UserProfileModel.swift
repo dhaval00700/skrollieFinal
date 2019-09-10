@@ -165,6 +165,7 @@ class BlockListData {
         Isstatus = map.value("Isstatus") ?? ""
         CreatedDate = map.value("CreatedDate") ?? ""
         CreatedBy = map.value("CreatedBy") ?? ""
+        
         ModifiedDate = map.value("ModifiedDate") ?? ""
         ModifiedBy = map.value("ModifiedBy") ?? ""
         let userData = map.value("tbluserinformation") ?? [String:Any]()

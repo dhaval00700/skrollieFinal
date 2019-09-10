@@ -36,7 +36,7 @@ class BlockListViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: RefreshStr)
         tblBlockList.addSubview(refreshControl)
         
-        lblNoData.isHidden = false
+        lblNoData.isHidden = true
         getBlockList()
         
     }

@@ -21,7 +21,6 @@ class SearchViewController: BaseViewController {
     private var continueLoadingData = true
     private var skip = 0
     private var take = 10
-    private var oldSkipForSearch = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +46,7 @@ class SearchViewController: BaseViewController {
         clvSearchFriend.reloadData()
         txtSearch.placeholder = "search"
         txtSearch.delegate = self
+        doSearch()
         
     }
     
@@ -69,11 +69,21 @@ class SearchViewController: BaseViewController {
         if currentObj.FriendStatus.lowercased() == FriendStatus.Disconnect.lowercased() || currentObj.FriendStatus.lowercased() == FriendStatus.UnFriend.lowercased() {
             createFriend(userId: currentObj.idUser) { (flg) in
                 if flg {
-                    self.skip = self.oldSkipForSearch
-                    self.searchFriend()
+                    self.doSearch()
                 }
             }
         }
+    }
+    
+    @objc func onImageTap(_ sender: UITapGestureRecognizer) {
+        let currentObj = arrSearchUserList[sender.view!.tag]
+        let navVc = userProfileClass.instantiate(fromAppStoryboard: .Main)
+        navVc.userId = currentObj.idUser
+        navVc.isFriend = currentObj.FriendStatus.lowercased() == FriendStatus.Friend.lowercased() ? true : false
+        navVc.isThisDetail = true
+        navVc.isFromSearch = true
+navVc.friendstatus = currentObj.FriendStatus
+        navigationController?.pushViewController(navVc, animated: true)
     }
 }
 
@@ -88,6 +98,10 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
         if indexPath.row == arrSearchUserList.count - 1 {
             searchFriend()
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onImageTap(_:)))
+        cell.imgUserPhoto.tag = indexPath.row
+        cell.imgUserPhoto.isUserInteractionEnabled = true
+        cell.imgUserPhoto.addGestureRecognizer(tap)
         cell.configureCellWithData(currentObj)
         cell.btnConnect.tag = indexPath.row
         cell.btnConnect.addTarget(self, action: #selector(onBtnConnect), for: .touchUpInside)
@@ -95,8 +109,7 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
             if item == "Block" {
                 self.updateStatus(userId: currentObj.idUser, isBlock: true, completion: { (flg) in
                     if flg {
-                        self.skip = self.oldSkipForSearch
-                        self.searchFriend()
+                        self.doSearch()
                     }
                 })
             } else if item == "Report" {
@@ -104,15 +117,13 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
             } else if item == "Disconnect"  {
                 self.unFriendUser(userId: currentObj.idUser, completion: { (flg) in
                     if flg {
-                        self.skip = self.oldSkipForSearch
-                        self.searchFriend()
+                        self.doSearch()
                     }
                 })
             } else if item == "Cancle Request" {
                 self.CancleFriendRequest(userId: currentObj.idUser, completion: { (flg) in
                     if flg {
-                        self.skip = self.oldSkipForSearch
-                        self.searchFriend()
+                        self.doSearch()
                     }
                 })
             }
@@ -183,7 +194,6 @@ extension SearchViewController {
                 let tempAray = UserFriendList.getArray(data: objectData)
                 
                 self.arrSearchUserList.append(contentsOf: tempAray)
-                self.oldSkipForSearch = self.skip
                 self.skip += 1
 
                 if tempAray.count < 10 {

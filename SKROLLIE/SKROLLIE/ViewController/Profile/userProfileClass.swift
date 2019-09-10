@@ -41,6 +41,10 @@ class userProfileClass: BaseViewController
     var userId = AppPrefsManager.shared.getUserProfileData().id
     var isFriend = false
     var isThisDetail = false
+    var isFromSearch = false
+    var friendstatus = ""
+
+
     fileprivate var moreDropDown: DropDown!
     private var userProfileData: UserProfileModel!
     
@@ -110,13 +114,22 @@ class userProfileClass: BaseViewController
                 self.userProfileData = userProfileModel
                 self.setData()
                 self.setDropDown()
+                if self.isFromSearch {
+                    if !self.userProfileData.IsPublic && self.isFriend  {
+                        self.getForeverPostByUserId()
+                    } else if self.userProfileData.IsPublic {
+                        self.getForeverPostByUserId()
+                    }
+                } else {
+                    self.getForeverPostByUserId()
+                }
             }
         })
         self.viewBottom.isHidden = true
         UIView.animate(withDuration: 1) {
             self.viewBottom.alpha = 0
         }
-        getForeverPostByUserId()
+        
         
         if isThisDetail {
             btnSearchOrBack.setImage(#imageLiteral(resourceName: "iconBack"), for: .normal)
@@ -171,6 +184,10 @@ class userProfileClass: BaseViewController
             btnCOnnect.isHidden = true
         } else {
             btnCOnnect.isHidden = false
+            if isFromSearch {
+                btnCOnnect.setTitle(friendstatus, for: .normal)
+
+            }
         }
         
         if userId == AppPrefsManager.shared.getUserProfileData().id {

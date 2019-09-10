@@ -38,6 +38,8 @@ class Post {
     var avPlayer = AVPlayer()
     
     var LikeEmoji = ""
+    var CreatedNsDate = Date()
+
     
     
     init(Post: [String: Any], userName: String) {
@@ -79,6 +81,9 @@ class Post {
         let date = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")
         EndDate = date.addDays(1)
         timeIntervalFromCurrent = Double(EndDate.seconds(from: Date()))
+        if !CreatedDate.isEmpty {
+            CreatedNsDate = CreatedDate.getDateWithFormate(formate: "yyyy-MM-dd'T'HH:mm:ss.ssz", timezone: "UTC")
+        }
     }
     
     class func getArrayPost(data: [[String: Any]], userName: String) -> [Post] {

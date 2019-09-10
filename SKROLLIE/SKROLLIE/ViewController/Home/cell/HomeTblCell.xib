@@ -44,7 +44,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qn-dF-Y7w">
                                 <rect key="frame" x="8" y="15" width="50" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img3" translatesAutoresizingMaskIntoConstraints="NO" id="25A-gY-bcU">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img3" translatesAutoresizingMaskIntoConstraints="NO" id="25A-gY-bcU">
                                         <rect key="frame" x="3" y="3" width="44" height="44"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shield" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-uQ-c5P">
@@ -125,6 +125,6 @@
     </objects>
     <resources>
         <image name="ic_shield" width="25" height="25"/>
-        <image name="img3" width="212" height="132"/>
+        <image name="img3" width="640" height="640"/>
     </resources>
 </document>

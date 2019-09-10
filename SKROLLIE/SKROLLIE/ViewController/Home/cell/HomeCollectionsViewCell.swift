@@ -16,6 +16,8 @@ class HomeCollectionsViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTimeOfPhotos: UILabel!
     @IBOutlet weak var viewAllocColourDependOnTime: UIView!
     @IBOutlet weak var lctViewAllocHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblDateAndTime: UILabel!
+
     
     // MARK: - LifeCycles
     override func awakeFromNib() {
@@ -38,6 +40,7 @@ class HomeCollectionsViewCell: UICollectionViewCell {
             imgBackGround.imageFromURL(link: data.Videothumbnailimage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         }
         
+        lblDateAndTime.text = Utility.getPostTime(postDate: data.CreatedNsDate)
         
         if  data.timeIntervalFromCurrent > 0 {
             viewAllocColourDependOnTime.isHidden = false

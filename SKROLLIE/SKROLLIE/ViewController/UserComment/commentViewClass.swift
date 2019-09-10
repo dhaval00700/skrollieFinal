@@ -28,6 +28,8 @@ class commentViewClass: BaseViewController
     @IBOutlet weak var viwUnblockUser: UIView!
     @IBOutlet weak var viwComments: UIView!
     @IBOutlet weak var viwWriteReview: UIView!
+    @IBOutlet weak var mainScroll: UIScrollView!
+
     @IBOutlet weak var viwReply: UIView!
     @IBOutlet weak var lblReplyuserName: UILabel!
 
@@ -71,6 +73,29 @@ class commentViewClass: BaseViewController
         getAllLike()
         getAllComment()
         getUnblockPost()
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.down
+        mainScroll.addGestureRecognizer(swipeRight)
+    }
+        
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizer.Direction.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizer.Direction.down:
+                print("Swiped down")
+                self.dismiss(animated: true, completion: nil)
+            case UISwipeGestureRecognizer.Direction.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizer.Direction.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -140,6 +165,10 @@ class commentViewClass: BaseViewController
             self.viewAllComment.isHidden = false
             self.viwWriteReview.isHidden = false
         }
+        else if object.Emoji1.isEmpty && object.Emoji2.isEmpty && !isOwnProfile  {
+            self.viwWriteReview.isHidden = false
+        }
+        
         delay(time: 1.0) {
             self.clvCarousel.scrollToItem(at: self.indexpath, at: .right, animated: false)
         }

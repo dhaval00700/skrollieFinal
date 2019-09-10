@@ -14,6 +14,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viwPost: UIView!
     @IBOutlet weak var imgUserProfile: UIImageView!
     @IBOutlet weak var lblUserName: UILabel!
+    @IBOutlet weak var lblDateTime: UILabel!
+
     @IBOutlet weak var imgPost: UIImageView!
     @IBOutlet weak var viwHrLine: UIView!
     @IBOutlet weak var emoji1: UIButton!
@@ -74,6 +76,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
             imgWaterMark.alpha = 0.7
             imgWaterMark.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)
         }
+        lblDateTime.text = Utility.getPostTime(postDate: currentObj.CreatedNsDate)
+
         
         if !currentObj.isPhoto {
             stkViwControlls.isHidden = true

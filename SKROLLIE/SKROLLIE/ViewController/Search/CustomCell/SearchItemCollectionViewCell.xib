@@ -236,6 +236,6 @@
     <resources>
         <image name="ic_more" width="5.5" height="20"/>
         <image name="ic_shield" width="25" height="25"/>
-        <image name="img3" width="212" height="132"/>
+        <image name="img3" width="640" height="640"/>
     </resources>
 </document>
