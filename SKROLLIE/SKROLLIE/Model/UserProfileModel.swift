@@ -42,6 +42,7 @@ class UserProfileModel {
     var IsAccountVerify = AccountVerifyStatus.one
     var TotalTodayPost = ""
     var TotalForeverPost = ""
+    var token = ""
     
     init(data: [String: Any], totalTodayPost: String, totalForeverPost: String) {
         map = Map(data: data)
@@ -86,6 +87,7 @@ class UserProfileModel {
         IsAccountVerify = AccountVerifyStatus(rawValue: staus)!
         TotalTodayPost = totalTodayPost
         TotalForeverPost = totalForeverPost
+        token = map.value("token") ?? ""
     }
     
     func toDictionary() -> [String : Any] {
@@ -127,6 +129,7 @@ class UserProfileModel {
         }
         itemDict["TotalTodayPost"] = TotalTodayPost
         itemDict["TotalForeverPost"] = TotalForeverPost
+        itemDict["token"] = token
         
         return itemDict
     }
