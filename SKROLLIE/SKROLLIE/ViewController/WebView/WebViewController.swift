@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: BaseViewController {
 
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var btnBack: UIButton!
     
     
@@ -37,10 +38,8 @@ class WebViewController: BaseViewController {
     {
         self.navigationItem.titleView = nil
         webView.reload()
-        webView.delegate = self
-        
         let request = NSURLRequest(url: NSURL(string: webUrl)! as URL)
-        webView.loadRequest(request as URLRequest)
+        webView.load(request as URLRequest)
     }
     
     
@@ -53,25 +52,5 @@ class WebViewController: BaseViewController {
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-//MARK: - UIWebViewDelegate Methods
-extension WebViewController: UIWebViewDelegate
-{
-    
-    func webViewDidStartLoad(_ webView: UIWebView)
-    {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    
-    
-    func webViewDidFinishLoad(_ webView: UIWebView)
-    {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error)
-    {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }

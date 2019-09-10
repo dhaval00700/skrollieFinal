@@ -74,10 +74,7 @@ class ForgotPasswordViewController: BaseViewController {
 extension ForgotPasswordViewController {
     private func forgotPassword() {
         
-        let parameter = ParameterRequest()
-        parameter.addParameter(key: ParameterRequest.username, value: txtUsername.text)
-        
-        _ = APIClient.ForgotPassword(parameters: parameter.parameters, success: { responseObj in
+        _ = APIClient.ForgotPassword(mailOrusername: txtUsername.text!, success: { responseObj in
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             

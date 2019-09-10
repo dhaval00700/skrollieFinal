@@ -687,13 +687,13 @@
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ZA-GB-eUy">
-                                                        <rect key="frame" x="112.5" y="615.5" width="95.5" height="25"/>
+                                                        <rect key="frame" x="119" y="615.5" width="82.5" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCopy" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-aH-YUv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="16" height="25"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLr-dn-qaO">
-                                                                <rect key="frame" x="30" y="0.0" width="65.5" height="25"/>
+                                                                <rect key="frame" x="17" y="0.0" width="65.5" height="25"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4311,10 +4311,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wox-VD-LVQ">
-                                <rect key="frame" x="0.0" y="90" width="320" height="478"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aik-rR-0Tx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                 <subviews>
@@ -4349,15 +4345,23 @@
                                     <constraint firstItem="Qj0-Qq-dYD" firstAttribute="bottom" secondItem="Kql-yI-jLS" secondAttribute="bottom" id="loc-AQ-3zF"/>
                                 </constraints>
                             </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFP-gZ-njk">
+                                <rect key="frame" x="0.0" y="90" width="320" height="478"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="aik-rR-0Tx" firstAttribute="top" secondItem="NP1-9Q-8Lv" secondAttribute="top" id="Eiy-X7-seE"/>
-                            <constraint firstItem="uuf-mz-PPJ" firstAttribute="top" secondItem="wox-VD-LVQ" secondAttribute="bottom" id="KCd-XC-go0"/>
-                            <constraint firstItem="wox-VD-LVQ" firstAttribute="leading" secondItem="NP1-9Q-8Lv" secondAttribute="leading" id="aa3-YV-XZr"/>
+                            <constraint firstItem="WFP-gZ-njk" firstAttribute="leading" secondItem="lpY-ga-23X" secondAttribute="leading" id="JO0-5N-C27"/>
+                            <constraint firstItem="lpY-ga-23X" firstAttribute="trailing" secondItem="WFP-gZ-njk" secondAttribute="trailing" id="KeV-fS-VjF"/>
+                            <constraint firstItem="uuf-mz-PPJ" firstAttribute="top" secondItem="WFP-gZ-njk" secondAttribute="bottom" id="Sng-E9-9IR"/>
+                            <constraint firstItem="WFP-gZ-njk" firstAttribute="top" secondItem="aik-rR-0Tx" secondAttribute="bottom" id="ax5-lE-c3R"/>
                             <constraint firstItem="aik-rR-0Tx" firstAttribute="trailing" secondItem="lpY-ga-23X" secondAttribute="trailing" id="b8w-GW-NC3"/>
-                            <constraint firstItem="wox-VD-LVQ" firstAttribute="top" secondItem="aik-rR-0Tx" secondAttribute="bottom" id="isk-P1-1mm"/>
-                            <constraint firstAttribute="trailing" secondItem="wox-VD-LVQ" secondAttribute="trailing" id="pIE-qq-mb8"/>
                             <constraint firstItem="aik-rR-0Tx" firstAttribute="leading" secondItem="lpY-ga-23X" secondAttribute="leading" id="t9A-cJ-lsh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lpY-ga-23X"/>
@@ -4365,7 +4369,7 @@
                     <navigationItem key="navigationItem" id="yNB-8b-PmB"/>
                     <connections>
                         <outlet property="btnBack" destination="Kql-yI-jLS" id="BhI-h8-io4"/>
-                        <outlet property="webView" destination="wox-VD-LVQ" id="vVO-Kd-tPM"/>
+                        <outlet property="webView" destination="WFP-gZ-njk" id="qrJ-TN-TXu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANr-pt-VI9" userLabel="First Responder" sceneMemberID="firstResponder"/>

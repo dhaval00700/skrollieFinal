@@ -22,9 +22,9 @@ class APIClient {
     }
     
     
-    class func ForgotPassword(parameters: [String : Any], success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
+    class func ForgotPassword(mailOrusername: String, success successBlock: @escaping ([String : Any]?) -> Void) -> DataRequest {
         let headers = HeaderRequestParameter()
-        return ApiManager.requestApi(method: .get, urlString: API.ForgotPassword, parameters: parameters, headers: headers.parameters, success: { (response) in
+        return ApiManager.requestApi(method: .get, urlString: API.ForgotPassword + "?username=\(mailOrusername)", parameters: nil, headers: headers.parameters, success: { (response) in
             successBlock(response)
         }, failure: { (error) -> Bool in
             DLog(error)
