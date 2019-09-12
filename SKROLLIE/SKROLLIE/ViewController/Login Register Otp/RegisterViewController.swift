@@ -506,7 +506,7 @@ extension RegisterViewController
             let responseData = ResponseDataModel(responseObj: response)
             
             if responseData.success {
-                AppPrefsManager.shared.saveUserProfileData(model: UserProfileModel(data: response["data"] as? [String : Any] ?? [String : Any](), totalTodayPost: "", totalForeverPost: ""))
+                AppPrefsManager.shared.saveUserProfileData(model: UserProfileModel(data: response["data"] as? [String : Any] ?? [String : Any]()))
                 let vc = MobileNumberAddVc.instantiate(fromAppStoryboard: .Main)
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if !responseData.success {

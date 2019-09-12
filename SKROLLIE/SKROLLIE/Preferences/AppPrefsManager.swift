@@ -82,8 +82,7 @@ class AppPrefsManager {
     func getUserProfileData() -> UserProfileModel
     {
         let Obj = getDataFromPreference(key: USER_PROFILE_DATA_KEY) as? [String: Any] ?? [String: Any]()
-        let map = Map(data: Obj)
-        return UserProfileModel(data: Obj, totalTodayPost: map.value("TotalTodayPost") ?? "", totalForeverPost:  map.value("TotalForeverPost") ?? "")
+        return UserProfileModel(data: Obj)
     }
     
     func removeUserProfileData()

@@ -235,7 +235,7 @@ extension LoginViewController {
                 })
             } else if !responseData.success {
                 if responseData.message == "OTP" {
-                    AppPrefsManager.shared.saveUserProfileData(model: UserProfileModel(data: response["data"] as? [String : Any] ?? [String : Any](), totalTodayPost: "", totalForeverPost: ""))
+                    AppPrefsManager.shared.saveUserProfileData(model: UserProfileModel(data: response["data"] as? [String : Any] ?? [String : Any]()))
                     let vc = MobileNumberAddVc.instantiate(fromAppStoryboard: .Main)
                     self.navigationController?.pushViewController(vc, animated: true)
                     

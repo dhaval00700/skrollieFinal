@@ -64,7 +64,7 @@ class UserComment {
         idComment = map.value("idComment") ?? ""
         
         let likeU = map.value("User") ?? [String : Any]()
-        UserObj = UserProfileModel(data: likeU, totalTodayPost: "", totalForeverPost: "")
+        UserObj = UserProfileModel(data: likeU)
         
         let LstReplayCommentU = map.value("LstReplayComment") ?? [[String : Any]]()
         LstReplayComment = UserComment.getArray(data:LstReplayCommentU )
@@ -101,7 +101,7 @@ class UserUnblock {
         Date = map.value("Date") ?? ""
         
         let likeU = map.value("User") ?? [String : Any]()
-        UserObj = UserProfileModel(data: likeU, totalTodayPost: "", totalForeverPost: "")
+        UserObj = UserProfileModel(data: likeU)
         
         
     }

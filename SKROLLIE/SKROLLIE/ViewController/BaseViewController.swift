@@ -47,10 +47,7 @@ class BaseViewController: UIViewController {
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
-                let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
-                let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
-               let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
-                
+               let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any]())
                 if success != nil {
                     success!(true, userProfileData)
                 }
@@ -64,9 +61,7 @@ class BaseViewController: UIViewController {
             let response = responseObj ?? [String : Any]()
             let responseData = ResponseDataModel(responseObj: response)
             if responseData.success {
-                let totalTodayPost = response["TotalTodayPost"] as? String ?? (response["TotalTodayPost"] as? NSNumber)?.stringValue ?? ""
-                let totalForeverPost = response["TotalForeverPost"] as? String ?? (response["TotalForeverPost"] as? NSNumber)?.stringValue ?? ""
-                let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any](), totalTodayPost: totalTodayPost, totalForeverPost: totalForeverPost)
+                let userProfileData = UserProfileModel(data: responseData.data as? [String: Any] ?? [String : Any]())
                 AppPrefsManager.shared.saveUserProfileData(model: userProfileData)
                 if success != nil {
                     success!(true)

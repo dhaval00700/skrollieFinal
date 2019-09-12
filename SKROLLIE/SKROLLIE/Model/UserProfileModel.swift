@@ -44,7 +44,7 @@ class UserProfileModel {
     var TotalForeverPost = ""
     var token = ""
     
-    init(data: [String: Any], totalTodayPost: String, totalForeverPost: String) {
+    init(data: [String: Any]) {
         map = Map(data: data)
         id = map.value("id") ?? ""
         if id.isEmpty {
@@ -85,8 +85,8 @@ class UserProfileModel {
         attachimage = map.value("attachimage") ?? ""
         let staus = map.value("IsAccountVerify") ?? 0
         IsAccountVerify = AccountVerifyStatus(rawValue: staus)!
-        TotalTodayPost = totalTodayPost
-        TotalForeverPost = totalForeverPost
+        TotalTodayPost = map.value("TotalTodayPost") ?? ""
+        TotalForeverPost = map.value("TotalForeverPost") ?? ""
         token = map.value("token") ?? ""
     }
     
@@ -138,7 +138,7 @@ class UserProfileModel {
         var arrPost = [UserProfileModel]()
         
         for temp in data {
-            arrPost.append(UserProfileModel(data: temp, totalTodayPost: "", totalForeverPost: ""))
+            arrPost.append(UserProfileModel(data: temp))
         }
         
         return arrPost
@@ -172,7 +172,7 @@ class BlockListData {
         ModifiedDate = map.value("ModifiedDate") ?? ""
         ModifiedBy = map.value("ModifiedBy") ?? ""
         let userData = map.value("tbluserinformation") ?? [String:Any]()
-        tbluserinformation = UserProfileModel(data: userData, totalTodayPost: "", totalForeverPost: "")
+        tbluserinformation = UserProfileModel(data: userData)
     }
     
     class func getArray(data: [[String: Any]]) -> [BlockListData] {

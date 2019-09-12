@@ -47,7 +47,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="TG4-jZ-xnR"/>
                                 </constraints>
-                                <state key="normal" title="Reply"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Reply">
+                                    <color key="titleColor" red="0.96873289350000003" green="0.69654601810000005" blue="0.20853844290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
