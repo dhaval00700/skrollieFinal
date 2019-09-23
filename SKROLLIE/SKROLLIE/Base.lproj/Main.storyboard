@@ -1482,7 +1482,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="850"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-O7-asY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="839"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="1087"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9P-yL-ZcY">
                                                             <rect key="frame" x="10" y="30" width="40" height="40"/>
@@ -1499,7 +1499,7 @@
                                                             </connections>
                                                         </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f66-hl-mye" customClass="FSPagerView" customModule="SKROLLIE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="415" width="320" height="60"/>
+                                                            <rect key="frame" x="0.0" y="663" width="320" height="60"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="RTc-kd-GiH"/>
@@ -1509,7 +1509,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VMe-rA-caz">
-                                                            <rect key="frame" x="10" y="495" width="300" height="324"/>
+                                                            <rect key="frame" x="10" y="743" width="300" height="324"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzC-Hu-m1F">
                                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
@@ -1695,10 +1695,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-rg-orN" customClass="ScalingCarouselView" customModule="ScalingCarousel">
-                                                            <rect key="frame" x="0.0" y="80" width="320" height="320"/>
+                                                            <rect key="frame" x="0.0" y="80" width="320" height="568"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="QPu-rg-orN" secondAttribute="height" multiplier="1:1" id="shV-Tg-UUJ"/>
+                                                                <constraint firstAttribute="height" constant="568" id="6Rf-Rg-dZQ"/>
                                                             </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ocl-wq-bnb">
                                                                 <size key="itemSize" width="50" height="50"/>

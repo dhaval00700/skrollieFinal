@@ -23,7 +23,7 @@ class commentViewClass: BaseViewController
     @IBOutlet weak var tblForComment: UITableView!
     @IBOutlet weak var emojiPagerView: FSPagerView!
     @IBOutlet weak var constraintHightOfTblComment: NSLayoutConstraint!
-    @IBOutlet var clvCarousel: ScalingCarouselView!
+    @IBOutlet weak var clvCarousel: ScalingCarouselView!
     
     @IBOutlet weak var viwUnblockUser: UIView!
     @IBOutlet weak var viwComments: UIView!
@@ -73,29 +73,6 @@ class commentViewClass: BaseViewController
         getAllLike()
         getAllComment()
         getUnblockPost()
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeRight.direction = UISwipeGestureRecognizer.Direction.down
-        mainScroll.addGestureRecognizer(swipeRight)
-    }
-        
-    
-    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-            case UISwipeGestureRecognizer.Direction.right:
-                print("Swiped right")
-            case UISwipeGestureRecognizer.Direction.down:
-                print("Swiped down")
-                self.dismiss(animated: true, completion: nil)
-            case UISwipeGestureRecognizer.Direction.left:
-                print("Swiped left")
-            case UISwipeGestureRecognizer.Direction.up:
-                print("Swiped up")
-            default:
-                break
-            }
-        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -128,6 +105,10 @@ class commentViewClass: BaseViewController
         tblForComment.register(UINib(nibName: "AllCommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "AllCommentsTableViewCell")
         tblForComment.dataSource = self
         tblForComment.delegate = self
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.cancelsTouchesInView = false
+        clvCarousel.addGestureRecognizer(swipeRight)
         
         setupCollectionView()
         setupEmogiPager()
@@ -195,6 +176,26 @@ class commentViewClass: BaseViewController
        // moreDropDown.bottomOffset = CGPoint(x: -moreDropDown.frame.width, y: -100)
         
         moreDropDown.width = 110
+    }
+    
+    
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizer.Direction.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizer.Direction.down:
+                print("Swiped down")
+                self.dismiss(animated: true, completion: nil)
+            case UISwipeGestureRecognizer.Direction.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizer.Direction.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
     
     func setCommentView() {
