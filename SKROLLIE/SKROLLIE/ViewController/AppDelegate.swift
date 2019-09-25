@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        registerForRemoteNotification()
         IQKeyboardManager.shared.enable = true
         UIApplication.shared.statusBarStyle = .lightContent
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
@@ -77,6 +77,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
+    
+    func registerForRemoteNotification()
+    {
+        if #available(iOS 10.0, *)
+        {
+            let center  = UNUserNotificationCenter.current()
+            
+            center.delegate = self
+            center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+                if error == nil
+                {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            }
+        }
+        else
+        {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
+    {
+        // let userInfo = response.notification.request.content.userInfo
+        DLog("NEW push = \(userInfo)")
+        
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        //let userInfo = response.notification.request.content.userInfo
+        DLog("Completion: UserInfo = \(userInfo)")
+        
+    }
+
+
+ 
 }
 
+//MARK: - UNUserNotificationCenterDelegate Mthods
+ @available(iOS 10, *)
+ extension AppDelegate : UNUserNotificationCenterDelegate
+ {
+     
+     
+     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+     {
+         let userInfo = notification.request.content.userInfo
+         
+         DLog("willPresent userInfo : \(userInfo)")
+         
+         completionHandler([])
+     }
+     
+     
+     
+     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+     {
+         let userInfo = response.notification.request.content.userInfo
+         DLog("didReceive userInfo : \(userInfo)")
+         
+         completionHandler()
+     }
+ }
 
