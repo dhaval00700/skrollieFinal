@@ -193,6 +193,7 @@ struct API {
     static let GetLatest24HoursPostByUser = BASE_URL + "MobilePost/GetLatest24HoursPostByUser"
     static let GetForeverPostByUser = BASE_URL + "MobilePost/GetForeverPostByUser"
     static let GetUserById = BASE_URL + "MobileAccount/GetUserById"
+    static let UpdatePostById = BASE_URL + "MobilePost/UpdatePostById"
     static let UpdateUserById = BASE_URL + "MobileAccount/UpdateUserById"
     static let GetAllMyFriend = BASE_URL + "MobileAccount/GetAllMyFriend"
     static let GetAllMyUnFriend = BASE_URL + "MobileAccount/GetAllMyUnFriend"
@@ -215,7 +216,5 @@ struct API {
     static let GetUnblockPost = BASE_URL + "MobilePost/GetUnblockPost"
     static let DeleteCurrentPost = BASE_URL + "MobilePost/DeletePost"
     static let CreateReportedPost = BASE_URL + "MobilePost/CreateReportedPost"
-
-
-    
+    static let TokenUpdate = BASE_URL + "MobileAccount/Subscribe"
 }

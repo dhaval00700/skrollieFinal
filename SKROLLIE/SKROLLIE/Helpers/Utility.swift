@@ -333,7 +333,7 @@ class Utility {
     class func getPostTime(postDate: Date) -> String {
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: postDate, to: Date())
         if components.day != nil && components.day! > 0 {
-            return postDate.getDateStringWithFormate("dd MMM HH:mm", timezone: TimeZone.current.abbreviation()!)
+            return postDate.getDateStringWithFormate("MMM,dd yyyy  HH:mm", timezone: TimeZone.current.abbreviation()!)
         } else if components.day != nil && components.day! ==  0  {
             if components.hour != nil && components.hour! >  0 {
                 let str = "\(components.hour!)" + " hour ago"

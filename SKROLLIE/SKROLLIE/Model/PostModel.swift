@@ -32,6 +32,7 @@ class Post {
     var timer = Timer()
     var timeIntervalFromCurrent = 0.0
     var IsAccountVerify = false
+    var IsWatch = false
     var IsUnBlockPost = false
     
     var playerLayer = AVPlayerLayer()
@@ -54,6 +55,7 @@ class Post {
         isPublish = map.value("isPublish") ?? false
         IsAccountVerify = map.value("IsAccountVerify") ?? false
         IsUnBlockPost  = map.value("IsUnBlockPost") ?? false
+        IsWatch  = map.value("IsWatch") ?? false
         Description = map.value("Description") ?? ""
         LikeEmoji = map.value("LikeEmoji") ?? ""
         Emoji1 = map.value("Emoji1") ?? ""

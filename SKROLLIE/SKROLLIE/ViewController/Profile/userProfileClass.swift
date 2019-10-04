@@ -247,6 +247,9 @@ class userProfileClass: BaseViewController
     }
     
     @IBAction func btnUserPicture(_ sender: UIButton) {
+        let navController = storyboard?.instantiateViewController(withIdentifier: "NotificationVc") as! UINavigationController
+        navController.modalPresentationStyle = .overFullScreen
+        self.present(navController, animated:true, completion: nil)
     }
     
     @IBAction func btnFrndList(_ sender: UIButton) {
@@ -384,6 +387,7 @@ extension userProfileClass: cellUserProfilePostDelegate {
         navVc.selectedPostuserData = selectedPostUserData
         navVc.isOwnProfile = true
         navVc.userProfileDataObj = userProfileData
+        navVc.delegate = self
         navController.modalPresentationStyle = .overFullScreen
 
         self.present(navController, animated:true, completion: nil)
@@ -458,5 +462,11 @@ extension userProfileClass {
             }
             
         }
+    }
+}
+
+extension userProfileClass: UpdateListDelegate {
+    func ViewReload() {
+        viewWillAppear(true)
     }
 }

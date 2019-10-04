@@ -11,6 +11,10 @@ import ScalingCarousel
 import EasyTipView
 import AudioToolbox
 
+protocol UpdateListDelegate {
+    func ViewReload()
+}
+
 class commentViewClass: BaseViewController
 {
     @IBOutlet weak var lblTotalCmt: UILabel!
@@ -59,7 +63,7 @@ class commentViewClass: BaseViewController
     var selectedEmoji2 = -1
     
     var pf = EasyTipView.Preferences()
-
+    var delegate: UpdateListDelegate?
     
     
     fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.linear, .crossFading, .zoomOut, .depth, .linear, .overlap, .ferrisWheel, .invertedFerrisWheel, .coverFlow, .cubic]
@@ -70,6 +74,7 @@ class commentViewClass: BaseViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        updatePostById()
         getAllLike()
         getAllComment()
         getUnblockPost()
@@ -163,12 +168,16 @@ class commentViewClass: BaseViewController
         moreDropDown = DropDown()
         
         moreDropDown.anchorView = btn
-        moreDropDown.dataSource = ["Report", "Delete"]
+        if isOwnProfile {
+            moreDropDown.dataSource = ["Report", "Delete"]
+        } else {
+            moreDropDown.dataSource = ["Report"]
+        }
         
         moreDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            if index == 0 {
+            if item == "Report" {
                 self.reportPost(postId: self.arrPost[btn.tag].Postid)
-            } else if index == 1 {
+            } else if item == "Delete" {
                 self.deletePost(postId: self.arrPost[btn.tag].Postid)
             }
         }
@@ -212,10 +221,16 @@ class commentViewClass: BaseViewController
         self.arrUserComment.removeAll()
         self.viwWriteReview.isHidden = true
 
+        updatePostById()
         getAllLike()
         getAllComment()
         setCommentView()
         getUnblockPost()
+        
+        let cell = clvCarousel.cellForItem(at: IndexPath(item: (currentIndexForLike - 1), section: 0)) as? UserPostCollectionViewCell
+        if cell != nil {
+            cell!.viwGray.isHidden = false
+        }
         
         let object = arrPost[currentIndexForLike]
         
@@ -278,6 +293,7 @@ class commentViewClass: BaseViewController
     
     // MARK: - Action
     @IBAction func btnDismiss(_ sender: Any){
+        delegate?.ViewReload()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -649,6 +665,17 @@ extension commentViewClass {
                 self.clvCarousel.reloadData()
             }
             self.hideNewtworkIndicator()
+        }
+    }
+    
+    private func updatePostById() {
+        let param = ParameterRequest()
+        let obj = arrPost[currentIndexForLike]
+        param.addParameter(key: ParameterRequest.id, value: obj.Postid)
+        param.addParameter(key: ParameterRequest.IsWatch, value: true)
+        
+        updatePostById(parameters: param.parameters) { (flag) in
+            DLog("ParameterRequest.id", obj.Postid)
         }
     }
     

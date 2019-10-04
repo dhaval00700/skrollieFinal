@@ -28,6 +28,7 @@ class HomeViewController: BaseViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        AppDelegate.sharedDelegate().updateDeviceToken()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +79,9 @@ class HomeViewController: BaseViewController
     }
     
     @IBAction func btnUserPicture(_ sender: UIButton) {
-        
+        let navController = storyboard?.instantiateViewController(withIdentifier: "NotificationVc") as! UINavigationController
+        navController.modalPresentationStyle = .overFullScreen
+        self.present(navController, animated:true, completion: nil)
     }
     
     @IBAction func btnFrndList(_ sender: UIButton) {
@@ -109,6 +112,7 @@ extension HomeViewController: cellUserProfilePostDelegate {
         navVc.arrPost = arrPost
         navVc.indexpath = indexpath
         navVc.selectedPostuserData = selectedPostUserData
+        navVc.delegate = self
         navVc.isOwnProfile = false
         navController.modalPresentationStyle = .overFullScreen
 
@@ -190,3 +194,8 @@ extension HomeViewController
     }
 }
 
+extension HomeViewController: UpdateListDelegate {
+    func ViewReload() {
+        viewWillAppear(true)
+    }
+}

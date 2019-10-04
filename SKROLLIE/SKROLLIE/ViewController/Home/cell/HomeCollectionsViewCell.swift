@@ -11,13 +11,13 @@ import UIKit
 class HomeCollectionsViewCell: UICollectionViewCell {
 
     // MARK: - Outlets
-    @IBOutlet weak var imgUserPic: UIImageView!
     @IBOutlet weak var imgBackGround: UIImageView!
     @IBOutlet weak var lblTimeOfPhotos: UILabel!
     @IBOutlet weak var viewAllocColourDependOnTime: UIView!
     @IBOutlet weak var lctViewAllocHeight: NSLayoutConstraint!
     @IBOutlet weak var lblDateAndTime: UILabel!
-
+    @IBOutlet weak var viwGray: UIView!
+    
     
     // MARK: - LifeCycles
     override func awakeFromNib() {
@@ -29,6 +29,7 @@ class HomeCollectionsViewCell: UICollectionViewCell {
     private func setupUI() {
         lblTimeOfPhotos.isHidden = true
         viewAllocColourDependOnTime.isHidden = true
+        viwGray.isHidden = true
     }
     
     func ConfigureCellWithData(_ data: Post) {
@@ -39,6 +40,8 @@ class HomeCollectionsViewCell: UICollectionViewCell {
         } else {
             imgBackGround.imageFromURL(link: data.Videothumbnailimage, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
         }
+        
+        viwGray.isHidden = !data.IsWatch
         
         lblDateAndTime.text = Utility.getPostTime(postDate: data.CreatedNsDate)
         

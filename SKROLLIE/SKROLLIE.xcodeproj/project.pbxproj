@@ -71,6 +71,9 @@
 		4F761E0822BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */; };
 		4F761E0922BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */; };
 		4F7C982523069A1700A73DC9 /* CAShapeLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C982423069A1700A73DC9 /* CAShapeLayer+Extension.swift */; };
+		4F89101523432149000B0EA4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F89101423432149000B0EA4 /* NotificationViewController.swift */; };
+		4F89101923433287000B0EA4 /* NotificatioonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F89101723433287000B0EA4 /* NotificatioonTableViewCell.swift */; };
+		4F89101A23433287000B0EA4 /* NotificatioonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F89101823433287000B0EA4 /* NotificatioonTableViewCell.xib */; };
 		4FB102F522CB2FC100C10B00 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */; };
 		4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBB1E022C514400048A596 /* SettingsViewController.swift */; };
 		4FCF6A6722C73FA5006CB117 /* DataMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */; };
@@ -233,6 +236,9 @@
 		4F761E0622BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserProfileSectionTableViewCell.swift; sourceTree = "<group>"; };
 		4F761E0722BBE46C00238FB2 /* CellUserProfileSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellUserProfileSectionTableViewCell.xib; sourceTree = "<group>"; };
 		4F7C982423069A1700A73DC9 /* CAShapeLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Extension.swift"; sourceTree = "<group>"; };
+		4F89101423432149000B0EA4 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		4F89101723433287000B0EA4 /* NotificatioonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificatioonTableViewCell.swift; sourceTree = "<group>"; };
+		4F89101823433287000B0EA4 /* NotificatioonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificatioonTableViewCell.xib; sourceTree = "<group>"; };
 		4FB102F422CB2FC100C10B00 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		4FBBB1E022C514400048A596 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FCF6A6622C73FA5006CB117 /* DataMapClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapClass.swift; sourceTree = "<group>"; };
@@ -569,6 +575,24 @@
 			path = UserComment;
 			sourceTree = "<group>";
 		};
+		4F3132FF234226F8009D3F1A /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				4F8910162343325C000B0EA4 /* Cell */,
+				4F89101423432149000B0EA4 /* NotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		4F8910162343325C000B0EA4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F89101723433287000B0EA4 /* NotificatioonTableViewCell.swift */,
+				4F89101823433287000B0EA4 /* NotificatioonTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4FE4983B22E88E9900B9FE04 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,6 +684,7 @@
 				4F19C0EC22C5138F00D12A1B /* Settings */,
 				4F0BCF8822D07FA60094A351 /* Friend */,
 				4FE4983B22E88E9900B9FE04 /* WebView */,
+				4F3132FF234226F8009D3F1A /* Notification */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -926,6 +951,7 @@
 				F73DD40F2284620F0096A943 /* MONTSERRAT-REGULAR.OTF in Resources */,
 				F73DD4192284620F0096A943 /* MONTSERRATALTERNATES-THINITALIC.OTF in Resources */,
 				F73DD3FF2284620F0096A943 /* MONTSERRAT-THINITALIC.OTF in Resources */,
+				4F89101A23433287000B0EA4 /* NotificatioonTableViewCell.xib in Resources */,
 				F73DD40C2284620F0096A943 /* MONTSERRAT-EXTRABOLDITALIC.OTF in Resources */,
 				F73DD3FB2284620F0096A943 /* MONTSERRATALTERNATES-LIGHTITALIC.OTF in Resources */,
 				F73DD40D2284620F0096A943 /* MONTSERRAT-ITALIC.OTF in Resources */,
@@ -1056,6 +1082,7 @@
 				4F0F210A22B762A1002F69A7 /* SVPinView+Extension.swift in Sources */,
 				4F0F210C22B762A1002F69A7 /* UIColor+Extension.swift in Sources */,
 				7FCCA6DC22644ADC00E8E9A1 /* AppDelegate.swift in Sources */,
+				4F89101523432149000B0EA4 /* NotificationViewController.swift in Sources */,
 				4F188C1422D3258300D340A1 /* DPDConstants.swift in Sources */,
 				7F7F9FD62285BA37004F85BD /* FSPagerCollectionView.swift in Sources */,
 				4F0F210F22B762A1002F69A7 /* UITextField+Extensions.swift in Sources */,
@@ -1126,6 +1153,7 @@
 				4F39B8DE22DB1B8D00AB3CD6 /* FriendCollectionViewCell.swift in Sources */,
 				4F0F210E22B762A1002F69A7 /* UINavigationBar+Extension.swift in Sources */,
 				4F0F211922B764F7002F69A7 /* UITableView+Extension.swift in Sources */,
+				4F89101923433287000B0EA4 /* NotificatioonTableViewCell.swift in Sources */,
 				4FBBB1E122C514400048A596 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

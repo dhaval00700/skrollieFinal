@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let token = toketParts.joined()
         print("Device Token: \(token)")
+        AppPrefsManager.shared.saveDeviceToken(deviceToken: token)
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
@@ -54,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        updateDeviceToken()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -116,6 +118,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func updateDeviceToken() {
+        
+        let param = ParameterRequest()
+        param.addParameter(key: ParameterRequest.iduser, value: AppPrefsManager.shared.getUserProfileData().id)
+        param.addParameter(key: ParameterRequest.udid, value: Utility.getAppUniqueId())
+        param.addParameter(key: ParameterRequest.PushNotificationId, value: AppPrefsManager.shared.getDeviceToken())
+        
+        _ = APIClient.UpdateDeviceToken(parameters: param.parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+               
+            }
+        }
+    }
  
 }
 
@@ -144,4 +161,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          completionHandler()
      }
  }
+
 

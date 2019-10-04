@@ -15,6 +15,7 @@ class AppPrefsManager {
     private let USER_DATA_KEY  =   "USER_DATA_KEY"
     private let USER_TOKEN_KEY  =   "USER_TOKEN_KEY"
     private let USER_PROFILE_DATA_KEY  =   "USER_PROFILE_DATA_KEY"
+    private let DEVICE_TOKEN_KEY  =   "DEVICE_TOKEN_KEY"
     
     init() {
     }
@@ -88,5 +89,17 @@ class AppPrefsManager {
     func removeUserProfileData()
     {
         removeDataFromPreference(key: USER_PROFILE_DATA_KEY)
+    }
+    
+    //MARK: - Device token
+    
+    func saveDeviceToken(deviceToken: String)
+    {
+        setDataToPreference(data: deviceToken as AnyObject, forKey: DEVICE_TOKEN_KEY)
+    }
+    
+    func getDeviceToken() -> String
+    {
+        return getDataFromPreference(key: DEVICE_TOKEN_KEY) as? String ?? ""
     }
 }

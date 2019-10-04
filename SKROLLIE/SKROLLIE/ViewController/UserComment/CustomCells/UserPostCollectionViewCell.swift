@@ -28,6 +28,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnPlayPause: UIButton!
     @IBOutlet weak var btnMuteControll: UIButton!
     @IBOutlet weak var stkViwControlls: UIStackView!
+    @IBOutlet weak var viwGray: UIView!
     
     
     
@@ -43,6 +44,7 @@ class UserPostCollectionViewCell: UICollectionViewCell {
         stkViwControlls.isHidden = true
         imgWaterMark.alpha = 0
         imgAccountVerified.image = #imageLiteral(resourceName: "ic_shield").tintWithColor(#colorLiteral(red: 0.2509279847, green: 0.1815860868, blue: 0.3583279252, alpha: 1))
+        viwGray.isHidden = true
 
         btnMuteControll.addCornerRadius(btnMuteControll.frame.height/2.0)
         
@@ -77,7 +79,8 @@ class UserPostCollectionViewCell: UICollectionViewCell {
             imgWaterMark.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)
         }
         lblDateTime.text = Utility.getPostTime(postDate: currentObj.CreatedNsDate)
-
+        
+        viwGray.isHidden = !currentObj.IsWatch
         
         if !currentObj.isPhoto {
             stkViwControlls.isHidden = true

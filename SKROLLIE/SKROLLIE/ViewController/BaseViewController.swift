@@ -70,6 +70,19 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func updatePostById(parameters: [String : Any], complation success: ((Bool) -> Void)? = nil) {
+        
+        _ = APIClient.UpdatePostById(parameters: parameters) { (responseObj) in
+            let response = responseObj ?? [String : Any]()
+            let responseData = ResponseDataModel(responseObj: response)
+            if responseData.success {
+                if success != nil {
+                    success!(true)
+                }
+            }
+        }
+    }
+    
     func createFriend(userId: String, completion success: ((Bool) -> Void)? = nil) {
         
         var paramter = [String:AnyObject]()
