@@ -572,8 +572,15 @@ extension commentViewClass: UICollectionViewDataSource, UICollectionViewDelegate
             self.setDropDown(btn: cell.btnMore)
             
             if isOwnProfile {
-                cell.emoji1.isHidden = true
-                cell.emoji2.isHidden = true
+                cell.emoji1.isUserInteractionEnabled = false
+                cell.emoji2.isUserInteractionEnabled = false
+                if !currentObj.Emoji1.isEmpty && !currentObj.Emoji2.isEmpty {
+                    cell.emoji1.setImage(EmojiStatus(rawValue: currentObj.Emoji1.toInt()!)!.description(), for: .normal)
+                    cell.emoji2.setImage(EmojiStatus(rawValue: currentObj.Emoji2.toInt()!)!.description(), for: .normal)
+                } else {
+                    cell.emoji1.isHidden = true
+                    cell.emoji2.isHidden = true
+                }
                 cell.imgUserProfile.imageFromURL(link: userProfileDataObj.image, errorImage: postPlaceHolder, contentMode: .scaleAspectFill)
             } else {
                 if currentObj.IsUnBlockPost {
